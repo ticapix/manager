@@ -16,6 +16,7 @@
     "@ovh-ux/manager-config": "^0.2.0",
     "@ovh-ux/manager-core": "^5.2.1",
     "@ovh-ux/manager-freefax": "^5.1.2",
+    "@ovh-ux/manager-hello": "^0.0.0",
     "@ovh-ux/manager-navbar": "^0.2.0-alpha.2",
     "@ovh-ux/manager-overthebox": "^4.2.2",
     "@ovh-ux/manager-sms": "^6.2.1",
