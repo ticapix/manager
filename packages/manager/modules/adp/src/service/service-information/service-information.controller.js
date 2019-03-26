@@ -1,6 +1,6 @@
 export default class {
   /* @ngInject */
-  constructor($stateParams, adpService, CucControllerHelper,
+  constructor($stateParams, adpService, ADP_URL_NAME, CucControllerHelper,
     CucServiceHelper) {
     this.adpService = adpService;
     this.cucControllerHelper = CucControllerHelper;
@@ -9,11 +9,7 @@ export default class {
     this.serviceName = this.$stateParams.serviceName;
     this.platformDetails = this.adpService.platformDetail;
     this.details = null;
-    this.clusterManage = {
-      AMBARI: 'AMBARI',
-      FREEIPA: 'FREEIPA',
-      RANGER: 'RANGER',
-    };
+    this.clusterManage = ADP_URL_NAME;
   }
 
   $onInit() {

@@ -6,14 +6,14 @@ import sha256 from 'fast-sha256';
 
 export default class {
   /* @ngInject */
-  constructor($stateParams, $timeout, adpConstants) {
+  constructor($stateParams, $timeout, ADP_CREDENTIALS_INFO) {
     this.$timeout = $timeout;
-    this.adpConstants = adpConstants;
+    this.ADP_CREDENTIALS_INFO = ADP_CREDENTIALS_INFO;
     this.cloudProjectId = $stateParams.serviceName;
   }
 
   $onInit() {
-    this.credentials = cloneDeep(this.adpConstants.ADP_CREDENTIALS_INFO.credentials);
+    this.credentials = cloneDeep(this.ADP_CREDENTIALS_INFO.credentials);
     this.credentialsInfo = {
       masterPassword: '',
       generatingPasswords: false,
@@ -24,11 +24,11 @@ export default class {
     const derivedKey = sha256.pbkdf2(
       this.constructor.str2uint8(password),
       this.constructor.str2uint8(salt),
-      this.adpConstants.ADP_CREDENTIALS_INFO.rounds,
-      this.adpConstants.ADP_CREDENTIALS_INFO.dkLen,
+      this.ADP_CREDENTIALS_INFO.rounds,
+      this.ADP_CREDENTIALS_INFO.dkLen,
     );
     return nacl.encodeBase64(derivedKey)
-      .substr(0, this.adpConstants.ADP_CREDENTIALS_INFO.passwordLength);
+      .substr(0, this.ADP_CREDENTIALS_INFO.passwordLength);
   }
 
   generatePasswords() {

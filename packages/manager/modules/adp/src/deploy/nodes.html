@@ -1,24 +1,24 @@
 <div class="mb-3">
     <oui-message data-ng-if="$ctrl.minimumNodesRequired > $ctrl.quota.data.instance.maxInstances" data-type="error">
         <span data-translate="adp_deploy_quota_min_servers_error"
-            data-translate-values="{
+              data-translate-values="{
                 numberOfServers: $ctrl.minimumNodesRequired,
                 instances: $ctrl.quota.data.instance.maxInstances,
                 region: $ctrl.selectedRegion.macroRegion.text + ' (' + $ctrl.selectedRegion.macroRegion.code + ')',
-            }">
+              }">
         </span>&nbsp;
         <a data-ui-sref="iaas.pci-project.compute.quota"
-            data-translate="adp_deploy_nodes_quota_increase">
+           data-translate="adp_deploy_nodes_quota_increase">
         </a>
     </oui-message>
     <oui-message data-ng-if="$ctrl.minimumNodesRequired <= $ctrl.quota.data.instance.maxInstances" data-type="info">
         <span data-translate="adp_deploy_nodes_quota_msg"
-            data-translate-values="{ instances: $ctrl.quota.data.instance.maxInstances, region: $ctrl.selectedRegion.macroRegion.text + ' (' + $ctrl.selectedRegion.macroRegion.code + ')' }"></span>
+              data-translate-values="{ instances: $ctrl.quota.data.instance.maxInstances, region: $ctrl.selectedRegion.macroRegion.text + ' (' + $ctrl.selectedRegion.macroRegion.code + ')' }"></span>
     </oui-message>
     <div class="row" data-ng-repeat="(nodeType, node) in $ctrl.nodesConfig track by nodeType">
         <div class="col-sm-3 col-xs-12">
             <oui-field data-label="{{ ::'adp_deploy_' + node.type + '_nodes' | translate }}"
-                    data-label-popover="{{ ('adp_deploy_' + node.type + '_nodes_help' | translate)
+                       data-label-popover="{{ ('adp_deploy_' + node.type + '_nodes_help' | translate)
                         + (node.instance_min !== node.instance_max
                             ? ('adp_deploy_nodes_min_max' | translate: {
                                 version: $ctrl.selectedCapability.version,

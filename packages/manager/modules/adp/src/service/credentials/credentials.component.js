@@ -4,5 +4,4 @@ import template from './credentials.html';
 export default {
   template,
   controller,
-  controllerAs: '$ctrl',
 };

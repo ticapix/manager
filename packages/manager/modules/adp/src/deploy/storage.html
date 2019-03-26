@@ -2,27 +2,27 @@
     <div class="row">
         <div class="col-sm-6 col-xs-12 mb-5">
             <oui-field data-label="{{ ::'adp_deploy_storage_cluster_label' | translate }}"
-                data-help-text="{{ ::'adp_deploy_storage_cluster_storage_helptext' | translate: {
-                    adp_version: $ctrl.adp.cluster_type,
-                    min_storage: $ctrl.storage.min_cluster_storage,
-                    max_storage: $ctrl.storage.max_cluster_storage
-                } }}"
-                data-size="m"
-                data-error-messages="{ pattern: ('adp_deploy_storage_invalid_entry' | translate) }">
+                       data-help-text="{{ ::'adp_deploy_storage_cluster_storage_helptext' | translate: {
+                        adp_version: $ctrl.adp.cluster_type,
+                        min_storage: $ctrl.storage.min_cluster_storage,
+                        max_storage: $ctrl.storage.max_cluster_storage
+                       } }}"
+                       data-size="m"
+                       data-error-messages="{ pattern: ('adp_deploy_storage_invalid_entry' | translate) }">
                 <div class="oui-input-group">
                     <input class="oui-input oui-input_number"
-                        type="number"
-                        id="hdfs_effective_storage"
-                        name="hdfs_effective_storage"
-                        required
-                        placeholder="{{ ::'adp_deploy_storage_set_quantity' | translate }}"
-                        data-ng-min="{{ ::$ctrl.storage.min_cluster_storage }}"
-                        data-ng-max="{{ ::$ctrl.storage.max_cluster_storage }}"
-                        data-ng-pattern="/^\d+$/"
-                        data-ng-model="$ctrl.storage.hdfs_effective_storage">
+                           type="number"
+                           id="hdfs_effective_storage"
+                           name="hdfs_effective_storage"
+                           required
+                           placeholder="{{ ::'adp_deploy_storage_set_quantity' | translate }}"
+                           data-ng-min="{{ ::$ctrl.storage.min_cluster_storage }}"
+                           data-ng-max="{{ ::$ctrl.storage.max_cluster_storage }}"
+                           data-ng-pattern="/^\d+$/"
+                           data-ng-model="$ctrl.storage.hdfsEffectiveStorage">
                     <button class="oui-button oui-button_icon-only oui-button_small-width"
-                        type="button"
-                        disabled>
+                            type="button"
+                            disabled>
                         <span data-translate="adp_common_unit_gb"></span>
                     </button>
                 </div>
@@ -35,7 +35,7 @@
                 <dt class="storage-list__term"><span data-translate="adp_deploy_storage_storage_per_node"></span> : </dt>
                 <dd class="storage-list__definition">
                     <span>
-                        {{ ($ctrl.storage.hdfs_effective_storage * $ctrl.selectedCapability.hdfs_replication_factor) / $ctrl.nodesConfig.worker.count }}
+                        {{ ($ctrl.storage.hdfsEffectiveStorage * $ctrl.selectedCapability.hdfs_replication_factor) / $ctrl.nodesConfig.worker.count }}
                     </span>
                     <span data-translate="adp_common_unit_gb"></span>
                 </dd>
@@ -44,7 +44,7 @@
                 <dd class="storage-list__definition">
                     <strong>
                         <span>
-                            {{ $ctrl.storage.hdfs_effective_storage * $ctrl.selectedCapability.hdfs_replication_factor }}
+                            {{ $ctrl.storage.hdfsEffectiveStorage * $ctrl.selectedCapability.hdfs_replication_factor }}
                         </span>
                         <span data-translate="adp_common_unit_gb"></span>
                     </strong>
@@ -59,27 +59,27 @@
     <div class="row">
         <div class="col-sm-6 col-xs-12">
             <oui-field data-label="{{ ::'adp_deploy_storage_edge_node_label' | translate }}"
-                data-help-text="{{ ::'adp_deploy_storage_cluster_storage_helptext' | translate: {
-                    adp_version: $ctrl.adp.cluster_type,
-                    min_storage: $ctrl.storage.min_edge_node_storage,
-                    max_storage: $ctrl.storage.max_edge_node_storage
-                } }}"
-                data-size="m"
-                data-error-messages="{ pattern: ('adp_deploy_storage_invalid_entry' | translate) }">
+                       data-help-text="{{ ::'adp_deploy_storage_cluster_storage_helptext' | translate: {
+                        adp_version: $ctrl.adp.cluster_type,
+                        min_storage: $ctrl.storage.min_edge_node_storage,
+                        max_storage: $ctrl.storage.max_edge_node_storage
+                       } }}"
+                       data-size="m"
+                       data-error-messages="{ pattern: ('adp_deploy_storage_invalid_entry' | translate) }">
                 <div class="oui-input-group">
                     <input class="oui-input oui-input_number"
-                        type="number"
-                        id="hdfs_replication_factor"
-                        name="hdfs_replication_factor"
-                        required
-                        placeholder="{{ ::'adp_deploy_storage_set_quantity' | translate }}"
-                        data-ng-model="$ctrl.adp.edge_node_storage"
-                        data-ng-pattern="/^\d+$/"
-                        data-ng-min="{{ ::$ctrl.storage.min_edge_node_storage }}"
-                        data-ng-max="{{ ::$ctrl.storage.max_edge_node_storage }}">
+                           type="number"
+                           id="hdfs_replication_factor"
+                           name="hdfs_replication_factor"
+                           required
+                           placeholder="{{ ::'adp_deploy_storage_set_quantity' | translate }}"
+                           data-ng-model="$ctrl.adp.edge_node_storage"
+                           data-ng-pattern="/^\d+$/"
+                           data-ng-min="{{ ::$ctrl.storage.min_edge_node_storage }}"
+                           data-ng-max="{{ ::$ctrl.storage.max_edge_node_storage }}">
                     <button class="oui-button oui-button_icon-only oui-button_small-width"
-                        type="button"
-                        disabled>
+                            type="button"
+                            disabled>
                         <span data-translate="adp_common_unit_gb"></span>
                     </button>
                 </div>

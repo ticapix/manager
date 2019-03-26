@@ -1,4 +1,4 @@
-export const PUBLIC_CLOUD_STATUS = Object.freeze({
+export const ADP_PUBLIC_CLOUD_STATUS = Object.freeze({
   CREATING: 'creating',
   DELETED: 'deleted',
   DELETING: 'deleting',
@@ -24,9 +24,9 @@ export const ADP_CLUSTER_MANAGE = Object.freeze({
   RANGER: 'https://knox.serviceName.datalake.ovh/gateway/default/ranger/login.jsp',
 });
 
-export const NODE_TYPES = ['worker', 'edge', 'master', 'utility', 'bastion'];
+export const ADP_NODE_NAMES = ['worker', 'edge', 'master', 'utility', 'bastion'];
 
-export const CLOUD_CATALOG_NAME = 'cloud';
+export const ADP_CLOUD_CATALOG_NAME = 'cloud';
 
 export const ADP_FLAVOR_TYPES = Object.freeze([
   {
@@ -445,17 +445,24 @@ export const ADP_GET_ACTIVITIES = [
   },
 ];
 
+export const ADP_URL_NAME = Object.freeze({
+  AMBARI: 'AMBARI',
+  FREEIPA: 'FREEIPA',
+  RANGER: 'RANGER',
+});
+
 export default {
-  PUBLIC_CLOUD_STATUS,
-  ADP_NODE_TYPES,
-  NODE_TYPES,
-  CLOUD_CATALOG_NAME,
-  ADP_CREDENTIALS_INFO,
+  ADP_PUBLIC_CLOUD_STATUS,
   ADP_CAPABILITIES,
-  ADP_GUIDE_LINKS,
-  ADP_FLAVOR_TYPES,
-  ADP_PLATFORMS_GET_LIST,
-  ADP_PLATFORMS_GET_DETAILS,
-  ADP_GET_ACTIVITIES,
+  ADP_CLOUD_CATALOG_NAME,
   ADP_CLUSTER_MANAGE,
+  ADP_CREDENTIALS_INFO,
+  ADP_FLAVOR_TYPES,
+  ADP_GET_ACTIVITIES,
+  ADP_GUIDE_LINKS,
+  ADP_NODE_NAMES,
+  ADP_NODE_TYPES,
+  ADP_PLATFORMS_GET_DETAILS,
+  ADP_PLATFORMS_GET_LIST,
+  ADP_URL_NAME,
 };

@@ -1,16 +1,16 @@
 <oui-modal data-title="{{ ::'adp_deploy_quota_error_model_title' | translate }}"
-    data-primary-action="$ctrl.closeModal()"
-    data-primary-label="{{ ::'adp_deploy_quota_error_model_button_increase_quota' | translate }}"
-    data-secondary-action="$ctrl.dismissModal()"
-    data-on-dismiss="$ctrl.dismissModal()"
-    data-secondary-label="{{ ::'adp_common_close' | translate }}"
-    data-type="error">
+           data-primary-action="$ctrl.closeModal()"
+           data-primary-label="{{ ::'adp_deploy_quota_error_model_button_increase_quota' | translate }}"
+           data-secondary-action="$ctrl.dismissModal()"
+           data-on-dismiss="$ctrl.dismissModal()"
+           data-secondary-label="{{ ::'adp_common_close' | translate }}"
+           data-type="error">
     <p data-translate="adp_deploy_quota_error_model_description"
-        data-translate-values="{cloud_name: $ctrl.publicCloudName}">
+       data-translate-values="{cloud_name: $ctrl.publicCloudName}">
     </p>
     <div class="oui-datagrid-responsive-container
-        oui-datagrid-responsive-container_sticky-checkbox
-        adp-quota-info">
+            oui-datagrid-responsive-container_sticky-checkbox
+            adp-quota-info">
         <div
             class="oui-datagrid-responsive-container__sticky-container
                 oui-datagrid-responsive-container__sticky-container_scroll-end
@@ -45,7 +45,7 @@
                             </td>
                             <td class="oui-datagrid__cell text-center">
                                 <span data-ng-class="['oui-status', {'oui-status_success': compute.maxLimit >= compute.required}, {'oui-status_error': compute.maxLimit < compute.required} ]"
-                                    data-ng-bind="compute.required">
+                                      data-ng-bind="compute.required">
                                     &nbsp;
                                 </span>
                                 <span data-ng-if="compute.unit" data-translate="{{ ::'adp_common_unit_'+compute.unit }}"></span>
@@ -56,7 +56,8 @@
             </div>
         </div>
     </div>
-    <p class="pt-2" data-translate="adp_deploy_quota_error_model_info"
-        data-translate-values="{cloud_name: $ctrl.publicCloudName}">
+    <p class="pt-2"
+       data-translate="adp_deploy_quota_error_model_info"
+       data-translate-values="{cloud_name: $ctrl.publicCloudName}">
     </p>
 </oui-modal>
