@@ -4,5 +4,4 @@ import template from './activity-log.html';
 export default {
   template,
   controller,
-  controllerAs: '$ctrl',
 };

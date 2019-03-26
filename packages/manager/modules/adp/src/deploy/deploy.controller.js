@@ -20,10 +20,12 @@ import errorModelController from '../quota-error-model/quota-error-model.control
 
 export default class {
   /* @ngInject */
-  constructor($translate, adpConstants, adpService, CucControllerHelper,
-    CucCloudMessage, CucServiceHelper) {
+  constructor($translate, ADP_FLAVOR_TYPES, ADP_NODE_NAMES, ADP_NODE_TYPES,
+    adpService, CucControllerHelper, CucCloudMessage, CucServiceHelper) {
     this.$translate = $translate;
-    this.adpConstants = adpConstants;
+    this.ADP_FLAVOR_TYPES = ADP_FLAVOR_TYPES;
+    this.ADP_NODE_NAMES = ADP_NODE_NAMES;
+    this.ADP_NODE_TYPES = ADP_NODE_TYPES;
     this.adpService = adpService;
     this.cucControllerHelper = CucControllerHelper;
     this.cucCloudMessage = CucCloudMessage;
@@ -408,7 +410,7 @@ export default class {
    */
   getNodesConfiguration(capability, flavors) {
     const nodesConfig = {};
-    forEach(this.adpConstants.NODE_TYPES, (nodeType) => {
+    forEach(this.ADP_NODE_NAMES, (nodeType) => {
       const nodeConfig = cloneDeep(get(capability, `${nodeType}_node`));
       nodeConfig.type = nodeType;
       nodeConfig.count = nodeConfig.instance_min;
@@ -417,7 +419,7 @@ export default class {
         nodeConfig.instance_type,
         (instanceType) => {
           const flavor = find(flavors, { name: instanceType });
-          const flavorId = find(this.adpConstants.ADP_FLAVOR_TYPES,
+          const flavorId = find(this.ADP_FLAVOR_TYPES,
             flavorType => includes(flavorType.types, flavor.type)).id;
           flavor.flavorFamily = this.$translate.instant(`adp_deploy_flavor_family_${flavorId}`);
           return flavor;
@@ -444,7 +446,7 @@ export default class {
       times(nodeConfig.count, () => {
         this.adp.nodes.push({
           node_flavor: nodeConfig.selectedFlavor.name,
-          node_type: this.adpConstants.ADP_NODE_TYPES[nodeConfig.type.toUpperCase()],
+          node_type: this.ADP_NODE_TYPES[nodeConfig.type.toUpperCase()],
         });
       });
     });

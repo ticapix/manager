@@ -1,13 +1,13 @@
 export default class {
   /* @ngInject */
-  constructor($stateParams, adpService, CucControllerHelper, CucCloudMessage, CucServiceHelper,
-    adpConstants) {
+  constructor($stateParams, ADP_GUIDE_LINKS, adpService,
+    CucControllerHelper, CucCloudMessage, CucServiceHelper) {
     this.$stateParams = $stateParams;
     this.adpService = adpService;
     this.cucControllerHelper = CucControllerHelper;
     this.cucCloudMessage = CucCloudMessage;
     this.cucServiceHelper = CucServiceHelper;
-    this.guideLinks = adpConstants.ADP_GUIDE_LINKS;
+    this.guideLinks = ADP_GUIDE_LINKS;
     this.serviceName = this.$stateParams.serviceName;
     this.details = null;
   }
@@ -28,6 +28,7 @@ export default class {
   }
 
   refreshMessage() {
-    this.messages = this.messageHandler.getMessages();
+    this.messages = this.messageHandler.getMessages()
+      .filter(message => message.origin === 'adp.deploy');
   }
 }

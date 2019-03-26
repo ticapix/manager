@@ -8,12 +8,18 @@ import set from 'lodash/set';
 
 export default class ADPService {
   /* @ngInject */
-  constructor($q, $translate, adpConstants, CucRegionService,
-    OvhApiAdp, OvhApiCloudProject,
-    OvhApiMe, OvhApiOrderCatalogFormatted) {
+  constructor($q, $translate, ADP_CAPABILITIES, ADP_CLOUD_CATALOG_NAME, ADP_CLUSTER_MANAGE,
+    ADP_GET_ACTIVITIES, ADP_PLATFORMS_GET_DETAILS, ADP_PLATFORMS_GET_LIST, ADP_PUBLIC_CLOUD_STATUS,
+    CucRegionService, OvhApiAdp, OvhApiCloudProject, OvhApiMe, OvhApiOrderCatalogFormatted) {
     this.$q = $q;
     this.$translate = $translate;
-    this.adpConstants = adpConstants;
+    this.ADP_CAPABILITIES = ADP_CAPABILITIES;
+    this.ADP_CLOUD_CATALOG_NAME = ADP_CLOUD_CATALOG_NAME;
+    this.ADP_CLUSTER_MANAGE = ADP_CLUSTER_MANAGE;
+    this.ADP_GET_ACTIVITIES = ADP_GET_ACTIVITIES;
+    this.ADP_PLATFORMS_GET_DETAILS = ADP_PLATFORMS_GET_DETAILS;
+    this.ADP_PLATFORMS_GET_LIST = ADP_PLATFORMS_GET_LIST;
+    this.ADP_PUBLIC_CLOUD_STATUS = ADP_PUBLIC_CLOUD_STATUS;
     this.OvhApiAdp = OvhApiAdp.v6();
     this.OvhApiAdpCapabilities = OvhApiAdp.capabilities().v6();
     this.ovhApiCloudProject = OvhApiCloudProject.v6();
@@ -58,7 +64,7 @@ export default class ADPService {
             // TODO what to do with suspended clouds
             const activeClouds = filter(
               cloudObjs,
-              cloud => isEqual(cloud.status, this.adpConstants.PUBLIC_CLOUD_STATUS.OK),
+              cloud => isEqual(cloud.status, this.ADP_PUBLIC_CLOUD_STATUS.OK),
             );
             return activeClouds;
           });
@@ -116,7 +122,7 @@ export default class ADPService {
    */
   getAdpCapabilities() {
     const deferred = this.$q.defer();
-    deferred.resolve(this.adpConstants.ADP_CAPABILITIES);
+    deferred.resolve(this.ADP_CAPABILITIES);
     return deferred.promise;
   }
 
@@ -146,7 +152,10 @@ export default class ADPService {
     return this.OvhApiMe.v6().get()
       .$promise
       .then(me => this.OvhApiOrderCatalogFormatted
-        .get({ catalogName: this.adpConstants.CLOUD_CATALOG_NAME, ovhSubsidiary: me.ovhSubsidiary })
+        .get({
+          catalogName: this.ADP_CLOUD_CATALOG_NAME,
+          ovhSubsidiary: me.ovhSubsidiary,
+        })
         .$promise
         .then((catalog) => {
           const projectPlan = find(catalog.plans, { planCode: publicCloudPlanCode });
@@ -178,7 +187,7 @@ export default class ADPService {
    */
   getAnalyticsDataPlatforms() {
     const deferred = this.$q.defer();
-    deferred.resolve(this.adpConstants.ADP_PLATFORMS_GET_LIST);
+    deferred.resolve(this.ADP_PLATFORMS_GET_LIST);
     return deferred.promise;
   }
 
@@ -190,7 +199,7 @@ export default class ADPService {
    */
   getAdpDetails() {
     const deferred = this.$q.defer();
-    deferred.resolve(this.adpConstants.ADP_PLATFORMS_GET_DETAILS);
+    deferred.resolve(this.ADP_PLATFORMS_GET_DETAILS);
     return deferred.promise;
   }
 
@@ -202,7 +211,7 @@ export default class ADPService {
    */
   getAdpActivityLogs() {
     const deferred = this.$q.defer();
-    deferred.resolve(this.adpConstants.ADP_GET_ACTIVITIES);
+    deferred.resolve(this.ADP_GET_ACTIVITIES);
     return deferred.promise;
   }
 
@@ -257,6 +266,6 @@ export default class ADPService {
    * @memberof ADPService
    */
   getClusterManagementUrl(manageType, serviceName) {
-    return this.adpConstants.ADP_CLUSTER_MANAGE[manageType].replace('serviceName', serviceName);
+    return this.ADP_CLUSTER_MANAGE[manageType].replace('serviceName', serviceName);
   }
 }
