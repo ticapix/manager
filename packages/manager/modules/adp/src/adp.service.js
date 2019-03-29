@@ -10,7 +10,7 @@ export default class ADPService {
   /* @ngInject */
   constructor($q, $translate, ADP_CAPABILITIES, ADP_CLOUD_CATALOG_NAME, ADP_CLUSTER_MANAGE,
     ADP_GET_ACTIVITIES, ADP_PLATFORMS_GET_DETAILS, ADP_PLATFORMS_GET_LIST, ADP_PUBLIC_CLOUD_STATUS,
-    CucRegionService, OvhApiAdp, OvhApiCloudProject, OvhApiMe, OvhApiOrderCatalogFormatted) {
+    CucRegionService, OvhApiAnalytics, OvhApiCloudProject, OvhApiMe, OvhApiOrderCatalogFormatted) {
     this.$q = $q;
     this.$translate = $translate;
     this.ADP_CAPABILITIES = ADP_CAPABILITIES;
@@ -20,8 +20,8 @@ export default class ADPService {
     this.ADP_PLATFORMS_GET_DETAILS = ADP_PLATFORMS_GET_DETAILS;
     this.ADP_PLATFORMS_GET_LIST = ADP_PLATFORMS_GET_LIST;
     this.ADP_PUBLIC_CLOUD_STATUS = ADP_PUBLIC_CLOUD_STATUS;
-    this.OvhApiAdp = OvhApiAdp.v6();
-    this.OvhApiAdpCapabilities = OvhApiAdp.capabilities().v6();
+    this.OvhApiAnalyticsPlatforms = OvhApiAnalytics.Platforms().v6();
+    this.OvhApiAnalyticsCapabilities = OvhApiAnalytics.Capabilities().v6();
     this.ovhApiCloudProject = OvhApiCloudProject.v6();
     this.ovhApiCloudProjectQuota = OvhApiCloudProject.Quota().v6();
     this.ovhApiSshKey = OvhApiCloudProject.SshKey().v6();
@@ -235,7 +235,7 @@ export default class ADPService {
    * @memberof ADPService
    */
   deployAdp(adp) {
-    return this.OvhApiAdp.deploy(adp).$promise;
+    return this.OvhApiAnalyticsPlatforms.deploy(adp).$promise;
   }
 
   /**

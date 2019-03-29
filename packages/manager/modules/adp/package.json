@@ -43,7 +43,7 @@
     "at-internet-ui-router-plugin": "^1.0.0",
     "ng-at-internet": "^3.1.1",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^6.1.2",
+    "ovh-api-services": "^6.7.0",
     "ovh-ui-kit": "^2.23.1",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "d3": "~3.5.13",
