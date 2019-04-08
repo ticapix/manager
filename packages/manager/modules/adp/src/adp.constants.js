@@ -14,6 +14,11 @@ export const ADP_NODE_TYPES = Object.freeze({
   BASTION: 'BASTION',
 });
 
+export const ADP_COMPUTE = Object.freeze({
+  RAM: 'RAM',
+  CORS: 'vCors',
+});
+
 export const ADP_GUIDE_LINKS = Object.freeze({
   general_link: 'https://docs.ovh.com/gb/en/analytics/',
 });
@@ -207,22 +212,22 @@ export const ADP_CAPABILITIES = [{
     raw_storage_max_gb: 0,
   },
   edge_node: {
-    instance_type: ['b2-15', 'b2-30', 'b2-60', 'b2-120'],
-    instance_min: 4,
+    instance_type: ['b2-7', 'b2-15', 'b2-30', 'b2-60', 'b2-120'],
+    instance_min: 1,
     instance_max: 10,
     raw_storage_min_gb: 100,
     raw_storage_max_gb: 4000,
   },
   master_node: {
-    instance_type: ['b2-15', 'b2-30', 'b2-60', 'b2-120'],
-    instance_min: 3,
+    instance_type: ['b2-7', 'b2-15', 'b2-30', 'b2-60', 'b2-120'],
+    instance_min: 1,
     instance_max: 3,
     raw_storage_min_gb: 100,
     raw_storage_max_gb: 1000,
   },
   worker_node: {
-    instance_type: ['b2-15'],
-    instance_min: 3,
+    instance_type: ['b2-7', 'b2-15'],
+    instance_min: 1,
     instance_max: 3,
     raw_storage_min_gb: 100,
     raw_storage_max_gb: 1000,
@@ -330,15 +335,15 @@ export const ADP_CAPABILITIES = [{
     instance_type: ['b2-15', 'b2-30', 'b2-60', 'b2-120'],
     instance_min: 1,
     instance_max: 50,
-    raw_storage_min_gb: 4000,
-    raw_storage_max_gb: 100,
+    raw_storage_min_gb: 200,
+    raw_storage_max_gb: 4000,
   },
   master_node: {
     instance_type: ['b2-30', 'b2-60', 'b2-120'],
     instance_min: 3,
     instance_max: 3,
     raw_storage_min_gb: 100,
-    raw_storage_max_gb: 100,
+    raw_storage_max_gb: 1000,
   },
   worker_node: {
     instance_type: ['b2-15'],
@@ -360,14 +365,17 @@ export const ADP_CAPABILITIES = [{
   version_description: 'Managed ADP (for testing purpose only)',
 }];
 
+// TODO - remove this when API support is available
 export const ADP_PLATFORMS_GET_LIST = [
   '5b7a7fd3-4d0a-4eed-879c-167cd4658f89',
+  '5b7a7fd3-4d0a-4eed-879c-167cd4658f80',
 ];
 
-export const ADP_PLATFORMS_GET_DETAILS = {
-  serviceName: '5b7a7fd3-4d0a-4eed-879c-167cd4658f89',
+// TODO - remove this when API support is available
+export const ADP_PLATFORMS_GET_DETAILS2 = {
+  serviceName: '5b7a7fd3-4d0a-4eed-879c-167cd4658f80',
   admin_mail: 'mocked.mail@cluster.com',
-  cluster_name: 'MockedClusterName::mockedProjectId::5b7a7fd3-4d0a-4eed-879c-167cd4658f89',
+  cluster_name: 'Big data 1',
   cluster_type: 'ADP V1.X',
   deployment_start_date: 1553231333926,
   deployment_end_date: 1553231333926,
@@ -425,9 +433,130 @@ export const ADP_PLATFORMS_GET_DETAILS = {
     },
   ],
   os_region: 'GRA5',
-  project_id: 'mockedProjectId',
-  vrack_id: 'mockedVrackId',
+  project_id: '5cf66fc2aaf044dfb87758652f068a1b',
+  vrack_id: 'pn-16343',
+  status: 'IN_PROGRESS',
+};
+
+// TODO - remove this when API support is available
+export const ADP_PLATFORMS_GET_DETAILS = {
+  serviceName: '5b7a7fd3-4d0a-4eed-879c-167cd4658f89',
+  admin_mail: 'mocked.mail@cluster.com',
+  cluster_name: 'Big data 2',
+  cluster_type: 'ADP V1.X',
+  deployment_start_date: 1553231333926,
+  deployment_end_date: 1553231333926,
+  domain: 'mockedDomain.datalake.ovh.com',
+  nodes: [
+    {
+      node_id: 'c1a86407-d2d4-4f05-8c74-dd3fad085a00',
+      hostname: 'mnode0.5b7a7fd3-4d0a-4eed-879c-167cd4658f89.datalake.ovh.com',
+      node_type: 'MASTER',
+      deployment_start_date: 1553231333926,
+      deployment_end_date: 1553231333926,
+      ip: '0.0.0.0',
+      storage: 0,
+      status: 'DEPLOYED',
+    },
+    {
+      node_id: 'c1a86407-d2d4-4f05-8c74-dd3fad085a01',
+      hostname: 'mnode1.5b7a7fd3-4d0a-4eed-879c-167cd4658f89.datalake.ovh.com',
+      node_type: 'MASTER',
+      deployment_start_date: 1553231333926,
+      deployment_end_date: 1553231333926,
+      ip: '1.1.1.1',
+      storage: 0,
+      status: 'DEPLOYED',
+    },
+    {
+      node_id: '00097d50-da2c-4e64-8319-2af8254a0830',
+      hostname: 'cnode0.5b7a7fd3-4d0a-4eed-879c-167cd4658f89.datalake.ovh.com',
+      node_type: 'SLAVE',
+      deployment_start_date: 1553231333926,
+      deployment_end_date: 1553231333926,
+      ip: '0.00.00.00',
+      storage: 2000,
+      status: 'DEPLOYED',
+    },
+    {
+      node_id: '00097d50-da2c-4e64-8319-2af8254a0830',
+      hostname: 'enode0.5b7a7fd3-4d0a-4eed-879c-167cd4658f89.datalake.ovh.com',
+      node_type: 'EDGE',
+      deployment_start_date: 1553231333926,
+      deployment_end_date: 1553231333926,
+      ip: '0.00.00.00',
+      storage: 0,
+      status: 'DEPLOYED',
+    },
+    {
+      node_id: '00097d50-da2c-4e64-8319-2af8254a0830',
+      hostname: 'unode0.5b7a7fd3-4d0a-4eed-879c-167cd4658f89.datalake.ovh.com',
+      node_type: 'UTILITY',
+      deployment_start_date: 1553231333926,
+      deployment_end_date: 1553231333926,
+      ip: '0.00.00.00',
+      storage: 0,
+      status: 'DEPLOYED',
+    },
+  ],
+  os_region: 'GRA5',
+  project_id: '5cf66fc2aaf044dfb87758652f068a1b',
+  vrack_id: 'pn-16343',
   status: 'DEPLOYED',
+};
+
+// TODO - remove this when API support is available
+export const ADP_CLUSTER_NODES = {
+  nodes: [
+    {
+      deployment_end_date: 123123123,
+      deployment_start_date: 123123123,
+      hostname: 'hostname',
+      ip: '192.123.1.1',
+      node_id: 'node_uuid',
+      node_type: 'MASTER',
+      status: 'PENDING',
+      flavor_type: 's1-2',
+      storage: 11,
+      region: 'GRA3',
+    },
+    {
+      deployment_end_date: 345345345,
+      deployment_start_date: 345345345,
+      hostname: 'hostname2',
+      ip: '192.3.1.3',
+      node_id: 'node_uuid',
+      node_type: 'UTILITY',
+      status: 'IN_PROGRESS',
+      flavor_type: 'b2-15',
+      storage: 345,
+      region: 'GRA5',
+    },
+    {
+      deployment_end_date: 345345345,
+      deployment_start_date: 345345345,
+      hostname: 'hostname2',
+      ip: '192.3.1.3',
+      node_id: 'node_uuid',
+      node_type: 'SLAVE',
+      status: 'DONE',
+      flavor_type: 'b2-15',
+      storage: 23,
+      region: 'GRA5',
+    },
+    {
+      deployment_end_date: 345345345,
+      deployment_start_date: 345345345,
+      hostname: 'hostname2',
+      ip: '192.3.1.3',
+      node_id: 'node_uuid',
+      node_type: 'EDGE',
+      status: 'ERROR',
+      flavor_type: 'b2-15',
+      storage: 288,
+      region: 'GRA5',
+    },
+  ],
 };
 
 export const ADP_GET_ACTIVITIES = [
@@ -445,11 +574,62 @@ export const ADP_GET_ACTIVITIES = [
   },
 ];
 
-export const ADP_URL_NAME = Object.freeze({
+export const ADP_STATUS_MAP = {
+  DONE: 'success',
+  OK: 'success',
+  DEPLOYED: 'success',
+  PENDING: 'info',
+  IN_PROGRESS: 'info',
+  TO_DEPLOY: 'info',
+  DEPLOYING: 'info',
+  ERROR: 'error',
+  UNKNOWN: 'warning',
+  TO_DESTROY: 'info',
+  DESTROYED: 'error',
+};
+
+export const ADP_STATUS = {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  DONE: 'DONE',
+  ERROR: 'ERROR',
+  UNKNOWN: 'UNKNOWN',
+  OK: 'OK',
+  TO_DEPLOY: 'TO_DEPLOY',
+  DEPLOYING: 'DEPLOYING',
+  DEPLOYED: 'DEPLOYED',
+  TO_DESTROY: 'TO_DESTROY',
+  DESTROYED: 'DESTROYED',
+};
+
+export const ADP_SERVICES = Object.freeze({
   AMBARI: 'AMBARI',
   FREEIPA: 'FREEIPA',
   RANGER: 'RANGER',
 });
+
+export const ADP_CLUSTER_DEPLOY_STATUS = [
+  {
+    percentage: 100,
+    status: 'DONE',
+    task: 'Node creation',
+  },
+  {
+    percentage: 35,
+    status: 'IN_PROGRESS',
+    task: 'Server creation',
+  },
+  {
+    percentage: 35,
+    status: 'PENDING',
+    task: 'Storage creation',
+  },
+  {
+    percentage: 35,
+    status: 'PENDING',
+    task: 'Validating cluster',
+  },
+];
 
 export default {
   ADP_PUBLIC_CLOUD_STATUS,
@@ -459,10 +639,15 @@ export default {
   ADP_CREDENTIALS_INFO,
   ADP_FLAVOR_TYPES,
   ADP_GET_ACTIVITIES,
+  ADP_CLUSTER_NODES,
+  ADP_STATUS_MAP,
   ADP_GUIDE_LINKS,
   ADP_NODE_NAMES,
   ADP_NODE_TYPES,
   ADP_PLATFORMS_GET_DETAILS,
   ADP_PLATFORMS_GET_LIST,
-  ADP_URL_NAME,
+  ADP_SERVICES,
+  ADP_STATUS,
+  ADP_CLUSTER_DEPLOY_STATUS,
+  ADP_COMPUTE,
 };

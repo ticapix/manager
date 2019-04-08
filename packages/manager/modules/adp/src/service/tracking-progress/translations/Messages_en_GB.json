@@ -1,0 +1,8 @@
+{
+ "adp_tracking_progress_desc": "Your ADP cluster is in deployment process. Once every step is done, you will be able to manage your entire cluster.",
+ "adp_tracking_progress_title": "Global progression",
+ "adp_tracking_progress_completed_tasks": "Tasks",
+ "adp_tracking_progress_task": "Task",
+ "adp_tracking_progress_get_status_error": "Failed to get progress details for the project: {{message}}",
+ "adp_deploy_error" : "Failed to deploy the project"
+}
