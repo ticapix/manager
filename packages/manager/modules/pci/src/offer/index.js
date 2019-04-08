@@ -27,7 +27,7 @@ angular
      * Onboarding of Cloud
      * #/cloud/offer (see "add" folder)
      */
-      .state('iaas.pci-project-onboarding', {
+      .state('pci.project-onboarding', {
         url: '/pci/offer?voucher',
         template,
         controller,

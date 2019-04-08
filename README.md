@@ -19,6 +19,7 @@ yarn install
 ```
 
 <!-- AUTO-GENERATED-CONTENT:START (PACKAGES:packagePath=packages/manager/modules&name=modules&level=2) -->
+
 ## Availables modules
 
 | Package | Version | Dependencies | Dev dependencies | Peer dependencies | Changelog |
@@ -41,6 +42,7 @@ yarn install
 <!-- AUTO-GENERATED-CONTENT:END *-->
 
 <!-- AUTO-GENERATED-CONTENT:START (PACKAGES:packagePath=packages/manager/apps&name=apps&showBadges=false&privatePackage=true&level=2) -->
+
 ## Availables apps
 
 | Package | Changelog |
@@ -56,6 +58,14 @@ yarn install
 | [@ovh-ux/manager-telecom-dashboard-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/telecom-dashboard) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/telecom-dashboard/CHANGELOG.md) |
 | [@ovh-ux/manager-telecom-task-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/telecom-task) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/telecom-task/CHANGELOG.md) |
 | [@ovh-ux/manager-vrack-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/vrack) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/vrack/CHANGELOG.md) |
+<!-- AUTO-GENERATED-CONTENT:END *-->
+
+<!-- AUTO-GENERATED-CONTENT:START (PACKAGES:packagePath=packages/components&name=components&level=2) -->
+## Availables components
+
+| Package | Version | Dependencies | Dev dependencies | Peer dependencies | Changelog |
+| ------- | ------- | ------------ | ---------------- | ----------------- | :-------: |
+| [@ovh-ux/ng-ovh-uirouter-layout](https://github.com/ovh-ux/manager/tree/master/packages/components/ng-ovh-uirouter-layout) | [![npm version](https://badgen.net/npm/v/@ovh-ux/ng-ovh-uirouter-layout)](https://www.npmjs.com/package/@ovh-ux/ng-ovh-uirouter-layout) | [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/components/ng-ovh-uirouter-layout)](https://npmjs.com/package/@ovh-ux/ng-ovh-uirouter-layout?activeTab=dependencies) | [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/components/ng-ovh-uirouter-layout)](https://npmjs.com/package/@ovh-ux/ng-ovh-uirouter-layout?activeTab=dependencies) | [![Peer Dependencies](https://badgen.net/david/peer/ovh-ux/manager/packages/components/ng-ovh-uirouter-layout)](https://npmjs.com/package/@ovh-ux/ng-ovh-uirouter-layout?activeTab=dependencies) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/components/ng-ovh-uirouter-layout/CHANGELOG.md) |
 <!-- AUTO-GENERATED-CONTENT:END *-->
 
 ## Development

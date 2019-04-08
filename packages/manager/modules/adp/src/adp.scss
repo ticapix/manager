@@ -1,20 +1,9 @@
-// override bootstrap map to add custom widths
-// This variable affects the `.h-*` and `.w-*` classes.
-$sizes: () !default;
-// stylelint-disable-next-line scss/dollar-variable-default
-$sizes: map-merge(
-  (
-    10: 10%,
-    15: 15%,
-    20: 20%
-  ),
-  $sizes
-);
-
-@import "~bootstrap4/scss/_functions";
-@import "~bootstrap4/scss/_variables";
-@import "~bootstrap4/scss/_mixins";
-@import '~bootstrap4/scss/_utilities.scss';
-@import "~bootstrap4/scss/_grid.scss";
-@import "~bootstrap4/scss/_type.scss";
-@import "~bootstrap4/scss/_modal.scss";
+adp-component, .modal-open {
+  @import '~bootstrap4/scss/_functions';
+  @import '~bootstrap4/scss/_variables';
+  @import '~bootstrap4/scss/_mixins';
+  @import '~bootstrap4/scss/_utilities';
+  @import '~bootstrap4/scss/_grid';
+  @import '~bootstrap4/scss/_type';
+  @import '~bootstrap4/scss/_modal';
+}
