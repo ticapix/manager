@@ -8,18 +8,13 @@ import set from 'lodash/set';
 
 export default class ADPService {
   /* @ngInject */
-  constructor($q, $translate, ADP_CAPABILITIES, ADP_CLOUD_CATALOG_NAME, ADP_CLUSTER_MANAGE,
-    ADP_GET_ACTIVITIES, ADP_PLATFORMS_GET_DETAILS, ADP_PLATFORMS_GET_LIST, ADP_PUBLIC_CLOUD_STATUS,
-    CucRegionService, OvhApiAnalytics, OvhApiCloudProject, OvhApiMe, OvhApiOrderCatalogFormatted) {
+  constructor($q, $translate, CucRegionService, OvhApiAnalytics,
+    OvhApiCloudProject, OvhApiMe, OvhApiOrderCatalogFormatted, OvhApiVrack,
+    ADP_CAPABILITIES, ADP_CLOUD_CATALOG_NAME, ADP_CLUSTER_MANAGE,
+    ADP_CLUSTER_NODES, ADP_GET_ACTIVITIES, ADP_PLATFORMS_GET_DETAILS, ADP_PLATFORMS_GET_DETAILS2,
+    ADP_PLATFORMS_GET_LIST, ADP_PUBLIC_CLOUD_STATUS, ADP_CLUSTER_DEPLOY_STATUS, ADP_STATUS) {
     this.$q = $q;
     this.$translate = $translate;
-    this.ADP_CAPABILITIES = ADP_CAPABILITIES;
-    this.ADP_CLOUD_CATALOG_NAME = ADP_CLOUD_CATALOG_NAME;
-    this.ADP_CLUSTER_MANAGE = ADP_CLUSTER_MANAGE;
-    this.ADP_GET_ACTIVITIES = ADP_GET_ACTIVITIES;
-    this.ADP_PLATFORMS_GET_DETAILS = ADP_PLATFORMS_GET_DETAILS;
-    this.ADP_PLATFORMS_GET_LIST = ADP_PLATFORMS_GET_LIST;
-    this.ADP_PUBLIC_CLOUD_STATUS = ADP_PUBLIC_CLOUD_STATUS;
     this.OvhApiAnalyticsPlatforms = OvhApiAnalytics.Platforms().v6();
     this.OvhApiAnalyticsCapabilities = OvhApiAnalytics.Capabilities().v6();
     this.ovhApiCloudProject = OvhApiCloudProject.v6();
@@ -29,8 +24,20 @@ export default class ADPService {
     this.OvhApiFlavors = OvhApiCloudProject.Flavor().v6();
     this.OvhApiCloudServiceInfos = OvhApiCloudProject.ServiceInfos().v6();
     this.OvhApiOrderCatalogFormatted = OvhApiOrderCatalogFormatted.v6();
+    this.OvhApiVrack = OvhApiVrack.v6();
     this.OvhApiMe = OvhApiMe;
     this.CucRegionService = CucRegionService;
+    this.ADP_STATUS = ADP_STATUS;
+    this.ADP_CAPABILITIES = ADP_CAPABILITIES;
+    this.ADP_CLOUD_CATALOG_NAME = ADP_CLOUD_CATALOG_NAME;
+    this.ADP_CLUSTER_MANAGE = ADP_CLUSTER_MANAGE;
+    this.ADP_CLUSTER_NODES = ADP_CLUSTER_NODES;
+    this.ADP_GET_ACTIVITIES = ADP_GET_ACTIVITIES;
+    this.ADP_PLATFORMS_GET_DETAILS = ADP_PLATFORMS_GET_DETAILS;
+    this.ADP_PLATFORMS_GET_DETAILS2 = ADP_PLATFORMS_GET_DETAILS2;
+    this.ADP_PLATFORMS_GET_LIST = ADP_PLATFORMS_GET_LIST;
+    this.ADP_PUBLIC_CLOUD_STATUS = ADP_PUBLIC_CLOUD_STATUS;
+    this.ADP_CLUSTER_DEPLOY_STATUS = ADP_CLUSTER_DEPLOY_STATUS;
   }
 
   /**
@@ -115,6 +122,17 @@ export default class ADPService {
   }
 
   /**
+   * get vRack details
+   *
+   * @param {*} serviceName vRack service name
+   * @returns object containing vrack details
+   * @memberof ADPService
+   */
+  getVRack(serviceName) {
+    return this.OvhApiVrack.get({ serviceName }).$promise;
+  }
+
+  /**
    * fetch ADP capabilities
    *
    * @returns array of ADP capabilities
@@ -151,11 +169,8 @@ export default class ADPService {
   getPriceCatalog(publicCloudPlanCode) {
     return this.OvhApiMe.v6().get()
       .$promise
-      .then(({ ovhSubsidiary }) => this.OvhApiOrderCatalogFormatted
-        .get({
-          catalogName: this.ADP_CLOUD_CATALOG_NAME,
-          ovhSubsidiary,
-        })
+      .then(({ ovhSubsidiary, currency }) => this.OvhApiOrderCatalogFormatted
+        .get({ catalogName: this.ADP_CLOUD_CATALOG_NAME, ovhSubsidiary })
         .$promise
         .then((catalog) => {
           const projectPlan = find(catalog.plans, { planCode: publicCloudPlanCode });
@@ -175,8 +190,23 @@ export default class ADPService {
                 : null;
             });
           });
-          return pricesMap;
+          return {
+            currency,
+            pricesMap,
+          };
         }));
+  }
+
+  /**
+   * fetch all ADP projects along with details
+   *
+   * @returns array of ADP with details
+   * @memberof ADPService
+   */
+  getAdpWithDetails() {
+    const deferred = this.$q.defer();
+    deferred.resolve([this.ADP_PLATFORMS_GET_DETAILS, this.ADP_PLATFORMS_GET_DETAILS2]);
+    return deferred.promise;
   }
 
   /**
@@ -197,9 +227,13 @@ export default class ADPService {
    * @returns ADP details object
    * @memberof ADPService
    */
-  getAdpDetails() {
+  getAdpDetails(serviceName) {
     const deferred = this.$q.defer();
-    deferred.resolve(this.ADP_PLATFORMS_GET_DETAILS);
+    deferred.resolve(
+      this.ADP_PLATFORMS_GET_DETAILS.serviceName === serviceName
+        ? this.ADP_PLATFORMS_GET_DETAILS
+        : this.ADP_PLATFORMS_GET_DETAILS2,
+    );
     return deferred.promise;
   }
 
@@ -258,14 +292,43 @@ export default class ADPService {
   }
 
   /**
-   * get cluster manager urls
+   * get cluster nodes
    *
-   * @param {*} manageType
    * @param {*} serviceName
-   * @returns
-   * @memberof ADPService
+   * @returns list of all nodes in a cluster
    */
-  getClusterManagementUrl(manageType, serviceName) {
-    return this.ADP_CLUSTER_MANAGE[manageType].replace('serviceName', serviceName);
+  getClusterNodes() {
+    const deferred = this.$q.defer();
+    deferred.resolve(this.ADP_CLUSTER_NODES);
+    return deferred.promise;
+  }
+
+  /**
+   * get cluster status
+   *
+   * @param {*} serviceName
+   * @returns list of all tasks while deploying and their status and complete percentage
+   */
+  getStatus() {
+    const deferred = this.$q.defer();
+    deferred.resolve(this.ADP_CLUSTER_DEPLOY_STATUS);
+    return deferred.promise;
+  }
+
+  /**
+   * get vrack details
+   *
+   * @param {*} vrackId
+   * @returns details of the vrack
+   */
+  getVrack(vrackId) {
+    return this.OvhApiVrack.get({ serviceName: vrackId }).$promise;
+  }
+
+  isInProgress(cluster) {
+    return cluster.status === this.ADP_STATUS.IN_PROGRESS
+      || cluster.status === this.ADP_STATUS.PENDING
+      || cluster.status === this.ADP_STATUS.DEPLOYING
+      || cluster.status === this.ADP_STATUS.TO_DEPLOY;
   }
 }

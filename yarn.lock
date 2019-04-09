@@ -9350,6 +9350,13 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
+ovh-api-services@^6.7.0:
+  version "6.9.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.9.0.tgz#842c8d4a3a0322fd2777144914de16510d03d8c2"
+  integrity sha512-th4gojJ13/Z2XNtylkX9ZO3o82WsKCFBiHFyc1OZeEJy7E32w3wNi8cN7USlyXuP3j/NsKrSEWKD1ZOddGBcMg==
+  dependencies:
+    lodash "^3.10.1"
+
 ovh-api-services@^6.8.0:
   version "6.8.0"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.8.0.tgz#9c1d533a906bac9130b5750c875b86a6cc8469a7"
@@ -9381,7 +9388,7 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^2.28.0:
+ovh-ui-angular@^2.27.0, ovh-ui-angular@^2.28.0:
   version "2.28.0"
   resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-2.28.0.tgz#3c65758b96ccd8583f6dd087d33b445b0a605207"
   integrity sha512-g5tIVDe+bGW4yt6vCAOIS/IT0hY0scmW7nKaLToYueBcF/tsxuxhcz0MdRko4FmGVj9giXsAQe4arMkhlZLcfQ==
@@ -9405,10 +9412,17 @@ ovh-ui-kit@^2.22.0:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.28.0:
+ovh-ui-kit@^2.24.2, ovh-ui-kit@^2.28.0:
   version "2.28.0"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.28.0.tgz#169ed73dfbe13bc52065cd4b52f5f7147350e944"
   integrity sha512-f9ajRA3dZ393Ayqmx1arMel7OwCTRe0+n01+8Qw0b2DR3g4O24Ejj0IeRUnuqNaLM6ZmdgsGGiGZkCh0fr+tRA==
+  dependencies:
+    less-plugin-remcalc "^0.1.0"
+
+ovh-ui-kit@~2.24.2:
+  version "2.24.2"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.24.2.tgz#27e7c945c81f22745657d4eeb8b6a96022a87828"
+  integrity sha512-yLdyZskNlDUnx29XCYY5SppcJYaVBrNOpa682D+rw1s79Y9/dwAlF6qWD47NWDRK2XzgJR8U7xTjvbersuGBwg==
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
