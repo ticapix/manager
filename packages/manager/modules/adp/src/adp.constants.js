@@ -156,6 +156,29 @@ export const ADP_SERVICES = Object.freeze({
   RANGER: 'RANGER',
 });
 
+export const ADP_CLUSTER_DEPLOY_STATUS = [
+  {
+    percentage: 100,
+    status: 'DONE',
+    task: 'Node creation',
+  },
+  {
+    percentage: 35,
+    status: 'IN_PROGRESS',
+    task: 'Server creation',
+  },
+  {
+    percentage: 35,
+    status: 'PENDING',
+    task: 'Storage creation',
+  },
+  {
+    percentage: 35,
+    status: 'PENDING',
+    task: 'Validating cluster',
+  },
+];
+
 export default {
   ADP_PUBLIC_CLOUD_STATUS,
   ADP_CLOUD_CATALOG_NAME,
