@@ -91,11 +91,4 @@ export default class {
   getAdpServiceUrl(adpServiceName, adpClusterServiceName) {
     return this.ADP_CLUSTER_MANAGE[adpServiceName].replace('serviceName', adpClusterServiceName);
   }
-
-  /**
-   * takes the user to the billing console
-   */
-  goToBillingConsole() {
-    this.$state.go('iaas.pci-project.billing.consumption.current', { projectId: this.publicCloudDetails.data.project_id });
-  }
 }

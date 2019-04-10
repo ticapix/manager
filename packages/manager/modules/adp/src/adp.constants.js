@@ -16,7 +16,7 @@ export const ADP_NODE_TYPES = Object.freeze({
 
 export const ADP_COMPUTE = Object.freeze({
   RAM: 'RAM',
-  CORS: 'vCors',
+  CORS: 'vCores',
 });
 
 export const ADP_GUIDE_LINKS = Object.freeze({
@@ -120,6 +120,7 @@ export const ADP_CREDENTIALS_INFO = Object.freeze({
   rounds: 100000,
   dkLen: 32,
   passwordLength: 18,
+  minMasterPasswordLength: 12,
 });
 
 export const ADP_STATUS_MAP = {

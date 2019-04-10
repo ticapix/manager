@@ -7,6 +7,7 @@
  "adp_get_vracks_error": "Failed to get vRacks: {{message}}",
  "adp_get_clouds_error": "Failed to get public cloud projects: {{message}}",
  "adp_get_capabilities_error": "Failed to get supported Analytic Data Platform software versions: {{message}}",
+ "adp_get_account_details_error": "Failed to get account details: {{message}}",
  "adp_get_flavors_error": "Failed to get available flavors: {{message}}",
  "adp_get_quota_error": "Failed to get the quota details of the public cloud project: {{message}}",
  "adp_common_status_PENDING": "Pending",

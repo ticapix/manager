@@ -1,9 +1,6 @@
 <section data-ng-init="localizedStorageUnit = ('adp_common_unit_gb' | translate)">
     <!-- page header -->
-    <oui-page-header
-        data-heading="{{ ::'adp_deploy_title' | translate }}"
-        data-description="{{ ::'adp_deploy_description' | translate }}">
-    </oui-page-header>
+    <oui-page-header data-heading="{{ ::'adp_deploy_title' | translate }}"></oui-page-header>
     <!-- page content -->
     <div class="row cui-page__content">
         <div class="mx-auto offset-md-1 col-md-10">
@@ -16,12 +13,13 @@
                     <span data-ng-bind="message.text"></span>
                 </oui-message>
             </div>
+            <p data-translate="adp_deploy_description"></p>
             <!-- deploy stepper -->
             <div class="mt-1 mt-sm-2">
                 <oui-stepper>
                     <!-- general information -->
                     <oui-step-form data-header="{{ ::'adp_deploy_general_configuration_title' | translate }}"
-                                   data-loading="$ctrl.capabilities.loading"
+                                   data-loading="$ctrl.capabilities.loading || $ctrl.accountDetails.loading"
                                    data-on-submit="$ctrl.submitGeneralInformation()"
                                    data-valid="$ctrl.isGeneralConfigComplete()">
                         <div data-ng-include="'adp/deploy/general.html'"></div>

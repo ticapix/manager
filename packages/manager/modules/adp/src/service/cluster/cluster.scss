@@ -1,11 +1,15 @@
 cluster-component {
     .adp-cluster {
         .refresh-button {
-            top: 46px;
+            top: 1.9rem;
         }
 
         .oui-datagrid-topbar__actions {
             align-items: flex-end;
+        }
+
+        .oui-field {
+          margin-bottom: 0.25rem;
         }
     }
 }
