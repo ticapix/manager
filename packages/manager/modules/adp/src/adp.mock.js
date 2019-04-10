@@ -94,7 +94,7 @@ export const ADP_CAPABILITIES = [{
     raw_storage_max_gb: 4000,
   },
   master_node: {
-    instance_type: ['b2-7', 'b2-15', 'b2-30', 'b2-60', 'b2-120'],
+    instance_type: ['b2-30'],
     instance_min: 3,
     instance_max: 10,
     raw_storage_min_gb: 100,
@@ -214,7 +214,7 @@ export const ADP_CAPABILITIES = [{
     raw_storage_max_gb: 4000,
   },
   master_node: {
-    instance_type: ['b2-30', 'b2-60', 'b2-120'],
+    instance_type: ['b2-30'],
     instance_min: 3,
     instance_max: 10,
     raw_storage_min_gb: 100,
@@ -315,7 +315,7 @@ export const ADP_PLATFORMS_GET_DETAILS2 = {
 
 // TODO - remove this when API support is available
 export const ADP_PLATFORMS_GET_DETAILS = {
-  serviceName: '5b7a7fd3-4d0a-4eed-879c-167cd4658f89',
+  serviceName: '4cc0cdc3-ffc8-4b62-a8e5-7960ded581c6',
   admin_mail: 'mocked.mail@cluster.com',
   cluster_name: 'Big data 2',
   cluster_type: 'ADP V1.X',

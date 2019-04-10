@@ -41,6 +41,16 @@ export default class ADPService {
   }
 
   /**
+   * returns the account details
+   *
+   * @returns the account details
+   * @memberof ADPService
+   */
+  getAccountDetails() {
+    return this.OvhApiMe.v6().get().$promise;
+  }
+
+  /**
    * returns the flavors supported by the cloud project in a particular region
    *
    * @param {*} publicCloudServiceName public cloud service name
@@ -167,8 +177,7 @@ export default class ADPService {
    * @memberof ADPService
    */
   getPriceCatalog(publicCloudPlanCode) {
-    return this.OvhApiMe.v6().get()
-      .$promise
+    return this.getAccountDetails()
       .then(({ ovhSubsidiary, currency }) => this.OvhApiOrderCatalogFormatted
         .get({ catalogName: this.ADP_CLOUD_CATALOG_NAME, ovhSubsidiary })
         .$promise

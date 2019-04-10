@@ -24,13 +24,14 @@ import errorModelController from '../quota-error-model/quota-error-model.control
 
 export default class {
   /* @ngInject */
-  constructor($translate, ADP_COMPUTE, ADP_FLAVOR_TYPES, ADP_NODE_NAMES, ADP_NODE_TYPES,
-    adpService, CucControllerHelper, CucCloudMessage, CucServiceHelper) {
+  constructor($translate, ADP_COMPUTE, ADP_CREDENTIALS_INFO, ADP_FLAVOR_TYPES, ADP_NODE_NAMES,
+    ADP_NODE_TYPES, adpService, CucControllerHelper, CucCloudMessage, CucServiceHelper) {
     this.$translate = $translate;
+    this.ADP_COMPUTE = ADP_COMPUTE;
+    this.ADP_CREDENTIALS_INFO = ADP_CREDENTIALS_INFO;
     this.ADP_FLAVOR_TYPES = ADP_FLAVOR_TYPES;
     this.ADP_NODE_NAMES = ADP_NODE_NAMES;
     this.ADP_NODE_TYPES = ADP_NODE_TYPES;
-    this.ADP_COMPUTE = ADP_COMPUTE;
     this.adpService = adpService;
     this.cucControllerHelper = CucControllerHelper;
     this.cucCloudMessage = CucCloudMessage;
@@ -101,6 +102,8 @@ export default class {
    *
    */
   initLoaders() {
+    // load account details
+    this.fetchAccountDetails();
     // load ADP capabilities
     this.fetchAdpCapabilities();
     // load public cloud projects
@@ -240,6 +243,15 @@ export default class {
     return this.masterPasswordConfirm === this.adp.master_password;
   }
 
+  /**
+   * Checks if the master password and the confirm password matches
+   *
+   * @returns a boolean indicating whether the passwords match
+   */
+  checkPasswordLength(password) {
+    return password.length >= this.ADP_CREDENTIALS_INFO.minMasterPasswordLength;
+  }
+
   /** #####################################################################
       SECURITY INFORMATION
    * ##################################################################### */
@@ -357,6 +369,22 @@ export default class {
 
   resetQuota() {
     this.quota = null;
+  }
+
+  /**
+   * fetch the account details
+   *
+   * @returns the account details
+   */
+  fetchAccountDetails() {
+    this.accountDetails = this.cucControllerHelper.request.getHashLoader({
+      loaderFunction: () => this.adpService.getAccountDetails()
+        .catch(error => this.cucServiceHelper.errorHandler('adp_get_account_details_error')(error)),
+    });
+    return this.accountDetails.load()
+      .then(({ email }) => {
+        this.adp.admin_mail = email;
+      });
   }
 
   /**

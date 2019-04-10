@@ -54,13 +54,24 @@
         <oui-message data-type="warning">
             <span data-translate="adp_deploy_password_warning"></span>
         </oui-message>
-        <oui-field data-label="{{ ::'adp_deploy_master_password' | translate }}"
-                   data-error-messages="{ pattern: ('adp_deploy_master_password_help' | translate) }">
+        <oui-field data-label="{{ ::'adp_common_master_password' | translate }}"
+                   data-error-messages="{ password: ('adp_deploy_master_password_help' | translate) }">
             <oui-password data-name="masterPassword"
                           data-model="$ctrl.adp.master_password"
-                          data-placeholder="{{ ::'adp_deploy_master_password' | translate }}"
-                          data-pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{12,}$"
+                          data-placeholder="{{ ::'adp_deploy_master_password_placeholder' | translate }}"
                           data-required>
+                <oui-password-rule data-pattern="[0-9]+">
+                    <span data-translate="adp_deploy_master_password_help_number"></span>
+                </oui-password-rule>
+                <oui-password-rule data-pattern="[@$!%*?&#]+">
+                    <span data-translate="adp_deploy_master_password_help_special_character"></span>
+                </oui-password-rule>
+                <oui-password-rule data-pattern="[A-Z]+">
+                    <span data-translate="adp_deploy_master_password_help_uppercase"></span>
+                </oui-password-rule>
+                <oui-password-rule data-validator="$ctrl.checkPasswordLength(modelValue)">
+                    <span data-translate="adp_deploy_master_password_help_length"></span>
+                </oui-password-rule>
             </oui-password>
         </oui-field>
         <oui-field data-label="{{ ::'adp_deploy_master_password_confirm' | translate }}"
