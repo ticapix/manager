@@ -25,7 +25,7 @@ export default class {
       loaderFunction: () => this.adpService.getAdpDetails(this.serviceName)
         .then((detail) => {
           this.details = detail;
-          if (this.adpService.isInProgress(detail)) {
+          if (this.adpService.isDeploymentInProgress(detail)) {
             this.$state.go('adp.service.progress');
           }
         })

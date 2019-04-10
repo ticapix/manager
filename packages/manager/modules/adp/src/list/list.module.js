@@ -1,7 +1,7 @@
 import angular from 'angular';
 import listComponent from './list.component';
 
-const moduleName = 'ovhManagerListComponent';
+const moduleName = 'ovhManagerAdpListComponent';
 
 angular
   .module(moduleName, [])

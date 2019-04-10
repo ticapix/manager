@@ -14,25 +14,25 @@
                 data-text="{{ ::'adp_header_nav_service_info' | translate }}"
                 data-state="adp.service.details"
                 data-state-params="{ serviceName: $ctrl.serviceName }"
-                data-disabled="$ctrl.adpService.isInProgress($ctrl.details)">
+                data-disabled="$ctrl.adpService.isDeploymentInProgress($ctrl.details)">
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{ ::'adp_header_nav_cluster_size' | translate }}"
                 data-state="adp.service.cluster"
                 data-state-params="{ serviceName: $ctrl.serviceName }"
-                data-disabled="$ctrl.adpService.isInProgress($ctrl.details)">
+                data-disabled="$ctrl.adpService.isDeploymentInProgress($ctrl.details)">
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{ ::'adp_header_nav_credential' | translate }}"
                 data-state="adp.service.credentials"
                 data-state-params="{ serviceName: $ctrl.serviceName }"
-                data-disabled="$ctrl.adpService.isInProgress($ctrl.details)">
+                data-disabled="$ctrl.adpService.isDeploymentInProgress($ctrl.details)">
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{ ::'adp_header_nav_activity' | translate }}"
                 data-state="adp.service.log"
                 data-state-params="{ serviceName: $ctrl.serviceName }"
-                data-disabled="$ctrl.adpService.isInProgress($ctrl.details)">
+                data-disabled="$ctrl.adpService.isDeploymentInProgress($ctrl.details)">
             </oui-header-tabs-item>
         </oui-header-tabs>
     </oui-page-header>

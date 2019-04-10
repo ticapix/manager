@@ -123,6 +123,11 @@ export const ADP_CREDENTIALS_INFO = Object.freeze({
   minMasterPasswordLength: 12,
 });
 
+export const ADP_NODE_FILTERS = [
+  'Node type',
+  'Region',
+];
+
 export const ADP_STATUS_MAP = {
   DONE: 'success',
   OK: 'success',
@@ -170,4 +175,5 @@ export default {
   ADP_SERVICES,
   ADP_STATUS,
   ADP_COMPUTE,
+  ADP_NODE_FILTERS,
 };

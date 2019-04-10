@@ -1,13 +1,13 @@
 import find from 'lodash/find';
 import filter from 'lodash/filter';
 import map from 'lodash/map';
+import sumBy from 'lodash/sumBy';
 import uniq from 'lodash/uniq';
-import forEach from 'lodash/forEach';
 
 export default class {
   /* @ngInject */
-  constructor($stateParams, ADP_COMPUTE, ADP_STATUS_MAP,
-    adpService, CucControllerHelper, CucServiceHelper) {
+  constructor($stateParams, adpService, CucControllerHelper, CucServiceHelper,
+    ADP_COMPUTE, ADP_NODE_FILTERS, ADP_STATUS_MAP) {
     this.adpService = adpService;
     this.cucControllerHelper = CucControllerHelper;
     this.cucServiceHelper = CucServiceHelper;
@@ -15,18 +15,11 @@ export default class {
     this.totalCores = 0;
     this.totalRam = 0;
     this.totalStorage = 0;
-    this.ALL_NODES = 'ALL';
+    this.ALL_NODES_OPTION = 'All';
 
-    // MOCK DATA : Will be removed after integrating with API
-    this.nodeFilters = [
-      'Node type',
-      'Region',
-    ];
-
+    this.nodeFilters = ADP_NODE_FILTERS;
     this.regions = [];
-
     this.nodeTypeList = [];
-
     this.ADP_STATUS_MAP = ADP_STATUS_MAP;
     this.ADP_COMPUTE = ADP_COMPUTE;
     this.filterBy = null;
@@ -51,16 +44,12 @@ export default class {
       });
     this.getClusterNodes()
       .then(({ nodes }) => {
-        this.totalStorage = 0;
-        forEach(nodes, (node) => {
-          this.totalStorage += node.storage;
-        });
         this.clusterList = nodes;
-
+        this.totalStorage = sumBy(nodes, 'storage');
         this.nodeTypeList = uniq(map(this.clusterList, 'node_type'));
         this.regions = (uniq(map(this.clusterList, 'region')));
-        this.nodeTypeList.unshift(this.ALL_NODES);
-        this.regions.unshift(this.ALL_NODES);
+        this.nodeTypeList.unshift(this.ALL_NODES_OPTION);
+        this.regions.unshift(this.ALL_NODES_OPTION);
       })
       .then(() => this.fetchPublicCloudDetails());
   }
@@ -138,7 +127,7 @@ export default class {
    * Filter list of datagrid with node type selected
    */
   nodeTypeFilter() {
-    if (this.selectedNodeType === this.ALL_NODES) {
+    if (this.selectedNodeType === this.ALL_NODES_OPTION) {
       this.clusterList = this.clusterNodes.data.nodes;
     } else {
       this.clusterList = filter(this.clusterNodes.data.nodes, { node_type: this.selectedNodeType });
@@ -149,7 +138,7 @@ export default class {
    * Filter list of datagrid with region selected
    */
   regionFilter() {
-    if (this.selectedRegion === this.ALL_NODES) {
+    if (this.selectedRegion === this.ALL_NODES_OPTION) {
       this.clusterList = this.clusterNodes.data.nodes;
     } else {
       this.clusterList = filter(this.clusterNodes.data.nodes, { region: this.selectedRegion });

@@ -1,6 +1,5 @@
-import forEach from 'lodash/forEach';
 import find from 'lodash/find';
-import includes from 'lodash/includes';
+import sumBy from 'lodash/sumBy';
 
 export default class {
   /* @ngInject */
@@ -17,29 +16,23 @@ export default class {
     this.serviceName = this.$stateParams.serviceName;
     this.details = null;
     this.globalProgress = 0;
-    this.pendingStatusList = [
-      this.ADP_STATUS.IN_PROGRESS,
-      this.ADP_STATUS.PENDING,
-      this.ADP_STATUS.DEPLOYING,
-      this.ADP_STATUS.TO_DEPLOY,
-    ];
   }
 
   $onInit() {
     this.getProgress()
       .then((tasks) => {
-        if (!find(tasks, task => includes(this.pendingStatusList, task.status))) {
+        if (!find(tasks, task => this.adpService.isDeploymentInProgress(task))) {
           this.$state.go('adp.service.details');
         } else {
           this.handleOperation(this.serviceName);
         }
-      })
-      .then(() => this.calculateGlobalProgress());
+      });
   }
 
   getProgress() {
     this.progress = this.cucControllerHelper.request.getHashLoader({
       loaderFunction: () => this.adpService.getStatus(this.serviceName)
+        .then((tasks) => { this.calculateGlobalProgress(tasks); return tasks; })
         .catch(error => this.cucServiceHelper.errorHandler('adp_tracking_progress_get_status_error')(error)),
     });
     return this.progress.load();
@@ -57,12 +50,9 @@ export default class {
    * Calculate global progress based on individual task progress
    *
    */
-  calculateGlobalProgress() {
-    let totalPercentage = 0;
-    forEach(this.progress.data, (task) => {
-      totalPercentage += task.percentage;
-    });
-    this.globalProgress = totalPercentage / this.progress.data.length;
+  calculateGlobalProgress(tasks) {
+    const totalPercentage = sumBy(tasks, 'percentage');
+    this.globalProgress = Math.floor(totalPercentage / tasks.length);
   }
 
   /**
@@ -73,7 +63,7 @@ export default class {
     return this.CucCloudPoll.poll({
       item: { id: serviceName },
       pollFunction: () => this.getProgress(serviceName),
-      stopCondition: tasks => !find(tasks, task => includes(this.pendingStatusList, task.status)),
+      stopCondition: tasks => !find(tasks, task => this.adpService.isDeploymentInProgress(task)),
     });
   }
 
@@ -91,7 +81,7 @@ export default class {
         if (pollResult[0].item.status === this.ADP_STATUS.DEPLOYED) {
           return this.$state.go('adp.service.details');
         }
-        return this.cucServiceHelper.errorHandler('adp_deploy_error');
+        return this.cucServiceHelper.errorHandler('adp_tracking_progress_deploy_error');
       });
   }
 }

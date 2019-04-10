@@ -13,20 +13,30 @@
                                 data-on-change="$ctrl.selectFilter()">
                     </oui-select>
                 </oui-field>
-                <oui-field data-size="m" data-label="select" data-ng-if="$ctrl.filterBy === 'Node type'">
-                    <oui-select data-name="nodeType"
-                                data-model="$ctrl.selectedNodeType"
-                                data-on-change="$ctrl.nodeTypeFilter()"
-                                data-placeholder="{{ ::'adp_common_select' | translate }}"
-                                data-items="$ctrl.nodeTypeList"></oui-select>
-                </oui-field>
-                <oui-field data-size="m" data-label="select" data-ng-if="$ctrl.filterBy === 'Region'">
-                    <oui-select data-name="region"
-                                data-model="$ctrl.selectedRegion"
-                                data-on-change="$ctrl.regionFilter()"
-                                data-placeholder="{{ ::'adp_common_select' | translate }}"
-                                data-items="$ctrl.regions"></oui-select>
-                </oui-field>
+                <div data-ng-switch="$ctrl.filterBy">
+                    <div data-ng-switch-when="Node type">
+                        <oui-field data-size="m" data-label="{{ ::'adp_common_select' | translate }}" >
+                            <oui-select data-name="nodeType"
+                                        data-model="$ctrl.selectedNodeType"
+                                        data-on-change="$ctrl.nodeTypeFilter()"
+                                        data-placeholder="{{ ::'adp_common_select' | translate }}"
+                                        data-items="$ctrl.nodeTypeList">
+                                <span data-translate="{{ ::$item }}" data-value="{{ $item | translate }}"></span>
+                            </oui-select>
+                        </oui-field>
+                    </div>
+                    <div data-ng-switch-when="Region">
+                        <oui-field data-size="m" data-label="{{ ::'adp_common_select' | translate }}">
+                            <oui-select data-name="region"
+                                        data-model="$ctrl.selectedRegion"
+                                        data-on-change="$ctrl.regionFilter()"
+                                        data-placeholder="{{ ::'adp_common_select' | translate }}"
+                                        data-items="$ctrl.regions">
+                                <span data-translate="{{ ::$item }}"></span>
+                            </oui-select>
+                        </oui-field>
+                    </div>
+                </div>
             </form>
             <button class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width refresh-button"
                     data-title="{{:: 'adp_service_cluster_refresh' | translate }}"

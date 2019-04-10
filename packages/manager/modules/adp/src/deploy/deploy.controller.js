@@ -24,8 +24,8 @@ import errorModelController from '../quota-error-model/quota-error-model.control
 
 export default class {
   /* @ngInject */
-  constructor($translate, ADP_COMPUTE, ADP_CREDENTIALS_INFO, ADP_FLAVOR_TYPES, ADP_NODE_NAMES,
-    ADP_NODE_TYPES, adpService, CucControllerHelper, CucCloudMessage, CucServiceHelper) {
+  constructor($translate, adpService, CucControllerHelper, CucCloudMessage, CucServiceHelper,
+    ADP_COMPUTE, ADP_CREDENTIALS_INFO, ADP_FLAVOR_TYPES, ADP_NODE_NAMES, ADP_NODE_TYPES) {
     this.$translate = $translate;
     this.ADP_COMPUTE = ADP_COMPUTE;
     this.ADP_CREDENTIALS_INFO = ADP_CREDENTIALS_INFO;

@@ -7,22 +7,31 @@
             <span data-translate="adp_tracking_progress_desc"></span>
         </div>
         <oui-tile class="m-3 w-75" data-heading="{{ ::'adp_tracking_progress_title' | translate }}">
-            <oui-progress>
+            <oui-progress class="progress-bar-striped">
                 <oui-progress-bar data-type="info" data-value="$ctrl.globalProgress"></oui-progress-bar>
             </oui-progress>
             <oui-tile-definition data-term="{{ ::'adp_tracking_progress_completed_tasks' | translate }}">
                 <oui-tile-description>
                     <div class="row m-1" data-ng-repeat="task in $ctrl.progress.data track by $index" data-ng-if="!$ctrl.progress.loading">
-                        <span data-translate="{{ ::task.task }}"></span>:
-                        <div data-ng-if="task.status !== $ctrl.ADP_STATUS.IN_PROGRESS">
-                            <span class="oui-status ml-2 rounded"
-                                  data-ng-class="'oui-status_' + $ctrl.ADP_STATUS_MAP[task.status]"
-                                  data-ng-bind=":: 'adp_common_status_' + task.status | translate"></span>
+                        <div class="col-md-2 d-flex align-items-center">
+                            <span data-translate="{{ ::task.task }}"></span>
                         </div>
-                        <div class="ml-3 w-25 task-progress-bar" data-ng-if="task.status === $ctrl.ADP_STATUS.IN_PROGRESS">
-                            <oui-progress>
-                                <oui-progress-bar data-type="info" data-value="task.percentage"></oui-progress-bar>
-                            </oui-progress>
+                        <div class="col-md-10">
+                            <div data-ng-if="!$ctrl.adpService.isDeploymentInProgress(task)">
+                                <span class="oui-status rounded"
+                                      data-ng-class="'oui-status_' + $ctrl.ADP_STATUS_MAP[task.status]"
+                                      data-ng-bind=":: 'adp_common_status_' + task.status | translate"></span>
+                            </div>
+                            <div data-ng-if="$ctrl.adpService.isDeploymentInProgress(task)">
+                                <oui-progress data-compact data-ng-if="$ctrl.ADP_STATUS.IN_PROGRESS === task.status">
+                                    <oui-progress-bar data-type="info" data-value="task.percentage" ></oui-progress-bar>
+                                    <span class="ml-2" data-ng-bind=":: 'adp_common_status_' + task.status | translate"></span>
+                                </oui-progress>
+                                <span data-ng-if="$ctrl.ADP_STATUS.IN_PROGRESS !== task.status" class="oui-status rounded"
+                                      data-ng-class="'oui-status_' + $ctrl.ADP_STATUS_MAP[task.status]"
+                                      data-ng-bind=":: 'adp_common_status_' + task.status | translate">
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </oui-tile-description>

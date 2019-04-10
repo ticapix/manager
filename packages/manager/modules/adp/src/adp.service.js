@@ -334,7 +334,7 @@ export default class ADPService {
     return this.OvhApiVrack.get({ serviceName: vrackId }).$promise;
   }
 
-  isInProgress(cluster) {
+  isDeploymentInProgress(cluster) {
     return cluster.status === this.ADP_STATUS.IN_PROGRESS
       || cluster.status === this.ADP_STATUS.PENDING
       || cluster.status === this.ADP_STATUS.DEPLOYING

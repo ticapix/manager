@@ -7,5 +7,6 @@
   "adp_service_cluster_node_type": "Node type",
   "adp_service_cluster_table_flavor": "Flavor",
   "adp_service_cluster_table_ip": "IP Address",
-  "adp_service_cluster_refresh": "Refresh cluster list"
+  "adp_service_cluster_refresh": "Refresh cluster list",
+  "adp_service_cluster_option_all": "All"
 }
