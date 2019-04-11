@@ -24,6 +24,7 @@ export default class {
         if (!find(tasks, task => this.adpService.isDeploymentInProgress(task))) {
           this.$state.go('adp.service.details');
         } else {
+          this.fetchAccountDetails();
           this.handleOperation(this.serviceName);
         }
       });
@@ -36,6 +37,19 @@ export default class {
         .catch(error => this.cucServiceHelper.errorHandler('adp_tracking_progress_get_status_error')(error)),
     });
     return this.progress.load();
+  }
+
+  /**
+   * fetch the account details
+   *
+   * @returns the account details
+   */
+  fetchAccountDetails() {
+    this.accountDetails = this.cucControllerHelper.request.getHashLoader({
+      loaderFunction: () => this.adpService.getAccountDetails()
+        .catch(error => this.cucServiceHelper.errorHandler('adp_get_account_details_error')(error)),
+    });
+    return this.accountDetails.load();
   }
 
   fetchPlatformDetail() {

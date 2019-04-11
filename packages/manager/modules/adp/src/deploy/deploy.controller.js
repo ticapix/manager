@@ -46,7 +46,6 @@ export default class {
     // adp request payload
     this.adp = {
       os_project_id: null,
-      admin_mail: null,
       cluster_name: null,
       cluster_type: null,
       edge_node_storage: 0,
@@ -102,8 +101,6 @@ export default class {
    *
    */
   initLoaders() {
-    // load account details
-    this.fetchAccountDetails();
     // load ADP capabilities
     this.fetchAdpCapabilities();
     // load public cloud projects
@@ -369,22 +366,6 @@ export default class {
 
   resetQuota() {
     this.quota = null;
-  }
-
-  /**
-   * fetch the account details
-   *
-   * @returns the account details
-   */
-  fetchAccountDetails() {
-    this.accountDetails = this.cucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.adpService.getAccountDetails()
-        .catch(error => this.cucServiceHelper.errorHandler('adp_get_account_details_error')(error)),
-    });
-    return this.accountDetails.load()
-      .then(({ email }) => {
-        this.adp.admin_mail = email;
-      });
   }
 
   /**

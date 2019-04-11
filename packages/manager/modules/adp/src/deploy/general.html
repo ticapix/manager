@@ -12,16 +12,6 @@
                data-ng-model="$ctrl.adp.cluster_name"
                data-ng-pattern="/^[a-zA-Z][a-zA-Z ]{1,13}[a-zA-Z]$/">
     </oui-field>
-    <!-- admin email -->
-    <oui-field data-label="{{ ::'adp_deploy_admin_email' | translate }}"
-               data-help-text="{{ ::'adp_deploy_admin_email_help' | translate }}">
-        <input class="oui-input"
-               type="email"
-               name="admin_mail"
-               placeholder="{{ ::'adp_deploy_admin_email_placeholder' | translate }}"
-               data-ng-model="$ctrl.adp.admin_mail"
-               readonly>
-    </oui-field>
     <!-- platform version -->
     <oui-field data-label="{{ ::'adp_deploy_platform_version' | translate }}">
         <oui-select data-name="platformVersion"

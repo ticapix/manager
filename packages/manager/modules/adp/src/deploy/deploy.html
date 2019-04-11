@@ -19,7 +19,7 @@
                 <oui-stepper>
                     <!-- general information -->
                     <oui-step-form data-header="{{ ::'adp_deploy_general_configuration_title' | translate }}"
-                                   data-loading="$ctrl.capabilities.loading || $ctrl.accountDetails.loading"
+                                   data-loading="$ctrl.capabilities.loading"
                                    data-on-submit="$ctrl.submitGeneralInformation()"
                                    data-valid="$ctrl.isGeneralConfigComplete()">
                         <div data-ng-include="'adp/deploy/general.html'"></div>
