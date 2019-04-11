@@ -17,17 +17,9 @@
                             <p data-translate="{{ ::task.task }}"></p>
                         </div>
                         <div class="col-md-9">
-                            <div data-ng-if="!$ctrl.adpService.isDeploymentInProgress(task)">
-                                <span class="oui-status rounded"
-                                      data-ng-class="'oui-status_' + $ctrl.ADP_STATUS_MAP[task.status]"
-                                      data-ng-bind=":: 'adp_common_status_' + task.status | translate"></span>
-                            </div>
-                            <div data-ng-if="$ctrl.adpService.isDeploymentInProgress(task)">
-                                <span class="oui-status rounded"
-                                      data-ng-class="'oui-status_' + $ctrl.ADP_STATUS_MAP[task.status]"
-                                      data-ng-bind=":: 'adp_common_status_' + task.status | translate">
-                                </span>
-                            </div>
+                            <span class="oui-status rounded"
+                                  data-ng-class="'oui-status_' + $ctrl.ADP_STATUS_MAP[task.status]"
+                                  data-ng-bind=":: 'adp_common_status_' + task.status | translate"></span>
                         </div>
                     </div>
                     <div class="mt-3">
