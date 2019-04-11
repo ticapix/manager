@@ -16,25 +16,9 @@ export default class {
   $onInit() {
     this.fetchAdpDetails()
       .then(() => {
-        this.fetchServiceInfo();
         this.fetchPublicCloudDetails();
         this.fetchVRack(this.platformDetails.data.vrack_id);
       });
-  }
-
-  /**
-   * fetch service information of selected public cloud
-   *
-   * @returns detailed service info of public cloud selected
-   */
-  fetchServiceInfo() {
-    this.serviceInfoDetails = this.cucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.adpService.getCloudProjectServiceInformation(
-        this.platformDetails.data.project_id,
-      )
-        .catch(error => this.cucServiceHelper.errorHandler('adp_get_cluster_info_error')(error)),
-    });
-    return this.serviceInfoDetails.load();
   }
 
   /**
@@ -90,5 +74,11 @@ export default class {
    */
   getAdpServiceUrl(adpServiceName, adpClusterServiceName) {
     return this.ADP_CLUSTER_MANAGE[adpServiceName].replace('serviceName', adpClusterServiceName);
+  }
+
+  goToBillingConsole() {
+    this.$state.go('iaas.pci-project.billing.consumption.current', {
+      projectId: this.publicCloudDetails.data.project_id,
+    });
   }
 }

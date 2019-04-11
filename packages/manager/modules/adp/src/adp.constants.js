@@ -133,7 +133,7 @@ export const ADP_STATUS_MAP = {
   OK: 'success',
   DEPLOYED: 'success',
   PENDING: 'info',
-  IN_PROGRESS: 'info',
+  IN_PROGRESS: 'warning',
   TO_DEPLOY: 'info',
   DEPLOYING: 'info',
   ERROR: 'error',

@@ -6,7 +6,7 @@ import uniq from 'lodash/uniq';
 
 export default class {
   /* @ngInject */
-  constructor($stateParams, adpService, CucControllerHelper, CucServiceHelper,
+  constructor($stateParams, $translate, adpService, CucControllerHelper, CucServiceHelper,
     ADP_COMPUTE, ADP_NODE_FILTERS, ADP_STATUS_MAP) {
     this.adpService = adpService;
     this.cucControllerHelper = CucControllerHelper;
@@ -15,7 +15,7 @@ export default class {
     this.totalCores = 0;
     this.totalRam = 0;
     this.totalStorage = 0;
-    this.ALL_NODES_OPTION = 'All';
+    this.ALL_NODES_OPTION = $translate.instant('adp_service_cluster_option_all');
 
     this.nodeFilters = ADP_NODE_FILTERS;
     this.regions = [];
