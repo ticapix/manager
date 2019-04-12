@@ -62,6 +62,7 @@
   "adp_deploy_storage_cluster_title": "Cluster storage",
   "adp_deploy_storage_edge_node_title": "Edge node storage",
   "adp_deploy_storage_edge_node_info": "Edge nodes are instances of the cluster between the users and other machines of clusters. Users can run their jobs on the edge nodes instead of doing it directly on the master nodes, which are critical from the overall functioning. This way you can prevent capacity loss on these nodes.",
+  "adp_deploy_storage_cluster_info": "Define the effective HDFS storage space you want for your cluster. This storage will be located in multiple volumes and replicated.",
   "adp_deploy_storage_worker_nodes_count": "Worker nodes count",
   "adp_deploy_storage_per_edge_node": "Storage per Edge node",
   "adp_deploy_storage_edge_nodes_count": "Edge nodes count",

@@ -1,9 +1,7 @@
 <div data-ng-if="$ctrl.storage.initialized">
     <!-- HDFS storage -->
     <h4><strong>{{ ::'adp_deploy_storage_cluster_title' | translate }}</strong></h4>
-    <oui-message data-type="info" class="mb-2" data-dismissable="false">
-        <span data-translate="adp_deploy_storage_edge_node_info"></span>
-    </oui-message>
+    <p data-translate="adp_deploy_storage_cluster_info"></p>
     <div class="row">
         <div class="col-sm-6 col-xs-12">
             <oui-field data-label="{{ ::'adp_deploy_storage_cluster_label' | translate }}"
@@ -66,8 +64,8 @@
             <oui-field data-label="{{ ::'adp_deploy_review_hdfs_replication_factor' | translate  }}"
                        data-help-text="{{ ::'adp_deploy_storage_hdfs_help' | translate }}"
                        data-size="m">
-                <input class="oui-input"
-                       type="number"
+                <input type="text"
+                       class="form-control-plaintext border-0"
                        id="hdfs-replication-factor"
                        name="hdfs-replication-factor"
                        readonly
@@ -78,9 +76,7 @@
     <!-- edge node storage -->
     <hr class="storage-list__seperator w-100"/>
     <h4><strong>{{ ::'adp_deploy_storage_edge_node_title' | translate }}</strong> </h4>
-    <oui-message data-type="info" class="mb-2" data-dismissable="false">
-        <span data-translate="adp_deploy_storage_edge_node_info"></span>
-    </oui-message>
+    <p data-translate="adp_deploy_storage_edge_node_info"></p>
     <div class="row">
         <div class="col-sm-6 col-xs-12">
             <oui-field data-label="{{ ::'adp_deploy_storage_per_edge_node' | translate }}"
