@@ -129,15 +129,17 @@ export const ADP_NODE_FILTERS = [
 ];
 
 export const ADP_STATUS_MAP = {
-  DONE: 'success',
-  OK: 'success',
-  DEPLOYED: 'success',
   PENDING: 'info',
   IN_PROGRESS: 'warning',
-  TO_DEPLOY: 'info',
-  DEPLOYING: 'info',
+  SUCCEEDED: 'success',
+  FAILED: 'error',
+  DONE: 'success',
   ERROR: 'error',
   UNKNOWN: 'warning',
+  OK: 'success',
+  TO_DEPLOY: 'info',
+  DEPLOYING: 'warning',
+  DEPLOYED: 'success',
   TO_DESTROY: 'info',
   DESTROYED: 'error',
 };
@@ -145,6 +147,8 @@ export const ADP_STATUS_MAP = {
 export const ADP_STATUS = {
   PENDING: 'PENDING',
   IN_PROGRESS: 'IN_PROGRESS',
+  SUCCEEDED: 'SUCCEEDED',
+  FAILED: 'FAILED',
   DONE: 'DONE',
   ERROR: 'ERROR',
   UNKNOWN: 'UNKNOWN',
