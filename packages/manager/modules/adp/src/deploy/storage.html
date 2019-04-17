@@ -59,19 +59,11 @@
             </dl>
         </div>
     </div>
-    <div class="row mb-1">
-        <div class="col-sm-12 col-xs-12">
-            <oui-field data-label="{{ ::'adp_deploy_review_hdfs_replication_factor' | translate  }}"
-                       data-help-text="{{ ::'adp_deploy_storage_hdfs_help' | translate }}"
-                       data-size="m">
-                <input type="text"
-                       class="form-control-plaintext border-0"
-                       id="hdfs-replication-factor"
-                       name="hdfs-replication-factor"
-                       readonly
-                       data-ng-model="$ctrl.selectedCapability.hdfs_replication_factor">
-            </oui-field>
-        </div>
+    <div class="mb-1">
+        <dt class="d-inline font-weight-normal" data-translate="adp_deploy_review_hdfs_replication_factor"></dt>
+        <span class="ml-1">:</span>
+        <dd class="d-inline ml-1" data-ng-bind="$ctrl.selectedCapability.hdfs_replication_factor"></dd>
+        <p class="oui-field__helper" data-translate="adp_deploy_storage_hdfs_help"></p>
     </div>
     <!-- edge node storage -->
     <hr class="storage-list__seperator w-100"/>

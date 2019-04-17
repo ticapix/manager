@@ -8,29 +8,29 @@
     <section class="mb-3">
         <h4><strong data-translate="adp_deploy_review_cloud_project_title"></strong></h4>
         <dl class="border-top">
-            <div class="row">
+            <div class="row mb-2">
                 <dt class="col-sm-3 font-weight-normal" data-translate="adp_common_cluster_name"></dt>
-                <dd class="col-sm-9" data-ng-bind="$ctrl.adp.cluster_name"></dd>
+                <dd class="col-sm-9 my-auto" data-ng-bind="$ctrl.adp.cluster_name"></dd>
             </div>
-            <div class="row">
+            <div class="row mb-2">
                 <dt class="col-sm-3 font-weight-normal" data-translate="adp_deploy_platform_version"></dt>
-                <dd class="col-sm-9" data-ng-bind="$ctrl.adp.cluster_type"></dd>
+                <dd class="col-sm-9 my-auto" data-ng-bind="$ctrl.adp.cluster_type"></dd>
             </div>
-            <div class="row">
+            <div class="row mb-2">
                 <dt class="col-sm-3 font-weight-normal" data-translate="adp_common_public_cloud_project"></dt>
-                <dd class="col-sm-9" data-ng-bind="$ctrl.selectedPublicCloud.description"></dd>
+                <dd class="col-sm-9 my-auto" data-ng-bind="$ctrl.selectedPublicCloud.description"></dd>
             </div>
-            <div class="row">
+            <div class="row mb-2">
                 <dt class="col-sm-3 font-weight-normal" data-translate="adp_deploy_ssh_key"></dt>
-                <dd class="col-sm-9" data-ng-bind="::$ctrl.selectedSshKey.name ? $ctrl.selectedSshKey.name : $ctrl.selectedSshKey.id"></dd>
+                <dd class="col-sm-9 my-auto" data-ng-bind="::$ctrl.selectedSshKey.name ? $ctrl.selectedSshKey.name : $ctrl.selectedSshKey.id"></dd>
             </div>
-            <div class="row">
+            <div class="row mb-2">
                 <dt class="col-sm-3 font-weight-normal" data-translate="adp_common_private_network"></dt>
-                <dd class="col-sm-9" data-ng-bind="::$ctrl.vRack.data.name ? $ctrl.vRack.data.name : $ctrl.vRack.data.id"></dd>
+                <dd class="col-sm-9 my-auto" data-ng-bind="::$ctrl.vRack.data.name ? $ctrl.vRack.data.name : $ctrl.vRack.data.id"></dd>
             </div>
-            <div class="row">
+            <div class="row mb-2">
                 <dt class="col-sm-3 font-weight-normal" data-translate="adp_common_region"></dt>
-                <dd class="col-sm-9" data-ng-bind="$ctrl.adp.os_region"></dd>
+                <dd class="col-sm-9 my-auto" data-ng-bind="$ctrl.adp.os_region"></dd>
             </div>
         </dl>
     </section>
@@ -38,9 +38,9 @@
     <section class="mb-3">
         <h4><strong data-translate="adp_deploy_review_nodes_title"></strong></h4>
         <dl class="border-top">
-            <div class="row" data-ng-repeat="(nodeType, node) in $ctrl.nodesConfig track by nodeType">
+            <div class="row mb-2" data-ng-repeat="(nodeType, node) in $ctrl.nodesConfig track by nodeType">
                 <dt class="col-sm-3 font-weight-normal" data-translate="adp_deploy_review_nodes_{{ ::nodeType }}"></dt>
-                <dd class="col-sm-9">
+                <dd class="col-sm-9 my-auto">
                     <span>{{ ::node.count }} x {{ node.selectedFlavor.displayName }}</span>
                 </dd>
             </div>
@@ -50,17 +50,17 @@
     <section class="mb-3">
         <h4><strong data-translate="adp_common_storage"></strong></h4>
         <dl class="border-top">
-            <div class="row">
+            <div class="row mb-2">
                 <dt class="col-sm-3 font-weight-normal" data-translate="adp_deploy_review_hdfs_replication_factor"></dt>
-                <dd class="col-sm-9" data-ng-bind="$ctrl.selectedCapability.hdfs_replication_factor"></dd>
+                <dd class="col-sm-9 my-auto" data-ng-bind="$ctrl.selectedCapability.hdfs_replication_factor"></dd>
             </div>
-            <div class="row">
+            <div class="row mb-2">
                 <dt class="col-sm-3 font-weight-normal" data-translate="adp_deploy_review_total_cluster_storage"></dt>
-                <dd class="col-sm-9" data-ng-bind="($ctrl.adp.hdfs_effective_storage * $ctrl.selectedCapability.hdfs_replication_factor)+ ' ' + localizedStorageUnit"></dd>
+                <dd class="col-sm-9 my-auto" data-ng-bind="($ctrl.adp.hdfs_effective_storage * $ctrl.selectedCapability.hdfs_replication_factor)+ ' ' + localizedStorageUnit"></dd>
             </div>
-            <div class="row">
+            <div class="row mb-2">
                 <dt class="col-sm-3 font-weight-normal" data-translate="adp_deploy_review_total_edge_node_storage"></dt>
-                <dd class="col-sm-9" data-ng-bind="($ctrl.adp.edge_node_storage * $ctrl.nodesConfig['edge'].count)+ ' ' + localizedStorageUnit"></dd>
+                <dd class="col-sm-9 my-auto" data-ng-bind="($ctrl.adp.edge_node_storage * $ctrl.nodesConfig['edge'].count)+ ' ' + localizedStorageUnit"></dd>
             </div>
         </dl>
     </section>

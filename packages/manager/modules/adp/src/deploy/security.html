@@ -79,6 +79,7 @@
             <oui-password data-name="masterPasswordConfirm"
                           data-model="$ctrl.masterPasswordConfirm"
                           data-placeholder="{{ ::'adp_deploy_master_password_confirm_placeholder' | translate }}"
+                          data-validation-trigger="$ctrl.adp.master_password"
                           data-required>
                 <oui-password-rule data-validator="$ctrl.checkPasswordMatch()">
                     <span data-translate="adp_deploy_master_password_must_match"></span>
