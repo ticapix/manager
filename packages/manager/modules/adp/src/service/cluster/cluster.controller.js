@@ -30,7 +30,7 @@ export default class {
   selectFilter() {
     this.selectedNodeType = null;
     this.selectedRegion = null;
-    this.clusterList = this.clusterNodes.data.nodes;
+    this.resetTable();
   }
 
   $onInit() {
@@ -128,9 +128,9 @@ export default class {
    */
   nodeTypeFilter() {
     if (this.selectedNodeType === this.ALL_NODES_OPTION) {
-      this.clusterList = this.clusterNodes.data.nodes;
+      this.resetTable();
     } else {
-      this.clusterList = filter(this.clusterNodes.data.nodes, { node_type: this.selectedNodeType });
+      this.filterClusters();
     }
   }
 
@@ -139,10 +139,22 @@ export default class {
    */
   regionFilter() {
     if (this.selectedRegion === this.ALL_NODES_OPTION) {
-      this.clusterList = this.clusterNodes.data.nodes;
+      this.resetTable();
     } else {
-      this.clusterList = filter(this.clusterNodes.data.nodes, { region: this.selectedRegion });
+      this.filterClusters(true);
     }
+  }
+
+  filterClusters(region) {
+    if (region) {
+      this.clusterList = filter(this.clusterNodes.data.nodes, { region: this.selectedRegion });
+    } else {
+      this.clusterList = filter(this.clusterNodes.data.nodes, { node_type: this.selectedNodeType });
+    }
+  }
+
+  resetTable() {
+    this.clusterList = this.clusterNodes.data.nodes;
   }
 
   refresh() {

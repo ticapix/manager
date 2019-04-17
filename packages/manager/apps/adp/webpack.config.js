@@ -12,7 +12,6 @@ module.exports = (env = {}) => {
   return merge(config, {
     entry: path.resolve('./index.js'),
     resolve: {
-      symlinks: false,
       modules: [
         path.resolve(process.cwd(), './node_modules'),
         path.resolve(process.cwd(), '../../../../node_modules'),
