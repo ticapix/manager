@@ -4,7 +4,11 @@ const config = rollupConfig({
   input: 'src/index.js',
 });
 
-const outputs = [config.es()];
+const outputs = [config.es({
+  output: {
+    sourcemap: false,
+  },
+})];
 
 if (process.env.BUILD === 'production') {
   outputs.push(config.cjs());

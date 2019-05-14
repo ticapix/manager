@@ -1,0 +1,22 @@
+{
+  "name": "@ovh-ux/manager-hello-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server",
+    "dev:watch": "yarn run dev",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-hello-app' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-hello-app' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-hello-app' --include-filtered-dependencies -- yarn run dev:watch"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-hello": "^0.0.0",
+    "@uirouter/angularjs": "^1.0.20",
+    "angular": "^1.7.8"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-webpack-config": "^3.0.7",
+    "webpack-merge": "^4.1.4"
+  }
+}
