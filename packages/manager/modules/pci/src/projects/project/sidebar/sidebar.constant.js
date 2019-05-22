@@ -79,6 +79,13 @@ export const MENU = [
         },
         translation: 'cloud_sidebar_orchestration_kubernetes',
       },
+      {
+        id: 'private-registry',
+        options: {
+          state: 'pci.projects.project.private-registry',
+        },
+        translation: 'cloud_sidebar_orchestration_private_registry',
+      },
     ],
     regions: ['EU'],
     translation: 'cloud_sidebar_orchestration',
