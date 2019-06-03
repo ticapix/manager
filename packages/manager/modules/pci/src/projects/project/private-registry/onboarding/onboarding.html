@@ -8,22 +8,22 @@
 
     <cui-message-container data-messages="$ctrl.messages" class="mb-2 mt-2"></cui-message-container>
 
-    <form name="form" data-ng-if="!$ctrl.registryId">
-        <oui-field>
+    <div data-ng-if="!$ctrl.registryId">
+        <form name="form">
             <oui-checkbox data-model="$ctrl.agreements" data-name="agreements" data-required>
                 <span data-translate="private_registry_accept"></span>
                 <a target="_blank" rel="noopener" href="{{::$ctrl.contractInfo.pdf}}">
                     <span data-translate="private_registry_accept_beta_terms"></span>
                 </a>
             </oui-checkbox>
-        </oui-field>
-    </form>
-    <oui-button data-variant="primary"
-        data-on-click="$ctrl.createRegistry()"
-        data-ng-if="!$ctrl.registryId"
-        data-disabled="!form.$valid">
-        <span data-translate="private_registry_onboarding_action_label"></span>
-    </oui-button>
+        </form>
+        <oui-button data-variant="primary"
+            data-on-click="$ctrl.createRegistry()"
+            
+            data-disabled="!form.$valid">
+            <span data-translate="private_registry_onboarding_action_label"></span>
+        </oui-button>
+    </div>
 
     <oui-spinner data-ng-if="!$ctrl.registryCreated && $ctrl.registryId"></oui-spinner>
     <oui-button data-variant="primary"
