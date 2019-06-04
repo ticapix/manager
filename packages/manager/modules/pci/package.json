@@ -28,7 +28,9 @@
     "moment": "^2.19",
     "urijs": "^1.19.1",
     "validator": "^10.11.0",
-    "xterm": "^3.12.2"
+    "xterm": "^3.12.2",
+    "fast-sha256": "^1.1.0",
+    "tweetnacl-util": "^0.15.0"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "5.0.1"
@@ -61,7 +63,7 @@
     "oclazyload": "^1.1.0",
     "ovh-angular-pagination-front": "ovh-ux/ovh-angular-pagination-front#^5.1.0",
     "ovh-angular-q-allsettled": "ovh-ux/ovh-angular-q-allSettled#^0.3.1",
-    "ovh-api-services": "^6.21.0",
+    "ovh-api-services": "^6.23.0",
     "ovh-common-style": "^5.0.0",
     "ovh-manager-webfont": "^1.1.0",
     "ovh-ui-angular": "^2.29.0",

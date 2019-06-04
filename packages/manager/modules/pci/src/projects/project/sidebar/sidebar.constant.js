@@ -90,6 +90,19 @@ export const MENU = [
     translation: 'cloud_sidebar_orchestration',
   },
   {
+    subitems: [
+      {
+        id: 'analytics-data-platform',
+        options: {
+          state: 'pci.projects.project.analytics-data-platform',
+        },
+        translation: 'cloud_sidebar_data_analytics_adp',
+      },
+    ],
+    regions: ['EU', 'CA'],
+    translation: 'cloud_sidebar_data_analytics',
+  },
+  {
     translation: 'cloud_sidebar_management_interface',
     subitems: [
       {
