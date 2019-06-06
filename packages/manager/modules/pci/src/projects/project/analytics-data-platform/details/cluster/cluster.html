@@ -34,6 +34,7 @@
             data-type="options"
             data-type-options="$ctrl.regionOptions"
             data-searchable>
+            <span data-ng-bind="::$ctrl.cucRegionService.getTranslatedMicroRegion($row.osRegion)"></span>
         </oui-column>
         <oui-column 
             data-title="::'analytics_data_platform_service_cluster_table_flavor' | translate"

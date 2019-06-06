@@ -7,11 +7,12 @@ import {
 export default class {
   /* @ngInject */
   constructor(analyticsDataPlatformService,
-    CucControllerHelper, CucCloudMessage, CucServiceHelper) {
+    CucControllerHelper, CucCloudMessage, CucRegionService, CucServiceHelper) {
     this.analyticsDataPlatformService = analyticsDataPlatformService;
     this.cucControllerHelper = CucControllerHelper;
     this.cucServiceHelper = CucServiceHelper;
     this.cucCloudMessage = CucCloudMessage;
+    this.cucRegionService = CucRegionService;
     this.ANALYTICS_DATA_PLATFORM_SERVICES = ANALYTICS_DATA_PLATFORM_SERVICES;
     this.ANALYTICS_DATA_PLATFORM_CLUSTER_MANAGE = ANALYTICS_DATA_PLATFORM_CLUSTER_MANAGE;
     this.ANALYTICS_DATA_PLATFORM_STATUS_MAP = ANALYTICS_DATA_PLATFORM_STATUS_MAP;

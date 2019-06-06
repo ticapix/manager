@@ -12,9 +12,8 @@
                     data-model="$ctrl.selectedRegion"
                     data-name="all_regions"
                     data-on-change="$ctrl.onRegionChange()"
-                    data-picture="flag-icon flag-icon-{{ ::region.macroRegion.code | lowercase }} flag"
                     data-placeholder="{{ ::'analytics_data_platform_deploy_region_select' | translate }}"
-                    data-label="{{ ::region.macroRegion.text }}"
+                    data-label="{{ ::$ctrl.cucRegionService.getTranslatedMicroRegion(region.macroRegion.text) }}"
                     data-values="region.dataCenters"
                     data-required="true"
                     data-variant="light">
@@ -36,9 +35,8 @@
                     data-model="$ctrl.selectedRegion"
                     data-name="region"
                     data-on-change="$ctrl.onRegionChange()"
-                    data-picture="flag-icon flag-icon-{{ ::region.macroRegion.code | lowercase }} flag"
                     data-placeholder="{{ ::'analytics_data_platform_deploy_region_select' | translate }}"
-                    data-label="{{ ::region.macroRegion.text }}"
+                    data-label="{{ ::$ctrl.cucRegionService.getTranslatedMicroRegion(region.macroRegion.text) }}"
                     data-values="region.dataCenters"
                     data-required="true"
                     data-variant="light">

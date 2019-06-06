@@ -10,7 +10,7 @@
                required
                placeholder="{{ ::'analytics_data_platform_deploy_cluster_name_placeholder' | translate }}"
                data-ng-model="$ctrl.analyticsDataPlatform.clusterName"
-               data-ng-pattern="/^[a-z][a-z0-9\-]{1,18}[a-z0-9]$/">
+               data-ng-pattern="$ctrl.CLUSTER_NAME_PATTERN">
     </oui-field>
     <!-- platform version -->
     <oui-field data-label="{{ ::'analytics_data_platform_deploy_platform_version' | translate }}">

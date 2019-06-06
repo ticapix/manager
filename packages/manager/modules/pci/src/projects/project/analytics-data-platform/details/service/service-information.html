@@ -30,8 +30,7 @@
             </oui-tile-definition>
             <oui-tile-definition data-term="{{ ::'analytics_data_platform_tile_desc_datacenter' | translate }}">
                 <oui-tile-description>
-                    <span class="flag-icon flag-icon-{{ ::$ctrl.platformDetails.osRegion | lowercase }} flag"></span>
-                    <span data-ng-bind="::$ctrl.platformDetails.osRegion"></span>
+                    <span data-ng-bind="::$ctrl.cucRegionService.getTranslatedMicroRegion($ctrl.platformDetails.osRegion)"></span>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition data-term="{{ ::'analytics_data_platform_common_public_cloud_project' | translate }}">
