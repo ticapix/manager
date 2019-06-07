@@ -399,6 +399,7 @@ export default class AnalyticsDataPlatformService {
         method: 'get',
         namespace: `analytics-data-platform.deploy.status.${platformId}`,
         successRule: task => !this.isDeploymentInProgress(task),
+        interval: 60000,
       },
     );
   }

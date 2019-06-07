@@ -1,5 +1,6 @@
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('pci.projects.project.analytics-data-platform', {
+    cache: false,
     url: '/analytics-data-platform',
     component: 'analyticsDataPlatformComponent',
     redirectTo: transition => transition
@@ -21,7 +22,7 @@ export default /* @ngInject */($stateProvider) => {
 
       deployCluster: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.analytics-data-platform.deploy', { projectId }),
       manageCluster: /* @ngInject */ ($state, projectId) => serviceName => $state.go('pci.projects.project.analytics-data-platform.details', { projectId, serviceName }),
-      servicePage: /* @ngInject */ ($state, projectId) => serviceName => $state.go('pci.projects.project.analytics-data-platform.details.service', { projectId, serviceName }),
+      servicePage: /* @ngInject */ ($state, projectId) => serviceName => $state.go('pci.projects.project.analytics-data-platform.details.service', { projectId, serviceName }, { reload: true }),
     },
   });
 };
