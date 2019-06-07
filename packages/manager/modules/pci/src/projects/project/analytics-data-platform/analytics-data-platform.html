@@ -29,8 +29,7 @@
             </oui-column>
             <oui-column data-title="::'analytics_data_platform_common_region' | translate"
                         data-property="osRegion" data-sortable>
-                        <span class="flag-icon flag-icon-{{ ::$row.osRegion | lowercase }} flag"></span>
-                        <span data-ng-bind="::$row.osRegion"></span>
+                        <span data-ng-bind="::$ctrl.cucRegionService.getTranslatedMicroRegion($row.osRegion)"></span>
             </oui-column>
             <oui-column data-title="::'analytics_data_platform_common_version' | translate"
                         data-property="clusterType"

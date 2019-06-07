@@ -21,7 +21,7 @@
                            placeholder="{{ ::'analytics_data_platform_deploy_storage_set_quantity' | translate }}"
                            data-ng-min="{{ ::$ctrl.storage.min_cluster_storage }}"
                            data-ng-max="{{ ::$ctrl.storage.max_cluster_storage }}"
-                           data-ng-pattern="/^\d+$/"
+                           data-ng-pattern="$ctrl.INPUT_NUMBER_PATTERN"
                            data-ng-model="$ctrl.storage.hdfsEffectiveStorage">
                         <button class="oui-button oui-button_icon-only oui-button_small-width"
                                 type="button"
@@ -87,7 +87,7 @@
                            required
                            placeholder="{{ ::'analytics_data_platform_deploy_storage_set_quantity' | translate }}"
                            data-ng-model="$ctrl.analyticsDataPlatform.edgeNodeStorage"
-                           data-ng-pattern="/^\d+$/"
+                           data-ng-pattern="$ctrl.INPUT_NUMBER_PATTERN"
                            data-ng-min="{{ ::$ctrl.storage.min_edge_node_storage }}"
                            data-ng-max="{{ ::$ctrl.storage.max_edge_node_storage }}">
                         <button class="oui-button oui-button_icon-only oui-button_small-width"

@@ -4,10 +4,11 @@ import {
 } from './analytics-data-platform.constants';
 
 export default class {
-  constructor($state, CucCloudMessage, analyticsDataPlatformService) {
+  constructor($state, CucCloudMessage, analyticsDataPlatformService, CucRegionService) {
     this.$state = $state;
     this.cucCloudMessage = CucCloudMessage;
     this.analyticsDataPlatformService = analyticsDataPlatformService;
+    this.cucRegionService = CucRegionService;
   }
 
   $onInit() {

@@ -26,22 +26,27 @@ import {
   ANALYTICS_DATA_PLATFORM_FLAVOR_TYPES,
   ANALYTICS_DATA_PLATFORM_NODE_NAMES,
   ANALYTICS_DATA_PLATFORM_NODE_TYPES,
+  ANALYTICS_DATA_PLATFORM_CLUSTER_NAME_PATTERN,
+  ANALYTICS_DATA_PLATFORM_INPUT_NUMBER_PATTERN,
 } from '../analytics-data-platform.constants';
 
 export default class {
   /* @ngInject */
   constructor($translate, analyticsDataPlatformService, CucControllerHelper,
-    CucCloudMessage, CucServiceHelper) {
+    CucCloudMessage, CucRegionService, CucServiceHelper) {
     this.$translate = $translate;
     this.ANALYTICS_DATA_PLATFORM_COMPUTE = ANALYTICS_DATA_PLATFORM_COMPUTE;
     this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO = ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO;
     this.ANALYTICS_DATA_PLATFORM_FLAVOR_TYPES = ANALYTICS_DATA_PLATFORM_FLAVOR_TYPES;
     this.ANALYTICS_DATA_PLATFORM_NODE_NAMES = ANALYTICS_DATA_PLATFORM_NODE_NAMES;
     this.ANALYTICS_DATA_PLATFORM_NODE_TYPES = ANALYTICS_DATA_PLATFORM_NODE_TYPES;
+    this.CLUSTER_NAME_PATTERN = ANALYTICS_DATA_PLATFORM_CLUSTER_NAME_PATTERN;
+    this.INPUT_NUMBER_PATTERN = ANALYTICS_DATA_PLATFORM_INPUT_NUMBER_PATTERN;
     this.analyticsDataPlatformService = analyticsDataPlatformService;
     this.cucControllerHelper = CucControllerHelper;
     this.cucCloudMessage = CucCloudMessage;
     this.cucServiceHelper = CucServiceHelper;
+    this.cucRegionService = CucRegionService;
 
     this.selectedRegion = null;
     this.selectedCapability = null;
