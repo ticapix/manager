@@ -1,4 +1,3 @@
-import find from 'lodash/find';
 import reduce from 'lodash/reduce';
 import sumBy from 'lodash/sumBy';
 
@@ -39,17 +38,6 @@ export default class {
     );
   }
 
-  getProgress(serviceName) {
-    return this.analyticsDataPlatformService
-      .getStatus(serviceName)
-      .then((tasks) => {
-        this.calculateGlobalProgress(tasks);
-        this.progress = tasks;
-        return tasks;
-      })
-      .catch(error => this.cucServiceHelper.errorHandler('analytics_data_platform_tracking_progress_get_status_error')(error));
-  }
-
   /**
    * Calculate global progress based on individual task progress
    *
@@ -64,22 +52,6 @@ export default class {
   }
 
   /**
-   * Polls progress API untill it returns success or failure
-   *
-   */
-  pollOperation(serviceName) {
-    return this.CucCloudPoll.poll({
-      item: { id: serviceName },
-      pollFunction: () => this.getProgress(serviceName),
-      stopCondition: () => this.progress.length && !find(
-        this.progress,
-        task => this.analyticsDataPlatformService.isDeploymentInProgress(task),
-      ),
-      interval: 60000,
-    });
-  }
-
-  /**
    * handles checking status of cluster function.
    * Repeatedly polls for operation until it returns DEPLOYED message.
    *
@@ -87,19 +59,25 @@ export default class {
    * @returns promise which will be resolved to operation object
    */
   handleOperation(serviceName) {
-    return this.pollOperation(serviceName)
-      .$promise
-      .then(() => {
-        const deploymentSuccessful = reduce(
-          this.progress,
-          (deploySuccessful, task) => deploySuccessful
-            && (task.status === ANALYTICS_DATA_PLATFORM_STATUS.SUCCEEDED),
-          true,
-        );
-        return (deploymentSuccessful
-          ? this.goToServicePage(serviceName)
-          : this.cucServiceHelper.errorHandler('analytics_data_platform_tracking_progress_deploy_error')()
-        );
-      });
+    return this.analyticsDataPlatformService.getDeploymentStatus(serviceName)
+      .then(
+        (tasks) => {
+          const deploymentSuccessful = reduce(
+            tasks,
+            (deploySuccessful, task) => deploySuccessful
+              && (task.status === ANALYTICS_DATA_PLATFORM_STATUS.SUCCEEDED),
+            true,
+          );
+          return (deploymentSuccessful
+            ? this.goToServicePage(serviceName)
+            : this.cucServiceHelper.errorHandler('analytics_data_platform_tracking_progress_deploy_error')()
+          );
+        },
+        () => this.cucServiceHelper.errorHandler('analytics_data_platform_tracking_progress_deploy_error')(),
+        (tasks) => {
+          this.calculateGlobalProgress(tasks);
+          this.progress = tasks;
+        },
+      );
   }
 }

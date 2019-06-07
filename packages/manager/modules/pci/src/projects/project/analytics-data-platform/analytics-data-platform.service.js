@@ -383,6 +383,27 @@ export default class AnalyticsDataPlatformService {
   }
 
   /**
+   * returns a poller that notifies the status in intervals
+   * and resolves when the deployment is complete
+   * @param {*} platformId the analytics data platform whose
+   * deployment status needs to be polled
+   *
+   * @returns a promise that resolves when deployment is complete
+   * @memberof AnalyticsDataPlatformService
+   */
+  getDeploymentStatus(platformId) {
+    return this.Poller.poll(
+      `/analytics/platforms/${platformId}/status`,
+      {},
+      {
+        method: 'get',
+        namespace: `analytics-data-platform.deploy.status.${platformId}`,
+        successRule: task => !this.isDeploymentInProgress(task),
+      },
+    );
+  }
+
+  /**
    * deploy Analytics Data Platform on public cloud
    *
    * @param {*} serviceName the service name of the analytics data platform
@@ -391,6 +412,27 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   deployAnalyticsDataPlatform(serviceName, analyticsDataPlatform) {
+    return this.startPlatformDeploy(serviceName, analyticsDataPlatform)
+      .then(() => this.Poller.poll(
+        `/analytics/platforms/${serviceName}`,
+        {},
+        {
+          method: 'get',
+          namespace: `analytics-data-platform.${serviceName}`,
+          successRule: platformDetails => platformDetails.status !== this.STATUS.TO_DEPLOY,
+        },
+      ));
+  }
+
+  /**
+   * starts deployment of Analytics Data Platform on public cloud
+   *
+   * @param {*} serviceName the service name of the analytics data platform
+   * @param {*} analyticsDataPlatform deployment details object
+   * @returns cluster details in deployment
+   * @memberof AnalyticsDataPlatformService
+   */
+  startPlatformDeploy(serviceName, analyticsDataPlatform) {
     return this.OvhApiAnalyticsPlatforms.deploy({ serviceName }, analyticsDataPlatform).$promise;
   }
 
