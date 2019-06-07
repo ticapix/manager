@@ -3,7 +3,10 @@ import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
-import { ANALYTICS_DATA_PLATFORM_STATUS, ANALYTICS_DATA_PLATFORM_CLOUD_CATALOG_NAME } from './analytics-data-platform.constants';
+import {
+  ANALYTICS_DATA_PLATFORM_STATUS, ANALYTICS_DATA_PLATFORM_CLOUD_CATALOG_NAME,
+  ANALYTICS_DATA_PLATFORM_PUBLIC_CLOUD_STATUS,
+} from './analytics-data-platform.constants';
 
 export default class AnalyticsDataPlatformService {
   /* @ngInject */
@@ -30,6 +33,7 @@ export default class AnalyticsDataPlatformService {
     this.CucRegionService = CucRegionService;
     this.Poller = Poller;
     this.CLOUD_CATALOG_NAME = ANALYTICS_DATA_PLATFORM_CLOUD_CATALOG_NAME;
+    this.CLOUD_STATUS = ANALYTICS_DATA_PLATFORM_PUBLIC_CLOUD_STATUS;
     this.STATUS = ANALYTICS_DATA_PLATFORM_STATUS;
   }
 
@@ -109,7 +113,17 @@ export default class AnalyticsDataPlatformService {
    * @memberof AnalyticsDataPlatformService
    */
   createUser(projectId, description) {
-    return this.ovhApiCloudProjectUser.save({ serviceName: projectId }, { description }).$promise;
+    return this.ovhApiCloudProjectUser.save({ serviceName: projectId }, { description }).$promise
+      .then(user => this.Poller.poll(
+        `/cloud/project/${projectId}/user/${user.id}`,
+        {},
+        {
+          method: 'get',
+          namespace: `analytics-data-platform.user.${user.id}`,
+          successRule: userDetail => userDetail.status === this.CLOUD_STATUS.OK,
+        },
+      )
+        .then(() => user));
   }
 
   /**
@@ -123,7 +137,7 @@ export default class AnalyticsDataPlatformService {
    */
   generateUserToken(projectId, userId, password) {
     return this.ovhApiCloudProjectUser
-      .token({ serviceName: projectId, userId, password }).$promise;
+      .token({ serviceName: projectId, userId }, { password }).$promise;
   }
 
   /**
@@ -167,9 +181,8 @@ export default class AnalyticsDataPlatformService {
    * @returns the token string
    * @memberof AnalyticsDataPlatformService
    */
-  getNewToken(publicCloudId, userDescription) {
-    return this.createUser(publicCloudId, userDescription)
-      .then(user => this.generateUserToken(publicCloudId, user.id, user.password))
+  getNewToken(publicCloudId, userId, password) {
+    return this.generateUserToken(publicCloudId, userId, password)
       .then(token => get(token, 'X-Auth-Token'));
   }
 
@@ -219,6 +232,7 @@ export default class AnalyticsDataPlatformService {
         {},
         {
           method: 'get',
+          namespace: `analytics-data-platform.order.${orderId}`,
           successRule: orderDetail => orderDetail.domain !== '*',
         },
       ))

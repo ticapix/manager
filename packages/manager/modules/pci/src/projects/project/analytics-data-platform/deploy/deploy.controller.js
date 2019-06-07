@@ -647,17 +647,18 @@ export default class {
       return;
     }
     this.deploy = this.cucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.analyticsDataPlatformService.createAnalyticsOrder()
-        .then(order => this.analyticsDataPlatformService.getServiceNameFromOrder(order.orderId))
-        .then(serviceName => this.analyticsDataPlatformService
-          .getNewToken(this.projectId, `Analytics Data Platform ${serviceName}`)
-          .then(osToken => set(this.analyticsDataPlatform, 'osToken', osToken))
-          .then(analyticsDataPlatform => this.analyticsDataPlatformService
-            .deployAnalyticsDataPlatform(serviceName, analyticsDataPlatform))
-          .then(() => {
-            this.analyticsDataPlatformService.clearPlatformAllCache();
-            return this.manageCluster(serviceName);
-          }))
+      loaderFunction: () => this.analyticsDataPlatformService.createUser(this.projectId, 'analytics-data-platform')
+        .then(user => this.analyticsDataPlatformService.createAnalyticsOrder()
+          .then(order => this.analyticsDataPlatformService.getServiceNameFromOrder(order.orderId))
+          .then(serviceName => this.analyticsDataPlatformService
+            .getNewToken(this.projectId, user.id, user.password)
+            .then(osToken => set(this.analyticsDataPlatform, 'osToken', osToken))
+            .then(analyticsDataPlatform => this.analyticsDataPlatformService
+              .deployAnalyticsDataPlatform(serviceName, analyticsDataPlatform))
+            .then(() => {
+              this.analyticsDataPlatformService.clearPlatformAllCache();
+              return this.manageCluster(serviceName);
+            })))
         .catch(error => this.cucServiceHelper.errorHandler('analytics_data_platform_deploy_error')(error)),
     });
     this.deploy.load();
