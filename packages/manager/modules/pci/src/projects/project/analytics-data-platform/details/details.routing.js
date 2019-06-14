@@ -50,7 +50,7 @@ export default /* @ngInject */($stateProvider) => {
         return promise;
       },
 
-      breadcrumb: () => null, // Hide breadcrumb
+      breadcrumb: /* @ngInject */ platformDetails => platformDetails.clusterName,
     },
   });
 };

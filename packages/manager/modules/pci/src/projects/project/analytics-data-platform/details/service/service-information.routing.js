@@ -21,7 +21,7 @@ export default /* @ngInject */($stateProvider) => {
         serviceName,
       ) => () => $state.go('pci.projects.project.analytics-data-platform.details.service.terminate', { projectId, serviceName }),
 
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_tile_breadcrumb'),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_header_nav_service_info'),
 
       billingConsole: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.billing', { projectId }),
     },

@@ -16,6 +16,7 @@ import some from 'lodash/some';
 import sumBy from 'lodash/sumBy';
 import times from 'lodash/times';
 import values from 'lodash/values';
+import replace from 'lodash/replace';
 
 import {
   ANALYTICS_DATA_PLATFORM_COMPUTE,
@@ -48,6 +49,7 @@ export default class {
 
     this.selectedRegion = null;
     this.selectedCapability = null;
+    this.selectedAdpVersion = null;
     this.selectedSshKey = null;
     this.nodesConfig = null;
     this.minimumNodesRequired = 0;
@@ -135,6 +137,7 @@ export default class {
     this.resetRegionConfiguration();
     this.resetNodesConfiguration();
     this.resetStorageConfiguration();
+    this.selectedAdpVersion = replace(this.selectedCapability.version, ' ', '');
     this.minimumNodesRequired = get(this.selectedCapability, ['bastionNode', 'instanceMin'], 0)
       + get(this.selectedCapability, ['edgeNode', 'instanceMin'], 0)
       + get(this.selectedCapability, ['masterNode', 'instanceMin'], 0)
@@ -175,7 +178,8 @@ export default class {
    */
   checkPasswordLength(password) {
     return password
-      && (password.length >= this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.minMasterPasswordLength);
+      && (password.length >= this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.minMasterPasswordLength)
+      && (password.length <= this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.maxMasterPasswordLength);
   }
 
   /** #####################################################################
@@ -256,6 +260,13 @@ export default class {
             delete region.disabled;
             return region;
           });
+          // select region by default if only one exists
+          if (groupedRegions && groupedRegions.length === 1) {
+            const datacenters = head(groupedRegions).dataCenters;
+            if (datacenters.length === 1) {
+              this.selectedRegion = head(datacenters);
+            }
+          }
           return groupedRegions;
         }),
     });

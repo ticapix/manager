@@ -19,12 +19,14 @@ export default /* @ngInject */($stateProvider) => {
       sshKeys: /* @ngInject */ (
         analyticsDataPlatformService,
         projectId,
-      ) => analyticsDataPlatformService.getShhKeys(projectId),
+      ) => analyticsDataPlatformService.getShhKeys(projectId)
+        .catch(() => null),
 
       vRack: /* @ngInject */ (
         analyticsDataPlatformService,
         projectId,
-      ) => analyticsDataPlatformService.getVRacks(projectId),
+      ) => analyticsDataPlatformService.getVRacks(projectId)
+        .catch(() => null),
 
       priceCatalog: /* @ngInject */ (
         analyticsDataPlatformService,

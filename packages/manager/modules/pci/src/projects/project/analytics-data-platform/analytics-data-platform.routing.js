@@ -17,7 +17,7 @@ export default /* @ngInject */($stateProvider) => {
         return analyticsDataPlatformService.getAnalyticsDataPlatforms(projectId);
       },
 
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_breadcrumb'),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_title'),
 
       deployCluster: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.analytics-data-platform.deploy', { projectId }),
       manageCluster: /* @ngInject */ ($state, projectId) => serviceName => $state.go('pci.projects.project.analytics-data-platform.details', { projectId, serviceName }),
