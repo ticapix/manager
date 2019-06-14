@@ -1,0 +1,62 @@
+<section data-ng-init="localizedStorageUnit = ('analytics_data_platform_common_unit_gb' | translate)">
+    <!-- page header -->
+    <oui-page-header class="mb-2" data-heading="{{ ::'analytics_data_platform_deploy_title' | translate }}"></oui-page-header>
+    <!-- page content -->
+    <div>
+        <!-- error messages -->
+        <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+        <oui-message data-type="error" data-ng-if="!$ctrl.hasDefaultPaymentMethod">
+            <span data-ng-bind-html="'analytics_data_platform_no_default_payment_method' | translate: { href: $ctrl.paymentMethodUrl }"></span>
+        </oui-message>
+        <p data-translate="analytics_data_platform_deploy_description"></p>
+        <!-- deploy stepper -->
+        <div class="mt-1 mt-sm-2">
+            <oui-stepper>
+                <!-- general information -->
+                <oui-step-form data-header="{{ ::'analytics_data_platform_deploy_general_configuration_title' | translate }}"
+                               data-on-submit="$ctrl.submitGeneralInformation()">
+                    <div data-ng-include="'analytics-data-platform/deploy/general.html'"></div>
+                </oui-step-form>
+
+                <!-- security -->
+                <oui-step-form data-header="{{ ::'analytics_data_platform_deploy_security' | translate }}"
+                               data-on-submit="$ctrl.submitSecurityInformation()"
+                               data-valid="$ctrl.isSecurityConfigComplete()">
+                    <div data-ng-include="'analytics-data-platform/deploy/security.html'"></div>
+                </oui-step-form>
+
+                <!-- select regions -->
+                <oui-step-form data-header="{{ ::'analytics_data_platform_deploy_regions_select_datacenter' | translate }}"
+                               data-loading="$ctrl.regionsByDatacenter.loading"
+                               data-on-focus="$ctrl.initRegionsAndDatacenters()"
+                               data-on-submit="$ctrl.submitRegionAndDatacenter()">
+                    <div data-ng-include="'analytics-data-platform/deploy/regions.html'"></div>
+                </oui-step-form>
+
+                <!-- nodes config -->
+                <oui-step-form data-header="{{ ::'analytics_data_platform_deploy_nodes_title' | translate }}"
+                               data-loading="$ctrl.supportedFlavors.loading || $ctrl.quota.loading"
+                               data-on-focus="$ctrl.initNodes()"
+                               data-on-submit="$ctrl.submitNodesInformation(form)">
+                    <div data-ng-include="'analytics-data-platform/deploy/nodes.html'"></div>
+                </oui-step-form>
+
+                <!-- nodes storage -->
+                <oui-step-form data-header="{{ ::'analytics_data_platform_deploy_storage_title' | translate }}"
+                               data-on-focus="$ctrl.initStorage()"
+                               data-on-submit="$ctrl.submitStorageInformation()">
+                    <div data-ng-include="'analytics-data-platform/deploy/storage.html'"></div>
+                </oui-step-form>
+
+                <!-- review -->
+                <oui-step-form data-header="{{ ::'analytics_data_platform_deploy_review_title' | translate }}"
+                               data-on-submit="$ctrl.deployCluster()"
+                               data-on-focus="$ctrl.initReview()"
+                               data-submit-text="{{ ::'analytics_data_platform_deploy_create_cluster' | translate }}"
+                               data-valid="$ctrl.hasDefaultPaymentMethod">
+                    <div data-ng-include="'analytics-data-platform/deploy/review.html'"></div>
+                </oui-step-form>
+            </oui-stepper>
+        </div>
+    </div>
+</section>
