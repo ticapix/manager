@@ -121,6 +121,7 @@ export const ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO = Object.freeze({
   dkLen: 32,
   passwordLength: 18,
   minMasterPasswordLength: 12,
+  maxMasterPasswordLength: 64,
 });
 
 export const ANALYTICS_DATA_PLATFORM_NODE_FILTERS = [

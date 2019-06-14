@@ -175,7 +175,8 @@ export default class {
    */
   checkPasswordLength(password) {
     return password
-      && (password.length >= this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.minMasterPasswordLength);
+      && (password.length >= this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.minMasterPasswordLength)
+      && (password.length <= this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.maxMasterPasswordLength);
   }
 
   /** #####################################################################
@@ -256,6 +257,13 @@ export default class {
             delete region.disabled;
             return region;
           });
+          // select region by default if only one exists
+          if (groupedRegions && groupedRegions.length === 1) {
+            const datacenters = head(groupedRegions).dataCenters;
+            if (datacenters.length === 1) {
+              this.selectedRegion = head(datacenters);
+            }
+          }
           return groupedRegions;
         }),
     });

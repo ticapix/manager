@@ -19,6 +19,10 @@ deploy-component {
         margin-left: 0;
     }
   }
+  .ovhstack .oui-input.oui-input_number {
+    border-radius: 0px;
+    border-bottom: inherit;
+  }
 }
 
 oui-modal {
