@@ -10,7 +10,7 @@ export default /* @ngInject */($stateProvider) => {
         serviceName,
       ) => analyticsDataPlatformService.getAnalyticsDataPlatformActivityLogs(serviceName),
 
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_service_activity_breadscrum'),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_service_activity_breadcrumb'),
     },
   });
 };

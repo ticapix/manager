@@ -37,7 +37,7 @@ export default /* @ngInject */($stateProvider) => {
         projectId,
       ) => analyticsDataPlatformService.getFlavors(projectId, platformDetails.osRegion),
 
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_service_cluster_breadscrum'),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_service_cluster_breadcrumb'),
     },
   });
 };

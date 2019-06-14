@@ -8,7 +8,7 @@ export default /* @ngInject */($stateProvider) => {
         analyticsDataPlatformService,
         serviceName,
       ) => analyticsDataPlatformService.getAnalyticsDataPlatformDetails(serviceName),
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_service_credentials_breadscrum'),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_service_credentials_breadcrumb'),
     },
   });
 };

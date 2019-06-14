@@ -1,5 +1,5 @@
 {
-  "analytics_data_platform_service_cluster_breadscrum": "Taille du cluster",
+  "analytics_data_platform_service_cluster_breadcrumb": "Taille du cluster",
   "analytics_data_platform_service_cluster_desc": "Votre cluster de données volumineuses a besoin de plusieurs nœuds et disques de stockage pour être opérationnel. Ces nœuds sont déployés dans votre projet cloud public associé {{public_cloud_project_serviceName}}, avec facturation horaire standard. Vous pouvez trouver des détails sur votre facture et passer à un plan mensuel dans votre projet Cloud public.",
   "analytics_data_platform_service_cluster_total_cores": "Nombre total de coeurs virtuels",
   "analytics_data_platform_service_cluster_total_ram": "RAM totale",

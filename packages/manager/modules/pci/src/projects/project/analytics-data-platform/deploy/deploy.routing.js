@@ -6,7 +6,7 @@ export default /* @ngInject */($stateProvider) => {
     url: '/deploy',
     component: 'deployComponent',
     resolve: {
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_deploy_breadscrum'),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_deploy_breadcrumb'),
       capabilities: /* @ngInject */
       analyticsDataPlatformService => analyticsDataPlatformService
         .getAnalyticsDataPlatformCapabilities(),
@@ -37,6 +37,23 @@ export default /* @ngInject */($stateProvider) => {
         PCI_REDIRECT_URLS,
         `${coreConfig.getRegion()}.paymentMethods`,
       ),
+
+      goToDeploy: ($state, CucCloudMessage, projectId) => (message = false, type = 'success') => {
+        const reload = message && type === 'success';
+
+        const promise = $state.go('pci.projects.project.analytics-data-platform.deploy', {
+          projectId,
+        },
+        {
+          reload,
+        });
+
+        if (message) {
+          promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.analytics-data-platform.deploy'));
+        }
+
+        return promise;
+      },
     },
   });
 };

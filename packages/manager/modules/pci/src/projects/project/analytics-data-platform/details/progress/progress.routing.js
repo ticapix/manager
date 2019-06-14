@@ -28,7 +28,7 @@ export default /* @ngInject */($stateProvider) => {
         serviceName,
       ) => analyticsDataPlatformService.getStatus(serviceName),
 
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_tracking_progress_breadscrum'),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_tracking_progress_breadcrumb'),
     },
   });
 };

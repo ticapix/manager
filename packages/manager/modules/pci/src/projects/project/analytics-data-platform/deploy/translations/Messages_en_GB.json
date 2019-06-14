@@ -83,7 +83,7 @@
   "analytics_data_platform_deploy_quota_error_model_description": "Public cloud project, {{cloud_name}}, does not meet required quota requirements to deploy Analytics Data Platform.",
   "analytics_data_platform_deploy_quota_error_model_title": "Insufficient quota",
   "analytics_data_platform_deploy_quota_error_model_button_increase_quota": "Increase quota",
-  "analytics_data_platform_deploy_quota_error_model_info": "You can increase quota for the public cloud, {{cloud_name}}, or select different public cloud under 'General configuration' step.",
+  "analytics_data_platform_deploy_quota_error_model_info": "You can increase quota for the public cloud, {{cloud_name}}, or change nodes configuration under 'Size the nodes' step.",
   "analytics_data_platform_deploy_quota_min_servers_error": "Minimun {{numberOfServers}} nodes are required to deploy Analytics Data Platform. Under your current quota, you can create up to a maximum of {{ instances }} nodes for the {{ region }} region.",
   "analytics_data_platform_deploy_review_title": "Infrastructure review",
   "analytics_data_platform_deploy_review_info_header": "The following cluster will be deployed",

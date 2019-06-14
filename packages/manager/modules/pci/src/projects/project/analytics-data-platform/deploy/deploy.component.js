@@ -15,5 +15,6 @@ export default {
     priceCatalog: '<',
     hasDefaultPaymentMethod: '<',
     paymentMethodUrl: '<',
+    goToDeploy: '<',
   },
 };

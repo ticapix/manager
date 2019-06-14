@@ -1,5 +1,5 @@
 {
-  "analytics_data_platform_deploy_breadscrum": "Déployer",
+  "analytics_data_platform_deploy_breadcrumb": "Déployer",
   "analytics_data_platform_deploy_title": "Déployer une plate-forme de données d'analyse",
   "analytics_data_platform_deploy_description": "OVH Analytics Data Platform contient tous les outils permettant d'importer, de nettoyer, de traiter et de visualiser de grandes quantités de données. Nous déployons un cluster Apache Hadoop préconfiguré et entièrement sécurisé, en plus des ressources de stockage et de calcul OVH Public Cloud. Ensuite, il vous suffit de télécharger vos données ou d'ajouter un collecteur de données pour les flux en temps réel, puis de suivre notre documentation pour tirer parti des avantages du PDA.",
   "analytics_data_platform_deploy_general_configuration_title": "Configuration générale",
@@ -81,7 +81,7 @@
   "analytics_data_platform_deploy_quota_error_model_description": "Le projet cloud public {{cloud_name}} ne répond pas aux exigences de quota requises pour déployer la plateforme de données Analytics.",
   "analytics_data_platform_deploy_quota_error_model_title": "Quota insuffisant",
   "analytics_data_platform_deploy_quota_error_model_button_increase_quota": "Augmenter le quota",
-  "analytics_data_platform_deploy_quota_error_model_info": "Vous pouvez augmenter le quota pour le cloud public, {{cloud_name}}, ou sélectionner un cloud public différent sous l'étape \"Configuration générale\".",
+  "analytics_data_platform_deploy_quota_error_model_info": "Vous pouvez augmenter le quota pour le cloud public, {{cloud_name}}, ou sélectionner un modifier la configuration des noeuds sous l'étape 'Dimensionner les noeuds'.",
   "analytics_data_platform_deploy_quota_min_servers_error": "Un minimum de {{numberOfServers}} nœuds est requis pour déployer la plateforme de données Analytics. Sous votre quota actuel, vous pouvez créer un maximum de {{ instances }} nœuds pour la région {{ région }}.",
   "analytics_data_platform_deploy_review_title": "Examen de l'infrastructure",
   "analytics_data_platform_deploy_review_info_header": "Le cluster suivant sera déployé",
