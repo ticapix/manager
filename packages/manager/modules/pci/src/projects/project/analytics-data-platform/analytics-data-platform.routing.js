@@ -10,7 +10,6 @@ export default /* @ngInject */($stateProvider) => {
 
     resolve: {
       clusters: /* @ngInject */ (
-        CucServiceHelper,
         analyticsDataPlatformService,
         projectId,
       ) => {

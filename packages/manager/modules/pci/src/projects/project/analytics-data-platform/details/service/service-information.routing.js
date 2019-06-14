@@ -6,18 +6,14 @@ export default /* @ngInject */($stateProvider) => {
       serviceName: /* @ngInject */ $stateParams => $stateParams.serviceName,
 
       platformDetails: /* @ngInject */ (
-        CucServiceHelper,
         analyticsDataPlatformService,
         serviceName,
-      ) => analyticsDataPlatformService.getAnalyticsDataPlatformDetails(serviceName)
-        .catch(error => CucServiceHelper.errorHandler('analytics_data_platform_get_cluster_error')(error)),
+      ) => analyticsDataPlatformService.getAnalyticsDataPlatformDetails(serviceName),
 
       publicCloudDetails: /* @ngInject */ (
-        CucServiceHelper,
         analyticsDataPlatformService,
         projectId,
-      ) => analyticsDataPlatformService.getPubliCloudDetails(projectId)
-        .catch(error => CucServiceHelper.errorHandler('analytics_data_platform_get_cluster_info_error')(error)),
+      ) => analyticsDataPlatformService.getPubliCloudDetails(projectId),
 
       terminate: /* @ngInject */ (
         $state,

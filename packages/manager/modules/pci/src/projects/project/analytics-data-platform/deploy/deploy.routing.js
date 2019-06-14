@@ -7,40 +7,32 @@ export default /* @ngInject */($stateProvider) => {
     component: 'deployComponent',
     resolve: {
       breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_deploy_breadscrum'),
-      capabilities: /* @ngInject */ (
-        CucServiceHelper,
-        analyticsDataPlatformService,
-      ) => analyticsDataPlatformService.getAnalyticsDataPlatformCapabilities()
-        .catch(error => CucServiceHelper.errorHandler('analytics_data_platform_get_capabilities_error')(error)),
+      capabilities: /* @ngInject */
+      analyticsDataPlatformService => analyticsDataPlatformService
+        .getAnalyticsDataPlatformCapabilities(),
+
       publicCloud: /* @ngInject */ (
-        CucServiceHelper,
         analyticsDataPlatformService,
         projectId,
-      ) => analyticsDataPlatformService.getPubliCloudDetails(projectId)
-        .catch(error => CucServiceHelper.errorHandler('analytics_data_platform_get_cloud_error')(error)),
+      ) => analyticsDataPlatformService.getPubliCloudDetails(projectId),
+
       sshKeys: /* @ngInject */ (
-        CucServiceHelper,
         analyticsDataPlatformService,
         projectId,
-      ) => analyticsDataPlatformService.getShhKeys(projectId)
-        .catch(error => CucServiceHelper.errorHandler('analytics_data_platform_get_ssh_keys_error')(error)),
+      ) => analyticsDataPlatformService.getShhKeys(projectId),
+
       vRack: /* @ngInject */ (
-        CucServiceHelper,
         analyticsDataPlatformService,
         projectId,
-      ) => analyticsDataPlatformService.getVRacks(projectId)
-        .catch(error => CucServiceHelper.errorHandler('analytics_data_platform_get_vracks_error')(error)),
+      ) => analyticsDataPlatformService.getVRacks(projectId),
+
       priceCatalog: /* @ngInject */ (
-        CucServiceHelper,
         analyticsDataPlatformService,
         publicCloud,
-      ) => analyticsDataPlatformService.getPriceCatalog(publicCloud.planCode)
-        .catch(error => CucServiceHelper.errorHandler('analytics_data_platform_get_price_catalog_error')(error)),
-      hasDefaultPaymentMethod: /* @ngInject */ (
-        CucServiceHelper,
-        ovhPaymentMethod,
-      ) => ovhPaymentMethod.hasDefaultPaymentMethod()
-        .catch(error => CucServiceHelper.errorHandler('analytics_data_platform_get_default_payment_method_error')(error)),
+      ) => analyticsDataPlatformService.getPriceCatalog(publicCloud.planCode),
+      hasDefaultPaymentMethod: /* @ngInject */
+      ovhPaymentMethod => ovhPaymentMethod.hasDefaultPaymentMethod(),
+
       paymentMethodUrl: /* @ngInject */ coreConfig => get(
         PCI_REDIRECT_URLS,
         `${coreConfig.getRegion()}.paymentMethods`,
