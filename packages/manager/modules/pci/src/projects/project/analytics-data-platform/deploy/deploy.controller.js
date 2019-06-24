@@ -23,7 +23,6 @@ import {
   ANALYTICS_DATA_PLATFORM_FLAVOR_TYPES,
   ANALYTICS_DATA_PLATFORM_NODE_NAMES,
   ANALYTICS_DATA_PLATFORM_NODE_TYPES,
-  ANALYTICS_DATA_PLATFORM_CLUSTER_NAME_PATTERN,
   ANALYTICS_DATA_PLATFORM_INPUT_NUMBER_PATTERN,
 } from '../analytics-data-platform.constants';
 
@@ -38,7 +37,6 @@ export default class {
     this.ANALYTICS_DATA_PLATFORM_FLAVOR_TYPES = ANALYTICS_DATA_PLATFORM_FLAVOR_TYPES;
     this.ANALYTICS_DATA_PLATFORM_NODE_NAMES = ANALYTICS_DATA_PLATFORM_NODE_NAMES;
     this.ANALYTICS_DATA_PLATFORM_NODE_TYPES = ANALYTICS_DATA_PLATFORM_NODE_TYPES;
-    this.CLUSTER_NAME_PATTERN = ANALYTICS_DATA_PLATFORM_CLUSTER_NAME_PATTERN;
     this.INPUT_NUMBER_PATTERN = ANALYTICS_DATA_PLATFORM_INPUT_NUMBER_PATTERN;
     this.analyticsDataPlatformService = analyticsDataPlatformService;
     this.cucControllerHelper = CucControllerHelper;
@@ -124,6 +122,12 @@ export default class {
   /** #####################################################################
       GENERAL INFORMATION
    * ##################################################################### */
+
+  onGeneralInformationChange({ clusterName, selectedCapability }) {
+    this.analyticsDataPlatform.clusterName = clusterName;
+    this.selectedCapability = selectedCapability;
+    this.onCapabilitySelect();
+  }
 
   /**
    * Calculates the minimum nodes required by

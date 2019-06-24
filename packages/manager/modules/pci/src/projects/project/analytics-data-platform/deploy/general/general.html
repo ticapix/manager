@@ -1,29 +1,29 @@
-<!-- Basic Settings Section -->
 <div class="mb-3">
     <!-- cluster name -->
     <oui-field data-label="{{ ::'analytics_data_platform_common_cluster_name' | translate }}"
-               data-error-messages="{ pattern: ('analytics_data_platform_deploy_cluster_name_help' | translate) }">
+               data-error-messages="{ pattern: ('analytics_data_platform_deploy_general_cluster_name_help' | translate) }">
         <input class="oui-input"
                type="text"
                id="clusterName"
                name="clusterName"
                required
-               placeholder="{{ ::'analytics_data_platform_deploy_cluster_name_placeholder' | translate }}"
-               data-ng-model="$ctrl.analyticsDataPlatform.clusterName"
+               placeholder="{{ ::'analytics_data_platform_deploy_general_cluster_name_placeholder' | translate }}"
+               data-ng-model="$ctrl.data.clusterName"
+               data-ng-change="$ctrl.dataChange()"
                data-ng-pattern="$ctrl.CLUSTER_NAME_PATTERN">
     </oui-field>
     <!-- platform version -->
     <oui-field data-label="{{ ::'analytics_data_platform_deploy_platform_version' | translate }}">
         <oui-select data-name="platformVersion"
-                    data-model="$ctrl.selectedCapability"
+                    data-model="$ctrl.data.selectedCapability"
                     data-items="$ctrl.capabilities"
                     data-match="version"
-                    data-on-change="$ctrl.onCapabilitySelect()"
-                    data-placeholder="{{ ::'analytics_data_platform_deploy_platform_version_placeholder' | translate }}"
+                    data-on-change="$ctrl.dataChange()"
+                    data-placeholder="{{ ::'analytics_data_platform_deploy_general_platform_version_placeholder' | translate }}"
                     data-required>
         </oui-select>
-        <div class="oui-field__helper" data-ng-if="$ctrl.selectedCapability">
-            <span data-translate="{{ 'analytics_data_platform_deploy_general_version_' + $ctrl.selectedCapability.version + '_description'}}">
+        <div class="oui-field__helper" data-ng-if="$ctrl.data.selectedCapability">
+            <span data-translate="{{ 'analytics_data_platform_deploy_general_version_' + $ctrl.data.selectedCapability.version + '_description'}}">
             </span>
         </div>
     </oui-field>

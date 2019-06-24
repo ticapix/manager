@@ -15,7 +15,9 @@
                 <!-- general information -->
                 <oui-step-form data-header="{{ ::'analytics_data_platform_deploy_general_configuration_title' | translate }}"
                                data-on-submit="$ctrl.submitGeneralInformation()">
-                    <div data-ng-include="'analytics-data-platform/deploy/general.html'"></div>
+                    <general-component data-capabilities="$ctrl.capabilities"
+                                       data-public-cloud="$ctrl.publicCloud"
+                                       data-on-data-change="$ctrl.onGeneralInformationChange(data)"></general-component>
                 </oui-step-form>
 
                 <!-- security -->

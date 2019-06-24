@@ -2,7 +2,6 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import generalTemplate from './general.html';
 import nodesTemplate from './nodes.html';
 import regionsTemplate from './regions.html';
 import reviewTemplate from './review.html';
@@ -28,7 +27,6 @@ angular
   }).run(/* @ngInject */($templateCache) => {
     // import templates required by ng-include
     $templateCache.put('analytics-data-platform/deploy/nodes.html', nodesTemplate);
-    $templateCache.put('analytics-data-platform/deploy/general.html', generalTemplate);
     $templateCache.put('analytics-data-platform/deploy/regions.html', regionsTemplate);
     $templateCache.put('analytics-data-platform/deploy/review.html', reviewTemplate);
     $templateCache.put('analytics-data-platform/deploy/storage.html', storageTemplate);

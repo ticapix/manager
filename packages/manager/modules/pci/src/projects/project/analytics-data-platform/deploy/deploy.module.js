@@ -6,6 +6,8 @@ import routing from './deploy.routing';
 
 import insufficientQuota from './insufficient-quota';
 
+import generalComponent from './general';
+
 const moduleName = 'ovhManagerAnalyticsDataPlatformDeployComponent';
 
 angular
@@ -13,6 +15,7 @@ angular
     'ui.router',
     ngOvhPaymentMethod,
     insufficientQuota,
+    generalComponent,
   ])
   .config(routing)
   .component('deployComponent', deployComponent)
