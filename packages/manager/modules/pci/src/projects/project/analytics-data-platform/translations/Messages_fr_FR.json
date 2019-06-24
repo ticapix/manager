@@ -1,10 +1,9 @@
 {
-  "analytics_data_platform_breadscrum": "Analytics Data Platform",
   "analytics_data_platform_common_unit_gb": "GO",
   "analytics_data_platform_common_unit_tb": "TO",
   "analytics_data_platform_common_close": "Fermer",
   "analytics_data_platform_common_cancel": "Annuler",
-  "analytics_data_platform_title": "Plate-forme de données d'analyse",
+  "analytics_data_platform_title": "Analytics Data Platforms",
   "analytics_data_platform_get_ssh_keys_error": "Impossible d'obtenir les clés SSH: {{message}}",
   "analytics_data_platform_get_vracks_error": "Échec de l'obtention des vRacks: {{message}}",
   "analytics_data_platform_get_cloud_error": "Échec de l'obtention des projet cloud publics : {{message}}",

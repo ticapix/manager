@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+
+import { GUIDE_URLS } from './creating.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.creating', {
@@ -5,14 +9,20 @@ export default /* @ngInject */ ($stateProvider) => {
       views: {
         '@pci': {
           componentProvider: /* @ngInject */ projectOrder => (projectOrder ? 'pciProjectCreatingNotPaid' : 'pciProjectCreating'),
-          // component: 'pciProjectCreating',
         },
       },
       resolve: {
         breadcrumb: () => null,
-        onProjectCreated: /* @ngInject */ $state => () => $state.go('^', {}, {
-          reload: true,
-        }),
+        guideUrl: /* @ngInject */ me => get(
+          GUIDE_URLS,
+          me.ovhSubsidiary,
+        ),
+        onProjectCreated: /* @ngInject */ ($state, $window, projectId) => () => {
+          $window.location.replace($state.href('pci.projects.project', {
+            projectId,
+          }));
+          $window.location.reload();
+        },
         projectOrder: /* @ngInject */ (project, projectCreating, projectOrderStatus) => {
           if (project.orderId && projectOrderStatus === 'notPaid') {
             return projectCreating

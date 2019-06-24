@@ -22,11 +22,13 @@
                     data-placeholder="{{ ::'analytics_data_platform_deploy_platform_version_placeholder' | translate }}"
                     data-required>
         </oui-select>
+        <div class="oui-field__helper" data-ng-if="$ctrl.selectedCapability">
+            <span data-translate="{{ 'analytics_data_platform_deploy_general_version_' + $ctrl.selectedCapability.version + '_description'}}">
+            </span>
+        </div>
     </oui-field>
     <!-- public cloud -->
-    <div>
-        <p data-translate="analytics_data_platform_common_public_cloud_project"></p>
-        <p class="font-weight-bold"
-           data-ng-bind="$ctrl.publicCloud.description"></p>
-    </div>
+    <p data-translate="analytics_data_platform_common_public_cloud_project"></p>
+    <p class="font-weight-bold"
+        data-ng-bind="$ctrl.publicCloud.description"></p>
 </div>

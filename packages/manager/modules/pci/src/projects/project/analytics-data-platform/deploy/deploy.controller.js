@@ -17,9 +17,6 @@ import sumBy from 'lodash/sumBy';
 import times from 'lodash/times';
 import values from 'lodash/values';
 
-import errorModel from './quota-error-model/quota-error-model.html';
-import errorModelController from './quota-error-model/quota-error-model.controller';
-
 import {
   ANALYTICS_DATA_PLATFORM_COMPUTE,
   ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO,
@@ -32,8 +29,9 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($translate, analyticsDataPlatformService, CucControllerHelper,
+  constructor($state, $translate, analyticsDataPlatformService, CucControllerHelper,
     CucCloudMessage, CucRegionService, CucServiceHelper) {
+    this.$state = $state;
     this.$translate = $translate;
     this.ANALYTICS_DATA_PLATFORM_COMPUTE = ANALYTICS_DATA_PLATFORM_COMPUTE;
     this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO = ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO;
@@ -166,18 +164,10 @@ export default class {
    *
    * @returns a boolean indicating whether the passwords match
    */
-  checkPasswordMatch() {
-    return this.masterPasswordConfirm === this.analyticsDataPlatform.masterPassword;
-  }
-
-  /**
-   * Checks if the master password and the confirm password matches
-   *
-   * @returns a boolean indicating whether the passwords match
-   */
   checkPasswordLength(password) {
     return password
-      && (password.length >= this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.minMasterPasswordLength);
+      && (password.length >= this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.minMasterPasswordLength)
+      && (password.length <= this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.maxMasterPasswordLength);
   }
 
   /** #####################################################################
@@ -258,6 +248,13 @@ export default class {
             delete region.disabled;
             return region;
           });
+          // select region by default if only one exists
+          if (groupedRegions && groupedRegions.length === 1) {
+            const datacenters = head(groupedRegions).dataCenters;
+            if (datacenters.length === 1) {
+              this.selectedRegion = head(datacenters);
+            }
+          }
           return groupedRegions;
         }),
     });
@@ -507,7 +504,6 @@ export default class {
       ];
       this.showQuotaInsufficientErrorModel(
         this.publicCloud.description,
-        this.publicCloud.project_id,
         quotas,
       );
       return false;
@@ -519,24 +515,12 @@ export default class {
    * show error model with details about current configuration and available quota
    *
    * @param {*} publicCloudName
-   * @param {*} publicCloudId
    * @param {*} quotas
    */
-  showQuotaInsufficientErrorModel(publicCloudName, publicCloudId, quotas) {
-    this.cucControllerHelper.modal.showModal({
-      modalConfig: {
-        template: errorModel,
-        controller: errorModelController,
-        controllerAs: '$ctrl',
-        windowClass: 'modal-dialog-centered',
-        size: 'lg',
-        backdrop: true,
-        resolve: {
-          publicCloudName: () => publicCloudName,
-          publicCloudId: () => publicCloudId,
-          quotas: () => quotas,
-        },
-      },
+  showQuotaInsufficientErrorModel(publicCloudName, quotas) {
+    this.$state.go('pci.projects.project.analytics-data-platform.deploy.insufficient-quota', {
+      publicCloudName,
+      quotas,
     });
   }
 
@@ -562,19 +546,6 @@ export default class {
     ) / this.analyticsDataPlatform.hdfsReplicationFactor);
     this.storage.min_edge_node_storage = this.nodesConfig.edge.rawStorageMinGb;
     this.storage.max_edge_node_storage = this.nodesConfig.edge.rawStorageMaxGb;
-    // set default storage to average values
-    if (this.analyticsDataPlatform.edgeNodeStorage === 0) {
-      this.analyticsDataPlatform.edgeNodeStorage = round((
-        this.storage.min_edge_node_storage
-        + this.storage.max_edge_node_storage
-      ) / 2);
-    }
-    if (this.storage.hdfsEffectiveStorage === 0) {
-      this.storage.hdfsEffectiveStorage = round((
-        this.storage.min_cluster_storage
-        + this.storage.max_cluster_storage
-      ) / 2);
-    }
   }
 
   submitStorageInformation() {

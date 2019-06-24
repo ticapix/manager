@@ -10,21 +10,16 @@ export default /* @ngInject */($stateProvider) => {
       serviceName: /* @ngInject */ $stateParams => $stateParams.serviceName,
 
       platformDetails: /* @ngInject */ (
-        CucServiceHelper,
         analyticsDataPlatformService,
         serviceName,
-      ) => analyticsDataPlatformService.getAnalyticsDataPlatformDetails(serviceName)
-        .catch(error => CucServiceHelper.errorHandler('analytics_data_platform_get_cluster_error')(error)),
+      ) => analyticsDataPlatformService.getAnalyticsDataPlatformDetails(serviceName),
 
       publicCloudDetails: /* @ngInject */ (
-        CucServiceHelper,
         analyticsDataPlatformService,
         projectId,
-      ) => analyticsDataPlatformService.getPubliCloudDetails(projectId)
-        .catch(error => CucServiceHelper.errorHandler('analytics_data_platform_get_cluster_info_error')(error)),
+      ) => analyticsDataPlatformService.getPubliCloudDetails(projectId),
 
       clusterNodes: /* @ngInject */ (
-        CucServiceHelper,
         analyticsDataPlatformService,
         flavors,
         serviceName,
@@ -34,18 +29,15 @@ export default /* @ngInject */($stateProvider) => {
           set(node, 'vcpus', flavor.vcpus);
           set(node, 'ram', flavor.ram);
           return node;
-        }))
-        .catch(error => CucServiceHelper.errorHandler('analytics_data_platform_get_nodes_error')(error)),
+        })),
 
       flavors: /* @ngInject */ (
-        CucServiceHelper,
         analyticsDataPlatformService,
         platformDetails,
         projectId,
-      ) => analyticsDataPlatformService.getFlavors(projectId, platformDetails.osRegion)
-        .catch(error => CucServiceHelper.errorHandler('analytics_data_platform_get_flavors_error')(error)),
+      ) => analyticsDataPlatformService.getFlavors(projectId, platformDetails.osRegion),
 
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_service_cluster_breadscrum'),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_header_nav_cluster_size'),
     },
   });
 };

@@ -15,7 +15,7 @@
                   data-translate-values="{project_name: $ctrl.publicCloud.description}">
             </span>
             <a class="text-primary"
-               data-ui-sref="pci.projects.project.instances({ projectId: $ctrl.analyticsDataPlatform.osProjectId })"
+               data-ui-sref="pci.projects.project.privateNetwork({ projectId: $ctrl.analyticsDataPlatform.osProjectId })"
                data-translate="analytics_data_platform_deploy_private_network_create_or_link"></a>
         </div>
     </div>
@@ -66,11 +66,8 @@
             <oui-password data-name="masterPasswordConfirm"
                           data-model="$ctrl.masterPasswordConfirm"
                           data-placeholder="{{ ::'analytics_data_platform_deploy_master_password_confirm_placeholder' | translate }}"
-                          data-validation-trigger="$ctrl.analyticsDataPlatform.masterPassword"
+                          data-confirm="$ctrl.analyticsDataPlatform.masterPassword"
                           data-required>
-                <oui-password-rule data-validator="$ctrl.checkPasswordMatch()">
-                    <span data-translate="analytics_data_platform_deploy_master_password_must_match"></span>
-                </oui-password-rule>
             </oui-password>
         </oui-field>
     </div>

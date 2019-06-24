@@ -6,6 +6,7 @@ import 'angular-translate';
 
 import estimate from './estimate';
 import history from './history';
+import activateMonthly from './monthly';
 import routing from './billing.routing';
 import service from './billing.service';
 
@@ -13,6 +14,7 @@ const moduleName = 'ovhManagerPciProjectBilling';
 
 angular
   .module(moduleName, [
+    activateMonthly,
     estimate,
     history,
     'ngTranslateAsyncLoader',

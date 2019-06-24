@@ -6,13 +6,11 @@ export default /* @ngInject */($stateProvider) => {
       serviceName: /* @ngInject */ $stateParams => $stateParams.serviceName,
 
       activities: /* @ngInject */ (
-        CucServiceHelper,
         analyticsDataPlatformService,
         serviceName,
-      ) => analyticsDataPlatformService.getAnalyticsDataPlatformActivityLogs(serviceName)
-        .catch(error => CucServiceHelper.errorHandler('analytics_data_platform_get_activities_error')(error)),
+      ) => analyticsDataPlatformService.getAnalyticsDataPlatformActivityLogs(serviceName),
 
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_service_activity_breadscrum'),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_header_nav_activity'),
     },
   });
 };

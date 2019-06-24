@@ -1,9 +1,12 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
+import has from 'lodash/has';
+import includes from 'lodash/includes';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
 
 import { PCI_REDIRECT_URLS } from '../../constants';
+import { CHALLENGE_PAYMENT_TYPE_SUPPORTED } from './payment/challenge/challenge.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -18,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const newProjectInfoPromise = transition.injector().getAsync('newProjectInfo');
         return newProjectInfoPromise
           .then(({ error }) => {
-            if (error) {
+            if (error && error.code !== 'challengePaymentMethodRequested') {
               return transition.router.stateService.target(
                 'pci.error',
                 merge({
@@ -46,7 +49,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return $q.all(agreementPromises);
         },
         paymentStatus: /* @ngInject */ $transition$ => get($transition$.params(), 'hiPayStatus')
-            || get($transition$.params(), 'paypalAgreementStatus'),
+          || get($transition$.params(), 'paypalAgreementStatus'),
         getCurrentStep: /* @ngInject */ ($state, getStepByName) => () => {
           if ($state.current.name === 'pci.projects.new') {
             return getStepByName('description');
@@ -57,7 +60,7 @@ export default /* @ngInject */ ($stateProvider) => {
         getStepByName: /* @ngInject */ steps => stepName => find(steps, {
           name: stepName,
         }),
-        getStateLink: /* ngInject */ ($state, getCurrentStep) => (action) => {
+        getStateLink: /* @ngInject */ ($state, getCurrentStep) => (action, inherit = true) => {
           switch (action) {
             case 'cancel':
               return $state.href('pci.projects');
@@ -68,6 +71,8 @@ export default /* @ngInject */ ($stateProvider) => {
             case 'payment':
               return $state.href('pci.projects.new.payment', {
                 mode: null,
+              }, {
+                inherit,
               });
             default:
               if (getCurrentStep().name === 'description') {
@@ -76,6 +81,15 @@ export default /* @ngInject */ ($stateProvider) => {
 
               return $state.href('pci.projects');
           }
+        },
+        shouldProcessChallenge: /* @ngInject */ (getCurrentStep, newProjectInfo) => () => {
+          const currentStep = getCurrentStep();
+
+          const isValidDefaultPaymentMethod = has(currentStep.model, 'defaultPaymentMethod') && includes(
+            CHALLENGE_PAYMENT_TYPE_SUPPORTED,
+            get(currentStep.model, 'defaultPaymentMethod.paymentType.value'),
+          );
+          return get(newProjectInfo, 'error.code') === 'challengePaymentMethodRequested' && isValidDefaultPaymentMethod;
         },
         hasCreditToOrder: /* @ngInject */ (getCurrentStep, newProjectInfo, paymentStatus) => () => {
           const currentStep = getCurrentStep();
@@ -97,8 +111,36 @@ export default /* @ngInject */ ($stateProvider) => {
           PCI_REDIRECT_URLS,
           `${coreConfig.getRegion()}.paymentMethods`,
         ),
-        newProjectInfo: /* @ngInject */ ($timeout, coreConfig, ovhPaymentMethod,
+        project: /* @ngInject */ ($q, $transition$, PciProjectNewService) => {
+          if ($transition$.params().projectId) {
+            return PciProjectNewService
+              .getProject($transition$.params().projectId)
+              .catch((error) => {
+                if (error.status === 404) {
+                  return null;
+                }
+                return $q.reject(error);
+              });
+          }
+          return null;
+        },
+        newProjectInfo: /* @ngInject */ ($timeout, $transition$, coreConfig, ovhPaymentMethod,
           paymentStatus, PciProjectNewService) => {
+          const newProjectInfoThen = (response) => {
+            const transformedResponse = response;
+            // if there is an error when returning from HiPay
+            // and that a projectId is present in the URL (meaning that a credit has been paid)
+            // force error to null to avoid too many project error display
+            if (transformedResponse.error
+              && paymentStatus
+              && get($transition$.params(), 'projectId')) {
+              transformedResponse.error = null;
+            }
+            return transformedResponse;
+          };
+
+          // if region is US return an empty object as API call does not exist in US
+          // and project creation is redirected to express order
           if (coreConfig.isRegion('US')) {
             return {};
           }
@@ -112,11 +154,13 @@ export default /* @ngInject */ ($stateProvider) => {
                 if (!hasDefaultPaymentMethod && iteration < 10) {
                   return checkValidPaymentMethod(iteration + 1);
                 }
-                return PciProjectNewService.getNewProjectInfo();
+                return PciProjectNewService.getNewProjectInfo()
+                  .then(newProjectInfoThen);
               });
             return checkValidPaymentMethod();
           }
-          return PciProjectNewService.getNewProjectInfo();
+          return PciProjectNewService.getNewProjectInfo()
+            .then(newProjectInfoThen);
         },
         onDescriptionStepFormSubmit: /* @ngInject */ $state => () => $state.go('pci.projects.new.payment'),
         onProjectCreated: /* @ngInject */ $state => projectId => $state.go(
@@ -138,7 +182,7 @@ export default /* @ngInject */ ($stateProvider) => {
             voucher: {
               valid: false,
               value: null,
-              paymentMeanRequired: null,
+              paymentMethodRequired: null,
               submitted: false,
             },
             defaultPaymentMethod: null,

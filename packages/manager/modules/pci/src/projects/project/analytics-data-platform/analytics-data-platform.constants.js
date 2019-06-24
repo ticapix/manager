@@ -121,6 +121,7 @@ export const ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO = Object.freeze({
   dkLen: 32,
   passwordLength: 18,
   minMasterPasswordLength: 12,
+  maxMasterPasswordLength: 64,
 });
 
 export const ANALYTICS_DATA_PLATFORM_NODE_FILTERS = [
@@ -128,7 +129,7 @@ export const ANALYTICS_DATA_PLATFORM_NODE_FILTERS = [
   'Region',
 ];
 
-export const ANALYTICS_DATA_PLATFORM_STATUS_MAP = {
+export const ANALYTICS_DATA_PLATFORM_STATUS_MAP = Object.freeze({
   PENDING: 'info',
   IN_PROGRESS: 'warning',
   SUCCEEDED: 'success',
@@ -143,9 +144,9 @@ export const ANALYTICS_DATA_PLATFORM_STATUS_MAP = {
   TO_DESTROY: 'info',
   DESTROYED: 'error',
   INITIALIZED: 'info',
-};
+});
 
-export const ANALYTICS_DATA_PLATFORM_STATUS = {
+export const ANALYTICS_DATA_PLATFORM_STATUS = Object.freeze({
   PENDING: 'PENDING',
   IN_PROGRESS: 'IN_PROGRESS',
   SUCCEEDED: 'SUCCEEDED',
@@ -160,7 +161,7 @@ export const ANALYTICS_DATA_PLATFORM_STATUS = {
   TO_DESTROY: 'TO_DESTROY',
   DESTROYED: 'DESTROYED',
   INITIALIZED: 'INITIALIZED',
-};
+});
 
 export const ANALYTICS_DATA_PLATFORM_SERVICES = Object.freeze({
   AMBARI: 'AMBARI',

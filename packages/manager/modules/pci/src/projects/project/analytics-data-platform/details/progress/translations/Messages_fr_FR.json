@@ -1,5 +1,4 @@
 {
-  "analytics_data_platform_tracking_progress_breadscrum": "Progression du déploiement",
   "analytics_data_platform_tracking_progress_desc": "Votre cluster Analytics Data Platform est en cours de déploiement. Une fois chaque étape terminée, vous pourrez gérer l'ensemble de votre cluster.",
   "analytics_data_platform_tracking_progress_title": "Progression du déploiement",
   "analytics_data_platform_tracking_progress_completed_tasks": "Tâches",

@@ -9,6 +9,10 @@ cloud-sidebar { /* stylelint-disable-line */
   z-index: 1;
   box-shadow: 0 2pt 10pt rgba(40, 89, 192, 0.25);
 
+  .minw-0 {
+    min-width: 0;
+  }
+
   .oui-navbar-backdrop_active {
     z-index: 1;
   }
@@ -37,6 +41,15 @@ cloud-sidebar { /* stylelint-disable-line */
       padding: 0;
       min-width: auto;
       color: @primary-color;
+
+      &:hover {
+        min-width: auto;
+      }
+    }
+
+    .oui-tooltip {
+      bottom: 0;
+      margin: 0;
     }
   }
 
@@ -69,6 +82,10 @@ cloud-sidebar { /* stylelint-disable-line */
       .oui-clipboard__control,
       .oui-clipboard__button {
         color: #fff;
+
+        .oui-icon {
+          color: @light-color;
+        }
       }
     }
 
