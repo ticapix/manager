@@ -6,7 +6,6 @@ import nodesTemplate from './nodes.html';
 import regionsTemplate from './regions.html';
 import reviewTemplate from './review.html';
 import storageTemplate from './storage.html';
-import securityTemplate from './security.html';
 
 const moduleName = 'ovhManagerAnalyticsDataPlatformDeploy';
 
@@ -30,7 +29,6 @@ angular
     $templateCache.put('analytics-data-platform/deploy/regions.html', regionsTemplate);
     $templateCache.put('analytics-data-platform/deploy/review.html', reviewTemplate);
     $templateCache.put('analytics-data-platform/deploy/storage.html', storageTemplate);
-    $templateCache.put('analytics-data-platform/deploy/security.html', securityTemplate);
   });
 
 export default moduleName;

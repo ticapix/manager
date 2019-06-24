@@ -19,7 +19,6 @@ import values from 'lodash/values';
 
 import {
   ANALYTICS_DATA_PLATFORM_COMPUTE,
-  ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO,
   ANALYTICS_DATA_PLATFORM_FLAVOR_TYPES,
   ANALYTICS_DATA_PLATFORM_NODE_NAMES,
   ANALYTICS_DATA_PLATFORM_NODE_TYPES,
@@ -33,7 +32,6 @@ export default class {
     this.$state = $state;
     this.$translate = $translate;
     this.ANALYTICS_DATA_PLATFORM_COMPUTE = ANALYTICS_DATA_PLATFORM_COMPUTE;
-    this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO = ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO;
     this.ANALYTICS_DATA_PLATFORM_FLAVOR_TYPES = ANALYTICS_DATA_PLATFORM_FLAVOR_TYPES;
     this.ANALYTICS_DATA_PLATFORM_NODE_NAMES = ANALYTICS_DATA_PLATFORM_NODE_NAMES;
     this.ANALYTICS_DATA_PLATFORM_NODE_TYPES = ANALYTICS_DATA_PLATFORM_NODE_TYPES;
@@ -102,23 +100,6 @@ export default class {
     this.messages = this.messageHandler.getMessages();
   }
 
-  /**
-   * check if field is required to show on the UI
-   *
-   * @param {*} fieldName
-   * @returns true if the field needs to show on the UI, false otherwise
-   */
-  isFieldRequired(fieldName) {
-    if (this.selectedCapability) {
-      const requiredField = find(
-        this.selectedCapability.requirements,
-        fieldDefinition => fieldName === fieldDefinition.fieldName,
-      );
-      return requiredField && requiredField.display;
-    }
-    return false;
-  }
-
   /** #####################################################################
       GENERAL INFORMATION
    * ##################################################################### */
@@ -163,20 +144,14 @@ export default class {
     }
   }
 
-  /**
-   * Checks if the master password and the confirm password matches
-   *
-   * @returns a boolean indicating whether the passwords match
-   */
-  checkPasswordLength(password) {
-    return password
-      && (password.length >= this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.minMasterPasswordLength)
-      && (password.length <= this.ANALYTICS_DATA_PLATFORM_CREDENTIALS_INFO.maxMasterPasswordLength);
-  }
-
   /** #####################################################################
       SECURITY INFORMATION
    * ##################################################################### */
+
+  onSecurityInformationChange({ masterPassword, selectedSshKey }) {
+    this.analyticsDataPlatform.masterPassword = masterPassword;
+    this.selectedSshKey = selectedSshKey;
+  }
 
   /**
    * Saves the required data before the step is finalized

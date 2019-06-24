@@ -24,7 +24,11 @@
                 <oui-step-form data-header="{{ ::'analytics_data_platform_deploy_security' | translate }}"
                                data-on-submit="$ctrl.submitSecurityInformation()"
                                data-valid="$ctrl.isSecurityConfigComplete()">
-                    <div data-ng-include="'analytics-data-platform/deploy/security.html'"></div>
+                    <security-component data-v-rack="$ctrl.vRack"
+                                        data-public-cloud="$ctrl.publicCloud"
+                                        data-ssh-keys="$ctrl.sshKeys"
+                                        data-selected-capability="$ctrl.selectedCapability"
+                                        data-on-data-change="$ctrl.onSecurityInformationChange(data)"></security-component>
                 </oui-step-form>
 
                 <!-- select regions -->
