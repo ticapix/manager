@@ -72,7 +72,15 @@
                                data-on-focus="$ctrl.initReview()"
                                data-submit-text="{{ ::'analytics_data_platform_deploy_create_cluster' | translate }}"
                                data-valid="$ctrl.hasDefaultPaymentMethod">
-                    <div data-ng-include="'analytics-data-platform/deploy/review.html'"></div>
+                    <review-component data-analytics-data-platform="$ctrl.analyticsDataPlatform"
+                                      data-deployment-in-progress="$ctrl.deploy.loading"
+                                      data-nodes-config="$ctrl.nodesConfig"
+                                      data-price="$ctrl.price"
+                                      data-price-catalog="$ctrl.priceCatalog"
+                                      data-public-cloud="$ctrl.publicCloud"
+                                      data-selected-capability="$ctrl.selectedCapability"
+                                      data-selected-ssh-key="$ctrl.selectedSshKey"
+                                      data-v-rack="$ctrl.vRack"></review-component>
                 </oui-step-form>
             </oui-stepper>
         </div>

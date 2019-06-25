@@ -69,21 +69,21 @@
         <div class="col-xs-12 col-sm-5 m-2">
             <section>
                 <h4><strong data-translate="analytics_data_platform_deploy_review_hourly_price"></strong></h4>
-                <p data-translate="analytics_data_platform_common_review_hourly_price_format"
+                <p data-translate="analytics_data_platform_deploy_review_hourly_price_format"
                    data-translate-values="{price: $ctrl.price.hourlyPrice, currency: $ctrl.priceCatalog.currency.symbol}"></p>
             </section>
         </div>
         <div class="col-xs-12 col-sm-5 border-left border-secondary m-2">
             <section>
                 <h4><strong data-translate="analytics_data_platform_deploy_review_monthly_price"></strong></h4>
-                <p data-translate="analytics_data_platform_common_review_monthly_price_format"
+                <p data-translate="analytics_data_platform_deploy_review_monthly_price_format"
                    data-translate-values="{price: $ctrl.price.monthlyPrice, currency: $ctrl.priceCatalog.currency.symbol}"></p>
             </section>
         </div>
     </div>
     <!-- deployment in progress -->
-    <div class="mb-3" data-ng-if="$ctrl.deploy.loading">
-        <span class="text-danger" data-translate="analytics_data_platform_deployment_progress"></span>
+    <div class="mb-3" data-ng-if="$ctrl.deploymentInProgress">
+        <span class="text-danger" data-translate="analytics_data_platform_deploy_review_deployment_progress"></span>
         <oui-spinner size="s"></oui-spinner>
     </div>
 </div>
