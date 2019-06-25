@@ -22,8 +22,8 @@
                     data-placeholder="{{ ::'analytics_data_platform_deploy_general_platform_version_placeholder' | translate }}"
                     data-required>
         </oui-select>
-        <div class="oui-field__helper" data-ng-if="$ctrl.data.selectedCapability">
-            <span data-translate="{{ 'analytics_data_platform_deploy_general_version_' + $ctrl.data.selectedCapability.version + '_description'}}">
+        <div class="oui-field__helper" data-ng-if="$ctrl.selectedAdpVersion">
+            <span data-translate="{{ 'analytics_data_platform_deploy_general_version_' + $ctrl.selectedAdpVersion + '_description'}}">
             </span>
         </div>
     </oui-field>

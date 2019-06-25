@@ -1,3 +1,5 @@
+import replace from 'lodash/replace';
+
 import {
   ANALYTICS_DATA_PLATFORM_CLUSTER_NAME_PATTERN,
 } from '../../analytics-data-platform.constants';
@@ -10,9 +12,11 @@ export default class {
       clusterName: '',
       selectedCapability: null,
     };
+    this.selectedAdpVersion = null;
   }
 
   dataChange() {
+    this.selectedAdpVersion = replace(this.data.selectedCapability.version, ' ', '');
     this.onDataChange({ data: this.data });
   }
 }
