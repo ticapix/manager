@@ -16,7 +16,9 @@ export default class {
   }
 
   dataChange() {
-    this.selectedAdpVersion = replace(this.data.selectedCapability.version, ' ', '');
+    if (this.data.selectedCapability) {
+      this.selectedAdpVersion = replace(this.data.selectedCapability.version, ' ', '');
+    }
     this.onDataChange({ data: this.data });
   }
 }
