@@ -3,15 +3,15 @@
     <oui-tabs-item data-heading="{{ ::'analytics_data_platform_deploy_regions_all' | translate }}">
         <div class="container-fluid px-0">
             <div class="row">
-                <oui-select-picker 
+                <oui-select-picker
                     data-ng-repeat="region in $ctrl.regionsByDatacenter.data track by region.macroRegion.code"
                     class="d-inline-block col-xs-12 col-sm-6 col-md-3 my-3"
                     data-id="all_regions_{{region.macroRegion.code}}"
                     data-disabled="region.dataCenters.length === 1 ? region.dataCenters[0].disabled : $ctrl.model.region.disabled"
                     data-match="microRegion.text"
-                    data-model="$ctrl.selectedRegion"
+                    data-model="$ctrl.data.selectedRegion"
                     data-name="all_regions"
-                    data-on-change="$ctrl.onRegionChange()"
+                    data-on-change="$ctrl.dataChange()"
                     data-placeholder="{{ ::'analytics_data_platform_deploy_region_select' | translate }}"
                     data-label="{{ ::$ctrl.cucRegionService.getTranslatedMicroRegion(region.macroRegion.text) }}"
                     data-values="region.dataCenters"
@@ -28,13 +28,13 @@
             <div class="row">
                 <oui-select-picker
                     data-ng-repeat="region in regions track by region.macroRegion.code"
-                    class="d-inline-block col-xs-12 col-sm-6 col-md-3 my-3"    
+                    class="d-inline-block col-xs-12 col-sm-6 col-md-3 my-3"
                     data-id="region_{{ region.macroRegion.code }}"
                     data-disabled="region.dataCenters.length === 1 ? region.dataCenters[0].disabled : $ctrl.model.region.disabled"
                     data-match="microRegion.text"
-                    data-model="$ctrl.selectedRegion"
+                    data-model="$ctrl.data.selectedRegion"
                     data-name="region"
-                    data-on-change="$ctrl.onRegionChange()"
+                    data-on-change="$ctrl.dataChange()"
                     data-placeholder="{{ ::'analytics_data_platform_deploy_region_select' | translate }}"
                     data-label="{{ ::$ctrl.cucRegionService.getTranslatedMicroRegion(region.macroRegion.text) }}"
                     data-values="region.dataCenters"

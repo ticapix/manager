@@ -28,7 +28,7 @@ import {
 export default class {
   /* @ngInject */
   constructor($state, $translate, analyticsDataPlatformService, CucControllerHelper,
-    CucCloudMessage, CucRegionService, CucServiceHelper) {
+    CucCloudMessage, CucServiceHelper) {
     this.$state = $state;
     this.$translate = $translate;
     this.ANALYTICS_DATA_PLATFORM_COMPUTE = ANALYTICS_DATA_PLATFORM_COMPUTE;
@@ -40,7 +40,6 @@ export default class {
     this.cucControllerHelper = CucControllerHelper;
     this.cucCloudMessage = CucCloudMessage;
     this.cucServiceHelper = CucServiceHelper;
-    this.cucRegionService = CucRegionService;
 
     this.selectedRegion = null;
     this.selectedCapability = null;
@@ -179,7 +178,8 @@ export default class {
     this.selectedRegion = null;
   }
 
-  onRegionChange() {
+  onRegionsInformationChange({ selectedRegion }) {
+    this.selectedRegion = selectedRegion;
     this.resetQuota();
   }
 

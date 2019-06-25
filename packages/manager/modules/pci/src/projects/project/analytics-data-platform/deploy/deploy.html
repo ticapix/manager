@@ -36,7 +36,9 @@
                                data-loading="$ctrl.regionsByDatacenter.loading"
                                data-on-focus="$ctrl.initRegionsAndDatacenters()"
                                data-on-submit="$ctrl.submitRegionAndDatacenter()">
-                    <div data-ng-include="'analytics-data-platform/deploy/regions.html'"></div>
+                    <regions-component data-regions-by-datacenter="$ctrl.regionsByDatacenter"
+                                       data-regions-by-continent="$ctrl.regionsByContinent"
+                                       data-on-data-change="$ctrl.onRegionsInformationChange(data)"></regions-component>
                 </oui-step-form>
 
                 <!-- nodes config -->

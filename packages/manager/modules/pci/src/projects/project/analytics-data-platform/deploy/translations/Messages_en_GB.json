@@ -36,8 +36,6 @@
   "analytics_data_platform_deploy_nodes_min_storage_message": "Minimum storage required per node is {{ minStorage }} {{unit}}",
   "analytics_data_platform_deploy_nodes_invalid_storage_error": "This instance has {{instanceStorage}}GB, minimum storage required is {{ minStorage }} {{unit}}",
   "analytics_data_platform_deploy_regions_select_datacenter": "Select region and datacenter",
-  "analytics_data_platform_deploy_regions_all": "All regions",
-  "analytics_data_platform_deploy_region_select": "Select region",
   "analytics_data_platform_deploy_create_cluster": "Create cluster",
   "analytics_data_platform_deploy_storage_title": "Size the storage",
   "analytics_data_platform_deploy_storage_cluster_title": "Cluster storage",

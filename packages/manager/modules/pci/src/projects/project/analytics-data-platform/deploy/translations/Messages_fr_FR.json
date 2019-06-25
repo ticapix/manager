@@ -34,8 +34,6 @@
   "analytics_data_platform_deploy_nodes_min_storage_message": "Le stockage minimum requis par nœud est {{ minStorage }} {{unit}}",
   "analytics_data_platform_deploy_nodes_invalid_storage_error": "Cette instance a {{instanceStorage}}Go, le stockage minimum requis est {{ minStorage }} {{unit}}",
   "analytics_data_platform_deploy_regions_select_datacenter": "Sélectionner la région et le centre de données",
-  "analytics_data_platform_deploy_regions_all": "Toutes les régions",
-  "analytics_data_platform_deploy_region_select": "Sélectionner la région",
   "analytics_data_platform_deploy_create_cluster": "Créer un cluster",
   "analytics_data_platform_deploy_storage_title": "Dimensionner le stockage",
   "analytics_data_platform_deploy_storage_cluster_title": "Stockage en cluster",
