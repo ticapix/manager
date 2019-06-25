@@ -10,6 +10,7 @@ import generalComponent from './general';
 import securityComponent from './security';
 import regionsComponent from './regions';
 import nodesComponent from './nodes';
+import storageComponent from './storage';
 
 const moduleName = 'ovhManagerAnalyticsDataPlatformDeployComponent';
 
@@ -22,6 +23,7 @@ angular
     securityComponent,
     regionsComponent,
     nodesComponent,
+    storageComponent,
   ])
   .config(routing)
   .component('deployComponent', deployComponent)

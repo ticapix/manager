@@ -22,7 +22,8 @@
                            data-ng-min="{{ ::$ctrl.storage.min_cluster_storage }}"
                            data-ng-max="{{ ::$ctrl.storage.max_cluster_storage }}"
                            data-ng-pattern="$ctrl.INPUT_NUMBER_PATTERN"
-                           data-ng-model="$ctrl.storage.hdfsEffectiveStorage">
+                           data-ng-model="$ctrl.data.hdfsEffectiveStorage"
+                           data-ng-change="$ctrl.dataChange()">
                         <button class="oui-button oui-button_icon-only oui-button_small-width"
                                 type="button"
                                 data-translate="analytics_data_platform_common_unit_gb"
@@ -38,7 +39,7 @@
                 <dt class="storage-list__term"><span data-translate="analytics_data_platform_deploy_storage_per_node"></span> : </dt>
                 <dd class="storage-list__definition">
                     <span>
-                        {{ ($ctrl.storage.hdfsEffectiveStorage * $ctrl.selectedCapability.hdfsReplicationFactor) / $ctrl.nodesConfig.worker.count }}
+                        {{ ($ctrl.data.hdfsEffectiveStorage * $ctrl.selectedCapability.hdfsReplicationFactor) / $ctrl.nodesConfig.worker.count }}
                     </span>
                     <span data-translate="analytics_data_platform_common_unit_gb"></span>
                 </dd>
@@ -47,7 +48,7 @@
                 <dd class="storage-list__definition pb-1">
                     <strong>
                         <span>
-                            {{ $ctrl.storage.hdfsEffectiveStorage * $ctrl.selectedCapability.hdfsReplicationFactor }}
+                            {{ $ctrl.data.hdfsEffectiveStorage * $ctrl.selectedCapability.hdfsReplicationFactor }}
                         </span>
                         <span data-translate="analytics_data_platform_common_unit_gb"></span>
                     </strong>
@@ -86,7 +87,8 @@
                            name="hdfsReplicationFactor"
                            required
                            placeholder="{{ ::'analytics_data_platform_deploy_storage_set_quantity' | translate }}"
-                           data-ng-model="$ctrl.analyticsDataPlatform.edgeNodeStorage"
+                           data-ng-model="$ctrl.data.edgeNodeStorage"
+                           data-ng-change="$ctrl.dataChange()"
                            data-ng-pattern="$ctrl.INPUT_NUMBER_PATTERN"
                            data-ng-min="{{ ::$ctrl.storage.min_edge_node_storage }}"
                            data-ng-max="{{ ::$ctrl.storage.max_edge_node_storage }}">
@@ -106,7 +108,7 @@
                 <dd class="storage-list__definition">
                     <strong>
                         <span>
-                            {{ $ctrl.analyticsDataPlatform.edgeNodeStorage * $ctrl.nodesConfig.edge.count }}
+                            {{ $ctrl.data.edgeNodeStorage * $ctrl.nodesConfig.edge.count }}
                         </span>
                         <span data-translate="analytics_data_platform_common_unit_gb"></span>
                     </strong>

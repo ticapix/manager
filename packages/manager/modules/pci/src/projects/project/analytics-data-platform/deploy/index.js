@@ -3,7 +3,6 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 import reviewTemplate from './review.html';
-import storageTemplate from './storage.html';
 
 const moduleName = 'ovhManagerAnalyticsDataPlatformDeploy';
 
@@ -24,7 +23,6 @@ angular
   }).run(/* @ngInject */($templateCache) => {
     // import templates required by ng-include
     $templateCache.put('analytics-data-platform/deploy/review.html', reviewTemplate);
-    $templateCache.put('analytics-data-platform/deploy/storage.html', storageTemplate);
   });
 
 export default moduleName;
