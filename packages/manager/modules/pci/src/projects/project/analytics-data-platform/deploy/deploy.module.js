@@ -9,6 +9,7 @@ import insufficientQuota from './insufficient-quota';
 import generalComponent from './general';
 import securityComponent from './security';
 import regionsComponent from './regions';
+import nodesComponent from './nodes';
 
 const moduleName = 'ovhManagerAnalyticsDataPlatformDeployComponent';
 
@@ -20,6 +21,7 @@ angular
     generalComponent,
     securityComponent,
     regionsComponent,
+    nodesComponent,
   ])
   .config(routing)
   .component('deployComponent', deployComponent)

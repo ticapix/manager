@@ -308,21 +308,6 @@ export default class {
     return this.quota.load();
   }
 
-  static onInstanceSelect(instance, node) {
-    const isValid = instance.disk >= node.rawStorageMinGb;
-    set(node, 'isValid', isValid);
-  }
-
-  /**
-   * returns the flavor family for the given instance type
-   *
-   * @param {*} instanceType the instance type
-   * @returns the flavor family (string)
-   */
-  static getFlavorFamily(instanceType) {
-    return instanceType.flavorFamily;
-  }
-
   /**
    * Initializes the nodes configuration structure
   */

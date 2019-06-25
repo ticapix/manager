@@ -46,7 +46,13 @@
                                data-loading="$ctrl.supportedFlavors.loading || $ctrl.quota.loading"
                                data-on-focus="$ctrl.initNodes()"
                                data-on-submit="$ctrl.submitNodesInformation(form)">
-                    <div data-ng-include="'analytics-data-platform/deploy/nodes.html'"></div>
+                    <nodes-component data-minimum-nodes-required="$ctrl.minimumNodesRequired"
+                                     data-maximum-nodes-required="$ctrl.maximumNodesRequired"
+                                     data-nodes-config="$ctrl.nodesConfig"
+                                     data-public-cloud="$ctrl.publicCloud"
+                                     data-quota="$ctrl.quota.data"
+                                     data-selected-capability="$ctrl.selectedCapability"
+                                     data-selected-region="$ctrl.selectedRegion"></nodes-component>
                 </oui-step-form>
 
                 <!-- nodes storage -->
