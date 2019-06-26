@@ -5,7 +5,7 @@
   "analytics_data_platform_onboarding_action_label": "Créer mon cluster Analytics Data Platform",
 
   "analytics_data_platform_onboarding_guides_overview_title": "Vue d'ensemble",
-  "analytics_data_platform_onboarding_guides_retrieve-credentials_title": "Récupérer les informations d'identification",
-  "analytics_data_platform_onboarding_guides_setup-data-pipeline_title": "Pipeline de données de configuration",
-  "analytics_data_platform_onboarding_guides_manage-users_title": "Gérer les utilisateurs"
+  "analytics_data_platform_onboarding_guides_retrieve_credentials_title": "Récupérer les informations d'identification",
+  "analytics_data_platform_onboarding_guides_setup_data_pipeline_title": "Pipeline de données de configuration",
+  "analytics_data_platform_onboarding_guides_manage_users_title": "Gérer les utilisateurs"
 }

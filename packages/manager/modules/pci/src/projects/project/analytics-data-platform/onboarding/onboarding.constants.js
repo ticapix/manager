@@ -4,15 +4,15 @@ export const GUIDES = [
     link: 'https://docs.ovh.com/gb/en/analytics/labs/data-platform/overview/',
   },
   {
-    id: 'setup-data-pipeline',
+    id: 'setup_data_pipeline',
     link: 'https://docs.ovh.com/gb/en/analytics/labs/data-platform/setup-data-pipeline/',
   },
   {
-    id: 'manage-users',
+    id: 'manage_users',
     link: 'https://docs.ovh.com/gb/en/analytics/labs/data-platform/manage-users/',
   },
   {
-    id: 'retrieve-credentials',
+    id: 'retrieve_credentials',
     link: 'https://docs.ovh.com/gb/en/analytics/labs/data-platform/retrieve-credentials/',
   },
 ];
