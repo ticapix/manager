@@ -41,7 +41,7 @@
             <div class="row mb-2" data-ng-repeat="(nodeType, node) in $ctrl.nodesConfig track by nodeType">
                 <dt class="col-sm-3 font-weight-normal" data-translate="analytics_data_platform_deploy_review_nodes_{{ ::nodeType }}"></dt>
                 <dd class="col-sm-9 my-auto">
-                    <span>{{ ::node.count }} x {{ node.selectedFlavor.displayName }}</span>
+                    <span>{{ node.count }} x {{ node.selectedFlavor.displayName }}</span>
                 </dd>
             </div>
         </dl>

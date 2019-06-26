@@ -1,6 +1,8 @@
 <div>
     <span data-translate="analytics_data_platform_service_cluster_desc"
-          data-translate-values="{ public_cloud_project_serviceName : $ctrl.publicCloudDetails.description }"></span>
+          data-translate-values="{ public_cloud_project_serviceName : $ctrl.publicCloudDetails.description,
+                                   public_cloud_instances_url: $ctrl.$state.href('pci.projects.project.instances', { projectId: $ctrl.publicCloudDetails.project_id }),
+                                   public_cloud_billing_console_url: $ctrl.$state.href('pci.projects.project.billing', { projectId: $ctrl.publicCloudDetails.project_id }) }"></span>
 
     <oui-datagrid class="mt-3" data-rows="$ctrl.clusterList" data-row-loader="$ctrl.loadRowWithFlavorDetails($row)">
         <extra-top>
@@ -10,7 +12,7 @@
                 <span class="fa fa-refresh" aria-hidden="true"></span>
             </button>
         </extra-top>
-        <oui-column 
+        <oui-column
             data-title="::'analytics_data_platform_service_cluster_table_node' | translate"
             data-property="hostname"
             data-searchable
@@ -26,7 +28,7 @@
             data-type-options="$ctrl.clusterTypeOptions"
             data-searchable>
         </oui-column>
-        <oui-column 
+        <oui-column
             data-title="::'analytics_data_platform_common_region' | translate"
             data-property="osRegion"
             data-sortable
@@ -36,7 +38,7 @@
             data-searchable>
             <span data-ng-bind="::$ctrl.cucRegionService.getTranslatedMicroRegion($row.osRegion)"></span>
         </oui-column>
-        <oui-column 
+        <oui-column
             data-title="::'analytics_data_platform_service_cluster_table_flavor' | translate"
             data-property="flavor"
             data-searchable
@@ -45,7 +47,7 @@
             data-sortable>
             <span data-ng-bind="::$row.flavor.toUpperCase()"></span>
         </oui-column>
-        <oui-column 
+        <oui-column
             data-title="::$ctrl.ANALYTICS_DATA_PLATFORM_COMPUTE.CORS"
             data-property="vcpus"
             data-searchable
@@ -53,14 +55,14 @@
             data-type="number"
             data-sortable>
         </oui-column>
-        <oui-column 
+        <oui-column
             data-title="::$ctrl.ANALYTICS_DATA_PLATFORM_COMPUTE.RAM"
             data-property="ram"
             data-type="number"
             data-sortable>
             <span data-ng-bind="::$row.ram / 1000"></span> <span data-translate="analytics_data_platform_common_unit_gb"></span>
         </oui-column>
-        <oui-column 
+        <oui-column
             data-title="::'analytics_data_platform_common_storage' | translate"
             data-property="storage"
             data-searchable
@@ -69,14 +71,14 @@
             data-sortable>
             <span data-ng-bind="::$row.storage"></span> <span data-translate="analytics_data_platform_common_unit_gb"></span>
         </oui-column>
-        <oui-column 
+        <oui-column
             data-title="::'analytics_data_platform_service_cluster_table_ip' | translate"
             data-property="ip"
             data-filterable
             data-type="string"
             data-searchable>
         </oui-column>
-        <oui-column 
+        <oui-column
             data-title="::'analytics_data_platform_common_status' | translate"
             data-property="status"
             data-type="string"
