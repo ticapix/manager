@@ -1,6 +1,7 @@
 import find from 'lodash/find';
+import get from 'lodash/get';
 
-import { SANITIZATION } from './constants';
+import { SANITIZATION, TRACKING } from './constants';
 
 import signupFormComponent from './form/component';
 
@@ -48,9 +49,30 @@ export const state = {
         });
       }
     },
-    finishSignUp: /* @ngInject */ ($window, getRedirectLocation, me, signUp) => () => signUp
+    finishSignUp: /* @ngInject */ (
+      $window,
+      atInternet,
+      getRedirectLocation,
+      isActiveStep,
+      me,
+      signUp,
+    ) => () => signUp
       .saveNic(me.model)
       .then(() => {
+        // manage tracking
+        if (isActiveStep('details')) {
+          atInternet.trackEvent({
+            page: `${TRACKING.pagePrefix}validationok-step2`,
+            category: get(TRACKING, `categories.${me.model.legalform}`),
+          });
+        } else if (isActiveStep('activity')) {
+          atInternet.trackEvent({
+            page: `${TRACKING.pagePrefix}validationok-step3`,
+            category: get(TRACKING, `categories.${me.model.legalform}`),
+          });
+        }
+
+        // manage redirection
         const redirectUrl = getRedirectLocation(me.nichandle);
         if (redirectUrl) {
           $window.location.assign(redirectUrl);
