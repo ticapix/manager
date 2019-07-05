@@ -1,0 +1,57 @@
+<h1 data-translate="pci_workflow_add"></h1>
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+<oui-stepper>
+    <oui-step-form
+        name="workflow_type"
+        data-header="{{:: 'pci_workflow_create_type_title' | translate }}"
+        data-editable="!$ctrl.isAdding"
+        data-valid="$ctrl.workflow.type"
+        data-navigation="$ctrl.workflow.type">
+        <workflow-type
+            data-selected-type="$ctrl.workflow.type">
+        </workflow-type>
+    </oui-step-form>
+    <oui-step-form
+        name="workflow_resources"
+        data-header="{{:: 'pci_workflow_create_resources_title' | translate }}"
+        data-editable="!$ctrl.isAdding"
+        data-valid="$ctrl.workflow.resource"
+        data-navigation="$ctrl.workflow.resource"
+        data-on-submit="$ctrl.getPriceEstimation()">
+        <workflow-resources
+            data-selected-resource="$ctrl.workflow.resource"
+            data-instances="$ctrl.instances"
+            data-project-id="$ctrl.projectId"
+            data-selected-instance="$ctrl.selectedInstance">
+        </workflow-resources>
+    </oui-step-form>
+    <oui-step-form
+        name="workflow_schedule"
+        data-header="{{:: 'pci_workflow_create_schedule_title' | translate }}"
+        data-editable="!$ctrl.isAdding"
+        data-valid="$ctrl.workflow.schedule && $ctrl.workflow.schedule.valid"
+        data-navigation="$ctrl.workflow.schedule">
+        <workflow-schedule
+            data-schedule="$ctrl.workflow.schedule">
+        </workflow-schedule>
+    </oui-step-form>
+    <oui-step-form
+        name="workflow_general-info"
+        data-header="{{:: 'pci_workflow_create_general-info_title' | translate }}"
+        data-editable="!$ctrl.isAdding"
+        data-valid="$ctrl.workflow.name"
+        data-submit-text="{{ ::'pci_workflow_create' | translate }}"
+        data-on-submit="$ctrl.add()"
+        data-navigation="$ctrl.workflow.name && !$ctrl.isAdding"
+        data-loading="$ctrl.isLoadingPriceEstimate">
+        <workflow-general-info
+            data-workflow-name="$ctrl.workflow.name"
+            data-price="$ctrl.price">
+        </workflow-general-info>
+        <div data-ng-if="$ctrl.isAdding" class="d-flex align-items-center">
+            <oui-spinner data-size="m"></oui-spinner>
+            <span data-translate="pci_workflow_creating"></span>
+        </div>
+    </oui-step-form>
+</oui-stepper>
+

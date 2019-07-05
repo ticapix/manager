@@ -95,6 +95,13 @@ export const MENU = [
         title: 'Managed Private Registry',
         beta: true,
       },
+      {
+        id: 'workflow-management',
+        options: {
+          state: 'pci.projects.project.workflow',
+        },
+        title: 'Workflow Management',
+      },
     ],
     regions: ['CA', 'EU'],
     title: 'Orchestration / Industrialization',

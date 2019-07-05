@@ -6,6 +6,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
   /* @ngInject */
   constructor(
     $q,
+    $state,
     $translate,
     CucCloudMessage,
     CucRegionService,
@@ -13,6 +14,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     PciProjectsProjectInstanceService,
   ) {
     this.$q = $q;
+    this.$state = $state;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
