@@ -4,7 +4,8 @@
         <div class="col-lg-6"
              data-ng-if="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber">
             <!-- nationalIdentificationNumber -->
-            <oui-field data-label="{{ :: 'sign_up_activity_field_nationalIdentificationNumber' | translate}}">
+            <oui-field data-label="{{ :: 'sign_up_activity_field_nationalIdentificationNumber' | translate}}"
+                       data-label-popover="{{ :: 'sign_up_activity_field_nationalIdentificationNumber_popover' | translate }}">
                 <input type="text"
                        class="oui-input"
                        name="nationalIdentificationNumber"
@@ -18,7 +19,7 @@
         <div class="col-lg-6"
              data-ng-if="$ctrl.signUpFormCtrl.rules.organisation">
             <!-- organisation -->
-            <oui-field data-label="{{ :: 'sign_up_activity_field_organisation' | translate}}">
+            <oui-field data-label="{{ ['administration', 'association', 'corporation'].includes($ctrl.signUpFormCtrl.model.legalform) ? ('sign_up_activity_field_organisation_' + $ctrl.signUpFormCtrl.model.legalform) : 'sign_up_activity_field_organisation' | translate }}">
                 <input type="text"
                        class="oui-input"
                        name="organisation"
@@ -31,7 +32,8 @@
         <div class="col-lg-6"
              data-ng-if="$ctrl.signUpFormCtrl.rules.vat">
             <!-- vat -->
-            <oui-field data-label="{{ :: 'sign_up_activity_field_vat' | translate}}">
+            <oui-field data-label="{{ :: 'sign_up_activity_field_vat' | translate}}"
+                       data-label-popover="{{ :: 'sign_up_activity_field_vat_popover' | translate }}">
                 <input type="text"
                        class="oui-input"
                        name="vat"
@@ -64,7 +66,8 @@
         <div class="col-lg-6"
              data-ng-if="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber">
             <!-- companyNationalIdentificationNumber -->
-            <oui-field data-label="{{ :: 'sign_up_activity_field_companyNationalIdentificationNumber' | translate}}">
+            <oui-field data-label="{{ :: 'sign_up_activity_field_companyNationalIdentificationNumber' | translate}}"
+                       data-label-popover="{{ :: 'sign_up_activity_field_companyNationalIdentificationNumber_popover' | translate }}">
                 <input type="text"
                        class="oui-input"
                        name="companyNationalIdentificationNumber"

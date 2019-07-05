@@ -3,7 +3,7 @@
         <div class="col-lg-6">
             <!-- legalform -->
             <oui-field data-label="{{ :: 'sign_up_details_field_legalform' | translate}}"
-                       data-label-popover="{{ :: '' | translate }}">
+                       data-label-popover="{{ ['administration', 'association', 'corporation'].includes($ctrl.signUpFormCtrl.model.legalform) ? ('sign_up_details_field_legalform_popover_' + $ctrl.signUpFormCtrl.model.legalform | translate) : '' }}">
                 <label class="oui-select">
                     <select id="legalform"
                             name="legalform"
