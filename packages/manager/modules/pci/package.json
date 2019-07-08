@@ -1,43 +1,35 @@
 {
   "name": "@ovh-ux/manager-pci",
   "version": "0.23.0",
+  "private": "true",
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/pci#readme",
   "bugs": {
     "url": "https://github.com/ovh-ux/manager/issues"
   },
   "license": "BSD-3-Clause",
   "files": [
-    "dist"
+    "src"
   ],
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "node ../../../../scripts/rollup-dev-builder",
-    "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run dev:watch"
+    "build": "echo 'Build is now managed by host application.'",
+    "dev": "yarn run build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.2",
     "@ovh-ux/manager-config": "^0.3.0",
     "d3": "~3.5.13",
+    "fast-sha256": "^1.1.0",
     "file-saver": "^2.0.1",
     "flag-icon-css": "~0.8.5",
     "ipaddr.js": "^1.9.0",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.11",
     "moment": "^2.19",
+    "tweetnacl-util": "^0.15.0",
     "urijs": "^1.19.1",
     "validator": "^10.11.0",
-    "xterm": "^3.12.2",
-    "fast-sha256": "^1.1.0",
-    "tweetnacl-util": "^0.15.0"
-  },
-  "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^5.1.0"
+    "xterm": "^3.12.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.0",
