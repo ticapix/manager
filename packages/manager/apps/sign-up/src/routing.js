@@ -64,11 +64,13 @@ export const state = {
           atInternet.trackEvent({
             page: `${TRACKING.pagePrefix}validationok-step2`,
             category: get(TRACKING, `categories.${me.model.legalform}`),
+            event: 'ACCOUNT_CREATION_VALIDATION',
           });
         } else if (isActiveStep('activity')) {
           atInternet.trackEvent({
             page: `${TRACKING.pagePrefix}validationok-step3`,
             category: get(TRACKING, `categories.${me.model.legalform}`),
+            event: 'ACCOUNT_CREATION_VALIDATION',
           });
         }
 
