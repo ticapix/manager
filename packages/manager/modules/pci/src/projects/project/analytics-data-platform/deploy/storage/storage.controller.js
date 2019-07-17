@@ -1,3 +1,5 @@
+import isUndefined from 'lodash/isUndefined';
+
 import {
   ANALYTICS_DATA_PLATFORM_INPUT_NUMBER_PATTERN,
 } from '../../analytics-data-platform.constants';
@@ -15,6 +17,7 @@ export default class {
   $onInit() {
     this.data.hdfsEffectiveStorage = this.storage.hdfsEffectiveStorage;
     this.data.edgeNodeStorage = this.edgeNodeStorage;
+    this.isUndefined = isUndefined;
   }
 
   dataChange() {

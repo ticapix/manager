@@ -38,19 +38,21 @@
                 <dd class="storage-list__definition"><span data-ng-bind="::$ctrl.nodesConfig.worker.count"></span></dd>
                 <dt class="storage-list__term"><span data-translate="analytics_data_platform_deploy_storage_per_node"></span> : </dt>
                 <dd class="storage-list__definition">
-                    <span>
+                    <span data-ng-if="$ctrl.isUndefined($ctrl.data.hdfsEffectiveStorage)">-</span>
+                    <span data-ng-if="!$ctrl.isUndefined($ctrl.data.hdfsEffectiveStorage)">
                         {{ ($ctrl.data.hdfsEffectiveStorage * $ctrl.selectedCapability.hdfsReplicationFactor) / $ctrl.nodesConfig.worker.count }}
+                        <span data-translate="analytics_data_platform_common_unit_gb"></span>
                     </span>
-                    <span data-translate="analytics_data_platform_common_unit_gb"></span>
                 </dd>
                 <hr class="storage-list__separator"/>
                 <dt class="storage-list__term"><strong><span data-translate="analytics_data_platform_deploy_storage_total_storage"></span> :</strong></dt>
                 <dd class="storage-list__definition pb-1">
                     <strong>
-                        <span>
+                        <span data-ng-if="$ctrl.isUndefined($ctrl.data.hdfsEffectiveStorage)">-</span>
+                        <span data-ng-if="!$ctrl.isUndefined($ctrl.data.hdfsEffectiveStorage)">
                             {{ $ctrl.data.hdfsEffectiveStorage * $ctrl.selectedCapability.hdfsReplicationFactor }}
+                            <span data-translate="analytics_data_platform_common_unit_gb"></span>
                         </span>
-                        <span data-translate="analytics_data_platform_common_unit_gb"></span>
                     </strong>
                     <button type="button"
                             class="oui-popover-button"
@@ -107,10 +109,11 @@
                 <dt class="storage-list__term"><strong><span data-translate="analytics_data_platform_deploy_storage_total_effective_storage"></span> :</strong></dt>
                 <dd class="storage-list__definition">
                     <strong>
-                        <span>
+                        <span data-ng-if="$ctrl.isUndefined($ctrl.data.edgeNodeStorage)">-</span>
+                        <span data-ng-if="!$ctrl.isUndefined($ctrl.data.edgeNodeStorage)">
                             {{ $ctrl.data.edgeNodeStorage * $ctrl.nodesConfig.edge.count }}
+                            <span data-translate="analytics_data_platform_common_unit_gb"></span>
                         </span>
-                        <span data-translate="analytics_data_platform_common_unit_gb"></span>
                     </strong>
                 </dd>
             </dl>
