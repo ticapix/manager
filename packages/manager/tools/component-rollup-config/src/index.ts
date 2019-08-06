@@ -1,4 +1,4 @@
-import { get, isString, merge } from 'lodash';
+import { get, isString, mergeWith } from 'lodash';
 import babel from 'rollup-plugin-babel';
 import camelcase from 'camelcase';
 import commonjs from 'rollup-plugin-commonjs';
@@ -16,8 +16,13 @@ import sass from 'rollup-plugin-sass';
 import translationInject from './plugins/translation-inject';
 import translationUiRouter from './plugins/translation-ui-router';
 import translationXML from './plugins/translation-xml';
+import common from './plugins/common';
 
 const defaultName = path.basename(process.cwd());
+
+const mergeConfig = (config, customConfig) => mergeWith(config, customConfig, (obj, src) => (
+  Array.isArray(obj) && Array.isArray(src) ? src.concat(obj) : undefined
+));
 
 const getLanguages = (pluginsOpts) => {
   if (isString(process.env.LANGUAGES)) {
@@ -26,7 +31,7 @@ const getLanguages = (pluginsOpts) => {
   return get(pluginsOpts, 'translations.languages');
 };
 
-const generateConfig = (opts, pluginsOpts) => Object.assign({
+const generateConfig = (opts, pluginsOpts) => mergeConfig({
   plugins: [
     peerdeps(),
     html(),
@@ -74,7 +79,7 @@ const generateConfig = (opts, pluginsOpts) => Object.assign({
   ],
 }, opts);
 
-const cjs = (opts, pluginsOpts) => generateConfig(merge({
+const cjs = (opts, pluginsOpts) => generateConfig(mergeConfig({
   output: {
     dir: './dist/cjs',
     format: 'cjs',
@@ -82,7 +87,7 @@ const cjs = (opts, pluginsOpts) => generateConfig(merge({
   },
 }, opts), pluginsOpts);
 
-const umd = (opts, pluginsOpts) => generateConfig(merge({
+const umd = (opts, pluginsOpts) => generateConfig(mergeConfig({
   inlineDynamicImports: true,
   output: {
     name: defaultName,
@@ -92,7 +97,7 @@ const umd = (opts, pluginsOpts) => generateConfig(merge({
   },
 }, opts), pluginsOpts);
 
-const es = (opts, pluginsOpts) => generateConfig(merge({
+const es = (opts, pluginsOpts) => generateConfig(mergeConfig({
   output: {
     dir: './dist/esm',
     format: 'es',
@@ -100,7 +105,7 @@ const es = (opts, pluginsOpts) => generateConfig(merge({
   },
 }, opts), pluginsOpts);
 
-const iife = (opts, pluginsOpts) => generateConfig(merge({
+const iife = (opts, pluginsOpts) => generateConfig(mergeConfig({
   inlineDynamicImports: true,
   output: {
     name: camelcase(defaultName),
@@ -111,16 +116,20 @@ const iife = (opts, pluginsOpts) => generateConfig(merge({
 }, opts), pluginsOpts);
 
 const config = (globalOpts = {}, pluginsOpts = {}) => ({
-  cjs: (opts = {}) => cjs(merge(opts, globalOpts), pluginsOpts),
-  es: (opts = {}) => es(merge(opts, globalOpts), pluginsOpts),
-  iife: (opts = {}) => iife(merge(opts, globalOpts), pluginsOpts),
-  umd: (opts = {}) => umd(merge(opts, globalOpts), pluginsOpts),
+  cjs: (opts = {}) => cjs(mergeConfig(opts, globalOpts), pluginsOpts),
+  es: (opts = {}) => es(mergeConfig(opts, globalOpts), pluginsOpts),
+  iife: (opts = {}) => iife(mergeConfig(opts, globalOpts), pluginsOpts),
+  umd: (opts = {}) => umd(mergeConfig(opts, globalOpts), pluginsOpts),
 });
 
 config.plugins = {
   translationInject,
   translationUiRouter,
   translationXML,
+};
+
+config.common = {
+  translationNormalize: common.translationNormalize,
 };
 
 export = config;

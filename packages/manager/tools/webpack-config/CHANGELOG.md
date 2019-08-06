@@ -1,3 +1,30 @@
+## [3.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.1.2...@ovh-ux/manager-webpack-config@3.1.3) (2019-07-31)
+
+
+### Bug Fixes
+
+* **webpack-config:** normalize json with webpack loader ([e4d66b4](https://github.com/ovh-ux/manager/commit/e4d66b4))
+
+
+
+## [3.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.1.1...@ovh-ux/manager-webpack-config@3.1.2) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+
+
+
+## [3.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.1.0...@ovh-ux/manager-webpack-config@3.1.1) (2019-07-09)
+
+
+### Bug Fixes
+
+* **dependencies:** require right dependencies instead of devDependencies ([dbbe244](https://github.com/ovh-ux/manager/commit/dbbe244))
+
+
+
 # [3.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.0.8...@ovh-ux/manager-webpack-config@3.1.0) (2019-07-05)
 
 
