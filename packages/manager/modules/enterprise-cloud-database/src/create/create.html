@@ -1,0 +1,47 @@
+<div data-ui-view>
+    <oui-page-header
+        class="mb-2"
+        data-heading="{{ ::'enterprise_cloud_database_title' | translate }}">
+    </oui-page-header>
+    <div class="container-fluid px-0">
+        <!-- error messages -->
+        <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+        <oui-back-button data-state="enterprise-cloud-database">
+            <span data-translate="enterprise_cloud_database_create_title"></span>
+        </oui-back-button>
+        <p data-translate="enterprise_cloud_database_create_description"></p>
+        <form novalidate>
+            <section class="choose-database mb-5">
+                <h2 data-translate="enterprise_cloud_database_create_choose_db"></h2>
+                <p data-translate="enterprise_cloud_database_create_choose_db_desc"></p>
+                <enterprise-cloud-database-order-choose-database></enterprise-cloud-database-order-choose-database>
+            </section>
+            <section class="choose-region mb-5">
+                <h2 data-translate="enterprise_cloud_database_create_choose_dc"></h2>
+                <p data-translate="enterprise_cloud_database_create_choose_dc_desc"></p>
+                <enterprise-cloud-database-order-choose-region></enterprise-cloud-database-order-choose-region>
+            </section>
+            <section class="choose-cluster mb-5">
+                <h2 data-translate="enterprise_cloud_database_create_choose_cluster"></h2>
+                <p data-translate="enterprise_cloud_database_create_choose_cluster_desc"></p>
+                <h5><span data-translate="enterprise_cloud_database_create_choose_cluster_info"></span>:</h5>
+                <ul class="list-unstyled">
+                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_primary"></span>(Primary)</li>
+                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_replica"></span>(Replica)</li>
+                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_backup"></span>(Backup)</li>
+                </ul>
+                <enterprise-cloud-database-order-choose-cluster-config></enterprise-cloud-database-order-choose-cluster-config>
+            </section>
+            <section class="choose-commitment mb-5">
+                <h2 data-translate="enterprise_cloud_database_create_choose_commitment"></h2>
+                <p data-translate="enterprise_cloud_database_create_choose_commitment_desc"></p>
+                <enterprise-cloud-database-order-choose-commitment-period></enterprise-cloud-database-order-choose-commitment-period>
+            </section>
+            <section class="choose-payment-type mb-5">
+                <h2 data-translate="enterprise_cloud_database_create_choose_payment"></h2>
+                <p data-translate="enterprise_cloud_database_create_choose_payment_desc"></p>
+                <enterprise-cloud-database-order-choose-payment-period></enterprise-cloud-database-order-choose-payment-period>
+            </section>
+        </form>
+    </div>
+</div>

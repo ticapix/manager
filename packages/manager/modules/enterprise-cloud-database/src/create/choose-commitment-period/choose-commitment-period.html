@@ -1,0 +1,17 @@
+
+<div class="row">
+    <enterprise-cloud-database-card
+        data-ng-repeat="commitmentPeriod in $ctrl.commitmentPeriods track by commitmentPeriod.name"
+        class="col-sm-4 col-md-3 col-lg-2"
+        data-label="{{ ::commitmentPeriod.name }}"
+        data-model="commitmentPeriod"
+        data-selected="$ctrl.selectedCommitmentPeriod.name === commitmentPeriod.name"
+        data-on-change="$ctrl.onCommitmentPeriodSelect(modelValue)">
+        <enterprise-cloud-database-card-footer data-ng-if="::commitmentPeriod.months > 0">
+            <div class="mt-2 mb-2 font-weight-bold"
+                data-translate="enterprise_cloud_database_create_save"
+                data-translate-values="{amount: 100, currencySymbol: '$'}">
+            </div>
+        </enterprise-cloud-database-card-footer>
+    </enterprise-cloud-database-card>
+</div>

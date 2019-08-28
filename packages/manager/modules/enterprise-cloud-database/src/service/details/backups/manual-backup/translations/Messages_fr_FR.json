@@ -1,0 +1,6 @@
+{
+  "enterprise_cloud_database_backups_manual_title": "Launch Manual Backup",
+  "enterprise_cloud_database_backups_manual_launch": "Launch a manual backup for your cluster: {{ clusterName }}",
+  "enterprise_cloud_database_backups_manual_price": "Price: {{ pricePerHour }}",
+  "enterprise_cloud_database_backups_manual_default_payment_check": "Use my default payment method {{ account }}"
+}
