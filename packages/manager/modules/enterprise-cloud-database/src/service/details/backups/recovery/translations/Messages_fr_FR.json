@@ -1,0 +1,10 @@
+{
+  "enterprise_cloud_database_backups_recovery_title": "Point in time recovery",
+  "enterprise_cloud_database_backups_recovery_desc1": "Select the date and time to which you want to restore.",
+  "enterprise_cloud_database_backups_recovery_desc2": "You will find it in the tab 'Restored Instances'",
+  "enterprise_cloud_database_backups_recovery_time_slots": "Time slots depend on available backups",
+  "enterprise_cloud_database_backups_recovery_date": "Date",
+  "enterprise_cloud_database_backups_recovery_hour": "Hour",
+  "enterprise_cloud_database_backups_recovery_price": "Price: {{ price }}",
+  "enterprise_cloud_database_backups_recovery_default_payment_check": "Use my default payment method {{ account }}"
+}

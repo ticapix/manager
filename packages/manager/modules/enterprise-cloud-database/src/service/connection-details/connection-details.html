@@ -1,0 +1,39 @@
+<div class="mb-3">
+    <oui-tabs>
+        <oui-tabs-item data-heading="{{ 'enterprise_cloud_database_service_connection_details_parameters_title' | translate }}">
+            <p data-ng-bind="('enterprise_cloud_database_service_connection_details_parameters_description_'+$ctrl.clusterType) | translate"></p>
+            <div class="oui-box oui-box_light">
+                <dl>
+                    <div class="row">
+                        <div class="col-auto">
+                            <dt class="mb-2" data-translate="enterprise_cloud_database_service_connection_details_parameters_username"></dt>
+                            <dt class="mb-2" data-translate="enterprise_cloud_database_service_connection_details_parameters_password"></dt>
+                            <dt class="mb-2" data-translate="enterprise_cloud_database_service_connection_details_parameters_host"></dt>
+                            <dt class="mb-2" data-translate="enterprise_cloud_database_service_connection_details_parameters_database"></dt>
+                            <dt class="mb-2" data-translate="enterprise_cloud_database_service_connection_details_parameters_sslmode"></dt>
+                        </div>
+                        <div class="col">
+                            <dd data-ng-bind="$ctrl.PARAMETERS.USERNAME"></dd>
+                            <dd data-ng-bind="$ctrl.PARAMETERS.MASKED_PASSWORD"></dd>
+                            <dd data-ng-bind="$ctrl.endpoint.fqdn"></dd>
+                            <dd data-ng-bind="$ctrl.PARAMETERS.DATABASE"></dd>
+                            <dd data-ng-bind="$ctrl.PARAMETERS.SSL_MODE"></dd>
+                        </div>
+                    </div>
+                </dl>
+            </div>
+        </oui-tabs-item>
+        <oui-tabs-item data-heading="{{ 'enterprise_cloud_database_service_connection_details_strings_title' | translate }}">
+            <p data-ng-bind="('enterprise_cloud_database_service_connection_details_string_description_'+$ctrl.clusterType) | translate"></p>
+            <oui-clipboard data-model="$ctrl.connectionString"></oui-clipboard>
+        </oui-tabs-item>
+        <oui-tabs-item data-heading="{{ 'enterprise_cloud_database_service_connection_details_flags_title' | translate }}">
+                <p data-ng-bind="('enterprise_cloud_database_service_connection_details_flags_description_'+$ctrl.clusterType) | translate"></p>
+                <ovh-manager-enterprise-cloud-database-service-connection-details-flags-component
+                    data-command="$ctrl.COMMANDS_LIST.CONNECT"
+                    data-cluster-type="$ctrl.clusterType"
+                    data-end-points="$ctrl.endPoints">
+                </ovh-manager-enterprise-cloud-database-service-connection-details-flags-component>
+        </oui-tabs-item>
+    </oui-tabs>
+</div>

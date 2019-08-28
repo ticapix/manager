@@ -1,0 +1,21 @@
+
+<div class="row">
+    <enterprise-cloud-database-card
+        data-ng-repeat="paymentPeriod in $ctrl.paymentPeriods track by paymentPeriod.name"
+        class="col-sm-4 col-md-3 col-lg-2"
+        data-label="{{ ::paymentPeriod.name }}"
+        data-model="paymentPeriod"
+        data-selected="$ctrl.selectedPaymentPeriod.name === paymentPeriod.name"
+        data-on-change="$ctrl.onPaymentPeriodSelect(modelValue)">
+        <enterprise-cloud-database-card-footer data-ng-if="::paymentPeriod.save > 0">
+            <div class="mt-2 font-weight-bold"
+                data-translate="enterprise_cloud_database_create_save_extra"
+                data-translate-values="{amount: 100, currencySymbol: '$'}">
+            </div>
+            <div class="mb-2"
+                data-translate="enterprise_cloud_database_create_save_final"
+                data-translate-values="{amount: 120, currencySymbol: '$'}">
+            </div>
+        </enterprise-cloud-database-card-footer>
+    </enterprise-cloud-database-card>
+</div>

@@ -1,0 +1,24 @@
+<div>
+    <div class="oui-box oui-box_light">
+        <oui-checkbox data-description="{{ 'enterprise_cloud_database_service_details_settings_autobackup_description' | translate }}"
+                      data-disabled="$ctrl.loaders.autoBackup"
+                      data-model="$ctrl.data.autoBackup"
+                      data-on-change="$ctrl.saveAutoBackup(modelValue)">
+            <span data-translate="enterprise_cloud_database_service_details_settings_autobackup"></span>
+        </oui-checkbox>
+    </div>
+    <div class="oui-box oui-box_light">
+        <ovh-manager-enterprise-cloud-database-service-maintenance-window-component
+            data-disabled="$ctrl.loaders.maintenanceWindow"
+            data-disable-toggle="true"
+            data-maintenance-window="$ctrl.maintenanceWindow"
+            data-on-data-change="$ctrl.maintenanceWindowChanged(data)">
+        </ovh-manager-enterprise-cloud-database-service-maintenance-window-component>
+        <oui-button data-disabled="!$ctrl.hasMaintenanceWindowChanged() || $ctrl.loaders.maintenanceWindow"
+                    data-on-click="$ctrl.saveMaintenanceWindow()"
+                    data-text="Primary"
+                    data-variant="primary">
+            <span data-translate="enterprise_cloud_database_common_save"></span>
+        </oui-button>
+    </div>
+</div>

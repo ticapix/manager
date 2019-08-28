@@ -1,0 +1,16 @@
+{
+  "enterprise_cloud_database_backup_id": "Backup ID",
+  "enterprise_cloud_database_backup_name": "Name",
+  "enterprise_cloud_database_backup_time": "Backup Time",
+  "enterprise_cloud_database_backup_expiration_date": "Expiration Date",
+  "enterprise_cloud_database_backup_mode": "Mode",
+  "enterprise_cloud_database_common_status": "Status",
+  "enterprise_cloud_database_backup_restore": "Restore",
+  "enterprise_cloud_database_backup_actions": "Actions",
+  "enterprise_cloud_database_backup_actions_manual_backup": "Launch manual backup",
+  "enterprise_cloud_database_backup_actions_time_recovery": "Launch a point in time recovery",
+  "enterprise_cloud_database_backup_description": "Below is the list of your Database backups. You can restore, edit or delete each one of them.",
+  "enterprise_cloud_database_backup_consumption": "Consumption of your manual backups:",
+  "enterprise_cloud_database_backup_size": "Size: {{ size }}",
+  "enterprise_cloud_database_backup_price": "Price: {{ price }}"
+}

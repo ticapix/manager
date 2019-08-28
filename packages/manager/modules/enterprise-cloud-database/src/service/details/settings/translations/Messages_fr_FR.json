@@ -1,0 +1,9 @@
+{
+  "enterprise_cloud_database_service_details_settings_autobackup": "Daily backups",
+  "enterprise_cloud_database_service_details_settings_autobackup_description": "Activate this option to enable automatic backups of your Database cluster. backups are created on a daily basis and allow you to restore your database when needed.",
+  "enterprise_cloud_database_service_details_settings_allowed_ips": "Allowed IP(s)",
+  "enterprise_cloud_database_service_details_settings_allowed_ips_description": "Below is the list of your allowed IP(s). You can delete each one of them. Learn more about allowed IPs",
+  "enterprise_cloud_database_service_details_settings_allowed_ips_help": "Learn more about allowed IPs",
+  "enterprise_cloud_database_service_details_settings_save_success": "Save successful",
+  "enterprise_cloud_database_service_details_settings_save_error": "An error occurred while trying to save the settings: {{ message }}"
+}

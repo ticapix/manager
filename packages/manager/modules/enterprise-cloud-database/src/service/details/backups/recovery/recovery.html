@@ -1,0 +1,26 @@
+<oui-modal data-heading="{{:: 'enterprise_cloud_database_backups_recovery_title' | translate }}"
+           data-primary-label="{{:: 'enterprise_cloud_database_common_confirm' | translate }}"
+           data-primary-action="$ctrl.delteInstance()"
+           data-secondary-label="{{:: 'enterprise_cloud_database_common_cancel' | translate }}"
+           data-secondary-action="$ctrl.cancel()"
+           data-on-dismiss="$ctrl.cancel()"
+           data-loading="$ctrl.isLoading">
+    <p>
+        <span data-translate="enterprise_cloud_database_backups_recovery_desc1"></span>
+        <span data-translate="enterprise_cloud_database_backups_recovery_desc2"></span>
+    </p>
+    <oui-field data-label="{{ ::'enterprise_cloud_database_backups_recovery_date' | translate }}"
+               data-size="l">
+        <oui-calendar model="$ctrl.formatModel" format="d-m-Y" alt-format="F j, Y"></oui-calendar>
+        <div class="oui-field__helper"><span data-translate="{{ 'enterprise_cloud_database_backups_recovery_time_slots' }}"></span></div>
+    </oui-field>
+    <oui-field data-label="{{ ::'enterprise_cloud_database_backups_recovery_hour' | translate }}"
+               data-size="s">
+        <oui-timepicker model="$ctrl.timepickerModel" placeholder="HH:MM"></oui-timepicker>
+    </oui-field>
+    <oui-checkbox model="$ctrl.onChangeValue" on-change="$ctrl.lastOnChangeValue = modelValue">
+        <span data-translate="enterprise_cloud_database_backups_recovery_default_payment_check"
+              data-translate-values="{ account: $ctrl.accontDetails }">
+        </span>
+    </oui-checkbox>
+</oui-modal>

@@ -1,0 +1,16 @@
+<oui-modal data-heading="{{:: 'enterprise_cloud_database_service_add_replicas_title' | translate }}"
+           data-on-dismiss="$ctrl.goBack()"
+           data-primary-action="$ctrl.saveData()"
+           data-primary-label="{{:: 'enterprise_cloud_database_service_add_replicas_add' | translate }}"
+           data-secondary-label="{{:: 'enterprise_cloud_database_common_cancel' | translate }}"
+           data-secondary-action="$ctrl.goBack()">
+    <p data-translate="enterprise_cloud_database_service_add_replicas_description"></p>
+    <oui-select data-name="replicaCount"
+                data-model="$ctrl.data.selectedReplicaCount"
+                data-items="$ctrl.replicaCounts"
+                data-match="text"></oui-select>
+    <oui-checkbox data-name="useDefaultPaymentMethod"
+                  data-text="{{ 'enterprise_cloud_database_service_add_replicas_default_payment_method' | translate }}"
+                  data-model="$ctrl.data.useDefaultPaymentMethod"
+                  data-required></oui-checkbox>
+</oui-modal>
