@@ -1,12 +1,9 @@
 import head from 'lodash/head';
 
 export default class {
-  constructor() {
-    this.dummy = null;
-  }
-
   $onInit() {
-    this.initializeMockData();
+    // this.initializeMockData();
+    this.selectedCluster = head(this.clusters);
   }
 
   initializeMockData() {
@@ -44,5 +41,6 @@ export default class {
 
   onClusterSelect(cluster) {
     this.selectedCluster = cluster;
+    this.enterpriceDb.cluster = cluster;
   }
 }

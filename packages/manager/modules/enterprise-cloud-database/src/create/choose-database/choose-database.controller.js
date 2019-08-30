@@ -39,5 +39,6 @@ export default class {
 
   onDatabaseSelect(database) {
     this.selectedDatabase = database;
+    this.enterpriceDb.database = database;
   }
 }

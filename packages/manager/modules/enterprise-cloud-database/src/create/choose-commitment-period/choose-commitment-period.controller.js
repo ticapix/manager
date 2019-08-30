@@ -41,5 +41,6 @@ export default class {
 
   onCommitmentPeriodSelect(commitmentPeriod) {
     this.selectedCommitmentPeriod = commitmentPeriod;
+    this.enterpriceDb.commitmentPeriod = commitmentPeriod;
   }
 }

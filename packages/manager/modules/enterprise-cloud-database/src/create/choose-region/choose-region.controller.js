@@ -32,5 +32,6 @@ export default class {
 
   onRegionSelect(region) {
     this.selectedRegion = region;
+    this.enterpriceDb.datacenter = region;
   }
 }

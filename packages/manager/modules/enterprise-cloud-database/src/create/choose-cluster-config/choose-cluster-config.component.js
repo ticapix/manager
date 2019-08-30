@@ -3,6 +3,8 @@ import template from './choose-cluster-config.html';
 
 export default {
   bindings: {
+    clusters: '<',
+    enterpriceDb: '<',
   },
   controller,
   template,

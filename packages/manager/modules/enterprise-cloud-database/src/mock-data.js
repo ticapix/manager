@@ -3,98 +3,122 @@ export default class MockData {
   constructor($q, $timeout) {
     this.$q = $q;
     this.$timeout = $timeout;
-    this.capabilities = [
-      {
-        creationDate: '2019-06-24 09:56:03.603857+02',
-        hostMemory: 32,
-        hostStorageSize: 960,
-        hostType: 'baremetal',
-        id: '56baecf9-d497-4719-b490-15713f3e8749',
-        internal: false,
-        lastUpdate: '2019-06-24 09:56:03.603857+02',
-        maxHostCount: 11,
+    this.offers = [
+      'cluster64',
+      'cluster32',
+      'cluster128',
+      'cluster16',
+    ];
+
+    this.offerDetails = {
+      cluster64: {
         minHostCount: 3,
-        name: 'cluster32',
-        status: 'available',
-        type: 'postgresql',
-        versions: [
-          '9.6',
-          '10',
-          '11',
-        ],
-        regions: [
-          'eu-west-fr-1',
-          'ca-east-qc-1',
-        ],
-      },
-      {
-        creationDate: '2019-06-24 10:02:11.232282+02',
-        hostMemory: 16,
-        hostStorageSize: 960,
-        hostType: 'baremetal',
-        id: '15502ddf-a2bd-4930-8e7c-cc19fba154a6',
-        internal: false,
-        lastUpdate: '2019-06-24 10:02:11.232282+02',
-        maxHostCount: 11,
-        minHostCount: 3,
-        name: 'cluster16',
-        status: 'available',
-        type: 'postgresql',
-        versions: [
-          '9.6',
-          '10',
-          '11',
-        ],
-        regions: [
-          'eu-west-fr-1',
-          'ca-east-qc-1',
-        ],
-      },
-      {
-        creationDate: '2018-09-28 12:24:21.260387+02',
-        hostMemory: 64,
-        hostStorageSize: 1920,
-        hostType: 'baremetal',
-        id: '13e990ed-c102-4c4b-8456-f566333505d6',
-        internal: false,
-        lastUpdate: '2018-09-28 12:24:21.260387+02',
-        maxHostCount: 11,
-        minHostCount: 3,
+        lastUpdate: '2018-09-28T12:24:21+00:00',
+        creationDate: '2018-09-28T12:24:21+00:00',
         name: 'cluster64',
+        maxHostCount: 11,
         status: 'available',
-        type: 'postgresql',
-        versions: [
-          '9.6',
-          '10',
-          '11',
-        ],
-        regions: [
-          'eu-west-fr-1',
-          'ca-east-qc-1',
-        ],
+        ram: '64',
+        cors: '8',
+        storage: '960',
+        storageType: 'SSD RAID',
+        storageCount: '10',
+      },
+      cluster32: {
+        minHostCount: 3,
+        lastUpdate: '2018-09-28T12:24:21+00:00',
+        creationDate: '2018-09-28T12:24:21+00:00',
+        name: 'cluster32',
+        maxHostCount: 11,
+        status: 'available',
+        ram: '32',
+        cors: '8',
+        storage: '450',
+        storageType: 'SSD RAID',
+        storageCount: '10',
+      },
+      cluster128: {
+        minHostCount: 3,
+        lastUpdate: '2018-09-28T12:24:21+00:00',
+        creationDate: '2018-09-28T12:24:21+00:00',
+        name: 'cluster128',
+        maxHostCount: 11,
+        status: 'available',
+        ram: '128',
+        cors: '8',
+        storage: '120',
+        storageType: 'SSD RAID',
+        storageCount: '10',
+      },
+      cluster16: {
+        minHostCount: 3,
+        lastUpdate: '2018-09-28T12:24:21+00:00',
+        creationDate: '2018-09-28T12:24:21+00:00',
+        name: 'cluster16',
+        maxHostCount: 11,
+        status: 'available',
+        ram: '16',
+        cors: '8',
+        storage: '450',
+        storageType: 'SSD RAID',
+        storageCount: '10',
+      },
+    };
+
+    this.offerCatalog = [
+      {
+        databaseName: 'PostgresSQL',
+        versions: ['11', '12'],
+        status: 'available',
+        regions: ['GRA5', 'SGP1', 'SYD1'],
+        offers: ['cluster64', 'cluster32', 'cluster128', 'cluster16'],
       },
       {
-        creationDate: '2019-06-24 09:40:36.560233+02',
-        hostMemory: 128,
-        hostStorageSize: 3840,
-        hostType: 'baremetal',
-        id: '0b765494-b747-4aa1-acfa-b513404579a6',
-        internal: false,
-        lastUpdate: '2019-06-24 09:40:36.560233+02',
-        maxHostCount: 11,
-        minHostCount: 3,
-        name: 'cluster128',
-        status: 'available',
-        type: 'postgresql',
-        versions: [
-          '9.6',
-          '10',
-          '11',
-        ],
-        regions: [
-          'eu-west-fr-1',
-          'ca-east-qc-1',
-        ],
+        databaseName: 'MariaDB',
+        versions: ['11', '12'],
+        status: 'notavailable',
+        regions: ['GRA5', 'SGP1', 'SYD1'],
+        offers: ['cluster64', 'cluster32', 'cluster128', 'cluster16'],
+      },
+    ];
+
+    this.commitmentPeriods = [
+      {
+        id: '0-MONTHS',
+        name: 'No commitment',
+        months: 0,
+        save: 0,
+      },
+      {
+        id: '3-MONTHS',
+        name: '3 Months',
+        months: 3,
+        save: 20,
+      },
+      {
+        id: '6-MONTHS',
+        name: '6 Months',
+        months: 6,
+        save: 50,
+      },
+      {
+        id: '12-MONTHS',
+        name: '12 Months',
+        months: 12,
+        save: 100,
+      },
+    ];
+
+    this.paymentPeriods = [
+      {
+        id: 'MONTHLY',
+        name: 'Monthly',
+        save: 0,
+      },
+      {
+        id: 'ONE-TIME',
+        name: 'One time',
+        save: 100,
       },
     ];
 
@@ -439,10 +463,58 @@ export default class MockData {
     };
   }
 
-  getCapabilities() {
+  getOffers() {
     const defer = this.$q.defer();
     this.$timeout(() => {
-      defer.resolve(this.capabilities);
+      defer.resolve(this.offers);
+    }, 100);
+    return defer.promise;
+  }
+
+  getOfferDetails(offerName) {
+    const defer = this.$q.defer();
+    this.$timeout(() => {
+      defer.resolve(this.offerDetails[offerName]);
+    }, 100);
+    return defer.promise;
+  }
+
+  getOfferCatalog() {
+    const defer = this.$q.defer();
+    this.$timeout(() => {
+      defer.resolve(this.offerCatalog);
+    }, 100);
+    return defer.promise;
+  }
+
+  getRegions() {
+    const defer = this.$q.defer();
+    this.$timeout(() => {
+      defer.resolve(this.regions);
+    }, 100);
+    return defer.promise;
+  }
+
+  getDatabases() {
+    const defer = this.$q.defer();
+    this.$timeout(() => {
+      defer.resolve(this.databases);
+    }, 100);
+    return defer.promise;
+  }
+
+  getCommitmentPeriods() {
+    const defer = this.$q.defer();
+    this.$timeout(() => {
+      defer.resolve(this.commitmentPeriods);
+    }, 100);
+    return defer.promise;
+  }
+
+  getPaymentPeriods() {
+    const defer = this.$q.defer();
+    this.$timeout(() => {
+      defer.resolve(this.paymentPeriods);
     }, 100);
     return defer.promise;
   }

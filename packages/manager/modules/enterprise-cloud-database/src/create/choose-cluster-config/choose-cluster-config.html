@@ -3,7 +3,7 @@
     <enterprise-cloud-database-card
         data-ng-repeat="cluster in $ctrl.clusters track by cluster.name"
         class="col-sm-4 col-md-3 col-lg-2"
-        data-label="{{ ::cluster.name }}"
+        data-label="{{ ::cluster.displayName }}"
         data-model="cluster"
         data-selected="$ctrl.selectedCluster.name === cluster.name"
         data-on-change="$ctrl.onClusterSelect(modelValue)">
