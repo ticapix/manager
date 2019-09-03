@@ -7,6 +7,11 @@ module.exports = (env = {}) => {
     template: './index.html',
     basePath: '.',
     root: path.resolve(process.cwd()),
+    assets: {
+      files: [
+        { from: path.resolve(__dirname, '../../../../node_modules/flag-icon-css/flags/4x3'), to: 'flag-icon-css/flags/4x3' },
+      ],
+    },
   }, env);
 
   return merge(config, {

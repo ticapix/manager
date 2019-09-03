@@ -1,4 +1,6 @@
+import capitalize from 'lodash/capitalize';
 import map from 'lodash/map';
+import set from 'lodash/set';
 
 import { ERROR_STATUS, PROCESSING_STATUS } from './enterprise-cloud-database.constants';
 
@@ -45,8 +47,21 @@ export default class EnterpriseCloudDatabaseService {
       .delete({ clusterId, securityGroupId }).$promise;
   }
 
-  getCapabilities() {
-    return this.mockData.getCapabilities();
+  getOffers() {
+    return this.mockData.getOffers()
+      .then(offers => this.$q.all(map(offers, offer => this.getOfferDetails(offer)
+        .then((offerDetails) => {
+          set(offerDetails, 'displayName', capitalize(offerDetails.name));
+          return offerDetails;
+        }))));
+  }
+
+  getOfferDetails(offerName) {
+    return this.mockData.getOfferDetails(offerName);
+  }
+
+  getOfferCatalog() {
+    return this.mockData.getOfferCatalog();
   }
 
   getClusterDetails(clusterId) {

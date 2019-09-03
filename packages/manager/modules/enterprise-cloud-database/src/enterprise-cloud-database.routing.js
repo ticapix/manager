@@ -8,8 +8,7 @@ export default /* @ngInject */($stateProvider) => {
     url: '/enterprise-cloud-database',
     resolve: {
       capabilities: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
-        .getCapabilities()
-        .then(capabilities => capabilities),
+        .getOffers(),
       clusters: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
         .getClusterList(),
       goBackToList: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success', clusterId = null) => {

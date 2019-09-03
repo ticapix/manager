@@ -14,17 +14,17 @@ export default class {
       {
         id: 'GRA5',
         name: 'GRA5',
-        icons: 'fa fa-plus',
+        icons: 'flag-icon flag-icon-gra',
       },
       {
         id: 'SYD1',
         name: 'SYD1',
-        icons: 'fa fa-refresh',
+        icons: 'flag-icon flag-icon-syd',
       },
       {
         id: 'SGP1',
         name: 'SGP1',
-        icons: 'fa fa-refresh',
+        icons: 'flag-icon flag-icon-sgp',
       },
     ];
     this.selectedRegion = head(this.regions);
@@ -32,5 +32,6 @@ export default class {
 
   onRegionSelect(region) {
     this.selectedRegion = region;
+    this.enterpriceDb.datacenter = region;
   }
 }

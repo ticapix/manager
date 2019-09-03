@@ -3,6 +3,7 @@ import template from './choose-payment-period.html';
 
 export default {
   bindings: {
+    enterpriceDb: '<',
   },
   controller,
   template,

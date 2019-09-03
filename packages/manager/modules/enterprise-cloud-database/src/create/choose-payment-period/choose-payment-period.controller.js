@@ -27,5 +27,6 @@ export default class {
 
   onPaymentPeriodSelect(paymentPeriod) {
     this.selectedPaymentPeriod = paymentPeriod;
+    this.enterpriceDb.paymentType = paymentPeriod;
   }
 }

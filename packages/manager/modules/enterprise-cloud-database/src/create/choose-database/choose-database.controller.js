@@ -1,9 +1,10 @@
 import head from 'lodash/head';
-import PG_SQL_ICON from './choose-database.constants';
+import { PG_SQL_ICON, MARIA_DB_ICON } from './choose-database.constants';
 
 export default class {
   constructor() {
     this.PG_SQL_ICON = PG_SQL_ICON;
+    this.MARIA_DB_ICON = MARIA_DB_ICON;
   }
 
   $onInit() {
@@ -24,6 +25,7 @@ export default class {
         name: 'MariaDB',
         versions: [1.1, 1.2],
         isAvailable: false,
+        iconURL: this.MARIA_DB_ICON,
       },
       {
         id: 'Redis',
@@ -37,5 +39,6 @@ export default class {
 
   onDatabaseSelect(database) {
     this.selectedDatabase = database;
+    this.enterpriceDb.database = database;
   }
 }
