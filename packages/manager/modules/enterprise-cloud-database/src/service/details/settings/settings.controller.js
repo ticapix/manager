@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import keys from 'lodash/keys';
 import reduce from 'lodash/reduce';
+import set from 'lodash/set';
 
 import { MESSAGE_CONTAINER } from '../details.constants';
 
@@ -25,6 +26,8 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
       autoBackup: false,
       maintenanceWindow: false,
     };
+
+    this.rules = {};
   }
 
   getMaintenanceWindowConfig() {
@@ -35,18 +38,30 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
     } : undefined;
   }
 
-  handleError(error) {
+  getRules(group) {
+    set(group, 'loadingRules', true);
+    this.enterpriseCloudDatabaseService.getRulesList(this.clusterDetails.id, group.id)
+      .then((rules) => {
+        set(this.rules, group.id, rules);
+      })
+      .catch(error => this.handleError('enterprise_cloud_database_service_details_settings_rules_error', error))
+      .finally(() => {
+        set(group, 'loadingRules', false);
+      });
+  }
+
+  handleError(messageId, error) {
     this.CucCloudMessage.error(
-      this.$translate.instant('enterprise_cloud_database_service_details_settings_save_error', {
+      this.$translate.instant(messageId, {
         message: get(error, 'data.message'),
       }),
       MESSAGE_CONTAINER,
     );
   }
 
-  handleSuccess() {
+  handleSuccess(messageId) {
     this.CucCloudMessage.success(
-      this.$translate.instant('enterprise_cloud_database_service_details_settings_save_success'),
+      this.$translate.instant(messageId),
       MESSAGE_CONTAINER,
     );
   }
@@ -63,6 +78,10 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
       : false;
   }
 
+  loadRules(group) {
+    return get(this.rules, group.id) || this.getRules(group);
+  }
+
   maintenanceWindowChanged(data) {
     Object.assign(this.data, data);
   }
@@ -73,8 +92,8 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
     this.enterpriseCloudDatabaseService.setClusterDetails(this.clusterDetails.id, {
       autoBackup,
       name: this.data.clusterName,
-    }).then(() => this.handleSuccess())
-      .catch(error => this.handleError(error))
+    }).then(() => this.handleSuccess('enterprise_cloud_database_service_details_settings_save_success'))
+      .catch(error => this.handleError('enterprise_cloud_database_service_details_settings_save_error', error))
       .finally(() => { this.loaders.autoBackup = false; });
   }
 
@@ -85,9 +104,9 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
     this.setupMaintenanceWindow(maintenanceWindowConfig)
       .then(() => {
         Object.assign(this.maintenanceWindow, maintenanceWindowConfig);
-        this.handleSuccess();
+        this.handleSuccess('enterprise_cloud_database_service_details_settings_save_success');
       })
-      .catch(error => this.handleError(error))
+      .catch(error => this.handleError('enterprise_cloud_database_service_details_settings_save_error', error))
       .finally(() => { this.loaders.maintenanceWindow = false; });
   }
 
@@ -97,5 +116,12 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
         .updateMaintenanceWindow(this.clusterDetails.id, maintenanceWindow)
       : this.enterpriseCloudDatabaseService
         .createMaintenanceWindow(this.clusterDetails.id, maintenanceWindow));
+  }
+
+  toggleRules(group) {
+    set(group, 'expanded', !group.expanded);
+    if (group.expanded) {
+      this.loadRules(group);
+    }
   }
 }

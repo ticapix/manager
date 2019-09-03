@@ -35,6 +35,16 @@ export default class EnterpriseCloudDatabaseService {
       { clusterId, name }).$promise;
   }
 
+  deleteRule(clusterId, securityGroupId, ruleId) {
+    return this.OvhApiCloudDBEnterpriseRule
+      .delete({ clusterId, securityGroupId, ruleId }).$promise;
+  }
+
+  deleteSecurityGroup(clusterId, securityGroupId) {
+    return this.OvhApiCloudDBEnterpriseSecurityGroup
+      .delete({ clusterId, securityGroupId }).$promise;
+  }
+
   getCapabilities() {
     return this.mockData.getCapabilities();
   }
@@ -79,6 +89,20 @@ export default class EnterpriseCloudDatabaseService {
 
   getMaintenanceWindow(clusterId) {
     return this.OvhApiCloudDBEnterpriseWindow.get({ clusterId }).$promise;
+  }
+
+  getRuleDetails(clusterId, securityGroupId, ruleId) {
+    return this.OvhApiCloudDBEnterpriseRule.get({ clusterId, securityGroupId, ruleId }).$promise;
+  }
+
+  getRulesList(clusterId, securityGroupId) {
+    return this.getRules(clusterId, securityGroupId)
+      .then(rules => this.$q.all(map(rules,
+        ruleId => this.getRuleDetails(clusterId, securityGroupId, ruleId))));
+  }
+
+  getRules(clusterId, securityGroupId) {
+    return this.OvhApiCloudDBEnterpriseRule.query({ clusterId, securityGroupId }).$promise;
   }
 
   getSecurityGroupDetails(clusterId, securityGroupId) {
@@ -144,6 +168,17 @@ export default class EnterpriseCloudDatabaseService {
   deleteRestoredInstance(clusterId, restoredInstanceId) {
     return this.OvhApiCloudDBEnterpriseRestore.delete(
       { clusterId, restoreId: restoredInstanceId },
+    ).$promise;
+  }
+
+  resetSecurityGroupDetailsCache() {
+    this.OvhApiCloudDBEnterpriseSecurityGroup.resetCache();
+  }
+
+  updateSecurityGroup(clusterId, securityGroupId, name) {
+    return this.OvhApiCloudDBEnterpriseSecurityGroup.update(
+      { clusterId, securityGroupId },
+      { name },
     ).$promise;
   }
 

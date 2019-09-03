@@ -1,8 +1,6 @@
 import {
   ENTERPRISE_CLOUD_DATABASE_CLUSTER_NAME_PATTERN,
   ENTERPRISE_CLOUD_DATABASE_PASSWORD_LENGTH,
-  ENTERPRISE_CLOUD_DATABASE_RULE_PATTERN,
-  ENTERPRISE_CLOUD_DATABASE_SECURITY_GROUP_PATTERN,
 } from './secure-cluster.constants';
 
 export default class {
@@ -10,8 +8,6 @@ export default class {
   constructor() {
     this.CLUSTER_NAME_PATTERN = ENTERPRISE_CLOUD_DATABASE_CLUSTER_NAME_PATTERN;
     this.PASSWORD_LENGTH = ENTERPRISE_CLOUD_DATABASE_PASSWORD_LENGTH;
-    this.RULE_PATTERN = ENTERPRISE_CLOUD_DATABASE_RULE_PATTERN;
-    this.SECURITY_GROUP_PATTERN = ENTERPRISE_CLOUD_DATABASE_SECURITY_GROUP_PATTERN;
   }
 
   $onInit() {
@@ -35,5 +31,10 @@ export default class {
     return password
       && (password.length >= this.PASSWORD_LENGTH.MIN)
       && (password.length <= this.PASSWORD_LENGTH.MAX);
+  }
+
+  securityGroupDataChanged(data) {
+    Object.assign(this.data, data);
+    this.dataChange();
   }
 }

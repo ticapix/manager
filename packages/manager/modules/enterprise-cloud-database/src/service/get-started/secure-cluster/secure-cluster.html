@@ -21,34 +21,12 @@
     <p data-translate="enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_description1"></p>
     <p data-translate="enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_description2"></p>
     <!-- security group name -->
-    <oui-field data-label="{{ ::'enterprise_cloud_database_service_get_started_secure_cluster_security_group' | translate }}"
-               data-size="xl"
-               data-error-messages="{ pattern: ('enterprise_cloud_database_service_get_started_secure_cluster_security_group_help' | translate) }">
-        <input class="oui-input oui-input_inline"
-               type="text"
-               id="securityGroupName"
-               name="securityGroupName"
-               required
-               placeholder="{{ ::'enterprise_cloud_database_service_get_started_secure_cluster_security_group_placeholder' | translate }}"
-               data-oui-autocomplete="$ctrl.securityGroups"
-               data-oui-autocomplete-property="name"
-               data-ng-model="$ctrl.data.securityGroupName"
-               data-ng-change="$ctrl.dataChange()"
-               data-ng-pattern="$ctrl.SECURITY_GROUP_PATTERN">
-    </oui-field>
+    <ovh-manager-enterprise-cloud-database-service-security-group-name-component
+        data-security-groups="$ctrl.securityGroups"
+        data-on-change="$ctrl.securityGroupDataChanged(data)">
+    </ovh-manager-enterprise-cloud-database-service-security-group-name-component>
     <!-- rule -->
-    <oui-field data-label="{{ ::'enterprise_cloud_database_service_get_started_secure_cluster_rule' | translate }}"
-               data-help-text="{{ ::'enterprise_cloud_database_service_get_started_secure_cluster_rule_description' | translate}}"
-               data-size="xl"
-               data-error-messages="{ pattern: ('enterprise_cloud_database_service_get_started_secure_cluster_rule_help' | translate) }">
-        <input class="oui-input"
-               type="text"
-               id="rule"
-               name="rule"
-               required
-               placeholder="{{ ::'enterprise_cloud_database_service_get_started_secure_cluster_rule_placeholder' | translate }}"
-               data-ng-model="$ctrl.data.rule"
-               data-ng-change="$ctrl.dataChange()"
-               data-ng-pattern="$ctrl.RULE_PATTERN">
-    </oui-field>
+    <ovh-manager-enterprise-cloud-database-service-rule-component
+        data-on-change="$ctrl.securityGroupDataChanged(data)">
+    </ovh-manager-enterprise-cloud-database-service-rule-component>
 </div>
