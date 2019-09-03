@@ -6,8 +6,9 @@ const component = {
   controller,
   bindings: {
     callback: '<',
-    hostList: '<',
     goBack: '<',
+    hostList: '<',
+    maxHostCount: '<',
   },
 };
 

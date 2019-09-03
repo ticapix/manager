@@ -31,8 +31,12 @@ export default /* @ngInject */($stateProvider) => {
     },
     resolve: {
       callback: /* @ngInject */ $transition$ => $transition$.params().callback,
-      hostList: /* @ngInject */ $transition$ => $transition$.params().hostList,
       goBack: /* @ngInject */ ($state, clusterId) => () => $state.go('enterprise-cloud-database.service.get-started', { clusterId }),
+      hostList: /* @ngInject */ $transition$ => $transition$.params().hostList,
+      maxHostCount: /* @ngInject */
+        (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+          .getOfferDetails(clusterDetails.offerName)
+          .then(offer => offer.maxHostCount),
     },
     url: '/add-replicas',
     views: {
