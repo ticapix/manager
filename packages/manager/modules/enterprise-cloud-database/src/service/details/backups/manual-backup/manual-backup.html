@@ -7,9 +7,7 @@
            data-loading="$ctrl.isLoading">
     <p data-translate="enterprise_cloud_database_backups_manual_launch" data-translate-values="{ clusterName: $ctrl.clusterDetails.name }"></p>
     <p data-translate="enterprise_cloud_database_backups_manual_price" data-translate-values="{ price: $ctrl.pricePerHour }"></p>
-    <oui-checkbox model="$ctrl.onChangeValue" on-change="$ctrl.lastOnChangeValue = modelValue">
-        <span data-translate="enterprise_cloud_database_backups_manual_default_payment_check"
-              data-translate-values="{ account: $ctrl.accontDetails }">
-        </span>
-    </oui-checkbox>
+    <ovh-manager-enterprise-cloud-database-service-details-default-payment-component
+        data-default-payment="$ctrl.defaultPaymentMethod" data-on-change="$ctrl.dataChange(data)">
+    </ovh-manager-enterprise-cloud-database-service-details-default-payment-component>
 </oui-modal>

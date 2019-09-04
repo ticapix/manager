@@ -8,7 +8,6 @@ export default class EnterpriseCloudDatabaseDeleteCtrl {
     enterpriseCloudDatabaseService,
   ) {
     this.clusterId = $stateParams.clusterId;
-    this.instanceId = $stateParams.instanceId;
     this.$translate = $translate;
     this.service = enterpriseCloudDatabaseService;
     this.isLoading = false;

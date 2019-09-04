@@ -2,8 +2,11 @@ import controller from './recovery.controller';
 import template from './recovery.html';
 
 const component = {
-  template,
+  bindings: {
+    defaultPaymentMethod: '<',
+  },
   controller,
+  template,
 };
 
 export default component;

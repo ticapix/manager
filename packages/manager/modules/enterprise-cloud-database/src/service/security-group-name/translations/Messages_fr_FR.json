@@ -1,0 +1,5 @@
+{
+  "enterprise_cloud_database_service_security_group": "Security Group",
+  "enterprise_cloud_database_service_security_group_help": "Le nom de cluster doit contenir entre 3 et 63 caractères. Seuls les lettres en minuscule, les lettres majuscules, le ‘-', le ‘_' et les nombres sont autorisés.",
+  "enterprise_cloud_database_service_security_group_placeholder": "Nom de security group"
+}

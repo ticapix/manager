@@ -6,8 +6,11 @@ const component = {
   controller,
   bindings: {
     callback: '<',
+    defaultPaymentMethod: '<',
     hostList: '<',
     goBack: '<',
+    hostList: '<',
+    maxHostCount: '<',
   },
 };
 

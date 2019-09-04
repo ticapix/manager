@@ -140,6 +140,8 @@ export default class MockData {
         status: 'created',
         autoBackup: true,
         version: '11',
+        offerType: 'postgresql',
+        offerName: 'cluster64',
       },
       'b78deac6-08fb-4f43-a502-be8e2ca6ceb3': {
         status: 'created',
@@ -151,6 +153,7 @@ export default class MockData {
         id: 'b78deac6-08fb-4f43-a502-be8e2ca6ceb3',
         taskId: null,
         version: '11',
+        offerName: 'cluster128',
       },
       'c9804e9e-fe07-441b-99f0-c14535aa277b': {
         version: '11',
@@ -162,6 +165,7 @@ export default class MockData {
         taskId: null,
         status: 'created',
         lastUpdate: '2019-08-11T00:10:41+00:00',
+        offerName: 'cluster32',
       },
       '1c34e05b-d7ea-4a55-af59-0e0f528db0ea': {
         name: 'postgresql-357bfdfbc7ae4ec3a256d4',
@@ -173,6 +177,7 @@ export default class MockData {
         regionName: 'eu-west-fr-1',
         creationDate: '2019-06-24T10:22:18+00:00',
         autoBackup: true,
+        offerName: 'cluster16',
       },
     };
 

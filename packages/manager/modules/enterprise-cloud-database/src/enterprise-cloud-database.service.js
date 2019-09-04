@@ -6,7 +6,7 @@ import { ERROR_STATUS, PROCESSING_STATUS } from './enterprise-cloud-database.con
 
 export default class EnterpriseCloudDatabaseService {
   /* @ngInject */
-  constructor($q, mockData, OvhApiCloudDBEnterprise) {
+  constructor($q, mockData, OvhApiCloudDBEnterprise, OvhApiMe) {
     this.$q = $q;
     this.mockData = mockData;
     this.OvhApiCloudDBEnterpriseCluster = OvhApiCloudDBEnterprise.v6();
@@ -21,6 +21,11 @@ export default class EnterpriseCloudDatabaseService {
     this.OvhApiCloudDBEnterpriseSecurityGroup = OvhApiCloudDBEnterprise.SecurityGroup().v6();
     this.OvhApiCloudDBEnterpriseServiceInfos = OvhApiCloudDBEnterprise.ServiceInfos().v6();
     this.OvhApiCloudDBEnterpriseUser = OvhApiCloudDBEnterprise.User().v6();
+    this.OvhApiMe = OvhApiMe;
+  }
+
+  getDefaultPaymentMethod() {
+    return this.OvhApiMe.PaymentMean().v6().getDefaultPaymentMean();
   }
 
   createMaintenanceWindow(clusterId, windowData) {
@@ -35,6 +40,16 @@ export default class EnterpriseCloudDatabaseService {
   createSecurityGroup(clusterId, name) {
     return this.OvhApiCloudDBEnterpriseSecurityGroup.create({ clusterId },
       { clusterId, name }).$promise;
+  }
+
+  deleteRule(clusterId, securityGroupId, ruleId) {
+    return this.OvhApiCloudDBEnterpriseRule
+      .delete({ clusterId, securityGroupId, ruleId }).$promise;
+  }
+
+  deleteSecurityGroup(clusterId, securityGroupId) {
+    return this.OvhApiCloudDBEnterpriseSecurityGroup
+      .delete({ clusterId, securityGroupId }).$promise;
   }
 
   getOffers() {
@@ -97,6 +112,20 @@ export default class EnterpriseCloudDatabaseService {
 
   getMaintenanceWindow(clusterId) {
     return this.OvhApiCloudDBEnterpriseWindow.get({ clusterId }).$promise;
+  }
+
+  getRuleDetails(clusterId, securityGroupId, ruleId) {
+    return this.OvhApiCloudDBEnterpriseRule.get({ clusterId, securityGroupId, ruleId }).$promise;
+  }
+
+  getRulesList(clusterId, securityGroupId) {
+    return this.getRules(clusterId, securityGroupId)
+      .then(rules => this.$q.all(map(rules,
+        ruleId => this.getRuleDetails(clusterId, securityGroupId, ruleId))));
+  }
+
+  getRules(clusterId, securityGroupId) {
+    return this.OvhApiCloudDBEnterpriseRule.query({ clusterId, securityGroupId }).$promise;
   }
 
   getSecurityGroupDetails(clusterId, securityGroupId) {
@@ -184,6 +213,17 @@ export default class EnterpriseCloudDatabaseService {
   revokeAccessToLdpAccount(clusterId, logsId) {
     return this.OvhApiCloudDBEnterpriseLogs.revokeAccess({ clusterId, logsId })
       .$promise;
+  }
+
+  resetSecurityGroupDetailsCache() {
+    this.OvhApiCloudDBEnterpriseSecurityGroup.resetCache();
+  }
+
+  updateSecurityGroup(clusterId, securityGroupId, name) {
+    return this.OvhApiCloudDBEnterpriseSecurityGroup.update(
+      { clusterId, securityGroupId },
+      { name },
+    ).$promise;
   }
 
   static isProcessing(status) {

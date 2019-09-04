@@ -2,8 +2,6 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import range from 'lodash/range';
 
-import { MAX_CLUSTER_SIZE } from '../details/details.constants';
-
 export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
   /* @ngInject */
   constructor(
@@ -15,7 +13,7 @@ export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
   }
 
   $onInit() {
-    const orderableReplicaCount = MAX_CLUSTER_SIZE - this.hostList.length;
+    const orderableReplicaCount = this.maxHostCount - this.hostList.length;
     this.replicaCounts = map(range(1, orderableReplicaCount + 1), replicaNumber => ({
       replicaNumber,
       text: `${replicaNumber} ${(replicaNumber > 1
@@ -36,5 +34,9 @@ export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
     };
     this.callback(data);
     this.goBack();
+  }
+
+  defaultPaymentChange(defaultPaymentCheck) {
+    this.defaultPaymentCheck = defaultPaymentCheck;
   }
 }

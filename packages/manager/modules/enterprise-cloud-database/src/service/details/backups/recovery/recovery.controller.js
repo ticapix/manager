@@ -9,4 +9,8 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsRecoveryCtrl {
   cancel() {
     this.$state.go('^');
   }
+
+  dataChange(defaultPaymentCheck) {
+    this.defaultPaymentCheck = defaultPaymentCheck;
+  }
 }
