@@ -6,6 +6,9 @@ export default /* @ngInject */($stateProvider) => {
     },
     resolve: {
       addReplicas: /* @ngInject */ ($state, clusterId, hostList) => callback => $state.go('enterprise-cloud-database.service.get-started.add-replicas', { callback, clusterId, hostList }),
+      endPoints: /* @ngInject */
+        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+          .getEndpointsWithDetails(clusterId),
       hostList: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getHosts(clusterId),

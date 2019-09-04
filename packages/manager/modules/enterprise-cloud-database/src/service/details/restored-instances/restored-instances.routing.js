@@ -7,6 +7,9 @@ export default /* @ngInject */($stateProvider) => {
     },
     url: '/restored-instances',
     resolve: {
+      endPoints: /* @ngInject */
+        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+          .getEndpointsWithDetails(clusterId),
       restoredInstances: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getRestoreList(clusterId),

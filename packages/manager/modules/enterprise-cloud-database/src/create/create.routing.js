@@ -4,6 +4,8 @@ export default /* @ngInject */($stateProvider) => {
     url: '/create',
     resolve: {
       breadcrumb: /* @ngInject */ $translate => $translate.instant('enterprise_cloud_database_create_title'),
+      capabilities: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
+        .getOffers(),
     },
   });
 };

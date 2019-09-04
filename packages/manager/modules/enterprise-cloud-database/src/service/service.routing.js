@@ -9,9 +9,6 @@ export default /* @ngInject */($stateProvider) => {
       gotoClusterDetails: /* @ngInject */ ($state, clusterId) => () => $state.go('enterprise-cloud-database.service.details.overview', { clusterId }),
       clusterId: /* @ngInject */ $transition$ => $transition$.params().clusterId,
       clusterType: /* @ngInject */ () => 'postgresql',
-      endPoints: /* @ngInject */
-        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getEndpointsWithDetails(clusterId),
     },
     translations: {
       value: ['.'],

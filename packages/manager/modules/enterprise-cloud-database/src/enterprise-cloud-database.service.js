@@ -102,6 +102,13 @@ export default class EnterpriseCloudDatabaseService {
       ));
   }
 
+  getHostsWithDetails(clusterId) {
+    return this.getHosts(clusterId)
+      .then(hosts => this.$q.all(
+        map(hosts, hostId => this.getHostDetails(clusterId, hostId)),
+      ));
+  }
+
   getHostDetails(clusterId, hostId) {
     return this.OvhApiCloudDBEnterpriseHost.get({ clusterId, hostId }).$promise;
   }
