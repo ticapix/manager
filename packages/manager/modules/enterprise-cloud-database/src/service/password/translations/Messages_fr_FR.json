@@ -5,6 +5,6 @@
   "enterprise_cloud_database_service_cluster_password_help_alphanumeric": "Must be alphanumeric",
   "enterprise_cloud_database_service_cluster_password_help_upper_case": "Must contain atleast 1 upper case character",
   "enterprise_cloud_database_service_cluster_password_help_number": "Must contain at least two numbers",
-  "enterprise_cloud_database_service_cluster_password_help_length": "Doit contenir entre 12 et 32 caractères",
-  "enterprise_cloud_database_service_cluster_password_placeholder": "Entrer un password"
+  "enterprise_cloud_database_service_cluster_password_help_length": "Must contain 12 to 32 characters",
+  "enterprise_cloud_database_service_cluster_password_placeholder": "Enter a password"
 }

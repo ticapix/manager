@@ -2,11 +2,13 @@ import angular from 'angular';
 
 import enterpriseCloudDatabaseServiceDetailsLogsComponent from './logs.component';
 import routing from './logs.routing';
+import grantAdpAccess from './grant-access';
+import revokeAdpAccess from './revoke-access';
 
 const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsLogs';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [grantAdpAccess, revokeAdpAccess])
   .config(routing)
   .component('enterpriseCloudDatabaseServiceDetailsLogsComponent', enterpriseCloudDatabaseServiceDetailsLogsComponent)
   .run(/* @ngTranslationsInject:json ./translations */);

@@ -55,9 +55,12 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getClusterDetails(clusterId) {
-    return this.OvhApiCloudDBEnterpriseCluster.get({ clusterId }).$promise.then((response) => {
-      delete response.$promise; return response;
-    });
+    return this.OvhApiCloudDBEnterpriseCluster.get({ clusterId })
+      .$promise
+      .then((response) => {
+        delete response.$promise;
+        return response;
+      });
   }
 
   getClusterList() {
@@ -160,6 +163,27 @@ export default class EnterpriseCloudDatabaseService {
     return this.OvhApiCloudDBEnterpriseRestore.delete(
       { clusterId, restoreId: restoredInstanceId },
     ).$promise;
+  }
+
+  getLogs(clusterId) {
+    return this.OvhApiCloudDBEnterpriseLogs.query({ clusterId })
+      .$promise
+      .then(ids => map(ids, id => ({ id })));
+  }
+
+  getLogDetails(clusterId, logsId) {
+    return this.OvhApiCloudDBEnterpriseLogs.get({ clusterId, logsId })
+      .$promise;
+  }
+
+  grantAccessToLdpAccount(clusterId, log) {
+    return this.OvhApiCloudDBEnterpriseLogs.grantAccess({ clusterId }, log)
+      .$promise;
+  }
+
+  revokeAccessToLdpAccount(clusterId, logsId) {
+    return this.OvhApiCloudDBEnterpriseLogs.revokeAccess({ clusterId, logsId })
+      .$promise;
   }
 
   static isProcessing(status) {

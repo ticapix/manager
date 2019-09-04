@@ -1,6 +1,6 @@
 {
   "enterprise_cloud_database_title": "Enterprise Cloud Database",
-  "enterprise_cloud_database_description": "Database propose des bases de données relationnelles entièrement managées. Cela vous permet de vous concentrer sur le développement plutôt que sur l’administration, la configuration ou les réglages. Le produit inclus un mode haute disponibilité, une réplication des données et des sauvegardes automatiques. PostgreSQL est le premier système supporté, mais d’autres sont à venir.",
+  "enterprise_cloud_database_description": "Enterprise Cloud Database is a fully managed, high performance database cluster service. Using Enterprise Cloud Database is a powerful alternative to installing, configuring, maintaining, and securing database by hand. Clusters include daily backups with point-in-time recovery (PITR), standby nodes for high availability, and end-to-end SSL encryption.",
   "enterprise_cloud_database_order_new_database": "Order a cloud database",
   "enterprise_cloud_database_list_service_name": "Service Name",
   "enterprise_cloud_database_list_service_id": "Service Id",
