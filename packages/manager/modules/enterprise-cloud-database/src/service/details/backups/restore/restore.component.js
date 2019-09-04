@@ -3,7 +3,7 @@ import template from './restore.html';
 
 const component = {
   bindings: {
-    backupInstacnce: '<',
+    backupInstance: '<',
     defaultPaymentMethod: '<',
     goBackToBackups: '<',
   },

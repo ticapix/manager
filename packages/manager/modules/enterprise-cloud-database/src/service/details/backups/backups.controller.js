@@ -1,15 +1,24 @@
+import { ENTERPRISE_CLOUD_DATABASE_STATUS_MAP } from '../../../enterprise-cloud-database.constants';
+
 export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
   /* @ngInject */
   constructor(
     $state,
     CucCloudMessage,
+    enterpriseCloudDatabaseService,
   ) {
     this.$state = $state;
     this.CucCloudMessage = CucCloudMessage;
+    this.service = enterpriseCloudDatabaseService;
+    this.ENTERPRISE_CLOUD_DATABASE_STATUS_MAP = ENTERPRISE_CLOUD_DATABASE_STATUS_MAP;
   }
 
   $onInit() {
     this.loadMessages();
+    const firstBackupId = this.backupList[this.backupList.length - 1].id;
+    this.getBackupDetails(firstBackupId).then((backup) => {
+      this.minDate = backup.creationDate;
+    });
   }
 
   loadMessages() {
@@ -21,12 +30,16 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
     this.messages = this.messageHandler.getMessages();
   }
 
+  loadBackupDetails(backupId) {
+    return this.service.getBackupDetails(this.clusterId, backupId);
+  }
+
   manualBackup() {
     return this.$state.go('enterprise-cloud-database.service.details.backups.manual');
   }
 
   recovery() {
-    return this.$state.go('enterprise-cloud-database.service.details.backups.recovery');
+    return this.$state.go('enterprise-cloud-database.service.details.backups.recovery', { minDate: this.minDate });
   }
 
   restore(backupInstance) {

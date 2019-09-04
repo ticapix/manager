@@ -18,21 +18,21 @@
             </oui-tile-definition>
             <oui-tile-definition data-term="{{ ::'enterprise_cloud_database_storage_size' | translate }}" data-description="{{:: $ctrl.clusterDetails.storage_size }}">
             </oui-tile-definition>
-            <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_engine' | translate }}" data-description="{{:: $ctrl.clusterDetails.database_engine }}">
+            <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_engine' | translate }}" data-description="{{:: $ctrl.clusterDetails.offerType }}">
             </oui-tile-definition>
             <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_admin_credentials' | translate }}">
                 <oui-tile-description>
                     <div>
                         <span data-translate="enterprise_cloud_database_admin_credentials_user"></span>
-                        <span data-ng-bind="$ctrl.clusterDetails.userName"></span>
+                        <span data-ng-bind="$ctrl.clusterDetails.offerType"></span>
                     </div>
                     <div>
                         <span data-translate="enterprise_cloud_database_admin_credentials_password"></span>
-                        <span data-ng-bind="$ctrl.clusterDetails.password"></span>
+                        <span data-ng-bind="$ctrl.MASKED_PASSWORD"></span>
                     </div>
                 </oui-tile-description>
                 <oui-action-menu data-align="end" data-compact>
-                    <oui-action-menu-item data-on-click="$ctrl.updatePassword($ctrl.clusterDetails.id)">
+                    <oui-action-menu-item data-on-click="$ctrl.goToUpdatePassword()">
                         <span data-translate="enterprise_cloud_database_update_password"></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
@@ -90,7 +90,7 @@
                     </span>
                 </oui-tile-description>
                 <oui-action-menu data-align="end" data-compact>
-                    <oui-action-menu-item data-ui-sref="enterprise-cloud-database.service.details.settings">
+                    <oui-action-menu-item data-on-click="$ctrl.goToSettings()">
                         <span data-translate="enterprise_cloud_database_common_manage"></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
@@ -126,7 +126,7 @@
                     <span data-ng-bind="$ctrl.INCLUDED_CLUSTER_SIZE.PRIMARY"></span>
                 </oui-tile-description>
                 <oui-action-menu data-align="end" data-compact>
-                    <oui-action-menu-item data-on-click="$ctrl.manageInstance()">
+                    <oui-action-menu-item data-on-click="$ctrl.goToClusterSize()">
                         <span data-translate="enterprise_cloud_database_common_manage"></span>
                     </oui-action-menu-item>
                 </oui-action-menu>

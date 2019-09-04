@@ -9,8 +9,8 @@ export default /* @ngInject */($stateProvider) => {
     resolve: {
       capabilities: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
         .getOffers(),
-      clusters: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
-        .getClusterList(),
+      // clusters: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
+      //   .getClusterList(),
       goBackToList: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success', clusterId = null) => {
         const reload = message && type === 'success';
         const state = 'enterprise-cloud-database';

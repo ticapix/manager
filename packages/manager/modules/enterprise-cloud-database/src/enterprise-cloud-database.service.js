@@ -170,6 +170,15 @@ export default class EnterpriseCloudDatabaseService {
       ));
   }
 
+  createRestore(clusterId, backupId, timestamp) {
+    const payLoad = backupId ? { backupId } : { timestamp };
+    return this.OvhApiCloudDBEnterpriseRestore.create({ clusterId }, payLoad).$promise;
+  }
+
+  createBackup(clusterId, name) {
+    return this.OvhApiCloudDBEnterpriseBackup.create({ clusterId }, { clusterId, name }).$promise;
+  }
+
   getBackups(clusterId) {
     return this.OvhApiCloudDBEnterpriseBackup.query({ clusterId }).$promise;
   }

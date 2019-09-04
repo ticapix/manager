@@ -7,7 +7,7 @@
     <p data-translate="enterprise_cloud_database_backup_size"></p>
     <p data-translate="enterprise_cloud_database_backup_price"></p>
 
-    <oui-datagrid class="mt-5" data-page-size="5" data-rows="$ctrl.backupList">
+    <oui-datagrid class="mt-5" data-page-size="5" data-rows="$ctrl.backupList" data-row-loader="$ctrl.getBackupDetails($row.id)">
         <oui-column data-title=":: 'enterprise_cloud_database_backup_name' | translate" data-property="name" data-sortable="asc" data-type="string" data-searchable data-filterable></oui-column>
         <oui-column data-title=":: 'enterprise_cloud_database_backup_time' | translate" data-property="creationDate" data-sortable>
             <span data-ng-bind="$row.creationDate | date: 'dd/MM/yyyy'"></span>

@@ -5,5 +5,7 @@
   "enterprise_cloud_database_backups_recovery_time_slots": "Time slots depend on available backups",
   "enterprise_cloud_database_backups_recovery_date": "Date",
   "enterprise_cloud_database_backups_recovery_hour": "Hour",
-  "enterprise_cloud_database_backups_recovery_price": "Price: {{ price }}"
+  "enterprise_cloud_database_backups_recovery_price": "Price: {{ price }}",
+  "enterprise_cloud_database_backups_recovery_success": "Successfully launched recovery",
+  "enterprise_cloud_database_backups_recovery_error": "Unable to launch recovery: {{ message }}"
 }

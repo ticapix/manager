@@ -1,13 +1,22 @@
-<oui-modal data-heading="{{:: 'enterprise_cloud_database_backups_manual_title' | translate }}"
-           data-primary-label="{{:: 'enterprise_cloud_database_common_confirm' | translate }}"
-           data-primary-action="$ctrl.delteInstance()"
-           data-secondary-label="{{:: 'enterprise_cloud_database_common_cancel' | translate }}"
-           data-secondary-action="$ctrl.cancel()"
-           data-on-dismiss="$ctrl.cancel()"
-           data-loading="$ctrl.isLoading">
-    <p data-translate="enterprise_cloud_database_backups_manual_launch" data-translate-values="{ clusterName: $ctrl.clusterDetails.name }"></p>
-    <p data-translate="enterprise_cloud_database_backups_manual_price" data-translate-values="{ price: $ctrl.pricePerHour }"></p>
-    <ovh-manager-enterprise-cloud-database-service-details-default-payment-component
-        data-default-payment="$ctrl.defaultPaymentMethod" data-on-change="$ctrl.dataChange(data)">
-    </ovh-manager-enterprise-cloud-database-service-details-default-payment-component>
-</oui-modal>
+<form name="manualBackup">
+    <oui-modal data-heading="{{:: 'enterprise_cloud_database_backups_manual_title' | translate }}"
+               data-primary-label="{{:: 'enterprise_cloud_database_common_confirm' | translate }}"
+               data-primary-action="$ctrl.createBackup()"
+               data-secondary-label="{{:: 'enterprise_cloud_database_common_cancel' | translate }}"
+               data-secondary-action="$ctrl.cancel()"
+               data-on-dismiss="$ctrl.cancel()"
+               data-loading="$ctrl.isLoading">
+        <p data-translate="enterprise_cloud_database_backups_manual_launch" data-translate-values="{ clusterName: $ctrl.clusterDetails.name }"></p>
+        <p data-translate="enterprise_cloud_database_backups_manual_price" data-translate-values="{ price: $ctrl.pricePerHour }"></p>
+        <oui-field data-label="{{:: 'enterprise_cloud_database_backups_manual_name' | translate }}">
+            <input class="oui-input"
+                   type="text"
+                   name="backupName"
+                   data-ng-model="$ctrl.backupName"
+                   required>
+        </oui-field>
+        <ovh-manager-enterprise-cloud-database-service-details-default-payment-component
+            data-default-payment="$ctrl.defaultPaymentMethod" data-on-change="$ctrl.dataChange(data)">
+        </ovh-manager-enterprise-cloud-database-service-details-default-payment-component>
+    </oui-modal>
+</form>

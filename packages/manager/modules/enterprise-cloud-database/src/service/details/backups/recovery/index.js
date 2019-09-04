@@ -11,12 +11,18 @@ angular
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('enterprise-cloud-database.service.details.backups.recovery', {
       url: '/recovery',
+      params: {
+        minDate: null,
+      },
       views: {
         modal: {
           component: 'recoveryComponent',
         },
       },
       layout: 'modal',
+      resolve: {
+        minDate: /* @ngInject */ $transition$ => $transition$.params().minDate,
+      },
     });
   })
   .component('recoveryComponent', recoveryComponent)
