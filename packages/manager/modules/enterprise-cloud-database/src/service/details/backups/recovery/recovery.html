@@ -11,16 +11,15 @@
     </p>
     <oui-field data-label="{{ ::'enterprise_cloud_database_backups_recovery_date' | translate }}"
                data-size="l">
-        <oui-calendar model="$ctrl.formatModel" format="d-m-Y" alt-format="F j, Y"></oui-calendar>
+        <oui-calendar data-model="$ctrl.formatModel" data-format="d-m-Y" alt-format="F j, Y"
+                      data-min-date="$ctrl.minDate" data-max-date="$ctrl.maxDate"></oui-calendar>
         <div class="oui-field__helper"><span data-translate="{{ 'enterprise_cloud_database_backups_recovery_time_slots' }}"></span></div>
     </oui-field>
     <oui-field data-label="{{ ::'enterprise_cloud_database_backups_recovery_hour' | translate }}"
                data-size="s">
-        <oui-timepicker model="$ctrl.timepickerModel" placeholder="HH:MM"></oui-timepicker>
+        <oui-timepicker data-model="$ctrl.timepickerModel" data-placeholder="HH:MM"></oui-timepicker>
     </oui-field>
-    <oui-checkbox model="$ctrl.onChangeValue" on-change="$ctrl.lastOnChangeValue = modelValue">
-        <span data-translate="enterprise_cloud_database_backups_recovery_default_payment_check"
-              data-translate-values="{ account: $ctrl.accontDetails }">
-        </span>
-    </oui-checkbox>
+    <ovh-manager-enterprise-cloud-database-service-details-default-payment-component
+        data-default-payment="$ctrl.defaultPaymentMethod" data-on-change="$ctrl.dataChange(data)">
+    </ovh-manager-enterprise-cloud-database-service-details-default-payment-component>
 </oui-modal>

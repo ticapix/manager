@@ -35,4 +35,8 @@ export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
     this.callback(data);
     this.goBack();
   }
+
+  defaultPaymentChange(defaultPaymentCheck) {
+    this.defaultPaymentCheck = defaultPaymentCheck;
+  }
 }

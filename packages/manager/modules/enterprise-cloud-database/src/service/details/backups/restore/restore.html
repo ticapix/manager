@@ -1,12 +1,12 @@
-<oui-modal data-heading="{{:: 'enterprise_cloud_database_backups_manual_title' | translate }}"
+<oui-modal data-heading="{{:: 'enterprise_cloud_database_backups_restore_title' | translate }}"
            data-primary-label="{{:: 'enterprise_cloud_database_common_confirm' | translate }}"
-           data-primary-action="$ctrl.delteInstance()"
+           data-primary-action="$ctrl.restoreInstance()"
            data-secondary-label="{{:: 'enterprise_cloud_database_common_cancel' | translate }}"
            data-secondary-action="$ctrl.cancel()"
            data-on-dismiss="$ctrl.cancel()"
            data-loading="$ctrl.isLoading">
-    <p data-translate="enterprise_cloud_database_backups_manual_launch" data-translate-values="{ clusterName: $ctrl.clusterDetails.name }"></p>
-    <p data-translate="enterprise_cloud_database_backups_manual_price" data-translate-values="{ price: $ctrl.pricePerHour }"></p>
+    <p data-translate="enterprise_cloud_database_backups_restore_description" data-translate-values="{ name: $ctrl.backupInstance.name }"></p>
+    <p data-translate="enterprise_cloud_database_backups_restore_price"></p>
     <ovh-manager-enterprise-cloud-database-service-details-default-payment-component
         data-default-payment="$ctrl.defaultPaymentMethod" data-on-change="$ctrl.dataChange(data)">
     </ovh-manager-enterprise-cloud-database-service-details-default-payment-component>

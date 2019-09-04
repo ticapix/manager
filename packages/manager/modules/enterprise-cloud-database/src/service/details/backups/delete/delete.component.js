@@ -3,7 +3,8 @@ import template from './delete.html';
 
 const component = {
   bindings: {
-    instanceId: '<',
+    backupInstance: '<',
+    goBackToBackups: '<',
   },
   controller,
   template,
