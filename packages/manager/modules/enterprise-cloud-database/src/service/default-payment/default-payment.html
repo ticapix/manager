@@ -1,0 +1,6 @@
+<oui-checkbox data-model="$ctrl.onChangeValue" data-on-change="$ctrl.onChange({ data: $ctrl.onChangeValue })" data-ng-if="!$ctrl.defaultPayment">
+    <span data-translate="enterprise_cloud_database_service_details_default_payment_checkbox"
+          data-translate-values="{ paymentDetails: $ctrl.paymentDetails }">
+    </span>
+</oui-checkbox>
+<span data-ng-if="$ctrl.defaultPayment" data-translate="enterprise_cloud_database_service_details_no_default_payment"></span>

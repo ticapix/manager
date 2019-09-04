@@ -9,14 +9,14 @@
 
     <oui-datagrid class="mt-5" data-page-size="5" data-rows="$ctrl.backupList">
         <oui-column data-title=":: 'enterprise_cloud_database_backup_name' | translate" data-property="name" data-sortable="asc" data-type="string" data-searchable data-filterable></oui-column>
-        <oui-column data-title=":: 'enterprise_cloud_database_backup_time' | translate" data-property="creationDate">
+        <oui-column data-title=":: 'enterprise_cloud_database_backup_time' | translate" data-property="creationDate" data-sortable>
             <span data-ng-bind="$row.creationDate | date: 'dd/MM/yyyy'"></span>
         </oui-column>
-        <oui-column data-title=":: 'enterprise_cloud_database_backup_expiration_date' | translate" data-property="expiration" data-sortable="asc">
+        <oui-column data-title=":: 'enterprise_cloud_database_backup_expiration_date' | translate" data-property="expiration" data-sortable>
             <span data-ng-bind="$row.expiration | date: 'dd/MM/yyyy'"></span>
         </oui-column>
-        <oui-column data-title=":: 'enterprise_cloud_database_backup_mode' | translate" data-property="mode" data-sortable="asc" data-type="string" data-searchable data-filterable></oui-column>
-        <oui-column data-title=":: 'enterprise_cloud_database_common_status' | translate" data-property="status" data-type="string">
+        <oui-column data-title=":: 'enterprise_cloud_database_backup_mode' | translate" data-property="mode" data-type="string" data-searchable data-filterable data-sortable></oui-column>
+        <oui-column data-title=":: 'enterprise_cloud_database_common_status' | translate" data-property="status" data-type="string" data-searchable data-sortable>
             <span class="oui-status"
                   data-ng-class="'oui-status_' + $ctrl.ENTERPRISE_CLOUD_DATABASE_STATUS_MAP[$row.status]"
                   data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.status) | translate"></span>
@@ -25,7 +25,7 @@
             <oui-action-menu-item data-on-click="$ctrl.restore($row)">
                 <span data-translate="enterprise_cloud_database_backup_restore"></span>
             </oui-action-menu-item>
-            <oui-action-menu-item data-on-click="$ctrl.delete($row)">
+            <oui-action-menu-item data-on-click="$ctrl.deleteBackup($row)">
                 <span data-translate="enterprise_cloud_database_common_delete"></span>
             </oui-action-menu-item>
         </oui-action-menu>

@@ -1,11 +1,9 @@
 export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
   /* @ngInject */
   constructor(
-    $scope,
     $state,
     CucCloudMessage,
   ) {
-    this.$scope = $scope;
     this.$state = $state;
     this.CucCloudMessage = CucCloudMessage;
   }
@@ -29,5 +27,13 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
 
   recovery() {
     return this.$state.go('enterprise-cloud-database.service.details.backups.recovery');
+  }
+
+  restore(backupInstance) {
+    return this.$state.go('enterprise-cloud-database.service.details.backups.restore', { backupInstance });
+  }
+
+  deleteBackup(backupInstance) {
+    return this.$state.go('enterprise-cloud-database.service.details.backups.delete', { backupInstance });
   }
 }

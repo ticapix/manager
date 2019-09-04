@@ -2,8 +2,11 @@ import controller from './delete.controller';
 import template from './delete.html';
 
 const component = {
-  template,
+  bindings: {
+    instanceId: '<',
+  },
   controller,
+  template,
 };
 
 export default component;

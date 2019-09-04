@@ -27,6 +27,8 @@ export default /* @ngInject */($stateProvider) => {
         }
         return promise;
       },
+      defaultPaymentMethod: /* @ngInject */
+        enterpriseCloudDatabaseService => enterpriseCloudDatabaseService.getDefaultPaymentMethod(),
     },
   });
 };

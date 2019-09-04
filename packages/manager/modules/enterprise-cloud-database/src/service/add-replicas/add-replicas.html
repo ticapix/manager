@@ -9,8 +9,7 @@
                 data-model="$ctrl.data.selectedReplicaCount"
                 data-items="$ctrl.replicaCounts"
                 data-match="text"></oui-select>
-    <oui-checkbox data-name="useDefaultPaymentMethod"
-                  data-text="{{ 'enterprise_cloud_database_service_add_replicas_default_payment_method' | translate }}"
-                  data-model="$ctrl.data.useDefaultPaymentMethod"
-                  data-required></oui-checkbox>
+    <ovh-manager-enterprise-cloud-database-service-details-default-payment-component
+        data-default-payment="$ctrl.defaultPaymentMethod" data-on-change="$ctrl.defaultPaymentChange(data)">
+    </ovh-manager-enterprise-cloud-database-service-details-default-payment-component>
 </oui-modal>

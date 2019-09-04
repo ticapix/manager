@@ -140,6 +140,7 @@ export default class MockData {
         status: 'created',
         autoBackup: true,
         version: '11',
+        offerType: 'postgresql',
         offerName: 'cluster64',
       },
       'b78deac6-08fb-4f43-a502-be8e2ca6ceb3': {

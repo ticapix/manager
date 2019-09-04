@@ -14,6 +14,17 @@ export default /* @ngInject */($stateProvider) => {
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getBackupList(clusterId).then(backups => map(backups, backup => assign(backup,
             { expiration: backup.creationDate }))),
+      goBackToBackups: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success') => {
+        const reload = message && type === 'success';
+        const state = 'enterprise-cloud-database.service.details.backups';
+        const promise = $state.go(state, {}, { reload });
+        if (message) {
+          promise.then(() => {
+            CucCloudMessage[type](message, state);
+          });
+        }
+        return promise;
+      },
     },
   });
 };
