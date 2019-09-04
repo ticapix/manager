@@ -4,10 +4,9 @@ export default /* @ngInject */($stateProvider) => {
     resolve: {
       addReplicas: /* @ngInject */ ($state, clusterId, hosts) => callback => $state.go('enterprise-cloud-database.service.details.cluster-size.add-replicas', { clusterId, hostList: hosts, callback }),
       deleteReplicas: /* @ngInject */ ($state, clusterId) => () => $state.go('enterprise-cloud-database.service.details.cluster-size.delete', { clusterId }),
-    },
-    translations: {
-      value: ['.'],
-      format: 'json',
+      hosts: /* @ngInject */
+        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+          .getHostsWithDetails(clusterId),
     },
     url: '/cluster-size',
   }).state('enterprise-cloud-database.service.details.cluster-size.add-replicas', {

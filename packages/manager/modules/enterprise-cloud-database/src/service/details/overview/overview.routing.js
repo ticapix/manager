@@ -7,6 +7,12 @@ export default /* @ngInject */($stateProvider) => {
     },
     url: '/overview',
     resolve: {
+      endPoints: /* @ngInject */
+        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+          .getEndpointsWithDetails(clusterId),
+      hosts: /* @ngInject */
+        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+          .getHostsWithDetails(clusterId),
       serviceInfo: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getServiceInfo(clusterId),
