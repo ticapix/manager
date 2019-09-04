@@ -36,7 +36,8 @@
   "dependencies": {
     "flag-icon-css": "^3.2.0",
     "lodash": "^4.17.14",
-    "moment": "^2.22.2"
+    "moment": "^2.22.2",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^6.0.0"
