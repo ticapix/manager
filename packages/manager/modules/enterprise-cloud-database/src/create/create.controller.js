@@ -24,6 +24,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
     this.databasePlanMap = {};
     this.databases = [];
+    this.populateAdditionalReplicas();
     this.populateDatabaseClustersMap();
     console.log('databasePlanMap ', this.databasePlanMap);
     this.populateUniqueDatabases();
@@ -41,8 +42,26 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
       cluster: defaultCluster,
       commitmentPeriod: null,
       paymentType: null,
+      additionalReplicaCount: null,
     };
     this.regions = toArray(regions);
+  }
+
+  populateAdditionalReplicas() {
+    this.additionalReplicas = [
+      {
+        value: 1,
+        price: 6000,
+      },
+      {
+        value: 2,
+        price: 12000,
+      },
+      {
+        value: 3,
+        price: 18000,
+      },
+    ];
   }
 
   populateCapabilityDetails() {
@@ -150,5 +169,10 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
   onRegionSelect(region) {
     const database = `${this.enterpriceDb.database.name}-${this.enterpriceDb.database.selectedVersion}`;
     this.clusters = toArray(this.databasePlanMap[database][region]);
+  }
+
+  orderDatabaseCluster() {
+    this.order = true;
+    console.log(this.enterpriceDb);
   }
 }

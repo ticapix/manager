@@ -3,7 +3,7 @@
         class="mb-2"
         data-heading="{{ ::'enterprise_cloud_database_title' | translate }}">
     </oui-page-header>
-    <div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
+    <div class="container-fluid w-100 h-100 pt-4 pb-4 px-3 px-md-5">
         <!-- error messages -->
         <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
         <oui-back-button data-state="enterprise-cloud-database">
@@ -34,14 +34,26 @@
                 <p data-translate="enterprise_cloud_database_create_choose_cluster_desc"></p>
                 <h5><span data-translate="enterprise_cloud_database_create_choose_cluster_info"></span>:</h5>
                 <ul class="list-unstyled">
-                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_primary"></span>(Primary)</li>
-                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_replica"></span>(Replica)</li>
-                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_backup"></span>(Backup)</li>
+                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_primary"></span> (Primary)</li>
+                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_replica"></span> (Replica)</li>
+                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_backup"></span> (Backup)</li>
                 </ul>
                 <enterprise-cloud-database-order-choose-cluster-config
                     clusters="$ctrl.capabilities"
                     enterprice-db="$ctrl.enterpriceDb">
                 </enterprise-cloud-database-order-choose-cluster-config>
+            </section>
+            <section class="additional-replica mb-5">
+                <h4 data-translate="enterprise_cloud_database_create_additional_replicas"></h4>
+                <p data-translate="enterprise_cloud_database_create_additional_replicas_desc"></p>
+                <oui-select name="replicas"
+                    class="w-50"
+                    data-model="$ctrl.enterpriceDb.additionalReplicaCount"
+                    placeholder="Select additional replicas ..."
+                    data-items="$ctrl.additionalReplicas"
+                    data-match="value">
+                    <span>{{ $item.value }} Replicas - {{ $item.price }}$ inc.tax/month</span>
+                </oui-select>
             </section>
             <section class="choose-commitment mb-5">
                 <h4 data-translate="enterprise_cloud_database_create_choose_commitment"></h4>
@@ -57,6 +69,28 @@
                     enterprice-db="$ctrl.enterpriceDb">
                 </enterprise-cloud-database-order-choose-payment-period>
             </section>
+            <section class="order-summary mb-5">
+                <h4 data-translate="enterprise_cloud_database_create_order_summary_title"></h4>
+                <div data-translate="enterprise_cloud_database_create_order_summary_cluster"
+                    data-translate-values="{
+                        RAM: $ctrl.enterpriceDb.cluster.memory.size,
+                        CPU: $ctrl.enterpriceDb.cluster.cpu.cores,
+                        storage: $ctrl.enterpriceDb.cluster.storage.size,
+                        storageType: $ctrl.enterpriceDb.cluster.storage.type,
+                        storageCount: $ctrl.enterpriceDb.cluster.storage.count 
+                    }">
+                </div>
+                <div data-ng-if="$ctrl.enterpriceDb.additionalReplicaCount"
+                    data-translate="enterprise_cloud_database_create_order_summary_replicas"
+                    data-translate-values="{
+                        additionalReplicaCount: $ctrl.enterpriceDb.additionalReplicaCount ? $ctrl.enterpriceDb.additionalReplicaCount.value : 0
+                    }">
+                </div>
+                <strong><p data-translate="enterprise_cloud_database_create_order_summary_total_price"></p></strong>
+            </section>
+            <oui-button data-variant="primary" data-on-click="$ctrl.orderDatabaseCluster()">
+                <span data-translate="enterprise_cloud_database_create_order_button_label"></span>
+            </oui-button>
         </form>
     </div>
 </div>
