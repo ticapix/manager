@@ -101,6 +101,7 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
         .then(securityGroup => this.enterpriseCloudDatabaseService
           .createRule(this.clusterDetails.id, securityGroup.id, this.data.rule)),
     ])
+      .catch(error => this.handleError(error))
       .then(() => {
         this.stepperIndex += 1;
         set(form, '$valid', true);

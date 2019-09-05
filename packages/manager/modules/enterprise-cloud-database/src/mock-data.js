@@ -723,20 +723,20 @@ export default class MockData {
     };
 
     this.clusters = [
-      'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d',
+      '315d2938-bc19-4b4f-b362-108fe28324e4',
       'b78deac6-08fb-4f43-a502-be8e2ca6ceb3',
       'c9804e9e-fe07-441b-99f0-c14535aa277b',
       '1c34e05b-d7ea-4a55-af59-0e0f528db0ea',
     ];
 
     this.clusterDetails = {
-      'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d': {
+      '315d2938-bc19-4b4f-b362-108fe28324e4': {
         lastUpdate: '2019-08-11T00:11:12+00:00',
         regionName: 'eu-west-fr-1',
         taskId: null,
         name: 'postgresql-3db3270d15d94a079bf532',
         creationDate: '2019-06-24T10:39:07+00:00',
-        id: 'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d',
+        id: '315d2938-bc19-4b4f-b362-108fe28324e4',
         status: 'created',
         autoBackup: true,
         version: '11',
