@@ -1,37 +1,26 @@
-import head from 'lodash/head';
+import split from 'lodash/split';
 
 export default class {
-  constructor() {
-    this.dummy = null;
+  constructor($timeout) {
+    'ngInject';
+
+    this.$timeout = $timeout;
   }
 
   $onInit() {
-    this.initializeMockData();
-  }
-
-  initializeMockData() {
-    this.regions = [
-      {
-        id: 'GRA5',
-        name: 'GRA5',
-        icons: 'flag-icon flag-icon-gra',
-      },
-      {
-        id: 'SYD1',
-        name: 'SYD1',
-        icons: 'flag-icon flag-icon-syd',
-      },
-      {
-        id: 'SGP1',
-        name: 'SGP1',
-        icons: 'flag-icon flag-icon-sgp',
-      },
-    ];
-    this.selectedRegion = head(this.regions);
+    this.selectedRegion = this.enterpriceDb.datacenter;
   }
 
   onRegionSelect(region) {
     this.selectedRegion = region;
     this.enterpriceDb.datacenter = region;
+    if (this.onChange) {
+      this.$timeout(() => this.onChange({ region: this.selectedRegion }));
+    }
+  }
+
+  static getIcons(region) {
+    const splitArray = split(region, '-');
+    return `flag-icon flag-icon-${splitArray[2]}`;
   }
 }

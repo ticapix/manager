@@ -30,7 +30,7 @@
         </oui-column>
         <oui-action-menu data-align="end" data-compact>
             <oui-action-menu-item data-on-click="$ctrl.revokeAccess($row)"
-                data-disabled="$ctrl.enterpriseCloudDatabaseService.isProcessing($row.status)">
+                data-disabled="$ctrl.enterpriseCloudDatabaseService.constructor.isProcessing($row.status)">
                 <span data-translate="enterprise_cloud_database_logs_revoke_access"></span>
             </oui-action-menu-item>
         </oui-action-menu>

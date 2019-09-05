@@ -21,6 +21,7 @@ export default class EnterpriseCloudDatabaseService {
     this.OvhApiCloudDBEnterpriseSecurityGroup = OvhApiCloudDBEnterprise.SecurityGroup().v6();
     this.OvhApiCloudDBEnterpriseServiceInfos = OvhApiCloudDBEnterprise.ServiceInfos().v6();
     this.OvhApiCloudDBEnterpriseUser = OvhApiCloudDBEnterprise.User().v6();
+    this.OvhApiCloudDBEnterpriseOffers = OvhApiCloudDBEnterprise.Offers().v6();
     this.OvhApiMe = OvhApiMe;
   }
 
@@ -53,7 +54,8 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getOffers() {
-    return this.mockData.getOffers()
+    return this.OvhApiCloudDBEnterpriseOffers.query()
+      .$promise
       .then(offers => this.$q.all(map(offers, offer => this.getOfferDetails(offer)
         .then((offerDetails) => {
           set(offerDetails, 'displayName', capitalize(offerDetails.name));
@@ -62,11 +64,11 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getOfferDetails(offerName) {
-    return this.mockData.getOfferDetails(offerName);
+    return this.OvhApiCloudDBEnterpriseOffers.get({ name: offerName }).$promise;
   }
 
-  getOfferCatalog() {
-    return this.mockData.getOfferCatalog();
+  getCatalog() {
+    return this.mockData.getCatalog();
   }
 
   getClusterDetails(clusterId) {
@@ -75,7 +77,7 @@ export default class EnterpriseCloudDatabaseService {
       .then((response) => {
         delete response.$promise;
         return response;
-      });
+      }).catch(() => {});
   }
 
   getClusterList() {

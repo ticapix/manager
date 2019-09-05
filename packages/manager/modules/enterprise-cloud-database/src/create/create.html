@@ -15,14 +15,18 @@
                 <h4 data-translate="enterprise_cloud_database_create_choose_db"></h4>
                 <p data-translate="enterprise_cloud_database_create_choose_db_desc"></p>
                 <enterprise-cloud-database-order-choose-database
-                    enterprice-db="$ctrl.enterpriceDb">
+                    data-enterprice-db="$ctrl.enterpriceDb"
+                    data-databases="$ctrl.databases"
+                    data-on-change="$ctrl.onDatabaseSelect(database)">
                 </enterprise-cloud-database-order-choose-database>
             </section>
             <section class="choose-region mb-5">
                 <h4 data-translate="enterprise_cloud_database_create_choose_dc"></h4>
                 <p data-translate="enterprise_cloud_database_create_choose_dc_desc"></p>
                 <enterprise-cloud-database-order-choose-region
-                    enterprice-db="$ctrl.enterpriceDb">
+                    data-enterprice-db="$ctrl.enterpriceDb"
+                    data-regions="$ctrl.regions"
+                    data-on-change="$ctrl.onRegionSelect(region)">
                 </enterprise-cloud-database-order-choose-region>
             </section>
             <section class="choose-cluster mb-5">

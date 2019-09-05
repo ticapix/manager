@@ -3,6 +3,8 @@ export default /* @ngInject */($stateProvider) => {
     component: 'enterpriseCloudDatabaseCreateComponent',
     url: '/create',
     resolve: {
+      catalog: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
+        .getCatalog(),
       breadcrumb: /* @ngInject */ $translate => $translate.instant('enterprise_cloud_database_create_title'),
     },
   });
