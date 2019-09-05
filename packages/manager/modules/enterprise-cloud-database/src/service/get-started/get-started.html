@@ -1,7 +1,9 @@
 <div>
-    <oui-page-header data-heading="{{ ::'enterprise_cloud_database_title' | translate }}">
+    <oui-page-header
+        class="mb-2"
+        data-heading="{{ ::'enterprise_cloud_database_title' | translate }}">
     </oui-page-header>
-    <div class="cui-page__content">
+    <div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
         <!-- error messages -->
         <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
         <h2 data-translate="enterprise_cloud_database_service_get_started_title"></h2>

@@ -18,7 +18,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsRestoreCtrl {
 
   restoreInstance() {
     this.isLoading = true;
-    this.service.restoreBackup(this.backupInstance.clusterId, this.backupInstance.id)
+    this.service.createRestore(this.backupInstance.clusterId, this.backupInstance.id)
       .then(res => this.goBackToBackups(
         this.$translate.instant('enterprise_cloud_database_backups_restore_success',
           { name: this.backupInstance.name }),

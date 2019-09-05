@@ -3,7 +3,10 @@ import template from './recovery.html';
 
 const component = {
   bindings: {
+    clusterId: '<',
     defaultPaymentMethod: '<',
+    goBackToBackups: '<',
+    minDate: '<',
   },
   controller,
   template,

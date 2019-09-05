@@ -104,6 +104,13 @@ export default class EnterpriseCloudDatabaseService {
       ));
   }
 
+  getHostsWithDetails(clusterId) {
+    return this.getHosts(clusterId)
+      .then(hosts => this.$q.all(
+        map(hosts, hostId => this.getHostDetails(clusterId, hostId)),
+      ));
+  }
+
   getHostDetails(clusterId, hostId) {
     return this.OvhApiCloudDBEnterpriseHost.get({ clusterId, hostId }).$promise;
   }
@@ -175,6 +182,15 @@ export default class EnterpriseCloudDatabaseService {
       ));
   }
 
+  createRestore(clusterId, backupId, timestamp) {
+    const payLoad = backupId ? { backupId } : { timestamp };
+    return this.OvhApiCloudDBEnterpriseRestore.create({ clusterId }, payLoad).$promise;
+  }
+
+  createBackup(clusterId, name) {
+    return this.OvhApiCloudDBEnterpriseBackup.create({ clusterId }, { clusterId, name }).$promise;
+  }
+
   getBackups(clusterId) {
     return this.OvhApiCloudDBEnterpriseBackup.query({ clusterId }).$promise;
   }
@@ -188,6 +204,12 @@ export default class EnterpriseCloudDatabaseService {
       .then(backups => this.$q.all(
         map(backups, backupId => this.getBackupDetails(clusterId, backupId)),
       ));
+  }
+
+  deleteBackupInstance(clusterId, backupInstanceId) {
+    return this.OvhApiCloudDBEnterpriseBackup.delete(
+      { clusterId, backupId: backupInstanceId },
+    ).$promise;
   }
 
   deleteRestoredInstance(clusterId, restoredInstanceId) {
