@@ -26,6 +26,9 @@ export default /* @ngInject */($stateProvider) => {
         }
         return promise;
       },
+      offerDetails: /* @ngInject */
+        (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+          .getOfferDetails(clusterDetails.offerName),
       goToUpdatePassword: /* @ngInject */ ($state, clusterId) => () => $state
         .go('enterprise-cloud-database.service.details.overview.update-password', { clusterId }),
       goToSettings: /* @ngInject */ ($state, clusterId) => () => $state

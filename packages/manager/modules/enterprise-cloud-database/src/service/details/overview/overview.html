@@ -14,9 +14,15 @@
                     <span data-ng-bind="$ctrl.clusterDetails.regionName"></span>
                 </oui-tile-description>
             </oui-tile-definition>
-            <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_ram_size' | translate }}" data-description="{{:: $ctrl.clusterDetails.ram_size }}">
+            <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_ram_title' | translate }}">
+                <oui-tile-description>
+                    <span data-translate="enterprise_cloud_database_ram_size" data-translate-values="{ size: $ctrl.offerDetails.ram }"></span>
+                </oui-tile-description>
             </oui-tile-definition>
-            <oui-tile-definition data-term="{{ ::'enterprise_cloud_database_storage_size' | translate }}" data-description="{{:: $ctrl.clusterDetails.storage_size }}">
+            <oui-tile-definition data-term="{{ ::'enterprise_cloud_database_storage_title' | translate }}">
+                <oui-tile-description>
+                    <span data-translate="enterprise_cloud_database_storage_size" data-translate-values="{ size: $ctrl.offerDetails.storage }"></span>
+                </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_engine' | translate }}" data-description="{{:: $ctrl.clusterDetails.offerType }}">
             </oui-tile-definition>

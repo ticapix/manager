@@ -204,6 +204,12 @@ export default class EnterpriseCloudDatabaseService {
       ));
   }
 
+  deleteBackupInstance(clusterId, backupInstanceId) {
+    return this.OvhApiCloudDBEnterpriseBackup.delete(
+      { clusterId, backupId: backupInstanceId },
+    ).$promise;
+  }
+
   deleteRestoredInstance(clusterId, restoredInstanceId) {
     return this.OvhApiCloudDBEnterpriseRestore.delete(
       { clusterId, restoreId: restoredInstanceId },
