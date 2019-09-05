@@ -8,6 +8,10 @@ export default /* @ngInject */($stateProvider) => {
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getHostsWithDetails(clusterId),
     },
+    translations: {
+      value: ['.'],
+      format: 'json',
+    },
     url: '/cluster-size',
   }).state('enterprise-cloud-database.service.details.cluster-size.add-replicas', {
     layout: 'modal',
@@ -24,6 +28,10 @@ export default /* @ngInject */($stateProvider) => {
         (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getOfferDetails(clusterDetails.offerName)
           .then(offer => offer.maxHostCount),
+    },
+    translations: {
+      value: ['.'],
+      format: 'json',
     },
     url: '/add-replicas',
     views: {
