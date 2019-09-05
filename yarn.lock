@@ -2055,6 +2055,11 @@
   dependencies:
     lodash "^4.17.11"
 
+"@ovh-ux/ng-translate-async-loader@^2.0.0":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.2.tgz#9eac55552bccbc08c5847c42a74d42fbb5dc04ea"
+  integrity sha512-uvPAidjPxmC3AimrXuKMCquqpGvAAWZcSIvsOklBy5Y3VF6+1TXz8RNKe2I19vH7Xvp+4L7vDW4tAlBhbHfazw==
+
 "@ovh-ux/ng-translate-async-loader@^2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.1.tgz#d4502bf2dc084f95f77377dd77e1319f2ec2a58f"
@@ -16103,3 +16108,8 @@ yup@^0.27.0:
     property-expr "^1.5.0"
     synchronous-promise "^2.0.6"
     toposort "^2.0.2"
+
+zxcvbn@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/zxcvbn/-/zxcvbn-4.4.2.tgz#28ec17cf09743edcab056ddd8b1b06262cc73c30"
+  integrity sha1-KOwXzwl0PtyrBW3dixsGJizHPDA=
