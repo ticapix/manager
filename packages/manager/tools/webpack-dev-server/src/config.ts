@@ -6,9 +6,9 @@ import serverProxy from './proxy';
 
 export = (env) => {
   const region = (env.region || 'eu').toLowerCase();
-  // code changed to connect to local sdev. Will be reverted once APIs are prodded
-  const proxy:any = [serverProxy.v6(region)];
+  const proxy = [serverProxy.v6(region)];
   const sso = new Sso(region);
+
   if (env.local2API) {
     proxy.unshift(serverProxy.aapi);
   }
@@ -17,22 +17,6 @@ export = (env) => {
       ...env.dev.map(config => serverProxy.dev(config)),
     );
   }
-
-  // code added to connect to local sdev. Will be reverted once APIs are prodded
-  proxy.unshift({
-    target: 'https://api.ovh.com:42443/1.0',
-    context: ['/engine/apiv6/cloudDB'],
-    changeOrigin: true,
-    logLevel: 'debug',
-    secure: false,
-    headers: {
-      'X-Ovh-Nic': '',
-    },
-    pathRewrite: {
-      '^/engine/apiv6/': '/',
-    },
-  });
-
   return {
     mode: 'development',
     plugins: [
