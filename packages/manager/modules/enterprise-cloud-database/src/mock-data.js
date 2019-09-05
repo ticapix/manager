@@ -123,13 +123,41 @@ export default class MockData {
     ];
 
     this.clusters = [
-      'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d',
+      'efd91649-fde4-4c53-859b-a35c4d25e69f',
       'b78deac6-08fb-4f43-a502-be8e2ca6ceb3',
       'c9804e9e-fe07-441b-99f0-c14535aa277b',
       '1c34e05b-d7ea-4a55-af59-0e0f528db0ea',
+      'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d',
+      '315d2938-bc19-4b4f-b362-108fe28324e4',
     ];
 
     this.clusterDetails = {
+      'efd91649-fde4-4c53-859b-a35c4d25e69f': {
+        lastUpdate: '2019-08-11T00:11:12+00:00',
+        regionName: 'eu-west-fr-1',
+        taskId: null,
+        name: 'postgresql-3db3270d15d94a079bf532',
+        creationDate: '2019-06-24T10:39:07+00:00',
+        id: 'efd91649-fde4-4c53-859b-a35c4d25e69f',
+        status: 'created',
+        autoBackup: true,
+        version: '11',
+        offerType: 'postgresql',
+        offerName: 'cluster64',
+      },
+      '315d2938-bc19-4b4f-b362-108fe28324e4': {
+        lastUpdate: '2019-08-11T00:11:12+00:00',
+        regionName: 'eu-west-fr-1',
+        taskId: null,
+        name: 'postgresql-3db3270d15d94a079bf532',
+        creationDate: '2019-06-24T10:39:07+00:00',
+        id: '315d2938-bc19-4b4f-b362-108fe28324e4',
+        status: 'created',
+        autoBackup: true,
+        version: '11',
+        offerType: 'postgresql',
+        offerName: 'cluster64',
+      },
       'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d': {
         lastUpdate: '2019-08-11T00:11:12+00:00',
         regionName: 'eu-west-fr-1',
@@ -185,7 +213,7 @@ export default class MockData {
     };
 
     this.clusterEndpoints = {
-      'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d': [
+      'efd91649-fde4-4c53-859b-a35c4d25e69f': [
         'd678079f-0b77-4ac3-a1d4-ecbf0499a8bc',
         '71401d25-8ad0-4da3-bcb9-57666378b7e5',
       ],
@@ -213,7 +241,7 @@ export default class MockData {
         port: 18059,
         lastUpdate: '2019-06-24T13:53:47+00:00',
         taskId: null,
-        clusterId: 'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d',
+        clusterId: 'efd91649-fde4-4c53-859b-a35c4d25e69f',
       },
       '71401d25-8ad0-4da3-bcb9-57666378b7e5': {
         fqdn: '3db3270d15d94a079bf532.prm.clouddb.ovh.net',
@@ -221,7 +249,7 @@ export default class MockData {
         name: 'read-only',
         status: 'created',
         taskId: null,
-        clusterId: 'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d',
+        clusterId: 'efd91649-fde4-4c53-859b-a35c4d25e69f',
         creationDate: '2019-06-24T13:53:47+00:00',
         port: 3878,
         id: '71401d25-8ad0-4da3-bcb9-57666378b7e5',
@@ -295,7 +323,7 @@ export default class MockData {
     };
 
     this.clusterHosts = {
-      'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d': [
+      'efd91649-fde4-4c53-859b-a35c4d25e69f': [
         '80a9fd85-38d3-431e-8e3a-09b1c6241b00',
         '71cd63ed-c071-4758-9cd9-65db41c4bff5',
         '5e0137dc-0d22-4aae-818e-5260c0fcb0ab',

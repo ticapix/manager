@@ -70,12 +70,13 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getClusterDetails(clusterId) {
-    return this.OvhApiCloudDBEnterpriseCluster.get({ clusterId })
-      .$promise
-      .then((response) => {
-        delete response.$promise;
-        return response;
-      });
+    return this.mockData.getClusterDetails(clusterId);
+    // return this.OvhApiCloudDBEnterpriseCluster.get({ clusterId })
+    //   .$promise
+    //   .then((response) => {
+    //     delete response.$promise;
+    //     return response;
+    //   });
   }
 
   getClusterList() {
