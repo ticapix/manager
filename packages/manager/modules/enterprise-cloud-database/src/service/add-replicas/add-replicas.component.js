@@ -9,7 +9,6 @@ const component = {
     defaultPaymentMethod: '<',
     hostList: '<',
     goBack: '<',
-    hostList: '<',
     maxHostCount: '<',
   },
 };

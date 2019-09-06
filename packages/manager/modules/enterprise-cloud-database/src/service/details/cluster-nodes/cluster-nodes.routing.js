@@ -1,9 +1,9 @@
 export default /* @ngInject */($stateProvider) => {
-  $stateProvider.state('enterprise-cloud-database.service.details.cluster-size', {
+  $stateProvider.state('enterprise-cloud-database.service.details.cluster-nodes', {
     component: 'enterpriseCloudDatabaseServiceDetailsClusterSizeComponent',
     resolve: {
-      addReplicas: /* @ngInject */ ($state, clusterId, hosts) => callback => $state.go('enterprise-cloud-database.service.details.cluster-size.add-replicas', { clusterId, hostList: hosts, callback }),
-      deleteReplicas: /* @ngInject */ ($state, clusterId) => () => $state.go('enterprise-cloud-database.service.details.cluster-size.delete', { clusterId }),
+      addReplicas: /* @ngInject */ ($state, clusterId, hosts) => callback => $state.go('enterprise-cloud-database.service.details.cluster-nodes.add-replicas', { clusterId, hostList: hosts, callback }),
+      deleteReplicas: /* @ngInject */ ($state, clusterId) => () => $state.go('enterprise-cloud-database.service.details.cluster-nodes.delete', { clusterId }),
       hosts: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getHostsWithDetails(clusterId),
@@ -12,8 +12,8 @@ export default /* @ngInject */($stateProvider) => {
       value: ['.'],
       format: 'json',
     },
-    url: '/cluster-size',
-  }).state('enterprise-cloud-database.service.details.cluster-size.add-replicas', {
+    url: '/cluster-nodes',
+  }).state('enterprise-cloud-database.service.details.cluster-nodes.add-replicas', {
     layout: 'modal',
     params: {
       clusterId: null,
@@ -22,7 +22,7 @@ export default /* @ngInject */($stateProvider) => {
     },
     resolve: {
       callback: /* @ngInject */ $transition$ => $transition$.params().callback,
-      goBack: /* @ngInject */ ($state, clusterId) => () => $state.go('enterprise-cloud-database.service.details.cluster-size', { clusterId }),
+      goBack: /* @ngInject */ ($state, clusterId) => () => $state.go('enterprise-cloud-database.service.details.cluster-nodes', { clusterId }),
       hostList: /* @ngInject */ $transition$ => $transition$.params().hostList,
       maxHostCount: /* @ngInject */
         (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService

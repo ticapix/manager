@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 import backups from './backups';
-import clusterSize from './cluster-size';
+import clusterSize from './cluster-nodes';
 import enterpriseCloudDatabaseServiceDetailsComponent from './details.component';
 import insights from './insights';
 import logs from './logs';

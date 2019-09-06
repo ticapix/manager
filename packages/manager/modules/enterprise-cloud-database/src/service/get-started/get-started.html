@@ -26,11 +26,14 @@
             <oui-step-form data-cancel-text="{{ 'enterprise_cloud_database_service_get_started_do_later' | translate }}"
                            data-header="{{ 'enterprise_cloud_database_service_get_started_connection_details' | translate }}"
                            data-on-cancel="$ctrl.gotoClusterDetails()">
-                <ovh-manager-enterprise-cloud-database-service-connection-details-component
-                    data-cluster-details="$ctrl.clusterDetails"
-                    data-cluster-type="$ctrl.clusterType"
-                    data-end-points="$ctrl.endPoints">
-                </ovh-manager-enterprise-cloud-database-service-connection-details-component>
+                <div class="row">
+                    <ovh-manager-enterprise-cloud-database-service-connection-details-component
+                        class="col-md-6"
+                        data-cluster-details="$ctrl.clusterDetails"
+                        data-cluster-type="$ctrl.clusterType"
+                        data-end-points="$ctrl.endPoints">
+                    </ovh-manager-enterprise-cloud-database-service-connection-details-component>
+                </div>
             </oui-step-form>
 
             <oui-step-form data-cancel-text="{{ 'enterprise_cloud_database_service_get_started_do_later' | translate }}"

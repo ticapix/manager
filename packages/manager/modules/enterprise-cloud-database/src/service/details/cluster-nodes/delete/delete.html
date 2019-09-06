@@ -2,21 +2,21 @@
       name="replicasDelete"
       data-ng-submit="replicasDelete.$valid && $ctrl.deleteReplicas()"
       novalidate>
-    <oui-modal data-heading="{{:: 'enterprise_cloud_database_service_details_cluster_size_delete_title' | translate }}"
+    <oui-modal data-heading="{{:: 'enterprise_cloud_database_service_details_cluster_nodes_delete_title' | translate }}"
                data-primary-label="{{:: 'enterprise_cloud_database_common_delete' | translate }}"
                data-secondary-label="{{:: 'enterprise_cloud_database_common_cancel' | translate }}"
                data-secondary-action="$ctrl.goBackToClusterSize()"
                data-on-dismiss="$ctrl.goBackToClusterSize()"
                data-loading="$ctrl.isLoading"
                data-type="warning">
-        <p data-translate="enterprise_cloud_database_service_details_cluster_size_delete_description"></p>
+        <p data-translate="enterprise_cloud_database_service_details_cluster_nodes_delete_description"></p>
         <oui-select data-name="replicaCount"
                     data-model="$ctrl.selectedReplicaCount"
                     data-items="$ctrl.replicaCounts"
                     data-match="text"></oui-select>
-        <oui-message type="info"><span data-translate="enterprise_cloud_database_service_details_cluster_size_delete_info"></span></oui-message>
-        <p class="oui-font-light" data-translate="enterprise_cloud_database_service_details_cluster_size_delete_warning"></p>
-        <oui-field data-label="{{:: 'enterprise_cloud_database_service_details_cluster_size_delete_enter' | translate }}">
+        <oui-message type="info"><span data-translate="enterprise_cloud_database_service_details_cluster_nodes_delete_info"></span></oui-message>
+        <p class="oui-font-light" data-translate="enterprise_cloud_database_service_details_cluster_nodes_delete_warning"></p>
+        <oui-field data-label="{{:: 'enterprise_cloud_database_service_details_cluster_nodes_delete_enter' | translate }}">
             <input class="oui-input"
                    type="text"
                    name="replicasDeleteConfirm"

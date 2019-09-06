@@ -1,5 +1,5 @@
-import template from './cluster-size.html';
-import controller from './cluster-size.controller';
+import template from './cluster-nodes.html';
+import controller from './cluster-nodes.controller';
 
 export default {
   bindings: {

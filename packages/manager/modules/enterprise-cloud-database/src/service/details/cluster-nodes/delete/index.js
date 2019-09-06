@@ -9,7 +9,7 @@ angular
     'ui.router',
   ])
   .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('enterprise-cloud-database.service.details.cluster-size.delete', {
+    $stateProvider.state('enterprise-cloud-database.service.details.cluster-nodes.delete', {
       url: '/delete',
       views: {
         modal: {
@@ -20,7 +20,7 @@ angular
       resolve: {
         goBackToClusterSize: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
-          const state = 'enterprise-cloud-database.service.details.cluster-size';
+          const state = 'enterprise-cloud-database.service.details.cluster-nodes';
           const promise = $state.go(state, {}, { reload });
           if (message) {
             promise.then(() => {

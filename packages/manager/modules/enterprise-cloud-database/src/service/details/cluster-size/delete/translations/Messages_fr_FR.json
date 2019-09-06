@@ -1,9 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_cluster_size_delete_title": "Delete Replica",
-  "enterprise_cloud_database_service_details_cluster_size_delete_description": "Sélectionner le nombre de Replica à supprimer",
-  "enterprise_cloud_database_service_details_cluster_size_delete_warning": "This action cannot be cancelled or reversed.",
-  "enterprise_cloud_database_service_details_cluster_size_delete_enter": "Enter DELETE into the following field to confirm your action.",
-  "enterprise_cloud_database_service_details_cluster_size_delete_info": "Aucun remboursement ne sera appliqué si vous supprimer un Replica en cours de mois",
-  "enterprise_cloud_database_service_details_cluster_size_delete_success": "Replica deleted successfully",
-  "enterprise_cloud_database_service_details_cluster_size_delete_error": "An error occurred while deleting replica(s)"
-}

@@ -6,6 +6,9 @@
                       data-on-change="$ctrl.saveAutoBackup(modelValue)">
             <span data-translate="enterprise_cloud_database_service_details_settings_autobackup"></span>
         </oui-checkbox>
+        <oui-message class="mt-3" data-ng-if="!$ctrl.data.autoBackup" data-type="warning">
+            <span data-translate="enterprise_cloud_database_service_details_settings_autobackup_warning"></span>
+        </oui-message>
         <oui-spinner class="ml-4 mt-2" data-ng-if="$ctrl.loaders.autoBackup" data-size="s"></oui-spinner>
     </div>
     <div class="oui-box oui-box_light">
@@ -50,9 +53,6 @@
                     </div>
                 </div>
             </oui-column>
-            <oui-column data-title="::'enterprise_cloud_database_service_details_settings_group_id' | translate"
-                        data-property="id"
-                        data-type="string"></oui-column>
             <oui-column data-title="::'enterprise_cloud_database_service_details_settings_rules_count' | translate"
                         data-property="rulesCount"
                         data-sortable="asc"

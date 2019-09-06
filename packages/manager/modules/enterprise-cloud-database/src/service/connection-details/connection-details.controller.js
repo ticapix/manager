@@ -1,6 +1,8 @@
 import find from 'lodash/find';
+import map from 'lodash/map';
 
-import { COMMANDS_LIST, ENDPOINT_TYPES, PARAMETERS } from './flags/flags.constants';
+import { ENDPOINT_TYPES } from './connection-details.constants';
+import { COMMANDS_LIST, PARAMETERS } from './flags/flags.constants';
 
 export default class {
   /* @ngInject */
@@ -10,7 +12,10 @@ export default class {
   }
 
   $onInit() {
-    this.endpoint = find(this.endPoints, { name: ENDPOINT_TYPES.READ_WRITE });
-    this.connectionString = `${this.clusterType}://${this.PARAMETERS.USERNAME}:${this.PARAMETERS.MASKED_PASSWORD}@${this.endpoint.fqdn}:${this.endpoint.port}/${this.PARAMETERS.DATABASE}?sslmode=${this.PARAMETERS.SSL_MODE}`;
+    this.readWriteEndpoint = find(this.endPoints, { name: ENDPOINT_TYPES.READ_WRITE });
+    this.connectionStrings = map(this.endPoints, endpoint => ({
+      name: endpoint.name,
+      text: `${this.clusterType}://${this.PARAMETERS.USERNAME}:${this.PARAMETERS.MASKED_PASSWORD}@${endpoint.fqdn}:${endpoint.port}/${this.PARAMETERS.DATABASE}?sslmode=${this.PARAMETERS.SSL_MODE}`,
+    }));
   }
 }

@@ -13,7 +13,7 @@
             class="d-block mb-3 oui-button oui-button_secondary"
             data-ng-disabled="$ctrl.disabled"
             data-ng-click="$ctrl.toggleAdjustWindow()"
-            data-ng-if="!$ctrl.disableToggle">
+            data-ng-if="!$ctrl.disableToggle && !$ctrl.adjustWindowEnabled">
         <span data-translate="enterprise_cloud_database_service_maintenance_window_adjust_window"></span>
     </button>
     <div class="mb-3" data-ng-if="$ctrl.adjustWindowEnabled || $ctrl.disableToggle">

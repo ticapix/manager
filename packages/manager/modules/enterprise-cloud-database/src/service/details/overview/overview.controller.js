@@ -1,5 +1,5 @@
 import { ENTERPRISE_CLOUD_DATABASE_STATUS_MAP } from '../../../enterprise-cloud-database.constants';
-import { INCLUDED_CLUSTER_SIZE } from '../details.constants';
+import { INCLUDED_CLUSTER_SIZE } from '../../service.constants';
 import {
   AUTO_SNAPSHOT, SNAPSHOT_FREQUENCY, SNAPSHOT_RETENTION, MASKED_PASSWORD,
 } from './overview.constants';

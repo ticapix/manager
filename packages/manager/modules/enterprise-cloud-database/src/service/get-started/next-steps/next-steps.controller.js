@@ -1,5 +1,8 @@
+import find from 'lodash/find';
 import isUndefined from 'lodash/isUndefined';
 import { COMMANDS_LIST } from '../../connection-details/flags/flags.constants';
+import { ENDPOINT_TYPES } from '../../connection-details/connection-details.constants';
+import { INCLUDED_CLUSTER_SIZE } from '../../service.constants';
 
 export default class {
   /* @ngInject */
@@ -8,9 +11,13 @@ export default class {
   }
 
   $onInit() {
+    const includedClusterCount = INCLUDED_CLUSTER_SIZE.PRIMARY
+      + INCLUDED_CLUSTER_SIZE.REPLICA + INCLUDED_CLUSTER_SIZE.BACKUP;
+    this.addedReplicas = this.hostList.length - includedClusterCount;
     this.data = {
       dailyBackup: this.clusterDetails.autoBackup,
     };
+    this.readWriteEndpoint = find(this.endPoints, { name: ENDPOINT_TYPES.READ_WRITE });
   }
 
   dataChange(dailyBackup) {

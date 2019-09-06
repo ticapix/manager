@@ -4,7 +4,7 @@
     <ovh-manager-enterprise-cloud-database-service-connection-details-flags-component
         data-command="$ctrl.COMMANDS_LIST.RESTORE"
         data-cluster-type="$ctrl.clusterType"
-        data-end-points="$ctrl.endPoints">
+        data-end-point="$ctrl.readWriteEndpoint">
     </ovh-manager-enterprise-cloud-database-service-connection-details-flags-component>
     <a href="#" class="mb-3 oui-link_icon">
         <span data-translate="enterprise_cloud_database_service_get_started_next_steps_migrate_database_help"></span>
@@ -13,6 +13,9 @@
 
     <h6 class="mt-3" data-translate="enterprise_cloud_database_service_get_started_next_steps_add_replica_title"></h6>
     <p data-translate="enterprise_cloud_database_service_get_started_next_steps_add_replica_description"></p>
+    <p data-ng-if="$ctrl.addedReplicas"
+       data-translate="enterprise_cloud_database_service_get_started_next_steps_add_replica_added_count"
+       data-translate-values="{ replicaCount: $ctrl.addedReplicas }"></p>
     <div class="mb-3" data-ng-if="$ctrl.replicaConfig.replicaCount > 0">
         <strong><span data-translate="enterprise_cloud_database_service_get_started_next_steps_add_replica_count"
            data-translate-values="{ replicaCount: $ctrl.replicaConfig.replicaCount }"></span></strong>
@@ -39,6 +42,9 @@
     <oui-checkbox data-model="$ctrl.data.dailyBackup" data-on-change="$ctrl.dataChange(modelValue)">
         <span data-translate="enterprise_cloud_database_service_get_started_next_steps_backup"></span>
     </oui-checkbox>
+    <oui-message data-ng-if="!$ctrl.data.dailyBackup" data-type="warning">
+        <span data-translate="enterprise_cloud_database_service_get_started_next_steps_backup_warning"></span>
+    </oui-message>
     <a href="#" class="mb-3 oui-link_icon">
         <span data-translate="enterprise_cloud_database_service_get_started_next_steps_backup_help"></span>
         <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
