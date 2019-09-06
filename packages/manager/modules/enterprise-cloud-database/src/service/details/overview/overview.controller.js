@@ -1,7 +1,7 @@
 import { ENTERPRISE_CLOUD_DATABASE_STATUS_MAP } from '../../../enterprise-cloud-database.constants';
 import { INCLUDED_CLUSTER_SIZE } from '../../service.constants';
 import {
-  AUTO_SNAPSHOT, SNAPSHOT_FREQUENCY, SNAPSHOT_RETENTION, MASKED_PASSWORD,
+  AUTO_BACKUP, BACKUP_FREQUENCY, BACKUP_RETENTION, MASKED_PASSWORD, USERNAME,
 } from './overview.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsOverviewCtrl {
@@ -12,12 +12,13 @@ export default class EnterpriseCloudDatabaseServiceDetailsOverviewCtrl {
   ) {
     this.$state = $state;
     this.CucCloudMessage = CucCloudMessage;
-    this.AUTO_SNAPSHOT = AUTO_SNAPSHOT;
+    this.AUTO_BACKUP = AUTO_BACKUP;
     this.ENTERPRISE_CLOUD_DATABASE_STATUS_MAP = ENTERPRISE_CLOUD_DATABASE_STATUS_MAP;
     this.INCLUDED_CLUSTER_SIZE = INCLUDED_CLUSTER_SIZE;
     this.MASKED_PASSWORD = MASKED_PASSWORD;
-    this.SNAPSHOT_FREQUENCY = SNAPSHOT_FREQUENCY;
-    this.SNAPSHOT_RETENTION = SNAPSHOT_RETENTION;
+    this.BACKUP_FREQUENCY = BACKUP_FREQUENCY;
+    this.BACKUP_RETENTION = BACKUP_RETENTION;
+    this.USERNAME = USERNAME;
   }
 
   $onInit() {

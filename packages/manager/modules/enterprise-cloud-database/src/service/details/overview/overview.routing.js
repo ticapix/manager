@@ -12,7 +12,7 @@ export default /* @ngInject */($stateProvider) => {
           .getEndpointsWithDetails(clusterId),
       hosts: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getHostsWithDetails(clusterId),
+          .getHosts(clusterId),
       serviceInfo: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getServiceInfo(clusterId),

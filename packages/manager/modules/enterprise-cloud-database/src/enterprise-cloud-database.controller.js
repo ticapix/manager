@@ -33,8 +33,10 @@ export default class EnterpriseCloudDatabaseCtrl {
   }
 
   loadRow(cluster) {
-    return this.enterpriseCloudDatabaseService.getEndpointsWithDetails(cluster.id)
-      .then(res => assign({ endpoints: res }));
+    return this.$q.all([
+      this.getClusterDetails(cluster.id),
+      this.enterpriseCloudDatabaseService.getEndpointsWithDetails(cluster.id),
+    ]).then(res => assign({ endpoints: res[1] }, res[0]));
   }
 
   gettingStarted(clusterId) {
