@@ -6,6 +6,7 @@ export default {
     addReplicas: '<',
     deleteReplicas: '<',
     hosts: '<',
+    planCatalog: '<',
   },
   controller,
   template,

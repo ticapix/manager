@@ -28,6 +28,10 @@ export default class EnterpriseCloudDatabaseService {
     return this.OvhApiMe.PaymentMean().v6().getDefaultPaymentMean();
   }
 
+  getMe() {
+    return this.OvhApiMe.v6().get().$promise;
+  }
+
   createMaintenanceWindow(clusterId, windowData) {
     return this.OvhApiCloudDBEnterpriseWindow.create({ clusterId }, windowData).$promise;
   }
