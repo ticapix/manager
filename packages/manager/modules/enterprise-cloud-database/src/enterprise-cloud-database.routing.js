@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database', {
     component: 'enterpriseCloudDatabaseComponent',
@@ -10,7 +12,12 @@ export default /* @ngInject */($stateProvider) => {
       capabilities: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
         .getOffers(),
       clusters: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
-        .getClusterList(),
+        .getClusters().then(clusters => map(clusters, clusterId => ({ id: clusterId }))),
+      getClusterDetails: /* @ngInject */
+        enterpriseCloudDatabaseService => clusterId => enterpriseCloudDatabaseService
+          .getClusterDetails(clusterId)
+          .then(details => enterpriseCloudDatabaseService.getOfferDetails(details.offerName)
+            .then(offer => ({ offer, details }))),
       goBackToList: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success', clusterId = null) => {
         const reload = message && type === 'success';
         const state = 'enterprise-cloud-database';

@@ -139,7 +139,7 @@ export default class MockData {
         name: 'postgresql-3db3270d15d94a079bf532',
         creationDate: '2019-06-24T10:39:07+00:00',
         id: 'efd91649-fde4-4c53-859b-a35c4d25e69f',
-        status: 'created',
+        status: 'creating',
         autoBackup: true,
         version: '11',
         offerType: 'postgresql',

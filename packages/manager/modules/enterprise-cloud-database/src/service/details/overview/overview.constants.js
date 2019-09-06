@@ -1,14 +1,18 @@
-export const AUTO_SNAPSHOT = {
+export const AUTO_BACKUP = {
   true: 'ON',
   false: 'OFF',
 };
-export const SNAPSHOT_FREQUENCY = 'Daily';
-export const SNAPSHOT_RETENTION = 90;
+export const BACKUP_FREQUENCY = 'Daily';
+export const BACKUP_RETENTION = 90;
 export const MASKED_PASSWORD = '********';
+export const USERNAME = {
+  postgresql: 'postgres',
+};
 
 export default {
-  AUTO_SNAPSHOT,
+  AUTO_BACKUP,
   MASKED_PASSWORD,
-  SNAPSHOT_FREQUENCY,
-  SNAPSHOT_RETENTION,
+  BACKUP_FREQUENCY,
+  BACKUP_RETENTION,
+  USERNAME,
 };
