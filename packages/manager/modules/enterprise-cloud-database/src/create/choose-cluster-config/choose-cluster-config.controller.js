@@ -1,8 +1,6 @@
-import head from 'lodash/head';
-
 export default class {
   $onInit() {
-    this.selectedCluster = head(this.clusters);
+    this.selectedCluster = this.enterpriceDb.cluster;
   }
 
   onClusterSelect(cluster) {

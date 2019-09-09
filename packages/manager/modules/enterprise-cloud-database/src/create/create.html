@@ -39,21 +39,22 @@
                     <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_backup"></span> (Backup)</li>
                 </ul>
                 <enterprise-cloud-database-order-choose-cluster-config
-                    clusters="$ctrl.capabilities"
+                    clusters="$ctrl.clusters"
                     enterprice-db="$ctrl.enterpriceDb">
                 </enterprise-cloud-database-order-choose-cluster-config>
             </section>
             <section class="additional-replica mb-3 clearfix">
                 <h4 data-translate="enterprise_cloud_database_create_additional_replicas"></h4>
                 <p data-translate="enterprise_cloud_database_create_additional_replicas_desc"></p>
-                <oui-select name="replicas"
-                    class="col-sm-8 col-md-5 col-lg-4"
-                    data-model="$ctrl.enterpriceDb.additionalReplicaCount"
-                    placeholder="Select additional replicas ..."
-                    data-items="$ctrl.additionalReplicas"
-                    data-match="value">
-                    <span>{{ $item.value }} Replicas - {{ $item.price }}$ inc.tax/month</span>
-                </oui-select>
+                <label class="oui-select oui-select_l">
+                    <select id="replicas"
+                        name="replicas"
+                        class="oui-select__input"
+                        data-ng-model="$ctrl.enterpriceDb.additionalReplicaCount"
+                        data-ng-options="replica as replica.label for replica in $ctrl.additionalReplicas track by replica.value">
+                    </select>
+                    <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                </label>
             </section>
             <section class="choose-commitment mb-5">
                 <h4 data-translate="enterprise_cloud_database_create_choose_commitment"></h4>
@@ -73,11 +74,13 @@
                 <h4 data-translate="enterprise_cloud_database_create_order_summary_title"></h4>
                 <div data-translate="enterprise_cloud_database_create_order_summary_cluster"
                     data-translate-values="{
-                        RAM: $ctrl.enterpriceDb.cluster.memory.size,
-                        CPU: $ctrl.enterpriceDb.cluster.cpu.cores,
-                        storage: $ctrl.enterpriceDb.cluster.storage.size,
-                        storageType: $ctrl.enterpriceDb.cluster.storage.type,
-                        storageCount: $ctrl.enterpriceDb.cluster.storage.count 
+                        clusterRAM: $ctrl.enterpriceDb.cluster.memory.size,
+                        clusterCPU: $ctrl.enterpriceDb.cluster.cpu.cores,
+                        clusterStorage: $ctrl.enterpriceDb.cluster.storage.size,
+                        clusterStorageType: $ctrl.enterpriceDb.cluster.storage.type,
+                        clusterStorageCount: $ctrl.enterpriceDb.cluster.storage.count,
+                        clusterPrice: $ctrl.enterpriceDb.cluster.price.total,
+                        currencySymbol: '$',
                     }">
                 </div>
                 <div data-ng-if="$ctrl.enterpriceDb.additionalReplicaCount"

@@ -11,604 +11,329 @@ export default class MockData {
     ];
 
     this.catalog = {
-      addons: [
-        {
-          family: null,
-          pricings: [
-            {
-              interval: 1,
-              repeat: {
-                max: 12,
-                min: 1,
-              },
-              commitment: 0,
-              mustBeCompleted: false,
-              strategy: 'tiered',
-              phase: 0,
-              mode: 'default',
-              description: 'Rental for 12 months',
-              tax: 7320000000,
-              quantity: {
-                max: 8,
-                min: 1,
-              },
-              capacities: [
-                'installation',
-                'renew',
-              ],
-              type: 'rental',
-              price: 36600000000,
-              promotions: [],
-              intervalUnit: 'month',
-            },
-          ],
-          planCode: 'node128',
-          addonFamilies: [],
-          invoiceName: 'Enterprise node with 128GB RAM',
-          pricingType: 'rental',
-          product: 'enterprise-node',
-          configurations: [],
-          blobs: null,
-        },
-        {
-          planCode: 'node16',
-          addonFamilies: [],
-          pricings: [
-            {
-              strategy: 'tiered',
-              phase: 0,
-              mode: 'default',
-              description: 'Rental for 12 months',
-              tax: 2820000000,
-              quantity: {
-                min: 1,
-                max: 8,
-              },
-              interval: 1,
-              repeat: {
-                max: 12,
-                min: 1,
-              },
-              commitment: 0,
-              mustBeCompleted: false,
-              promotions: [],
-              intervalUnit: 'month',
-              type: 'rental',
-              capacities: [
-                'installation',
-                'renew',
-              ],
-              price: 14100000000,
-            },
-          ],
-          family: null,
-          blobs: null,
-          product: 'enterprise-node',
-          configurations: [],
-          pricingType: 'rental',
-          invoiceName: 'Enterprise node with 16GB RAM',
-        },
-        {
-          family: null,
-          addonFamilies: [],
-          planCode: 'node32',
-          pricings: [
-            {
-              repeat: {
-                min: 1,
-                max: 12,
-              },
-              interval: 1,
-              mustBeCompleted: false,
-              commitment: 0,
-              description: 'Rental for 12 months',
-              tax: 3240000000,
-              phase: 0,
-              strategy: 'tiered',
-              mode: 'default',
-              quantity: {
-                min: 1,
-                max: 8,
-              },
-              capacities: [
-                'installation',
-                'renew',
-              ],
-              type: 'rental',
-              price: 16200000000,
-              intervalUnit: 'month',
-              promotions: [],
-            },
-          ],
-          pricingType: 'rental',
-          invoiceName: 'Enterprise node with 32GB RAM',
-          blobs: null,
-          configurations: [],
-          product: 'enterprise-node',
-        },
-        {
-          family: null,
-          planCode: 'node64',
-          addonFamilies: [],
-          pricings: [
-            {
-              tax: 5080000000,
-              description: 'Rental for 12 months',
-              mode: 'default',
-              strategy: 'tiered',
-              phase: 0,
-              quantity: {
-                max: 8,
-                min: 1,
-              },
-              repeat: {
-                min: 1,
-                max: 12,
-              },
-              interval: 1,
-              mustBeCompleted: false,
-              commitment: 0,
-              intervalUnit: 'month',
-              promotions: [],
-              type: 'rental',
-              capacities: [
-                'installation',
-                'renew',
-              ],
-              price: 25400000000,
-            },
-          ],
-          pricingType: 'rental',
-          invoiceName: 'Enterprise node with 64GB RAM',
-          blobs: null,
-          product: 'enterprise-node',
-          configurations: [],
-        },
-        {
-          family: null,
-          pricings: [
-            {
-              commitment: 0,
-              mustBeCompleted: false,
-              interval: 1,
-              repeat: {
-                max: null,
-                min: 1,
-              },
-              quantity: {
-                max: null,
-                min: 1,
-              },
-              strategy: 'tiered',
-              mode: 'default',
-              phase: 0,
-              tax: 2160000,
-              description: 'hourly price per GB',
-              price: 10800000,
-              type: 'consumption',
-              capacities: [
-                'consumption',
-              ],
-              promotions: [],
-              intervalUnit: 'month',
-            },
-          ],
-          addonFamilies: [],
-          planCode: 'backup',
-          invoiceName: 'Enterprise backup',
-          pricingType: 'consumption',
-          configurations: [],
-          product: 'enterprise-backup',
-          blobs: null,
-        },
-      ],
-      planFamilies: [],
       plans: [
         {
-          family: null,
+          pricingType: 'rental',
           planCode: 'cluster128',
-          addonFamilies: [
+          family: null,
+          configurations: [
             {
-              mandatory: false,
-              default: null,
-              addons: [
-                'backup',
+              isMandatory: false,
+              name: 'dbms',
+              isCustom: false,
+              values: [
+                'postgresql-11',
+                'postgresql-10',
+                'postgresql-9.6',
               ],
-              exclusive: false,
-              name: 'backup',
             },
             {
-              mandatory: false,
+              values: [
+                'eu-west-fr-1',
+                'ca-east-qc-1',
+              ],
+              isCustom: false,
+              isMandatory: false,
+              name: 'region',
+            },
+          ],
+          invoiceName: 'Enterprise cluster with 128GB RAM nodes',
+          product: 'enterprise-cluster',
+          addonFamilies: [
+            {
               default: null,
+              mandatory: false,
+              name: 'node',
               addons: [
                 'node128',
               ],
               exclusive: false,
-              name: 'node',
             },
-          ],
-          pricings: [
             {
-              price: 190000000000,
-              type: 'rental',
-              capacities: [
-                'installation',
-                'renew',
+              default: null,
+              mandatory: false,
+              name: 'backup',
+              addons: [
+                'backup',
               ],
-              intervalUnit: 'month',
-              promotions: [],
-              mustBeCompleted: false,
-              commitment: 0,
-              repeat: {
-                max: 12,
-                min: 1,
-              },
-              interval: 1,
-              quantity: {
-                max: 1,
-                min: 1,
-              },
-              description: 'Rental for 12 months',
-              tax: 38000000000,
-              phase: 0,
-              strategy: 'tiered',
-              mode: 'default',
+              exclusive: false,
             },
           ],
-          pricingType: 'rental',
-          invoiceName: 'Enterprise cluster with 128GB RAM nodes',
           blobs: {
             technical: {
               cpu: {
-                threads: 16,
                 cores: 8,
+                threads: 16,
+              },
+              type: 'baremetal',
+              storage: {
+                raid: {
+                  level: 10,
+                  type: 'hard',
+                },
+                disks: [
+                  {
+                    number: 4,
+                    technology: 'ssd',
+                    capacity: 1920,
+                  },
+                ],
               },
               memory: {
                 size: 128,
               },
-              type: 'baremetal',
-              storage: {
-                disks: [
-                  {
-                    technology: 'ssd',
-                    capacity: 1920,
-                  },
-                  {
-                    technology: 'ssd',
-                    capacity: 1920,
-                  },
-                  {
-                    technology: 'ssd',
-                    capacity: 1920,
-                  },
-                  {
-                    capacity: 1920,
-                    technology: 'ssd',
-                  },
-                ],
-                raid: '10',
-              },
             },
           },
-          product: 'enterprise-cluster',
-          configurations: [
+          pricings: [
             {
-              isCustom: false,
-              values: [
-                'postgresql-11',
-                'postgresql-10',
-                'postgresql-9.6',
-                'mariadb-1.0',
+              type: 'rental',
+              quantity: {
+                max: 1,
+                min: 1,
+              },
+              promotions: [],
+              mustBeCompleted: false,
+              price: 190000000000,
+              intervalUnit: 'month',
+              capacities: [
+                'installation',
+                'renew',
               ],
-              isMandatory: false,
-              name: 'dbms',
-            },
-            {
-              isCustom: false,
-              values: [
-                'eu-west-fr-1',
-                'ca-east-qc-1',
-              ],
-              isMandatory: false,
-              name: 'region',
+              tax: 38000000000,
+              phase: 0,
+              description: 'Rental for 1 month',
+              strategy: 'tiered',
+              mode: 'default',
+              interval: 1,
+              repeat: {
+                max: 12,
+                min: 1,
+              },
+              commitment: 0,
             },
           ],
         },
         {
-          invoiceName: 'Enterprise cluster with 16GB RAM nodes',
-          pricingType: 'rental',
-          configurations: [
-            {
-              name: 'dbms',
-              values: [
-                'postgresql-11',
-                'postgresql-10',
-                'postgresql-9.6',
-              ],
-              isMandatory: false,
-              isCustom: false,
-            },
-            {
-              values: [
-                'eu-west-fr-1',
-                'ca-east-qc-1',
-              ],
-              name: 'region',
-              isMandatory: false,
-              isCustom: false,
-            },
-          ],
-          product: 'enterprise-cluster',
-          blobs: {
-            technical: {
-              cpu: {
-                threads: 8,
-                cores: 4,
-              },
-              type: 'baremetal',
-              memory: {
-                size: 16,
-              },
-              storage: {
-                disks: [
-                  {
-                    technology: 'ssd',
-                    capacity: 480,
-                  },
-                  {
-                    capacity: 480,
-                    technology: 'ssd',
-                  },
-                  {
-                    capacity: 480,
-                    technology: 'ssd',
-                  },
-                  {
-                    technology: 'ssd',
-                    capacity: 480,
-                  },
-                ],
-                raid: '10',
-              },
-            },
-          },
           family: null,
+          planCode: 'cluster16',
+          pricingType: 'rental',
           pricings: [
             {
+              mode: 'default',
               interval: 1,
+              commitment: 0,
               repeat: {
                 min: 1,
                 max: 12,
-              },
-              commitment: 0,
-              mustBeCompleted: false,
-              strategy: 'tiered',
-              phase: 0,
-              mode: 'default',
-              tax: 14000000000,
-              description: 'Rental for 12 months',
-              quantity: {
-                max: 1,
-                min: 1,
               },
               capacities: [
                 'installation',
                 'renew',
               ],
-              type: 'rental',
-              price: 70000000000,
-              promotions: [],
               intervalUnit: 'month',
+              tax: 14000000000,
+              description: 'Rental for 1 month',
+              phase: 0,
+              strategy: 'tiered',
+              type: 'rental',
+              promotions: [],
+              quantity: {
+                max: 1,
+                min: 1,
+              },
+              price: 70000000000,
+              mustBeCompleted: false,
             },
           ],
-          addonFamilies: [
+          blobs: {
+            technical: {
+              type: 'baremetal',
+              cpu: {
+                threads: 8,
+                cores: 4,
+              },
+              storage: {
+                raid: {
+                  level: 10,
+                  type: 'hard',
+                },
+                disks: [
+                  {
+                    number: 4,
+                    technology: 'ssd',
+                    capacity: 480,
+                  },
+                ],
+              },
+              memory: {
+                size: 16,
+              },
+            },
+          },
+          configurations: [
             {
-              exclusive: false,
-              name: 'backup',
-              default: null,
-              mandatory: false,
-              addons: [
-                'backup',
+              values: [
+                'postgresql-11',
+                'postgresql-10',
+                'postgresql-9.6',
+              ],
+              isMandatory: false,
+              name: 'dbms',
+              isCustom: false,
+            },
+            {
+              isMandatory: false,
+              name: 'region',
+              isCustom: false,
+              values: [
+                'eu-west-fr-1',
+                'ca-east-qc-1',
               ],
             },
+          ],
+          product: 'enterprise-cluster',
+          addonFamilies: [
             {
               addons: [
                 'node16',
               ],
-              default: null,
-              mandatory: false,
+              exclusive: false,
               name: 'node',
-              exclusive: false,
+              mandatory: false,
+              default: null,
             },
-          ],
-          planCode: 'cluster16',
-        },
-        {
-          planCode: 'cluster32',
-          addonFamilies: [
             {
-              name: 'backup',
-              exclusive: false,
+              mandatory: false,
+              default: null,
               addons: [
                 'backup',
               ],
+              exclusive: false,
+              name: 'backup',
+            },
+          ],
+          invoiceName: 'Enterprise cluster with 16GB RAM nodes',
+        },
+        {
+          pricingType: 'rental',
+          planCode: 'cluster32',
+          family: null,
+          invoiceName: 'Enterprise cluster with 32GB RAM nodes',
+          addonFamilies: [
+            {
               default: null,
               mandatory: false,
-            },
-            {
               addons: [
                 'node32',
               ],
-              default: null,
-              mandatory: false,
-              name: 'node',
               exclusive: false,
+              name: 'node',
             },
-          ],
-          pricings: [
             {
-              phase: 0,
-              strategy: 'tiered',
-              mode: 'default',
-              tax: 18000000000,
-              description: 'Rental for 12 months',
-              quantity: {
-                max: 1,
-                min: 1,
-              },
-              interval: 1,
-              repeat: {
-                max: 12,
-                min: 1,
-              },
-              commitment: 0,
-              mustBeCompleted: false,
-              promotions: [],
-              intervalUnit: 'month',
-              capacities: [
-                'installation',
-                'renew',
+              mandatory: false,
+              default: null,
+              addons: [
+                'backup',
               ],
-              type: 'rental',
-              price: 90000000000,
+              exclusive: false,
+              name: 'backup',
             },
           ],
-          family: null,
+          product: 'enterprise-cluster',
+          configurations: [
+            {
+              isMandatory: false,
+              name: 'dbms',
+              isCustom: false,
+              values: [
+                'postgresql-11',
+                'postgresql-10',
+                'postgresql-9.6',
+              ],
+            },
+            {
+              name: 'region',
+              isMandatory: false,
+              isCustom: false,
+              values: [
+                'eu-west-fr-1',
+                'ca-east-qc-1',
+              ],
+            },
+          ],
           blobs: {
             technical: {
+              storage: {
+                disks: [
+                  {
+                    technology: 'ssd',
+                    number: 4,
+                    capacity: 480,
+                  },
+                ],
+                raid: {
+                  level: 10,
+                  type: 'hard',
+                },
+              },
+              memory: {
+                size: 32,
+              },
               cpu: {
                 cores: 4,
                 threads: 8,
               },
               type: 'baremetal',
-              memory: {
-                size: 32,
-              },
-              storage: {
-                raid: '10',
-                disks: [
-                  {
-                    technology: 'ssd',
-                    capacity: 480,
-                  },
-                  {
-                    capacity: 480,
-                    technology: 'ssd',
-                  },
-                  {
-                    capacity: 480,
-                    technology: 'ssd',
-                  },
-                  {
-                    capacity: 480,
-                    technology: 'ssd',
-                  },
-                ],
-              },
             },
           },
-          product: 'enterprise-cluster',
-          configurations: [
-            {
-              name: 'dbms',
-              values: [
-                'postgresql-11',
-                'postgresql-10',
-                'postgresql-9.6',
-              ],
-              isMandatory: false,
-              isCustom: false,
-            },
-            {
-              values: [
-                'eu-west-fr-1',
-                'ca-east-qc-1',
-              ],
-              isMandatory: false,
-              name: 'region',
-              isCustom: false,
-            },
-          ],
-          pricingType: 'rental',
-          invoiceName: 'Enterprise cluster with 32GB RAM nodes',
-        },
-        {
-          family: null,
           pricings: [
             {
-              price: 120000000000,
+              type: 'rental',
+              quantity: {
+                max: 1,
+                min: 1,
+              },
+              promotions: [],
+              price: 90000000000,
+              mustBeCompleted: false,
+              intervalUnit: 'month',
               capacities: [
                 'installation',
                 'renew',
               ],
-              type: 'rental',
-              promotions: [],
-              intervalUnit: 'month',
-              commitment: 0,
-              mustBeCompleted: false,
+              tax: 18000000000,
+              phase: 0,
+              description: 'Rental for 1 month',
+              strategy: 'tiered',
+              mode: 'default',
               interval: 1,
+              commitment: 0,
               repeat: {
                 max: 12,
                 min: 1,
               },
-              quantity: {
-                min: 1,
-                max: 1,
-              },
-              mode: 'default',
-              strategy: 'tiered',
-              phase: 0,
-              description: 'Rental for 12 months',
-              tax: 24000000000,
             },
           ],
-          addonFamilies: [
-            {
-              name: 'backup',
-              exclusive: false,
-              addons: [
-                'backup',
-              ],
-              mandatory: false,
-              default: null,
-            },
-            {
-              default: null,
-              mandatory: false,
-              addons: [
-                'node64',
-              ],
-              exclusive: false,
-              name: 'node',
-            },
-          ],
+        },
+        {
           planCode: 'cluster64',
-          invoiceName: 'Enterprise cluster with 64GB RAM nodes',
+          family: null,
           pricingType: 'rental',
-          configurations: [
-            {
-              isCustom: false,
-              values: [
-                'postgresql-11',
-                'postgresql-10',
-                'postgresql-9.6',
-              ],
-              isMandatory: false,
-              name: 'dbms',
-            },
-            {
-              isCustom: false,
-              isMandatory: false,
-              values: [
-                'eu-west-fr-1',
-                'ca-east-qc-1',
-              ],
-              name: 'region',
-            },
-          ],
-          product: 'enterprise-cluster',
           blobs: {
             technical: {
+              storage: {
+                disks: [
+                  {
+                    number: 4,
+                    technology: 'ssd',
+                    capacity: 960,
+                  },
+                ],
+                raid: {
+                  level: 10,
+                  type: 'hard',
+                },
+              },
               memory: {
                 size: 64,
               },
@@ -617,54 +342,296 @@ export default class MockData {
                 cores: 8,
                 threads: 16,
               },
-              storage: {
-                disks: [
-                  {
-                    technology: 'ssd',
-                    capacity: 960,
-                  },
-                  {
-                    technology: 'ssd',
-                    capacity: 960,
-                  },
-                  {
-                    technology: 'ssd',
-                    capacity: 960,
-                  },
-                  {
-                    capacity: 960,
-                    technology: 'ssd',
-                  },
-                ],
-                raid: '10',
-              },
             },
           },
+          pricings: [
+            {
+              type: 'rental',
+              promotions: [],
+              quantity: {
+                max: 1,
+                min: 1,
+              },
+              mustBeCompleted: false,
+              price: 120000000000,
+              intervalUnit: 'month',
+              capacities: [
+                'installation',
+                'renew',
+              ],
+              tax: 24000000000,
+              description: 'Rental for 1 month',
+              phase: 0,
+              strategy: 'tiered',
+              mode: 'default',
+              interval: 1,
+              repeat: {
+                max: 12,
+                min: 1,
+              },
+              commitment: 0,
+            },
+          ],
+          invoiceName: 'Enterprise cluster with 64GB RAM nodes',
+          addonFamilies: [
+            {
+              default: null,
+              mandatory: false,
+              exclusive: false,
+              addons: [
+                'node64',
+              ],
+              name: 'node',
+            },
+            {
+              mandatory: false,
+              default: null,
+              exclusive: false,
+              addons: [
+                'backup',
+              ],
+              name: 'backup',
+            },
+          ],
+          product: 'enterprise-cluster',
+          configurations: [
+            {
+              values: [
+                'postgresql-11',
+                'postgresql-10',
+                'postgresql-9.6',
+              ],
+              isCustom: false,
+              isMandatory: false,
+              name: 'dbms',
+            },
+            {
+              isCustom: false,
+              isMandatory: false,
+              name: 'region',
+              values: [
+                'eu-west-fr-1',
+                'ca-east-qc-1',
+              ],
+            },
+          ],
         },
       ],
-      products: [
-        {
-          name: 'enterprise-cluster',
-          description: 'Enterprise cluster',
-          blobs: null,
-        },
-        {
-          blobs: null,
-          description: 'Enterprise node',
-          name: 'enterprise-node',
-        },
-        {
-          name: 'enterprise-backup',
-          blobs: null,
-          description: 'Enterprise backup',
-        },
-      ],
+      catalogId: 2746,
       locale: {
         subsidiary: 'FR',
         taxRate: 20,
         currencyCode: 'EUR',
       },
-      catalogId: 2422,
+      products: [
+        {
+          blobs: null,
+          name: 'enterprise-node',
+          description: 'Enterprise node',
+        },
+        {
+          name: 'enterprise-backup',
+          description: 'Enterprise backup',
+          blobs: null,
+        },
+        {
+          name: 'enterprise-cluster',
+          description: 'Enterprise cluster',
+          blobs: null,
+        },
+      ],
+      planFamilies: [],
+      addons: [
+        {
+          pricingType: 'rental',
+          planCode: 'node128',
+          family: null,
+          invoiceName: 'Enterprise node with 128GB RAM',
+          product: 'enterprise-node',
+          addonFamilies: [],
+          configurations: [],
+          blobs: null,
+          pricings: [
+            {
+              mode: 'default',
+              interval: 1,
+              commitment: 0,
+              repeat: {
+                max: 12,
+                min: 1,
+              },
+              capacities: [
+                'installation',
+                'renew',
+              ],
+              intervalUnit: 'month',
+              tax: 7320000000,
+              phase: 0,
+              description: 'Rental for 1 month',
+              strategy: 'tiered',
+              type: 'rental',
+              quantity: {
+                max: 8,
+                min: 1,
+              },
+              promotions: [],
+              mustBeCompleted: false,
+              price: 36600000000,
+            },
+          ],
+        },
+        {
+          family: null,
+          planCode: 'node16',
+          pricingType: 'rental',
+          pricings: [
+            {
+              type: 'rental',
+              quantity: {
+                max: 8,
+                min: 1,
+              },
+              promotions: [],
+              price: 14100000000,
+              mustBeCompleted: false,
+              mode: 'default',
+              interval: 1,
+              repeat: {
+                max: 12,
+                min: 1,
+              },
+              commitment: 0,
+              intervalUnit: 'month',
+              capacities: [
+                'installation',
+                'renew',
+              ],
+              tax: 2820000000,
+              phase: 0,
+              description: 'Rental for 1 month',
+              strategy: 'tiered',
+            },
+          ],
+          blobs: null,
+          addonFamilies: [],
+          product: 'enterprise-node',
+          invoiceName: 'Enterprise node with 16GB RAM',
+          configurations: [],
+        },
+        {
+          pricings: [
+            {
+              price: 16200000000,
+              mustBeCompleted: false,
+              promotions: [],
+              quantity: {
+                max: 8,
+                min: 1,
+              },
+              type: 'rental',
+              strategy: 'tiered',
+              phase: 0,
+              description: 'Rental for 1 month',
+              tax: 3240000000,
+              intervalUnit: 'month',
+              capacities: [
+                'installation',
+                'renew',
+              ],
+              repeat: {
+                min: 1,
+                max: 12,
+              },
+              commitment: 0,
+              interval: 1,
+              mode: 'default',
+            },
+          ],
+          blobs: null,
+          product: 'enterprise-node',
+          addonFamilies: [],
+          invoiceName: 'Enterprise node with 32GB RAM',
+          configurations: [],
+          family: null,
+          planCode: 'node32',
+          pricingType: 'rental',
+        },
+        {
+          configurations: [],
+          addonFamilies: [],
+          product: 'enterprise-node',
+          invoiceName: 'Enterprise node with 64GB RAM',
+          pricings: [
+            {
+              intervalUnit: 'month',
+              capacities: [
+                'installation',
+                'renew',
+              ],
+              tax: 5080000000,
+              description: 'Rental for 1 month',
+              phase: 0,
+              strategy: 'tiered',
+              mode: 'default',
+              interval: 1,
+              repeat: {
+                max: 12,
+                min: 1,
+              },
+              commitment: 0,
+              type: 'rental',
+              promotions: [],
+              quantity: {
+                max: 8,
+                min: 1,
+              },
+              mustBeCompleted: false,
+              price: 25400000000,
+            },
+          ],
+          blobs: null,
+          pricingType: 'rental',
+          family: null,
+          planCode: 'node64',
+        },
+        {
+          blobs: null,
+          pricings: [
+            {
+              type: 'consumption',
+              mustBeCompleted: false,
+              price: 10800000,
+              promotions: [],
+              quantity: {
+                max: null,
+                min: 1,
+              },
+              tax: 2160000,
+              capacities: [
+                'consumption',
+              ],
+              intervalUnit: 'month',
+              strategy: 'tiered',
+              phase: 0,
+              description: 'hourly price per GB',
+              mode: 'default',
+              commitment: 0,
+              repeat: {
+                max: null,
+                min: 1,
+              },
+              interval: 1,
+            },
+          ],
+          invoiceName: 'Enterprise backup',
+          product: 'enterprise-backup',
+          addonFamilies: [],
+          configurations: [],
+          planCode: 'backup',
+          family: null,
+          pricingType: 'consumption',
+        },
+      ],
     };
 
     this.offerDetails = {
@@ -723,14 +690,42 @@ export default class MockData {
     };
 
     this.clusters = [
-      '315d2938-bc19-4b4f-b362-108fe28324e4',
+      'efd91649-fde4-4c53-859b-a35c4d25e69f',
       'b78deac6-08fb-4f43-a502-be8e2ca6ceb3',
       'c9804e9e-fe07-441b-99f0-c14535aa277b',
       '1c34e05b-d7ea-4a55-af59-0e0f528db0ea',
+      'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d',
+      '315d2938-bc19-4b4f-b362-108fe28324e4',
     ];
 
     this.clusterDetails = {
+      'efd91649-fde4-4c53-859b-a35c4d25e69f': {
+        lastUpdate: '2019-08-11T00:11:12+00:00',
+        regionName: 'eu-west-fr-1',
+        taskId: null,
+        name: 'postgresql-3db3270d15d94a079bf532',
+        creationDate: '2019-06-24T10:39:07+00:00',
+        id: 'efd91649-fde4-4c53-859b-a35c4d25e69f',
+        status: 'created',
+        autoBackup: true,
+        version: '11',
+        offerType: 'postgresql',
+        offerName: 'cluster64',
+      },
       '315d2938-bc19-4b4f-b362-108fe28324e4': {
+        lastUpdate: '2019-08-11T00:11:12+00:00',
+        regionName: 'eu-west-fr-1',
+        taskId: null,
+        name: 'postgresql-3db3270d15d94a079bf532',
+        creationDate: '2019-06-24T10:39:07+00:00',
+        id: '315d2938-bc19-4b4f-b362-108fe28324e4',
+        status: 'created',
+        autoBackup: true,
+        version: '11',
+        offerType: 'postgresql',
+        offerName: 'cluster64',
+      },
+      'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d': {
         lastUpdate: '2019-08-11T00:11:12+00:00',
         regionName: 'eu-west-fr-1',
         taskId: null,
@@ -785,7 +780,7 @@ export default class MockData {
     };
 
     this.clusterEndpoints = {
-      'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d': [
+      'efd91649-fde4-4c53-859b-a35c4d25e69f': [
         'd678079f-0b77-4ac3-a1d4-ecbf0499a8bc',
         '71401d25-8ad0-4da3-bcb9-57666378b7e5',
       ],
@@ -813,7 +808,7 @@ export default class MockData {
         port: 18059,
         lastUpdate: '2019-06-24T13:53:47+00:00',
         taskId: null,
-        clusterId: 'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d',
+        clusterId: 'efd91649-fde4-4c53-859b-a35c4d25e69f',
       },
       '71401d25-8ad0-4da3-bcb9-57666378b7e5': {
         fqdn: '3db3270d15d94a079bf532.prm.clouddb.ovh.net',
@@ -821,7 +816,7 @@ export default class MockData {
         name: 'read-only',
         status: 'created',
         taskId: null,
-        clusterId: 'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d',
+        clusterId: 'efd91649-fde4-4c53-859b-a35c4d25e69f',
         creationDate: '2019-06-24T13:53:47+00:00',
         port: 3878,
         id: '71401d25-8ad0-4da3-bcb9-57666378b7e5',
@@ -895,7 +890,7 @@ export default class MockData {
     };
 
     this.clusterHosts = {
-      'dfa2ef72-c5f3-41ae-8ca2-b1547c3fc61d': [
+      'efd91649-fde4-4c53-859b-a35c4d25e69f': [
         '80a9fd85-38d3-431e-8e3a-09b1c6241b00',
         '71cd63ed-c071-4758-9cd9-65db41c4bff5',
         '5e0137dc-0d22-4aae-818e-5260c0fcb0ab',

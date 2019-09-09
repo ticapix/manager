@@ -1,178 +1,238 @@
 import each from 'lodash/each';
 import find from 'lodash/find';
-import forOwn from 'lodash/forOwn';
+import flatMap from 'lodash/flatMap';
 import get from 'lodash/get';
 import head from 'lodash/head';
 import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
 import last from 'lodash/last';
 import map from 'lodash/map';
 import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
 import split from 'lodash/split';
 import toArray from 'lodash/toArray';
 import toUpper from 'lodash/toUpper';
+import uniqBy from 'lodash/uniqBy';
 
 import { DATABASE_CONSTANTS } from './create.constants';
 
 export default class EnterpriseCloudDatabaseCreateCtrl {
   /* @ngInject */
-  constructor(enterpriseCloudDatabaseService) {
+  constructor($translate, enterpriseCloudDatabaseService) {
+    this.$translate = $translate;
     this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
   }
 
   $onInit() {
     this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
     this.databasePlanMap = {};
-    this.databases = [];
-    this.populateAdditionalReplicas();
-    this.populateDatabaseClustersMap();
-    console.log('databasePlanMap ', this.databasePlanMap);
-    this.populateUniqueDatabases();
-    console.log('databases ', this.databases);
     this.populateCapabilityDetails();
-    console.log('capabilities ', this.capabilities);
+    this.databases = this.getUniqueDatabases();
+    this.populateDefaultValues();
+  }
+
+  populateDefaultValues() {
     const defaultDb = head(this.databases);
-    const defaultDbVersion = head(defaultDb.versions);
-    const regions = keys(this.databasePlanMap[`${defaultDb.name}-${defaultDbVersion}`]);
-    const defaultDatacenter = head(regions);
-    const defaultCluster = head(this.capabilities);
+    const defaultRegions = keys(this.databasePlanMap[defaultDb.originalName]);
+    const defaultDatacenter = head(defaultRegions);
+    const defaultClusters = this
+      .databasePlanMap[defaultDb.originalName][defaultDatacenter].clusters;
+    const defaultCluster = find(defaultClusters, cluster => cluster.memory.size === 32);
+    this.populateAdditionalReplicas(defaultCluster);
     this.enterpriceDb = {
       database: defaultDb,
       datacenter: defaultDatacenter,
       cluster: defaultCluster,
       commitmentPeriod: null,
       paymentType: null,
-      additionalReplicaCount: null,
+      additionalReplicaCount: head(this.additionalReplicas),
     };
-    this.regions = toArray(regions);
-  }
-
-  populateAdditionalReplicas() {
-    this.additionalReplicas = [
-      {
-        value: 1,
-        price: 6000,
-      },
-      {
-        value: 2,
-        price: 12000,
-      },
-      {
-        value: 3,
-        price: 18000,
-      },
-    ];
+    this.regions = toArray(defaultRegions);
+    this.clusters = defaultClusters;
+    this.clusters = sortBy(this.clusters, cluster => cluster.memory.size);
   }
 
   populateCapabilityDetails() {
     const catalog = get(this, 'catalog');
     const capabilities = get(this, 'capabilities');
     map(capabilities, (capability) => {
-      // populate cpu, memory, storage
-      const plans = get(catalog, 'plans');
+      const plans = get(catalog, 'plans', []);
       const plan = find(plans, p => p.planCode === capability.name);
-      set(capability, 'cpu', get(plan, 'blobs.technical.cpu'));
-      set(capability, 'memory', get(plan, 'blobs.technical.memory'));
-      // set(capability, 'storage', get(plan, 'blobs.technical.storage'));
-      this.constructor.populateStorage(capability, get(plan, 'blobs.technical.storage'));
-
-      // populate supported databases and regions
-      const configurations = get(plan, 'configurations');
-      each(configurations, (conf) => {
-        if (conf.name === 'dbms') {
-          set(capability, 'databases', get(conf, 'values'));
-        } else if (conf.name === 'region') {
-          set(capability, 'regions', get(conf, 'values'));
-        }
-      });
-      // populate pricing
-      set(capability, 'pricings', get(plan, 'pricings'));
-    });
-  }
-
-  static populateStorage(capability, storages) {
-    const storage = {
-      size: get(head(storages.disks), 'capacity', 0),
-      type: toUpper(get(head(storages.disks), 'technology', null)),
-      count: get(storages, 'disks.length', 0),
-    };
-    set(capability, 'storage', storage);
-  }
-
-  populateDatabaseClustersMap() {
-    const plans = get(this.catalog, 'plans');
-    each(plans, (plan) => {
-      const configurations = get(plan, 'configurations');
-      let databases = null;
-      let regions = null;
-      each(configurations, (conf) => {
-        if (conf.name === 'dbms') {
-          databases = get(conf, 'values');
-        } else if (conf.name === 'region') {
-          regions = get(conf, 'values');
-        }
-      });
-      each(databases, (db) => {
-        if (!this.databasePlanMap[db]) {
-          this.databasePlanMap[db] = {};
-        }
-        each(regions, (region) => {
-          if (!this.databasePlanMap[db][region]) {
-            this.databasePlanMap[db][region] = {
-              clusters: [],
-            };
-          }
-          const supportedRegions = this.databasePlanMap[db][region];
-          if (!includes(supportedRegions.clusters, plan.planCode)) {
-            supportedRegions.clusters[supportedRegions.clusters.length] = plan.planCode;
-          }
-        });
-      });
-    });
-  }
-
-  populateUniqueDatabases() {
-    const databases = {};
-    forOwn(this.databasePlanMap, (value, key) => {
-      const splitArray = split(key, '-');
-      if (!databases[head(splitArray)]) {
-        databases[head(splitArray)] = {
-          name: head(splitArray),
-          versions: [],
-          isAvailable: true,
-          selectedVersion: null,
-        };
-        this.populateDatabaseDetails(head(splitArray), databases[head(splitArray)]);
-      }
-      const db = databases[head(splitArray)];
-      if (!includes(db.versions, last(splitArray))) {
-        if (db.versions.length === 0) {
-          db.selectedVersion = last(splitArray);
-        }
-        db.versions[db.versions.length] = last(splitArray);
+      if (!isEmpty(plan)) {
+        // populate cpu, memory, storage
+        this.constructor.populateComputation(capability, plan);
+        // populate storage details
+        this.constructor.populateStorage(capability, plan);
+        // populate supported databases and regions
+        this.populateDatabasesAndRegions(capability, plan, get(capability, 'status'));
+        // populate pricing
+        this.constructor.populatePricing(capability, plan);
       }
     });
-    this.databases = toArray(databases);
   }
 
-  populateDatabaseDetails(name, database) {
-    const db = this.DATABASE_CONSTANTS[name];
-    set(database, 'iconURL', db.iconURL, null);
-    set(database, 'displayName', db.name, name);
+  populateAdditionalReplicas(cluster) {
+    const price = get(cluster, 'price', {});
+    this.additionalReplicas = [
+      {
+        value: 0,
+        price: 0,
+        label: this.$translate.instant('enterprise_cloud_database_create_additional_replicas_empty'),
+      },
+      {
+        value: 1,
+        price,
+        label: this.$translate.instant('enterprise_cloud_database_create_additional_replicas_price', {
+          replicaCount: 1,
+          replicaPrice: price.total,
+          currencySymbol: '$',
+        }),
+      },
+      {
+        value: 2,
+        price: price * 2,
+        label: this.$translate.instant('enterprise_cloud_database_create_additional_replicas_price', {
+          replicaCount: 2,
+          replicaPrice: price.total * 2,
+          currencySymbol: '$',
+        }),
+      },
+      {
+        value: 3,
+        price: price * 3,
+        label: this.$translate.instant('enterprise_cloud_database_create_additional_replicas_price', {
+          replicaCount: 3,
+          replicaPrice: price.total * 3,
+          currencySymbol: '$',
+        }),
+      },
+    ];
+  }
+
+  static getReplicaPrice(replica) {
+    const priceDetails = head(replica.pricings);
+    const price = get(priceDetails, 'price', 0);
+    const tax = get(priceDetails, 'tax', 0);
+    return (price + tax) / 100000000;
+  }
+
+  getUniqueDatabases() {
+    const allDatabases = flatMap(this.capabilities, capability => capability.databases);
+    return uniqBy(allDatabases, 'originalName');
+  }
+
+  populateDatabasesAndRegions(capability, plan, status) {
+    const configurations = get(plan, 'configurations');
+    each(configurations, (conf) => {
+      if (conf.name === 'dbms') {
+        const databases = EnterpriseCloudDatabaseCreateCtrl
+          .getUniqueDatabasesAndVersions(get(conf, 'values'), status);
+        set(capability, 'databases', databases, []);
+      } else if (conf.name === 'region') {
+        set(capability, 'regions', get(conf, 'values'), []);
+      }
+    });
+    this.updateDatabasePlanMap(capability, capability);
+  }
+
+  updateDatabasePlanMap(capability) {
+    const databases = get(capability, 'databases');
+    const regions = get(capability, 'regions');
+    each(databases, (db) => {
+      const dbName = db.originalName;
+      if (!this.databasePlanMap[dbName]) {
+        this.databasePlanMap[dbName] = {};
+      }
+      const dbPlanMap = this.databasePlanMap[dbName];
+      each(regions, (region) => {
+        if (!dbPlanMap[region]) {
+          dbPlanMap[region] = {
+            clusters: [],
+          };
+        }
+        const clusters = get(dbPlanMap[region], 'clusters', []);
+        if (!includes(clusters, capability.name)) {
+          clusters[clusters.length] = capability;
+        }
+      });
+    });
   }
 
   onDatabaseSelect(database) {
-    const regions = keys(this.databasePlanMap[`${database.name}-${database.selectedVersion}`]);
+    const regions = keys(this.databasePlanMap[database.originalName]);
     this.regions = toArray(regions);
   }
 
   onRegionSelect(region) {
-    const database = `${this.enterpriceDb.database.name}-${this.enterpriceDb.database.selectedVersion}`;
-    this.clusters = toArray(this.databasePlanMap[database][region]);
+    const databaseName = this.enterpriceDb.database.originalName;
+    const regionMap = this.databasePlanMap[databaseName][region];
+    this.clusters = regionMap.clusters;
+    this.clusters = sortBy(this.clusters, cluster => cluster.memory.size);
   }
 
   orderDatabaseCluster() {
     this.order = true;
-    console.log(this.enterpriceDb);
+  }
+
+  static populatePricing(capability, plan) {
+    const priceDetails = head(plan.pricings);
+    set(capability, 'pricings', priceDetails);
+    const price = get(priceDetails, 'price', 0);
+    const tax = get(priceDetails, 'tax', 0);
+    const priceTotal = (price + tax) / 100000000;
+    const priceObj = {
+      totalLabel: $`${priceTotal}`,
+      total: priceTotal,
+      price,
+      tax,
+    };
+    set(capability, 'price', priceObj);
+  }
+
+  static getUniqueDatabasesAndVersions(databaseNames, status) {
+    const databasesMap = {};
+    each(databaseNames, (name) => {
+      // separate name and version, postgresql-11
+      const splitArray = split(name, '-');
+      const dbName = head(splitArray);
+      const dbVersion = last(splitArray);
+      if (!databasesMap[dbName]) {
+        const dbConstants = DATABASE_CONSTANTS[dbName];
+        databasesMap[dbName] = {
+          originalName: dbName,
+          versions: [],
+          isAvailable: status === 'available',
+          selectedVersion: null,
+          iconURL: get(dbConstants, 'iconURL', null),
+          displayName: get(dbConstants, 'name', dbName),
+        };
+      }
+      const db = databasesMap[dbName];
+      if (!includes(db.versions, dbVersion)) {
+        db.versions[db.versions.length] = dbVersion;
+      }
+    });
+    const databasesArray = toArray(databasesMap);
+    each(databasesArray, (db) => {
+      sortBy(db.versions);
+      set(db, 'selectedVersion', head(db.versions));
+    });
+    return databasesArray;
+  }
+
+  static populateComputation(capability, plan) {
+    set(capability, 'cpu', get(plan, 'blobs.technical.cpu'));
+    set(capability, 'memory', get(plan, 'blobs.technical.memory'));
+  }
+
+  static populateStorage(capability, plan) {
+    const storages = get(plan, 'blobs.technical.storage');
+    const storage = {
+      size: get(head(storages.disks), 'capacity', 0),
+      type: toUpper(get(head(storages.disks), 'technology', null)),
+      count: get(head(storages.disks), 'number', 0),
+    };
+    set(capability, 'storage', storage);
   }
 }
