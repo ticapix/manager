@@ -9,8 +9,16 @@ export default /* @ngInject */($stateProvider) => {
     },
     url: '/enterprise-cloud-database',
     resolve: {
-      capabilities: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
+      offers: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
         .getOffers(),
+      catalog: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
+        .getCatalog(),
+      capabilities: /* @ngInject */ (
+        offers,
+        catalog,
+        enterpriseCloudDatabaseService,
+      ) => enterpriseCloudDatabaseService
+        .constructor.getCapabilities(catalog, offers),
       clusters: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
         .getClusters().then(clusters => map(clusters, clusterId => ({ id: clusterId }))),
       getClusterDetails: /* @ngInject */

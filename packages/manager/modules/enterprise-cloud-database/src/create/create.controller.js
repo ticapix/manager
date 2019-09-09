@@ -12,7 +12,6 @@ import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 import split from 'lodash/split';
 import toArray from 'lodash/toArray';
-import toUpper from 'lodash/toUpper';
 import uniqBy from 'lodash/uniqBy';
 
 import { DATABASE_CONSTANTS } from './create.constants';
@@ -25,6 +24,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
   }
 
   $onInit() {
+    console.log('cap', this.capabilities);
     this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
     this.databasePlanMap = {};
     this.populateCapabilityDetails();
@@ -60,14 +60,8 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
       const plans = get(catalog, 'plans', []);
       const plan = find(plans, p => p.planCode === capability.name);
       if (!isEmpty(plan)) {
-        // populate cpu, memory, storage
-        this.constructor.populateComputation(capability, plan);
-        // populate storage details
-        this.constructor.populateStorage(capability, plan);
         // populate supported databases and regions
         this.populateDatabasesAndRegions(capability, plan, get(capability, 'status'));
-        // populate pricing
-        this.constructor.populatePricing(capability, plan);
       }
     });
   }
@@ -108,13 +102,6 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
         }),
       },
     ];
-  }
-
-  static getReplicaPrice(replica) {
-    const priceDetails = head(replica.pricings);
-    const price = get(priceDetails, 'price', 0);
-    const tax = get(priceDetails, 'tax', 0);
-    return (price + tax) / 100000000;
   }
 
   getUniqueDatabases() {
@@ -175,21 +162,6 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     this.order = true;
   }
 
-  static populatePricing(capability, plan) {
-    const priceDetails = head(plan.pricings);
-    set(capability, 'pricings', priceDetails);
-    const price = get(priceDetails, 'price', 0);
-    const tax = get(priceDetails, 'tax', 0);
-    const priceTotal = (price + tax) / 100000000;
-    const priceObj = {
-      totalLabel: $`${priceTotal}`,
-      total: priceTotal,
-      price,
-      tax,
-    };
-    set(capability, 'price', priceObj);
-  }
-
   static getUniqueDatabasesAndVersions(databaseNames, status) {
     const databasesMap = {};
     each(databaseNames, (name) => {
@@ -219,20 +191,5 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
       set(db, 'selectedVersion', head(db.versions));
     });
     return databasesArray;
-  }
-
-  static populateComputation(capability, plan) {
-    set(capability, 'cpu', get(plan, 'blobs.technical.cpu'));
-    set(capability, 'memory', get(plan, 'blobs.technical.memory'));
-  }
-
-  static populateStorage(capability, plan) {
-    const storages = get(plan, 'blobs.technical.storage');
-    const storage = {
-      size: get(head(storages.disks), 'capacity', 0),
-      type: toUpper(get(head(storages.disks), 'technology', null)),
-      count: get(head(storages.disks), 'number', 0),
-    };
-    set(capability, 'storage', storage);
   }
 }

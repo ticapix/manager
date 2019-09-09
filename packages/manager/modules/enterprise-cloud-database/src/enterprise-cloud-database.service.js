@@ -1,6 +1,11 @@
 import capitalize from 'lodash/capitalize';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import set from 'lodash/set';
+import toUpper from 'lodash/toUpper';
 
 import { ERROR_STATUS, PROCESSING_STATUS } from './enterprise-cloud-database.constants';
 
@@ -240,6 +245,53 @@ export default class EnterpriseCloudDatabaseService {
       { clusterId, securityGroupId },
       { name },
     ).$promise;
+  }
+
+  static getCapabilities(catalog, offers) {
+    const capabilities = offers;
+    map(capabilities, (capability) => {
+      const plans = get(catalog, 'plans', []);
+      const plan = find(plans, p => p.planCode === capability.name);
+      if (!isEmpty(plan)) {
+        // populate cpu, memory, storage
+        EnterpriseCloudDatabaseService.populateComputation(capability, plan);
+        // populate storage details
+        EnterpriseCloudDatabaseService.populateStorage(capability, plan);
+        // populate pricing
+        EnterpriseCloudDatabaseService.populatePricing(capability, plan);
+      }
+    });
+    return capabilities;
+  }
+
+  static populatePricing(capability, plan) {
+    const priceDetails = head(plan.pricings);
+    set(capability, 'pricings', priceDetails);
+    const price = get(priceDetails, 'price', 0);
+    const tax = get(priceDetails, 'tax', 0);
+    const priceTotal = (price + tax) / 100000000;
+    const priceObj = {
+      totalLabel: $`${priceTotal}`,
+      total: priceTotal,
+      price,
+      tax,
+    };
+    set(capability, 'price', priceObj);
+  }
+
+  static populateComputation(capability, plan) {
+    set(capability, 'cpu', get(plan, 'blobs.technical.cpu'));
+    set(capability, 'memory', get(plan, 'blobs.technical.memory'));
+  }
+
+  static populateStorage(capability, plan) {
+    const storages = get(plan, 'blobs.technical.storage');
+    const storage = {
+      size: get(head(storages.disks), 'capacity', 0),
+      type: toUpper(get(head(storages.disks), 'technology', null)),
+      count: get(head(storages.disks), 'number', 0),
+    };
+    set(capability, 'storage', storage);
   }
 
   static isProcessing(status) {
