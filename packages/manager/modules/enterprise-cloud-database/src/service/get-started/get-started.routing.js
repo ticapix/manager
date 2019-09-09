@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.get-started', {
     component: 'enterpriseCloudDatabaseServiceGetStartedComponent',
@@ -34,12 +37,22 @@ export default /* @ngInject */($stateProvider) => {
     },
     resolve: {
       callback: /* @ngInject */ $transition$ => $transition$.params().callback,
+      currency: /* @ngInject */
+        enterpriseCloudDatabaseService => enterpriseCloudDatabaseService.getMe()
+          .then(me => get(me, 'currency.symbol')),
       goBack: /* @ngInject */ ($state, clusterId) => () => $state.go('enterprise-cloud-database.service.get-started', { clusterId }),
       hostList: /* @ngInject */ $transition$ => $transition$.params().hostList,
       maxHostCount: /* @ngInject */
         (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getOfferDetails(clusterDetails.offerName)
           .then(offer => offer.maxHostCount),
+      nodeCatalog: /* @ngInject */
+        (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+          .getOfferCatalog().then((catalog) => {
+            const planCatalog = find(catalog.plans, { planCode: clusterDetails.offerName });
+            const nodePlan = get(find(planCatalog.addonFamilies, { name: 'node' }), 'addons[0]');
+            return find(catalog.addons, { planCode: nodePlan });
+          }),
     },
     url: '/add-replicas',
     views: {

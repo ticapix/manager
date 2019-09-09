@@ -10,21 +10,15 @@ export const COMMANDS_LIST = {
   RESTORE: 'restore',
 };
 
-export const ENDPOINT_TYPES = {
-  READ_ONLY: 'read-only',
-  READ_WRITE: 'read-write',
-};
-
 export const PARAMETERS = {
-  DATABASE: 'defaultdb',
+  DATABASE: 'postgres',
   MASKED_PASSWORD: '********',
   SSL_MODE: 'require',
-  USERNAME: 'doadmin',
+  USERNAME: 'postgres',
 };
 
 export default {
   COMMANDS,
   COMMANDS_LIST,
-  ENDPOINT_TYPES,
   PARAMETERS,
 };

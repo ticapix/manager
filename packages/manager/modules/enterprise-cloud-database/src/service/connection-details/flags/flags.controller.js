@@ -1,8 +1,5 @@
-import find from 'lodash/find';
-
 import {
-  COMMANDS, COMMANDS_LIST,
-  ENDPOINT_TYPES, PARAMETERS,
+  COMMANDS, COMMANDS_LIST, PARAMETERS,
 } from './flags.constants';
 
 export default class {
@@ -13,8 +10,7 @@ export default class {
   }
 
   $onInit() {
-    this.endpoint = find(this.endPoints, { name: ENDPOINT_TYPES.READ_WRITE });
-    this.connectionString = `PGPASSWORD=${this.PARAMETERS.MASKED_PASSWORD} ${COMMANDS[this.clusterType][this.command]} -U ${this.PARAMETERS.USERNAME} -h ${this.endpoint.fqdn} -p ${this.endpoint.port} -d ${this.PARAMETERS.DATABASE} --set=sslmode=${this.PARAMETERS.SSL_MODE}`;
-    this.restoreString = `PGPASSWORD=${this.PARAMETERS.MASKED_PASSWORD} ${COMMANDS[this.clusterType][this.command]} -U ${this.PARAMETERS.USERNAME} -h ${this.endpoint.fqdn} -p ${this.endpoint.port} -d ${this.PARAMETERS.DATABASE} <local-dump-path>`;
+    this.connectionString = `${COMMANDS[this.clusterType][this.command]} -U ${this.PARAMETERS.USERNAME} -h ${this.endPoint.fqdn} -p ${this.endPoint.port} -d ${this.PARAMETERS.DATABASE} -W --set=sslmode=${this.PARAMETERS.SSL_MODE}`;
+    this.restoreString = `${COMMANDS[this.clusterType][this.command]} -U ${this.PARAMETERS.USERNAME} -h ${this.endPoint.fqdn} -p ${this.endPoint.port} -d <db-name> -W <local-dump-path>`;
   }
 }

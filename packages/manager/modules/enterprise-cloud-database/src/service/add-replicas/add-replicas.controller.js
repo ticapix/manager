@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import range from 'lodash/range';
@@ -14,12 +15,16 @@ export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
 
   $onInit() {
     const orderableReplicaCount = this.maxHostCount - this.hostList.length;
+    const replicaCost = get(head(this.nodeCatalog.pricings), 'price') / 100000000;
     this.replicaCounts = map(range(1, orderableReplicaCount + 1), replicaNumber => ({
       replicaNumber,
       text: `${replicaNumber} ${(replicaNumber > 1
         ? this.$translate.instant('enterprise_cloud_database_common_replicas')
         : this.$translate.instant('enterprise_cloud_database_common_replica'))}
-         - 59.99 € HT/mois`,
+         - ${this.$translate.instant('enterprise_cloud_database_service_add_replicas_price', {
+        price: replicaCost * replicaNumber,
+        currency: this.currency,
+      })}`,
     }));
     this.data = {
       selectedReplicaCount: head(this.replicaCounts),

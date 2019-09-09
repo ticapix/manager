@@ -12,7 +12,7 @@ export default /* @ngInject */($stateProvider) => {
           .getEndpointsWithDetails(clusterId),
       hosts: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getHostsWithDetails(clusterId),
+          .getHosts(clusterId),
       serviceInfo: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getServiceInfo(clusterId),
@@ -34,7 +34,7 @@ export default /* @ngInject */($stateProvider) => {
       goToSettings: /* @ngInject */ ($state, clusterId) => () => $state
         .go('enterprise-cloud-database.service.details.settings', { clusterId }),
       goToClusterSize: /* @ngInject */ ($state, clusterId) => () => $state
-        .go('enterprise-cloud-database.service.details.cluster-size', { clusterId }),
+        .go('enterprise-cloud-database.service.details.cluster-nodes', { clusterId }),
     },
   });
 };

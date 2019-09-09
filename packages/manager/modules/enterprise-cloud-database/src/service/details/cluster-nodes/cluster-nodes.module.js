@@ -2,8 +2,8 @@ import angular from 'angular';
 
 import addReplicas from '../../add-replicas';
 import deleteReplicas from './delete';
-import enterpriseCloudDatabaseServiceDetailsClusterSizeComponent from './cluster-size.component';
-import routing from './cluster-size.routing';
+import enterpriseCloudDatabaseServiceDetailsClusterSizeComponent from './cluster-nodes.component';
+import routing from './cluster-nodes.routing';
 
 const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsClusterSize';
 

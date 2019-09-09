@@ -706,7 +706,7 @@ export default class MockData {
         name: 'postgresql-3db3270d15d94a079bf532',
         creationDate: '2019-06-24T10:39:07+00:00',
         id: 'efd91649-fde4-4c53-859b-a35c4d25e69f',
-        status: 'created',
+        status: 'creating',
         autoBackup: true,
         version: '11',
         offerType: 'postgresql',
@@ -899,6 +899,7 @@ export default class MockData {
         '462e02a6-7a05-4bfb-bad8-ddda451ea91b',
         'eecb7d70-ff85-480c-84de-34a6c5d03de3',
         '504db6e9-22fb-4927-91c3-38073e85e7f8',
+        '504db6e9-22fb-4927-91c3-38073e85e7f9',
       ],
       'c9804e9e-fe07-441b-99f0-c14535aa277b': [
         '441119c4-7d06-4f7d-92b8-55120d6136b3',
@@ -956,6 +957,14 @@ export default class MockData {
       '504db6e9-22fb-4927-91c3-38073e85e7f8': {
         taskId: null,
         id: '504db6e9-22fb-4927-91c3-38073e85e7f8',
+        name: 'backup1.5ae213cbf0554a07b82e34.prm.clouddb.ovh.net',
+        creationDate: '2019-06-24T11:58:40+00:00',
+        status: 'created',
+        lastUpdate: '2019-08-11T00:10:31+00:00',
+      },
+      '504db6e9-22fb-4927-91c3-38073e85e7f9': {
+        taskId: null,
+        id: '504db6e9-22fb-4927-91c3-38073e85e7f9',
         name: 'backup1.5ae213cbf0554a07b82e34.prm.clouddb.ovh.net',
         creationDate: '2019-06-24T11:58:40+00:00',
         status: 'created',

@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import range from 'lodash/range';
 
 import { DELETE_CONFIRMATION_INPUT } from '../../../../enterprise-cloud-database.constants';
-import { INCLUDED_CLUSTER_SIZE } from '../../details.constants';
+import { INCLUDED_CLUSTER_SIZE } from '../../../service.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsClusterSizeDeleteCtrl {
   /* @ngInject */
@@ -31,6 +31,6 @@ export default class EnterpriseCloudDatabaseServiceDetailsClusterSizeDeleteCtrl 
 
   deleteReplicas() {
     this.isLoading = true;
-    this.goBackToClusterSize(this.$translate.instant('enterprise_cloud_database_service_details_cluster_size_delete_success'));
+    this.goBackToClusterSize(this.$translate.instant('enterprise_cloud_database_service_details_cluster_nodes_delete_success'));
   }
 }

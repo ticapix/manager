@@ -10,6 +10,7 @@ export default {
     gotoClusterDetails: '<',
     hostList: '<',
     maintenanceWindow: '<',
+    maxHostCount: '<',
     securityGroups: '<',
   },
   controller,

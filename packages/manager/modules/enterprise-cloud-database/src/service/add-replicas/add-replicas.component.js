@@ -6,11 +6,12 @@ const component = {
   controller,
   bindings: {
     callback: '<',
+    currency: '<',
     defaultPaymentMethod: '<',
     hostList: '<',
     goBack: '<',
-    hostList: '<',
     maxHostCount: '<',
+    nodeCatalog: '<',
   },
 };
 

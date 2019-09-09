@@ -7,6 +7,6 @@ export default {
   bindings: {
     command: '<',
     clusterType: '<',
-    endPoints: '<',
+    endPoint: '<',
   },
 };

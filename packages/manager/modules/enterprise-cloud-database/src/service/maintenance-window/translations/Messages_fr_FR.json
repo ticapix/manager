@@ -5,6 +5,6 @@
   "enterprise_cloud_database_service_maintenance_window_adjust_window": "Adjust window",
   "enterprise_cloud_database_service_maintenance_window_adjust_window_day": "Day",
   "enterprise_cloud_database_service_maintenance_window_adjust_window_hour": "Hour",
-  "enterprise_cloud_database_service_maintenance_window_adjust_window_duration": "Duration (minutes)",
+  "enterprise_cloud_database_service_maintenance_window_adjust_window_duration": "Duration",
   "enterprise_cloud_database_service_maintenance_window_reset": "Reset"
 }

@@ -29,6 +29,10 @@ export default class EnterpriseCloudDatabaseService {
     return this.OvhApiMe.PaymentMean().v6().getDefaultPaymentMean();
   }
 
+  getMe() {
+    return this.OvhApiMe.v6().get().$promise;
+  }
+
   createMaintenanceWindow(clusterId, windowData) {
     return this.OvhApiCloudDBEnterpriseWindow.create({ clusterId }, windowData).$promise;
   }
@@ -77,12 +81,7 @@ export default class EnterpriseCloudDatabaseService {
       .then((response) => {
         delete response.$promise;
         return response;
-      }).catch(() => {});
-  }
-
-  getClusterList() {
-    return this.getClusters()
-      .then(clusters => this.$q.all(map(clusters, clusterId => this.getClusterDetails(clusterId))));
+      });
   }
 
   getClusters() {
@@ -187,6 +186,12 @@ export default class EnterpriseCloudDatabaseService {
     return this.OvhApiCloudDBEnterpriseRestore.create({ clusterId }, payLoad).$promise;
   }
 
+  deleteRestoredInstance(clusterId, restoredInstanceId) {
+    return this.OvhApiCloudDBEnterpriseRestore.delete(
+      { clusterId, restoreId: restoredInstanceId },
+    ).$promise;
+  }
+
   createBackup(clusterId, name) {
     return this.OvhApiCloudDBEnterpriseBackup.create({ clusterId }, { clusterId, name }).$promise;
   }
@@ -199,22 +204,9 @@ export default class EnterpriseCloudDatabaseService {
     return this.OvhApiCloudDBEnterpriseBackup.get({ clusterId, backupId }).$promise;
   }
 
-  getBackupList(clusterId) {
-    return this.getBackups(clusterId)
-      .then(backups => this.$q.all(
-        map(backups, backupId => this.getBackupDetails(clusterId, backupId)),
-      ));
-  }
-
   deleteBackupInstance(clusterId, backupInstanceId) {
     return this.OvhApiCloudDBEnterpriseBackup.delete(
       { clusterId, backupId: backupInstanceId },
-    ).$promise;
-  }
-
-  deleteRestoredInstance(clusterId, restoredInstanceId) {
-    return this.OvhApiCloudDBEnterpriseRestore.delete(
-      { clusterId, restoreId: restoredInstanceId },
     ).$promise;
   }
 
