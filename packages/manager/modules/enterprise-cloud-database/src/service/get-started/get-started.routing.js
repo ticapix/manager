@@ -47,12 +47,7 @@ export default /* @ngInject */($stateProvider) => {
           .getOfferDetails(clusterDetails.offerName)
           .then(offer => offer.maxHostCount),
       nodeCatalog: /* @ngInject */
-        (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getOfferCatalog().then((catalog) => {
-            const planCatalog = find(catalog.plans, { planCode: clusterDetails.offerName });
-            const nodePlan = get(find(planCatalog.addonFamilies, { name: 'node' }), 'addons[0]');
-            return find(catalog.addons, { planCode: nodePlan });
-          }),
+        (capabilities, clusterDetails) => get(find(capabilities, { name: clusterDetails.offerName }), 'node'),
     },
     url: '/add-replicas',
     views: {
