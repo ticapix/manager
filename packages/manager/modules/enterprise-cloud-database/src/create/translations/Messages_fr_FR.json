@@ -29,8 +29,6 @@
   "enterprise_cloud_database_create_save_final": "Save total of <span class='font-weight-bold'>{{ amount }}{{ currencySymbol }}</span> with this payment type",
   "enterprise_cloud_database_create_order_summary_title": "Order Summary",
   "enterprise_cloud_database_create_order_summary_cluster": "{{ ram }} GB RAM, {{ cpu }} Cores, {{ storage }} GB {{ storageType }} X {{ storageCount }} storage",
-  "enterprise_cloud_database_create_order_summary_total_price_monthly": "{{currencySymbol}}{{totalPrice}} incl. VAT/month",
-  "enterprise_cloud_database_create_order_summary_total_price": "{{currencySymbol}}{{totalPrice}} incl. VAT",
   "enterprise_cloud_database_create_order_button_label": "Order Enterprise Cloud Database",
   "enterprise_cloud_database_create_order_summary_database": "Database",
   "enterprise_cloud_database_create_order_summary_region": "Region",
@@ -38,8 +36,9 @@
   "enterprise_cloud_database_create_order_summary_commitment_period": "Commitment Period",
   "enterprise_cloud_database_create_order_summary_payment_type": "Payment Type",
   "enterprise_cloud_database_create_order_summary_payment_total_label": "Total price",
-  "enterprise_cloud_database_create_order_month": "1 Month",
+  "enterprise_cloud_database_create_order_1_month": "1 Month",
   "enterprise_cloud_database_create_order_months": "{{numMonths}} Months",
   "enterprise_cloud_database_create_order_payment_monthly": "Monthly",
-  "enterprise_cloud_database_create_order_payment_one_time": "One time"
+  "enterprise_cloud_database_create_order_payment_one_time": "One time",
+  "enterprise_cloud_database_create_order_month": "month"
 }
