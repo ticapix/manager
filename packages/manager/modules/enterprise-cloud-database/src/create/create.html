@@ -32,7 +32,8 @@
             <section class="choose-cluster mb-5">
                 <h4 data-translate="enterprise_cloud_database_create_choose_cluster"></h4>
                 <p data-translate="enterprise_cloud_database_create_choose_cluster_desc"></p>
-                <h5><span data-translate="enterprise_cloud_database_create_choose_cluster_info"></span>:</h5>
+                <h5><span data-translate="enterprise_cloud_database_create_choose_cluster_info"
+                    data-translate-values="{ numDefaultNodes: $ctrl.minHostCount }"></span>:</h5>
                 <ul class="list-unstyled">
                     <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_primary"></span> (Primary)</li>
                     <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_replica"></span> (Replica)</li>
@@ -43,14 +44,14 @@
                     enterprice-db="$ctrl.enterpriceDb">
                 </enterprise-cloud-database-order-choose-cluster-config>
             </section>
-            <section class="additional-replica mb-3 clearfix">
+            <section class="additional-replica mb-4 clearfix">
                 <h4 data-translate="enterprise_cloud_database_create_additional_replicas"></h4>
                 <p data-translate="enterprise_cloud_database_create_additional_replicas_desc"></p>
                 <label class="oui-select oui-select_l">
                     <select id="replicas"
                         name="replicas"
                         class="oui-select__input"
-                        data-ng-model="$ctrl.enterpriceDb.additionalReplicaCount"
+                        data-ng-model="$ctrl.enterpriceDb.additionalReplica"
                         data-ng-options="replica as replica.label for replica in $ctrl.additionalReplicas track by replica.value">
                     </select>
                     <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
@@ -60,36 +61,91 @@
                 <h4 data-translate="enterprise_cloud_database_create_choose_commitment"></h4>
                 <p data-translate="enterprise_cloud_database_create_choose_commitment_desc"></p>
                 <enterprise-cloud-database-order-choose-commitment-period
-                    enterprice-db="$ctrl.enterpriceDb">
+                    enterprice-db="$ctrl.enterpriceDb"
+                    commitment-periods="$ctrl.commitmentPeriods">
                 </enterprise-cloud-database-order-choose-commitment-period>
             </section>
             <section class="choose-payment-type mb-5">
                 <h4 data-translate="enterprise_cloud_database_create_choose_payment"></h4>
                 <p data-translate="enterprise_cloud_database_create_choose_payment_desc"></p>
-                <enterprise-cloud-database-order-choose-payment-period
-                    enterprice-db="$ctrl.enterpriceDb">
-                </enterprise-cloud-database-order-choose-payment-period>
+                <enterprise-cloud-database-order-choose-payment-type
+                    enterprice-db="$ctrl.enterpriceDb"
+                    payment-types="$ctrl.paymentTypes">
+                </enterprise-cloud-database-order-choose-payment-type>
             </section>
             <section class="order-summary mb-5">
                 <h4 data-translate="enterprise_cloud_database_create_order_summary_title"></h4>
-                <div data-translate="enterprise_cloud_database_create_order_summary_cluster"
-                    data-translate-values="{
-                        clusterRAM: $ctrl.enterpriceDb.cluster.memory.size,
-                        clusterCPU: $ctrl.enterpriceDb.cluster.cpu.cores,
-                        clusterStorage: $ctrl.enterpriceDb.cluster.storage.size,
-                        clusterStorageType: $ctrl.enterpriceDb.cluster.storage.type,
-                        clusterStorageCount: $ctrl.enterpriceDb.cluster.storage.count,
-                        clusterPrice: $ctrl.enterpriceDb.cluster.price.total,
-                        currencySymbol: '$',
-                    }">
-                </div>
-                <div data-ng-if="$ctrl.enterpriceDb.additionalReplicaCount"
-                    data-translate="enterprise_cloud_database_create_order_summary_replicas"
-                    data-translate-values="{
-                        additionalReplicaCount: $ctrl.enterpriceDb.additionalReplicaCount ? $ctrl.enterpriceDb.additionalReplicaCount.value : 0
-                    }">
-                </div>
-                <strong><p data-translate="enterprise_cloud_database_create_order_summary_total_price"></p></strong>
+                <dl class="border-top mt-1">
+                    <div class="row mb-2">
+                        <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_database"></dt>
+                        <dd class="col-sm-9 my-auto">
+                            <span data-ng-bind="$ctrl.enterpriceDb.database.displayName"></span>
+                            <span data-ng-bind="$ctrl.enterpriceDb.database.selectedVersion"></span>
+                        </dd>
+                    </div>
+                    <div class="row mb-2">
+                        <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_region"></dt>
+                        <dd class="col-sm-9 my-auto">
+                            <span data-ng-bind="$ctrl.enterpriceDb.datacenter"></span>
+                        </dd>
+                    </div>
+                    <div class="row mb-2">
+                        <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_cluster_label"></dt>
+                        <dd class="col-sm-9 my-auto">
+                            <span> {{ $ctrl.minHostCount + $ctrl.enterpriceDb.additionalReplica.value }} X (
+                                <span data-translate="enterprise_cloud_database_create_order_summary_cluster"
+                                    data-translate-values="{
+                                        ram: $ctrl.enterpriceDb.cluster.memory.size,
+                                        cpu: $ctrl.enterpriceDb.cluster.cpu.cores,
+                                        storage: $ctrl.enterpriceDb.cluster.storage.size,
+                                        storageType: $ctrl.enterpriceDb.cluster.storage.type,
+                                        storageCount: $ctrl.enterpriceDb.cluster.storage.count,
+                                    }">
+                                </span>
+                                )
+                            </span>
+                        </dd>
+                    </div>
+                    <div class="row mb-2">
+                        <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_commitment_period"></dt>
+                        <dd class="col-sm-9 my-auto">
+                            <span data-ng-if="$ctrl.enterpriceDb.commitmentPeriod === 1"
+                                data-translate="enterprise_cloud_database_create_order_month">
+                            </span>
+                            <span data-ng-if="$ctrl.enterpriceDb.commitmentPeriod > 1"
+                                data-translate="enterprise_cloud_database_create_order_months"
+                                data-translate-values="{ numMonths: $ctrl.enterpriceDb.commitmentPeriod }">
+                            </span>
+                        </dd>
+                    </div>
+                    <div class="row mb-2">
+                        <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_payment_type"></dt>
+                        <dd class="col-sm-9 my-auto">
+                            <span data-translate="{{ 'enterprise_cloud_database_create_order_payment_'+$ctrl.enterpriceDb.paymentType.name }}"></span>
+                        </dd>
+                    </div>
+                    <div class="row mb-2">
+                        <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_payment_total_label"></dt>
+                        <dd class="col-sm-9 my-auto">
+                            <strong>
+                                <span data-ng-if="$ctrl.enterpriceDb.paymentType.monthly"
+                                    data-translate="enterprise_cloud_database_create_order_summary_total_price_monthly"
+                                    data-translate-values="{
+                                        totalPrice: $ctrl.enterpriceDb.cluster.price.total * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value),
+                                        currencySymbol: '$',
+                                    }">
+                                </span>
+                                <span  data-ng-if="!$ctrl.enterpriceDb.paymentType.monthly"
+                                    data-translate="enterprise_cloud_database_create_order_summary_total_price"
+                                    data-translate-values="{
+                                        totalPrice: $ctrl.enterpriceDb.cluster.price.total * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * $ctrl.enterpriceDb.commitmentPeriod,
+                                        currencySymbol: '$',
+                                    }">
+                                </span>
+                            </strong>
+                        </dd>
+                    </div>
+                </dl>
             </section>
             <oui-button data-variant="primary" data-on-click="$ctrl.orderDatabaseCluster()">
                 <span data-translate="enterprise_cloud_database_create_order_button_label"></span>

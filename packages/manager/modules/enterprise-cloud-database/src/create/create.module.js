@@ -7,7 +7,7 @@ import chooseDatabaseComponent from './choose-database';
 import chooseRegionComponent from './choose-region';
 import chooseClusterConfigComponent from './choose-cluster-config';
 import chooseCommitmentPeriodComponent from './choose-commitment-period';
-import choosePaymentPeriodComponent from './choose-payment-period';
+import choosePaymentTypeComponent from './choose-payment-type';
 
 const moduleName = 'ovhManagerEnterpriseCloudDatabaseCreateModule';
 
@@ -18,7 +18,7 @@ angular
     chooseRegionComponent,
     chooseClusterConfigComponent,
     chooseCommitmentPeriodComponent,
-    choosePaymentPeriodComponent,
+    choosePaymentTypeComponent,
   ])
   .config(routing)
   .component('enterpriseCloudDatabaseCreateComponent', createComponent)

@@ -271,7 +271,7 @@ export default class EnterpriseCloudDatabaseService {
     const tax = get(priceDetails, 'tax', 0);
     const priceTotal = (price + tax) / 100000000;
     const priceObj = {
-      totalLabel: $`${priceTotal}`,
+      totalLabel: `$${priceTotal}`,
       total: priceTotal,
       price,
       tax,

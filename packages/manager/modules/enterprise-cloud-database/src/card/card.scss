@@ -1,5 +1,6 @@
 
 $default-background-color: #fff;
+$hover-background-color: rgb(245, 241, 241);
 $default-border-color: #d2d1d1;
 $selected-background-color: rgba(129, 211, 248, 0.1);
 $selected-border-color: rgba(2, 167, 240, 1);
@@ -11,6 +12,10 @@ $selected-border-color: rgba(2, 167, 240, 1);
     height: 100%;
     cursor: pointer;
     background-color: $default-background-color;
+}
+
+.card:hover {
+    background-color: $hover-background-color;
 }
 
 .card .card-body {
@@ -63,7 +68,7 @@ $selected-border-color: rgba(2, 167, 240, 1);
     border-color: $selected-border-color;
 }
 
-.card.selected .card-body, .card.selected .card-footer {
+.card.selected .card-body, .card.selected .card-footer, .card.selected:hover {
     background-color: $selected-background-color;
 }
 

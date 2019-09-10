@@ -3,9 +3,9 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-ui-angular';
 
-import component from './choose-payment-period.component';
+import component from './choose-payment-type.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseOrderChoosePaymentPeriodModule';
+const moduleName = 'ovhManagerEnterpriseCloudDatabaseOrderChoosePaymentTypeModule';
 
 angular
   .module(moduleName, [
@@ -13,6 +13,6 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('enterpriseCloudDatabaseOrderChoosePaymentPeriod', component);
+  .component('enterpriseCloudDatabaseOrderChoosePaymentType', component);
 
 export default moduleName;
