@@ -266,8 +266,8 @@ export default class EnterpriseCloudDatabaseService {
 
   static getCapabilities(catalog, offers) {
     const capabilities = offers;
+    const plans = get(catalog, 'plans', []);
     map(capabilities, (capability) => {
-      const plans = get(catalog, 'plans', []);
       const plan = find(plans, p => p.planCode === capability.name);
       if (!isEmpty(plan)) {
         // populate cpu, memory, storage
@@ -276,6 +276,8 @@ export default class EnterpriseCloudDatabaseService {
         EnterpriseCloudDatabaseService.populateStorage(capability, plan);
         // populate pricing
         EnterpriseCloudDatabaseService.populatePricing(capability, plan);
+        // populate node details
+        EnterpriseCloudDatabaseService.populateNodeDetails(capability, catalog, plan);
       }
     });
     return capabilities;
@@ -305,8 +307,14 @@ export default class EnterpriseCloudDatabaseService {
       size: get(head(storages.disks), 'capacity', 0),
       type: toUpper(get(head(storages.disks), 'technology', null)),
       count: get(head(storages.disks), 'number', 0),
+      raid: get(storages, 'raid'),
     };
     set(capability, 'storage', storage);
+  }
+
+  static populateNodeDetails(capability, catalog, plan) {
+    const nodePlan = get(find(plan.addonFamilies, { name: 'node' }), 'addons[0]');
+    set(capability, 'node', find(catalog.addons, { planCode: nodePlan }));
   }
 
   static isProcessing(status) {

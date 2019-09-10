@@ -14,7 +14,7 @@ import split from 'lodash/split';
 import toArray from 'lodash/toArray';
 import uniqBy from 'lodash/uniqBy';
 
-import { DATABASE_CONSTANTS } from './create.constants';
+import { DATABASE_CONSTANTS, COMMITMENT_PERIODS, PAYMENT_TYPES } from './create.constants';
 
 export default class EnterpriseCloudDatabaseCreateCtrl {
   /* @ngInject */
@@ -24,7 +24,10 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
   }
 
   $onInit() {
+    this.commitmentPeriods = COMMITMENT_PERIODS;
+    this.paymentTypes = PAYMENT_TYPES;
     this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
+    this.minHostCount = get(head(this.capabilities), 'minHostCount', 0);
     this.databasePlanMap = {};
     this.populateCapabilityDetails();
     this.databases = this.getUniqueDatabases();
@@ -43,9 +46,10 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
       database: defaultDb,
       datacenter: defaultDatacenter,
       cluster: defaultCluster,
-      commitmentPeriod: null,
-      paymentType: null,
-      additionalReplicaCount: head(this.additionalReplicas),
+      commitmentPeriod: head(this.commitmentPeriods),
+      paymentType: head(this.paymentTypes),
+      additionalReplica: head(this.additionalReplicas),
+      defaultReplicaCount: this.minHostCount,
     };
     this.regions = toArray(defaultRegions);
     this.clusters = defaultClusters;
@@ -67,40 +71,26 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
 
   populateAdditionalReplicas(cluster) {
     const price = get(cluster, 'price', {});
+    const minReplicas = get(cluster, 'minHostCount', 0);
+    const maxReplicas = get(cluster, 'maxHostCount', 0);
     this.additionalReplicas = [
       {
         value: 0,
         price: 0,
         label: this.$translate.instant('enterprise_cloud_database_create_additional_replicas_empty'),
       },
-      {
-        value: 1,
-        price,
-        label: this.$translate.instant('enterprise_cloud_database_create_additional_replicas_price', {
-          replicaCount: 1,
-          replicaPrice: price.total,
-          currencySymbol: '$',
-        }),
-      },
-      {
-        value: 2,
-        price: price * 2,
-        label: this.$translate.instant('enterprise_cloud_database_create_additional_replicas_price', {
-          replicaCount: 2,
-          replicaPrice: price.total * 2,
-          currencySymbol: '$',
-        }),
-      },
-      {
-        value: 3,
-        price: price * 3,
-        label: this.$translate.instant('enterprise_cloud_database_create_additional_replicas_price', {
-          replicaCount: 3,
-          replicaPrice: price.total * 3,
-          currencySymbol: '$',
-        }),
-      },
     ];
+    for (let i = 1; i <= maxReplicas - minReplicas; i += 1) {
+      this.additionalReplicas[i] = {
+        value: i,
+        price: price * i,
+        label: this.$translate.instant('enterprise_cloud_database_create_additional_replicas_price', {
+          replicaCount: i,
+          replicaPrice: price.total * i,
+          currencySymbol: '$',
+        }),
+      };
+    }
   }
 
   getUniqueDatabases() {
@@ -159,6 +149,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
 
   orderDatabaseCluster() {
     this.order = true;
+    console.log(this.enterpriceDb);
   }
 
   static getUniqueDatabasesAndVersions(databaseNames, status) {

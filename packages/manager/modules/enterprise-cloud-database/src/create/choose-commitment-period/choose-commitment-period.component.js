@@ -4,6 +4,7 @@ import template from './choose-commitment-period.html';
 export default {
   bindings: {
     enterpriceDb: '<',
+    commitmentPeriods: '<',
   },
   controller,
   template,

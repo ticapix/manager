@@ -1,0 +1,19 @@
+
+<div class="row">
+    <enterprise-cloud-database-card
+        data-ng-repeat="paymentType in $ctrl.paymentTypes track by paymentType.name"
+        class="col-sm-4 col-md-3 col-lg-2"
+        data-label="{{ :: ('enterprise_cloud_database_create_order_payment_'+paymentType.name) | translate }}"
+        data-model="paymentType"
+        data-selected="$ctrl.selectedPaymentType.name === paymentType.name"
+        data-on-change="$ctrl.onPaymentTypeSelect(modelValue)">
+        <enterprise-cloud-database-card-footer>
+            <div class="mt-2 mb-2 font-weight-bold" data-ng-if="::paymentType.monthly">
+                {{ $ctrl.enterpriceDb.cluster.price.total * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) }}
+            </div>
+            <div class="mt-2 mb-2 font-weight-bold" data-ng-if=":: !paymentType.monthly">
+                {{ $ctrl.enterpriceDb.cluster.price.total * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * $ctrl.enterpriceDb.commitmentPeriod }}
+            </div>
+        </enterprise-cloud-database-card-footer>
+    </enterprise-cloud-database-card>
+</div>
