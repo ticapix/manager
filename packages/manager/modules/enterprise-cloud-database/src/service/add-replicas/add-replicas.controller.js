@@ -15,16 +15,15 @@ export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
 
   $onInit() {
     const orderableReplicaCount = this.maxHostCount - this.hostList.length;
-    const replicaCost = get(head(this.nodeCatalog.pricings), 'price') / 100000000;
+    const replicaCost = get(head(this.nodeCatalog.pricings), 'price');
+    const tax = get(head(this.nodeCatalog.pricings), 'tax');
     this.replicaCounts = map(range(1, orderableReplicaCount + 1), replicaNumber => ({
       replicaNumber,
       text: `${replicaNumber} ${(replicaNumber > 1
         ? this.$translate.instant('enterprise_cloud_database_common_replicas')
-        : this.$translate.instant('enterprise_cloud_database_common_replica'))}
-         - ${this.$translate.instant('enterprise_cloud_database_service_add_replicas_price', {
-        price: replicaCost * replicaNumber,
-        currency: this.enterpriseCloudDatabaseService.userData.currencySymbol,
-      })}`,
+        : this.$translate.instant('enterprise_cloud_database_common_replica'))}`,
+      price: replicaCost * replicaNumber,
+      tax: tax * replicaNumber,
     }));
     this.data = {
       selectedReplicaCount: head(this.replicaCounts),
