@@ -8,10 +8,11 @@ export default class EnterpriseCloudDatabasePriceCtrl {
     this.deutchTouch = ['DE', 'FI', 'SN'];
     this.usTouch = ['CA', 'WE', 'WS', 'QC', 'US'];
     this.asiaTouch = ['SG', 'ASIA', 'AU'];
+    this.ovhSubsidiary = this.service.userData.ovhSubsidiary;
   }
 
   $onInit() {
-    this.priceWithTaxText = this.service.getPriceText(this.price.price + this.price.tax);
-    this.priceWithoutTaxText = this.service.getPriceText(this.price.price);
+    this.priceWithTaxText = this.service.getPriceText(this.price + this.tax);
+    this.priceWithoutTaxText = this.service.getPriceText(this.price);
   }
 }

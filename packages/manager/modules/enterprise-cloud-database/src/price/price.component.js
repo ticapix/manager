@@ -4,7 +4,7 @@ import template from './price.html';
 const component = {
   bindings: {
     price: '<',
-    ovhSubsidiary: '<',
+    tax: '<',
   },
   controller,
   template,
