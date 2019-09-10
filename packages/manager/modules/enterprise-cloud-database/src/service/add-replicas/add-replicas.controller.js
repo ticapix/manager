@@ -23,7 +23,7 @@ export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
         : this.$translate.instant('enterprise_cloud_database_common_replica'))}
          - ${this.$translate.instant('enterprise_cloud_database_service_add_replicas_price', {
         price: replicaCost * replicaNumber,
-        currency: this.currency,
+        currency: this.enterpriseCloudDatabaseService.userData.currencySymbol,
       })}`,
     }));
     this.data = {

@@ -28,6 +28,15 @@ export default class EnterpriseCloudDatabaseService {
     this.OvhApiCloudDBEnterpriseUser = OvhApiCloudDBEnterprise.User().v6();
     this.OvhApiCloudDBEnterpriseOffers = OvhApiCloudDBEnterprise.Offers().v6();
     this.OvhApiMe = OvhApiMe;
+    this.userData = {
+      currencySymbol: null,
+      ovhSubsidiary: null,
+    };
+    this.initialize();
+  }
+
+  initialize() {
+    this.getMe();
   }
 
   getDefaultPaymentMethod() {
@@ -35,7 +44,15 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getMe() {
-    return this.OvhApiMe.v6().get().$promise;
+    return this.OvhApiMe.v6().get().$promise.then((me) => {
+      this.userData.ovhSubsidiary = me.ovhSubsidiary;
+      this.userData.currencySymbol = me.currency.symbol;
+      return this.data;
+    });
+  }
+
+  getPriceText(priceInCents) {
+    return `${priceInCents / 100000000} ${this.userData.currencySymbol}`;
   }
 
   createMaintenanceWindow(clusterId, windowData) {
@@ -249,8 +266,8 @@ export default class EnterpriseCloudDatabaseService {
 
   static getCapabilities(catalog, offers) {
     const capabilities = offers;
+    const plans = get(catalog, 'plans', []);
     map(capabilities, (capability) => {
-      const plans = get(catalog, 'plans', []);
       const plan = find(plans, p => p.planCode === capability.name);
       if (!isEmpty(plan)) {
         // populate cpu, memory, storage
@@ -259,6 +276,8 @@ export default class EnterpriseCloudDatabaseService {
         EnterpriseCloudDatabaseService.populateStorage(capability, plan);
         // populate pricing
         EnterpriseCloudDatabaseService.populatePricing(capability, plan);
+        // populate node details
+        EnterpriseCloudDatabaseService.populateNodeDetails(capability, catalog, plan);
       }
     });
     return capabilities;
@@ -266,15 +285,13 @@ export default class EnterpriseCloudDatabaseService {
 
   static populatePricing(capability, plan) {
     const priceDetails = head(plan.pricings);
-    set(capability, 'pricings', priceDetails);
     const price = get(priceDetails, 'price', 0);
     const tax = get(priceDetails, 'tax', 0);
-    const priceTotal = (price + tax) / 100000000;
+    set(capability, 'pricings', priceDetails);
     const priceObj = {
-      totalLabel: `$${priceTotal}`,
-      total: priceTotal,
       price,
       tax,
+      total: price + tax,
     };
     set(capability, 'price', priceObj);
   }
@@ -290,8 +307,14 @@ export default class EnterpriseCloudDatabaseService {
       size: get(head(storages.disks), 'capacity', 0),
       type: toUpper(get(head(storages.disks), 'technology', null)),
       count: get(head(storages.disks), 'number', 0),
+      raid: get(storages, 'raid'),
     };
     set(capability, 'storage', storage);
+  }
+
+  static populateNodeDetails(capability, catalog, plan) {
+    const nodePlan = get(find(plan.addonFamilies, { name: 'node' }), 'addons[0]');
+    set(capability, 'node', find(catalog.addons, { planCode: nodePlan }));
   }
 
   static isProcessing(status) {

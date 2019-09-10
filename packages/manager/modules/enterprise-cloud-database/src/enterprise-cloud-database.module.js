@@ -1,20 +1,22 @@
 import angular from 'angular';
 import 'font-awesome/css/font-awesome.css';
 
-import deleteCluster from './delete';
-import create from './create';
 import enterpriseCloudDatabaseComponent from './enterprise-cloud-database.component';
 import enterpriseCloudDatabaseService from './enterprise-cloud-database.service';
 import routing from './enterprise-cloud-database.routing';
-import service from './service';
+import create from './create';
+import deleteCluster from './delete';
 import mockData from './mock-data';
+import priceComponent from './price';
+import service from './service';
 
 const moduleName = 'ovhManagerEnterpriseCloudDatabase';
 
 angular
   .module(moduleName, [
-    deleteCluster,
     create,
+    deleteCluster,
+    priceComponent,
     service,
   ])
   .config(routing)

@@ -3,14 +3,18 @@ import get from 'lodash/get';
 export default class EnterpriseCloudDatabaseDeleteCtrl {
   /* @ngInject */
   constructor(
-    $stateParams,
+    $state,
     $translate,
     enterpriseCloudDatabaseService,
   ) {
-    this.clusterId = $stateParams.clusterId;
+    this.$state = $state;
     this.$translate = $translate;
     this.service = enterpriseCloudDatabaseService;
     this.isLoading = false;
+  }
+
+  goBack() {
+    return this.$state.go('^');
   }
 
   deleteInstance() {

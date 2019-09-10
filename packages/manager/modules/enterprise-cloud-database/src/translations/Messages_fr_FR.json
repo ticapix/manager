@@ -9,7 +9,7 @@
   "enterprise_cloud_database_list_ram_title": "RAM Size",
   "enterprise_cloud_database_list_storage_title": "Storage Size",
   "enterprise_cloud_database_list_ram_size": "{{ size }} GB",
-  "enterprise_cloud_database_list_storage_size": "{{ size }} GB",
+  "enterprise_cloud_database_list_storage_size": "{{ size }} GB {{ type }}",
   "enterprise_cloud_database_getting_started": "Getting Started",
   "enterprise_cloud_database_common_add": "Add",
   "enterprise_cloud_database_common_delete": "Delete",
