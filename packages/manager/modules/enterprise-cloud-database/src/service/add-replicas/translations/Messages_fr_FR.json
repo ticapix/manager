@@ -2,7 +2,6 @@
   "enterprise_cloud_database_service_add_replicas_title": "Add Replica",
   "enterprise_cloud_database_service_add_replicas_description": "Sélectionner le nombre de Replica désiré",
   "enterprise_cloud_database_service_add_replicas_add": "Add",
-  "enterprise_cloud_database_service_add_replicas_price": "{{price}} {{currency}} HT/mois",
   "enterprise_cloud_database_service_add_replicas_success": "Replica(s) added successfully",
   "enterprise_cloud_database_service_add_replicas_error": "An error occurred while adding replica(s)"
 }

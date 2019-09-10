@@ -15,5 +15,6 @@
   "enterprise_cloud_database_backup_price": "Price: {{ price }}",
   "enterprise_cloud_database_backup_billing_info_text": "You will billed at end of the month with your default payment method",
   "enterprise_cloud_database_backup_mode_auto": "Auto",
-  "enterprise_cloud_database_backup_mode_manual": "Manual"
+  "enterprise_cloud_database_backup_mode_manual": "Manual",
+  "enterprise_cloud_database_backup_per_gb_hour": "/ GB / Hour"
 }

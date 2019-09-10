@@ -10,9 +10,4 @@ export default class EnterpriseCloudDatabasePriceCtrl {
     this.asiaTouch = ['SG', 'ASIA', 'AU'];
     this.ovhSubsidiary = this.service.userData.ovhSubsidiary;
   }
-
-  $onInit() {
-    this.priceWithTaxText = this.service.getPriceText(this.price + this.tax);
-    this.priceWithoutTaxText = this.service.getPriceText(this.price);
-  }
 }
