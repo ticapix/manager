@@ -7,10 +7,8 @@
     <p data-translate="enterprise_cloud_database_backup_size"></p>
     <p>
         <span data-translate="enterprise_cloud_database_backup_price"></span>
-        <span data-ng-bind="$ctrl.backupPrice"></span>
         <ovh-manager-enterprise-cloud-database-price-component
-            data-ovh-subsidiary="$ctrl.service.userData.ovhSubsidiary"
-            data-price="$ctrl.bPrice">
+            data-price="$ctrl.backupPrice.price" data-tax="$ctrl.backupPrice.tax">
         </ovh-manager-enterprise-cloud-database-price-component>
     </p>
 

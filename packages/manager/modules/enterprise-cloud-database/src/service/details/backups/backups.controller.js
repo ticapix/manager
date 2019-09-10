@@ -23,8 +23,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
     this.getBackupDetails(firstBackupId).then((backup) => {
       this.minDate = backup.creationDate;
     });
-    this.backupPrice = this.service.getPriceText(get(this.backupCatalog, 'pricings[0].price'));
-    this.bPrice = get(this.backupCatalog, 'pricings[0]');
+    this.backupPrice = get(this.backupCatalog, 'pricings[0]');
   }
 
   loadMessages() {
