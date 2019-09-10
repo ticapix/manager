@@ -1,4 +1,5 @@
 import map from 'lodash/map';
+import find from 'lodash/find';
 
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database', {
@@ -21,11 +22,12 @@ export default /* @ngInject */($stateProvider) => {
         .constructor.getCapabilities(catalog, offers),
       clusters: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
         .getClusters().then(clusters => map(clusters, clusterId => ({ id: clusterId }))),
-      getClusterDetails: /* @ngInject */
-        enterpriseCloudDatabaseService => clusterId => enterpriseCloudDatabaseService
-          .getClusterDetails(clusterId)
-          .then(details => enterpriseCloudDatabaseService.getOfferDetails(details.offerName)
-            .then(offer => ({ offer, details }))),
+      getClusterDetails: /* @ngInject */ (
+        capabilities,
+        enterpriseCloudDatabaseService,
+      ) => clusterId => enterpriseCloudDatabaseService
+        .getClusterDetails(clusterId)
+        .then(details => ({ offer: find(capabilities, { name: details.offerName }), details })),
       goBackToList: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success', clusterId = null) => {
         const reload = message && type === 'success';
         const state = 'enterprise-cloud-database';

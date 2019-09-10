@@ -24,7 +24,6 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
   }
 
   $onInit() {
-    console.log('cap', this.capabilities);
     this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
     this.databasePlanMap = {};
     this.populateCapabilityDetails();

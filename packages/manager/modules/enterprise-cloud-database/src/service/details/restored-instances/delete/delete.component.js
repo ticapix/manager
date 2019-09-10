@@ -3,6 +3,7 @@ import template from './delete.html';
 
 const component = {
   bindings: {
+    clusterId: '<',
     instanceId: '<',
   },
   controller,

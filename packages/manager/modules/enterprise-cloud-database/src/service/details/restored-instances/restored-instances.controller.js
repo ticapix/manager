@@ -31,11 +31,4 @@ export default class EnterpriseCloudDatabaseServiceDetailsRestoredInstancesCtrl 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
   }
-
-  delete(restore) {
-    return this.$state.go(
-      'enterprise-cloud-database.service.details.restored-instances.delete',
-      { instanceId: restore.id },
-    );
-  }
 }

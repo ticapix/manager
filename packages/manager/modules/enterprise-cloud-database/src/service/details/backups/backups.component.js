@@ -5,6 +5,7 @@ export default {
   bindings: {
     clusterId: '<',
     backupList: '<',
+    backupCatalog: '<',
     getBackupDetails: '<',
     defaultPaymentMethod: '<',
   },

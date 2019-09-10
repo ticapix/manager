@@ -3,9 +3,10 @@ import controller from './restored-instances.controller';
 
 export default {
   bindings: {
-    restoredInstances: '<',
-    endpoints: '<',
     clusterId: '<',
+    endpoints: '<',
+    goToDelete: '<',
+    restoredInstances: '<',
   },
   controller,
   template,

@@ -27,16 +27,16 @@
                         data-type="string"
                         data-sortable></oui-column>
             <oui-column data-title=":: 'enterprise_cloud_database_list_ram_title' | translate"
-                        data-property="offer.ram"
+                        data-property="offer.memory.size"
                         data-type="string"
                         data-sortable>
-                <span data-translate="enterprise_cloud_database_list_ram_size" data-translate-values="{ size: $row.offer.ram }"></span>
+                <span data-translate="enterprise_cloud_database_list_ram_size" data-translate-values="{ size: $row.offer.memory.size }"></span>
             </oui-column>
             <oui-column data-title=":: 'enterprise_cloud_database_list_storage_title' | translate"
-                        data-property="offer.storage"
+                        data-property="offer.storage.size"
                         data-type="string"
                         data-sortable>
-                <span data-translate="enterprise_cloud_database_list_storage_size" data-translate-values="{ size: $row.offer.storage }"></span>
+                <span data-translate="enterprise_cloud_database_list_storage_size" data-translate-values="{ size: $row.offer.storage.size, type: $row.offer.storage.type }"></span>
             </oui-column>
             <oui-column data-title=":: 'enterprise_cloud_database_common_status' | translate"
                         data-property="details.status"

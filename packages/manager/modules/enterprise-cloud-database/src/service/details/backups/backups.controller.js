@@ -1,3 +1,7 @@
+import assign from 'lodash/assign';
+import get from 'lodash/get';
+import moment from 'moment';
+
 import { ENTERPRISE_CLOUD_DATABASE_STATUS_MAP } from '../../../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
@@ -19,6 +23,8 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
     this.getBackupDetails(firstBackupId).then((backup) => {
       this.minDate = backup.creationDate;
     });
+    this.backupPrice = this.service.getPriceText(get(this.backupCatalog, 'pricings[0].price'));
+    this.bPrice = get(this.backupCatalog, 'pricings[0]');
   }
 
   loadMessages() {
@@ -31,7 +37,8 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
   }
 
   loadBackupDetails(backupId) {
-    return this.service.getBackupDetails(this.clusterId, backupId);
+    return this.service.getBackupDetails(this.clusterId, backupId)
+      .then(backup => assign(backup, { expirationDate: moment(backup.creationDate).add(90, 'days').format() }));
   }
 
   manualBackup() {

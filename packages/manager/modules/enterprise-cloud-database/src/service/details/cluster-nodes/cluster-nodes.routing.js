@@ -39,9 +39,6 @@ export default /* @ngInject */($stateProvider) => {
     },
     resolve: {
       callback: /* @ngInject */ $transition$ => $transition$.params().callback,
-      currency: /* @ngInject */
-        enterpriseCloudDatabaseService => enterpriseCloudDatabaseService.getMe()
-          .then(me => get(me, 'currency.symbol')),
       goBack: /* @ngInject */ ($state, clusterId) => () => $state.go('enterprise-cloud-database.service.details.cluster-nodes', { clusterId }),
       hostList: /* @ngInject */ $transition$ => $transition$.params().hostList,
       maxHostCount: /* @ngInject */
