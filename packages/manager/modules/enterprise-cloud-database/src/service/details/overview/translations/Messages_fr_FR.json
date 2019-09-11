@@ -21,7 +21,7 @@
   "enterprise_cloud_database_auto_backup": "Auto backup",
   "enterprise_cloud_database_backup_frequency": "Backup frequency",
   "enterprise_cloud_database_backup_retention": "Backup retention (days)",
-  "enterprise_cloud_database_cluster_info": "Cluster info",
+  "enterprise_cloud_database_cluster_info": "Cluster Information",
   "enterprise_cloud_database_primary_info": "Primary (Read-Write)",
   "enterprise_cloud_database_replica_info": "Replica (Read-Only)",
   "enterprise_cloud_database_backup_info": "Backup",

@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.overview', {
     component: 'enterpriseCloudDatabaseServiceDetailsOverviewComponent',
@@ -10,9 +12,6 @@ export default /* @ngInject */($stateProvider) => {
       endPoints: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getEndpointsWithDetails(clusterId),
-      hosts: /* @ngInject */
-        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getHosts(clusterId),
       serviceInfo: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getServiceInfo(clusterId),
@@ -27,8 +26,7 @@ export default /* @ngInject */($stateProvider) => {
         return promise;
       },
       offerDetails: /* @ngInject */
-        (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getOfferDetails(clusterDetails.offerName),
+        (clusterDetails, capabilities) => find(capabilities, { name: clusterDetails.offerName }),
       goToUpdatePassword: /* @ngInject */ ($state, clusterId) => () => $state
         .go('enterprise-cloud-database.service.details.overview.update-password', { clusterId }),
       goToSettings: /* @ngInject */ ($state, clusterId) => () => $state

@@ -1,8 +1,11 @@
-import { ENTERPRISE_CLOUD_DATABASE_STATUS_MAP } from '../../../enterprise-cloud-database.constants';
-import { INCLUDED_CLUSTER_SIZE } from '../../service.constants';
 import {
-  AUTO_BACKUP, BACKUP_FREQUENCY, BACKUP_RETENTION, MASKED_PASSWORD, USERNAME,
+  ENTERPRISE_CLOUD_DATABASE_STATUS_MAP,
+  DATABASE_CONSTANTS, MASKED_PASSWORD,
+} from '../../../enterprise-cloud-database.constants';
+import {
+  AUTO_BACKUP, BACKUP_FREQUENCY, BACKUP_RETENTION, USERNAME,
 } from './overview.constants';
+import { INCLUDED_CLUSTER_SIZE } from '../../service.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsOverviewCtrl {
   /* @ngInject */
@@ -18,6 +21,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsOverviewCtrl {
     this.MASKED_PASSWORD = MASKED_PASSWORD;
     this.BACKUP_FREQUENCY = BACKUP_FREQUENCY;
     this.BACKUP_RETENTION = BACKUP_RETENTION;
+    this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
     this.USERNAME = USERNAME;
   }
 

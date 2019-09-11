@@ -16,15 +16,20 @@
             </oui-tile-definition>
             <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_ram_title' | translate }}">
                 <oui-tile-description>
-                    <span data-translate="enterprise_cloud_database_ram_size" data-translate-values="{ size: $ctrl.offerDetails.ram }"></span>
+                    <span data-translate="enterprise_cloud_database_ram_size" data-translate-values="{ size: $ctrl.offerDetails.memory.size }"></span>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition data-term="{{ ::'enterprise_cloud_database_storage_title' | translate }}">
                 <oui-tile-description>
-                    <span data-translate="enterprise_cloud_database_storage_size" data-translate-values="{ size: $ctrl.offerDetails.storage }"></span>
+                    <span data-translate="enterprise_cloud_database_common_storage_size"
+                          data-translate-values="{ size: $ctrl.offerDetails.storage.size, type: $ctrl.offerDetails.storage.type, count: $ctrl.offerDetails.storage.count }">
+                    </span>
                 </oui-tile-description>
             </oui-tile-definition>
-            <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_engine' | translate }}" data-description="{{:: $ctrl.clusterDetails.offerType }}">
+            <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_engine' | translate }}">
+                <oui-tile-description>
+                    <span data-ng-bind="$ctrl.DATABASE_CONSTANTS[$ctrl.clusterDetails.offerType].name + '-' + $ctrl.clusterDetails.version"></span>
+                </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_admin_credentials' | translate }}">
                 <oui-tile-description>
@@ -139,7 +144,7 @@
             </oui-tile-definition>
             <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_replica_info' | translate }}">
                 <oui-tile-description>
-                    <span data-ng-bind="$ctrl.hosts.length - 2"></span>
+                    <span data-ng-bind="$ctrl.clusterDetails.hostCount - 2"></span>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_backup_info' | translate }}">

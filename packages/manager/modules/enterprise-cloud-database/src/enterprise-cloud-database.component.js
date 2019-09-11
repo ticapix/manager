@@ -6,6 +6,7 @@ export default {
     clusters: '<',
     capabilities: '<',
     getClusterDetails: '<',
+    user: '<',
   },
   controller,
   template,

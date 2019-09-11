@@ -21,7 +21,9 @@
             <oui-column data-title=":: 'enterprise_cloud_database_list_database_engine' | translate"
                         data-property="details.offerType"
                         data-type="string"
-                        data-sortable></oui-column>
+                        data-sortable>
+                <span data-ng-bind="$ctrl.DATABASE_CONSTANTS[$row.details.offerType].name + '-' + $row.details.version"></span>
+            </oui-column>
             <oui-column data-title=":: 'enterprise_cloud_database_list_region' | translate"
                         data-property="details.regionName"
                         data-type="string"
@@ -36,7 +38,9 @@
                         data-property="offer.storage.size"
                         data-type="string"
                         data-sortable>
-                <span data-translate="enterprise_cloud_database_list_storage_size" data-translate-values="{ size: $row.offer.storage.size, type: $row.offer.storage.type }"></span>
+                <span data-translate="enterprise_cloud_database_common_storage_size"
+                      data-translate-values="{ size: $row.offer.storage.size, type: $row.offer.storage.type, count:$row.offer.storage.count }">
+                </span>
             </oui-column>
             <oui-column data-title=":: 'enterprise_cloud_database_common_status' | translate"
                         data-property="details.status"

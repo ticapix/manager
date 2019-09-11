@@ -14,7 +14,8 @@ import split from 'lodash/split';
 import toArray from 'lodash/toArray';
 import uniqBy from 'lodash/uniqBy';
 
-import { DATABASE_CONSTANTS, COMMITMENT_PERIODS, PAYMENT_TYPES } from './create.constants';
+import { COMMITMENT_PERIODS, PAYMENT_TYPES } from './create.constants';
+import { DATABASE_CONSTANTS } from '../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseCreateCtrl {
   /* @ngInject */
