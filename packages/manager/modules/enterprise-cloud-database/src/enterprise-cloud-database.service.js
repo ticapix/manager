@@ -26,7 +26,7 @@ export default class EnterpriseCloudDatabaseService {
     this.OvhApiCloudDBEnterpriseServiceInfos = OvhApiCloudDBEnterprise.ServiceInfos().v6();
     this.OvhApiCloudDBEnterpriseUser = OvhApiCloudDBEnterprise.User().v6();
     this.OvhApiCloudDBEnterpriseOffers = OvhApiCloudDBEnterprise.Offers().v6();
-    this.OvhApiOrderEnterpriseCloudDB = OvhApiOrder.Catalog().Public().cloudDB().v6();
+    this.OvhApiOrderEnterpriseCloudDB = OvhApiOrder.Catalog().Public().v6();
     this.OvhApiMe = OvhApiMe;
   }
 
@@ -78,7 +78,7 @@ export default class EnterpriseCloudDatabaseService {
 
   getCatalog(ovhSubsidiary) {
     return this.OvhApiOrderEnterpriseCloudDB
-      .get({ ovhSubsidiary }).$promise;
+      .get({ productName: 'enterpriseCloudDatabases', ovhSubsidiary }).$promise;
   }
 
   getClusterDetails(clusterId) {
