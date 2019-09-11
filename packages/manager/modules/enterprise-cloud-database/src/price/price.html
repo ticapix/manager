@@ -1,16 +1,16 @@
 <div data-ng-if="$ctrl.price" class="d-inline-flex">
     <div data-ng-if="$ctrl.asiaTouch.includes($ctrl.ovhSubsidiary)">
-        <span class="red bold" data-ng-bind="{{'price_price_gst_excl_label' | translate}}" data-translate-values="{ price: $ctrl.service.getPriceText($ctrl.price) }"></span>
-        (<span class="small" data-translate="price_price_gst_incl_label" data-translate-values="{ price: $ctrl.service.getPriceText($ctrl.price + $ctrl.tax) }"></span>)
+        <span class="red bold" data-ng-bind="{{'price_price_gst_excl_label' | translate}}" data-translate-values="{ price: $ctrl.getPriceText($ctrl.price) }"></span>
+        (<span class="small" data-translate="price_price_gst_incl_label" data-translate-values="{ price: $ctrl.getPriceText($ctrl.price + $ctrl.tax) }"></span>)
     </div>
     <div data-ng-if="$ctrl.deutchTouch.includes($ctrl.ovhSubsidiary)">
-        <span class="red bold" data-ng-bind="$ctrl.service.getPriceText($ctrl.price + $ctrl.tax)"></span>
+        <span class="red bold" data-ng-bind="$ctrl.getPriceText($ctrl.price + $ctrl.tax)"></span>
     </div>
     <div data-ng-if="$ctrl.usTouch.includes($ctrl.ovhSubsidiary)">
-        <span class="red bold" data-ng-bind="$ctrl.service.getPriceText($ctrl.price)"></span>
+        <span class="red bold" data-ng-bind="$ctrl.getPriceText($ctrl.price)"></span>
     </div>
     <div data-ng-if="$ctrl.frenchTouch.includes($ctrl.ovhSubsidiary)">
-        <span class="red bold" data-translate="price_ht_label" data-translate-values="{ price: $ctrl.service.getPriceText($ctrl.price) }"></span>
-        (<span class="small" data-translate="price_ttc_label" data-translate-values="{ price: $ctrl.service.getPriceText($ctrl.price + $ctrl.tax) }"></span>)
+        <span class="red bold" data-translate="price_ht_label" data-translate-values="{ price: $ctrl.getPriceText($ctrl.price) }"></span>
+        (<span class="small" data-translate="price_ttc_label" data-translate-values="{ price: $ctrl.getPriceText($ctrl.price + $ctrl.tax) }"></span>)
     </div>
 <div>
