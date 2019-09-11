@@ -237,8 +237,16 @@ export default class EnterpriseCloudDatabaseService {
       .$promise;
   }
 
+  resetHostsCache() {
+    return this.OvhApiCloudDBEnterpriseHost.resetQueryCache();
+  }
+
   resetSecurityGroupDetailsCache() {
     this.OvhApiCloudDBEnterpriseSecurityGroup.resetCache();
+  }
+
+  scaleCluster(clusterId, count) {
+    return this.OvhApiCloudDBEnterpriseCluster.scale({ clusterId }, { count }).$promise;
   }
 
   updateSecurityGroup(clusterId, securityGroupId, name) {

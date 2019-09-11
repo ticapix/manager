@@ -27,17 +27,39 @@ export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
     }));
     this.data = {
       selectedReplicaCount: head(this.replicaCounts),
-      useDefaultPaymentMethod: true,
     };
+    this.isLoading = false;
   }
 
   saveData() {
     const data = {
       replicaCount: this.data.selectedReplicaCount.replicaNumber,
-      useDefaultPaymentMethod: Boolean(this.data.useDefaultPaymentMethod),
     };
-    this.callback(data);
-    this.goBack();
+    if (this.createReplicas) {
+      this.isLoading = true;
+      this.enterpriseCloudDatabaseService
+        .scaleCluster(this.clusterId, data.replicaCount)
+        .then(() => {
+          this.enterpriseCloudDatabaseService.resetHostsCache();
+          return this.goBack(this.$translate.instant('enterprise_cloud_database_service_add_replicas_success', {
+            replicaCount: data.replicaCount,
+          }));
+        })
+        .catch(error => this.goBack(this.$translate.instant('enterprise_cloud_database_service_add_replicas_error', {
+          message: get(error, 'data.message'),
+        }), 'error'))
+        .finally(() => {
+          this.isLoading = false;
+          if (this.callback) {
+            this.callback(data);
+          }
+        });
+    } else {
+      if (this.callback) {
+        this.callback(data);
+      }
+      this.goBack();
+    }
   }
 
   defaultPaymentChange(defaultPaymentCheck) {

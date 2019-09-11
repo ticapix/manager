@@ -12,9 +12,4 @@ export default class EnterpriseCloudDatabaseServiceDetailsClusterSizeCtrl {
     this.includedClusterCount = INCLUDED_CLUSTER_SIZE.PRIMARY
     + INCLUDED_CLUSTER_SIZE.REPLICA + INCLUDED_CLUSTER_SIZE.BACKUP;
   }
-
-  orderReplicas(data) {
-    // Order replicas here
-    return [this.includedClusterCount, data];
-  }
 }

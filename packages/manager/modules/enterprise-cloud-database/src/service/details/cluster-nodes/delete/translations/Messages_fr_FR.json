@@ -4,6 +4,6 @@
   "enterprise_cloud_database_service_details_cluster_nodes_delete_warning": "This action cannot be cancelled or reversed.",
   "enterprise_cloud_database_service_details_cluster_nodes_delete_enter": "Enter DELETE into the following field to confirm your action.",
   "enterprise_cloud_database_service_details_cluster_nodes_delete_info": "Aucun remboursement ne sera appliqué si vous supprimer un Replica en cours de mois",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_success": "Replica deleted successfully",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_error": "An error occurred while deleting replica(s)"
+  "enterprise_cloud_database_service_details_cluster_nodes_delete_success": "Request to remove {{replicaCount}} replica(s) created successfully and is under process",
+  "enterprise_cloud_database_service_details_cluster_nodes_delete_error": "An error occurred while removing the replica(s): {{message}}"
 }

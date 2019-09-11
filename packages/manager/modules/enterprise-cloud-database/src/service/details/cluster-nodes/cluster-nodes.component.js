@@ -4,6 +4,7 @@ import controller from './cluster-nodes.controller';
 export default {
   bindings: {
     addReplicas: '<',
+    clusterId: '<',
     deleteReplicas: '<',
     hosts: '<',
     planCatalog: '<',
