@@ -6,7 +6,7 @@ export default {
   controller,
   bindings: {
     clusterName: '<',
+    disabled: '<',
     onDataChange: '&',
-    securityGroups: '<',
   },
 };

@@ -7,6 +7,8 @@ import routing from './get-started.routing';
 import nextSteps from './next-steps';
 import secureCluster from './secure-cluster';
 
+import './get-started.less';
+
 const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceGetStarted';
 
 angular
