@@ -87,8 +87,8 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
         price: price.price * i,
         tax: price.tax * i,
         label: this.$translate.instant((i === 1
-          ? 'enterprise_cloud_database_create_additional_replica_price'
-          : 'enterprise_cloud_database_create_additional_replicas_price'), {
+          ? 'enterprise_cloud_database_create_additional_replica'
+          : 'enterprise_cloud_database_create_additional_replicas'), {
           replicaCount: i,
         }),
       };
