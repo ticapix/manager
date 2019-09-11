@@ -26,7 +26,6 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
       dailyBackup: false,
       replicaConfig: {
         replicaCount: 0,
-        useDefaultPaymentMethod: true,
       },
     };
     this.loaders = {
@@ -113,12 +112,16 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
   }
 
   saveSettings(form) {
-    // this.data.replicaConfig to be saved
     set(form, '$valid', false);
     this.CucCloudMessage.flushMessages('enterprise-cloud-database.service.get-started');
     this.loaders.savingSettings = true;
     const newMaintenanceWindow = this.getMaintenanceWindowConfig();
     return this.$q.all([
+      this.data.replicaConfig.replicaCount
+        ? this.enterpriseCloudDatabaseService
+          .scaleCluster(this.clusterDetails.id, this.data.replicaConfig.replicaCount)
+          .then(() => this.enterpriseCloudDatabaseService.resetHostsCache())
+        : this.$q.when(0),
       this.enterpriseCloudDatabaseService.setClusterDetails(this.clusterDetails.id, {
         autoBackup: this.data.dailyBackup,
         name: this.data.clusterName,

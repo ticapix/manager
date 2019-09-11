@@ -5,7 +5,9 @@ const component = {
   template,
   controller,
   bindings: {
-    callback: '<',
+    clusterId: '<?',
+    createReplicas: '<?',
+    callback: '<?',
     defaultPaymentMethod: '<',
     hostList: '<',
     goBack: '<',
