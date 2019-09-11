@@ -126,23 +126,18 @@
                     </div>
                     <div class="row mb-2">
                         <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_payment_total_label"></dt>
-                        <dd class="col-sm-9 my-auto">
-                            <strong>
-                                <span data-ng-if="$ctrl.enterpriceDb.paymentType.monthly"
-                                    data-translate="enterprise_cloud_database_create_order_summary_total_price_monthly"
-                                    data-translate-values="{
-                                        totalPrice: $ctrl.enterpriceDb.cluster.price.total * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value),
-                                        currencySymbol: '$',
-                                    }">
-                                </span>
-                                <span  data-ng-if="!$ctrl.enterpriceDb.paymentType.monthly"
-                                    data-translate="enterprise_cloud_database_create_order_summary_total_price"
-                                    data-translate-values="{
-                                        totalPrice: $ctrl.enterpriceDb.cluster.price.total * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * $ctrl.enterpriceDb.commitmentPeriod,
-                                        currencySymbol: '$',
-                                    }">
-                                </span>
-                            </strong>
+                        <dd class="col-sm-9 my-auto" data-ng-if="$ctrl.enterpriceDb.paymentType.monthly">
+                            <ovh-manager-enterprise-cloud-database-price-component
+                                data-price="$ctrl.enterpriceDb.cluster.price.price * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value)"
+                                data-tax="$ctrl.enterpriceDb.cluster.price.tax * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value)">
+                            </ovh-manager-enterprise-cloud-database-price-component>
+                            /<span data-translate="enterprise_cloud_database_create_order_month"></span>
+                        </dd>
+                        <dd class="col-sm-9 my-auto" data-ng-if="!$ctrl.enterpriceDb.paymentType.monthly">
+                            <ovh-manager-enterprise-cloud-database-price-component
+                                data-price="$ctrl.enterpriceDb.cluster.price.price * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * $ctrl.enterpriceDb.commitmentPeriod"
+                                data-tax="$ctrl.enterpriceDb.cluster.price.tax * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * $ctrl.enterpriceDb.commitmentPeriod">
+                            </ovh-manager-enterprise-cloud-database-price-component>  
                         </dd>
                     </div>
                 </dl>
