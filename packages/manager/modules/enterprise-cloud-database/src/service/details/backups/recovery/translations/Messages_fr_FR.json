@@ -6,5 +6,6 @@
   "enterprise_cloud_database_backups_recovery_date": "Date",
   "enterprise_cloud_database_backups_recovery_hour": "Hour",
   "enterprise_cloud_database_backups_recovery_success": "Successfully launched recovery",
-  "enterprise_cloud_database_backups_recovery_error": "Unable to launch recovery: {{ message }}"
+  "enterprise_cloud_database_backups_recovery_error": "Unable to launch recovery: {{ message }}",
+  "enterprise_cloud_database_backups_recovery_date_placeholder": "Please select a date to backup"
 }

@@ -4,6 +4,7 @@ import template from './manual-backup.html';
 const component = {
   bindings: {
     clusterId: '<',
+    backupPrice: '<',
     defaultPaymentMethod: '<',
     goBackToBackups: '<',
   },

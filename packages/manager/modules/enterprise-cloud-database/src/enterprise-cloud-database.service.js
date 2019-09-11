@@ -11,7 +11,7 @@ import { ERROR_STATUS, PROCESSING_STATUS } from './enterprise-cloud-database.con
 
 export default class EnterpriseCloudDatabaseService {
   /* @ngInject */
-  constructor($q, mockData, OvhApiCloudDBEnterprise, OvhApiMe) {
+  constructor($q, mockData, OvhApiCloudDBEnterprise, OvhApiOrderCatalogPublic, OvhApiMe) {
     this.$q = $q;
     this.mockData = mockData;
     this.OvhApiCloudDBEnterpriseCluster = OvhApiCloudDBEnterprise.v6();
@@ -27,6 +27,7 @@ export default class EnterpriseCloudDatabaseService {
     this.OvhApiCloudDBEnterpriseServiceInfos = OvhApiCloudDBEnterprise.ServiceInfos().v6();
     this.OvhApiCloudDBEnterpriseUser = OvhApiCloudDBEnterprise.User().v6();
     this.OvhApiCloudDBEnterpriseOffers = OvhApiCloudDBEnterprise.Offers().v6();
+    this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic.v6();
     this.OvhApiMe = OvhApiMe;
     this.userData = {
       currencySymbol: null,

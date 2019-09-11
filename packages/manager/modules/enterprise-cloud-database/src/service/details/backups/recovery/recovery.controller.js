@@ -5,9 +5,11 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsRecoveryCtrl {
   /* @ngInject */
   constructor(
     $state,
+    $translate,
     enterpriseCloudDatabaseService,
   ) {
     this.$state = $state;
+    this.$translate = $translate;
     this.service = enterpriseCloudDatabaseService;
   }
 

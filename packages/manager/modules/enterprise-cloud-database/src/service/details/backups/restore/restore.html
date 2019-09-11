@@ -6,6 +6,18 @@
            data-on-dismiss="$ctrl.cancel()"
            data-loading="$ctrl.isLoading">
     <p data-translate="enterprise_cloud_database_backups_restore_description" data-translate-values="{ name: $ctrl.backupInstance.name }"></p>
-    <p data-translate="enterprise_cloud_database_backups_restore_price"></p>
-    <span data-translate="enterprise_cloud_database_backup_billing_info_text"></span>
+    <p><span class="bold" data-translate="enterprise_cloud_database_common_price"></span>:</p>
+    <div>
+        <span data-translate="enterprise_cloud_database_backups_restore_instance_price"></span>:
+        <ovh-manager-enterprise-cloud-database-price-component data-price="$ctrl.restorePrice.instance.price" data-tax="$ctrl.restorePrice.instance.tax">
+        </ovh-manager-enterprise-cloud-database-price-component>
+        <span data-translate="enterprise_cloud_database_backup_per_hour"></span>
+    </div>
+    <div>
+        <span data-translate="enterprise_cloud_database_backups_restore_storage_price"></span>:
+        <ovh-manager-enterprise-cloud-database-price-component data-price="$ctrl.restorePrice.volume.price" data-tax="$ctrl.restorePrice.volume.tax">
+        </ovh-manager-enterprise-cloud-database-price-component>
+        <span data-translate="enterprise_cloud_database_backup_per_gb_hour"></span>
+    </div>
+    <p data-translate="enterprise_cloud_database_backup_billing_info_text" class="mt-3"></p>
 </oui-modal>

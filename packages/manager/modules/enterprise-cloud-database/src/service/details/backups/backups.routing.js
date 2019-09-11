@@ -1,5 +1,6 @@
-import map from 'lodash/map';
 import find from 'lodash/find';
+import get from 'lodash/get';
+import map from 'lodash/map';
 
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.backups', {
@@ -18,7 +19,11 @@ export default /* @ngInject */($stateProvider) => {
           .getBackupDetails(clusterId, backupId),
       catalog: /* @ngInject */
         enterpriseCloudDatabaseService => enterpriseCloudDatabaseService.getCatalog(),
-      backupCatalog: /* @ngInject */ catalog => find(catalog.addons, { planCode: 'backup' }),
+      backupPrice: /* @ngInject */ catalog => get(find(catalog.addons, { planCode: 'backup' }), 'pricings[0]'),
+      restorePrice: /* @ngInject */ catalog => ({
+        instance: get(find(catalog.addons, { planCode: 'restored-instance' }), 'pricings[0]'),
+        volume: get(find(catalog.addons, { planCode: 'restored-volume' }), 'pricings[0]'),
+      }),
       goBackToBackups: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success') => {
         const reload = message && type === 'success';
         const state = 'enterprise-cloud-database.service.details.backups';

@@ -3,11 +3,12 @@ import controller from './backups.controller';
 
 export default {
   bindings: {
-    clusterId: '<',
+    clusterDetails: '<',
     backupList: '<',
-    backupCatalog: '<',
+    backupPrice: '<',
     getBackupDetails: '<',
     defaultPaymentMethod: '<',
+    restorePrice: '<',
   },
   controller,
   template,

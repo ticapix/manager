@@ -4,7 +4,10 @@
     <span data-translate="enterprise_cloud_database_backup_description"></span>
 
     <p data-translate="enterprise_cloud_database_backup_consumption"></p>
-    <p data-translate="enterprise_cloud_database_backup_size"></p>
+    <p>
+        <span data-translate="enterprise_cloud_database_backup_size"></span>:
+        <span data-ng-bind="$ctrl.clusterDetails.restoredVolumeSize ? $ctrl.clusterDetails.restoredVolumeSize : 0"></span>
+    </p>
     <p>
         <span data-translate="enterprise_cloud_database_backup_price"></span>
         <ovh-manager-enterprise-cloud-database-price-component
@@ -13,7 +16,7 @@
         <span data-translate="enterprise_cloud_database_backup_per_gb_hour"></span>
     </p>
 
-    <oui-datagrid class="mt-5" data-page-size="5" data-rows="$ctrl.backupList" data-row-loader="$ctrl.loadBackupDetails($row.id)">
+    <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.backupList" data-row-loader="$ctrl.loadBackupDetails($row.id)">
         <oui-column data-title=":: 'enterprise_cloud_database_backup_name' | translate"
                     data-property="name"
                     data-sortable="asc"

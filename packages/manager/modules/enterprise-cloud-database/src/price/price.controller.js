@@ -10,4 +10,8 @@ export default class EnterpriseCloudDatabasePriceCtrl {
     this.asiaTouch = ['SG', 'ASIA', 'AU'];
     this.ovhSubsidiary = this.service.userData.ovhSubsidiary;
   }
+
+  getPriceText(priceInCents) {
+    return `${this.service.userData.currencySymbol}${priceInCents / 100000000}`;
+  }
 }

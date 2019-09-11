@@ -2,7 +2,6 @@
   "enterprise_cloud_database_restored_instances_description": "Your restored backups have the same security settings as your cluster",
   "enterprise_cloud_database_restored_instances_delete_title": "Delete restored instance",
   "enterprise_cloud_database_restored_instances_delete_question": "Do you want to delete your backup: {{ restoredInstance }}",
-  "enterprise_cloud_database_restored_instances_id" : "Id",
   "enterprise_cloud_database_restored_instances_endpoint" : "Endpoint",
   "enterprise_cloud_database_restored_instances_port" : "Port",
   "enterprise_cloud_database_restored_instances_restoration_date" : "Restoration Date",
