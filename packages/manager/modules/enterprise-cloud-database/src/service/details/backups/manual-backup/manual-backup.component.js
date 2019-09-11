@@ -7,6 +7,7 @@ const component = {
     backupPrice: '<',
     defaultPaymentMethod: '<',
     goBackToBackups: '<',
+    user: '<',
   },
   controller,
   template,

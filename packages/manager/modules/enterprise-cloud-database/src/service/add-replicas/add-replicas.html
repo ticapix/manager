@@ -1,4 +1,5 @@
 <oui-modal data-heading="{{:: 'enterprise_cloud_database_service_add_replicas_title' | translate }}"
+           data-loading="$ctrl.isLoading"
            data-on-dismiss="$ctrl.goBack()"
            data-primary-action="$ctrl.saveData()"
            data-primary-label="{{:: 'enterprise_cloud_database_service_add_replicas_add' | translate }}"
@@ -13,7 +14,4 @@
     <ovh-manager-enterprise-cloud-database-price-component
         data-price="$ctrl.data.selectedReplicaCount.price" data-tax="$ctrl.data.selectedReplicaCount.tax">
     </ovh-manager-enterprise-cloud-database-price-component>
-    <ovh-manager-enterprise-cloud-database-service-details-default-payment-component
-        data-default-payment="$ctrl.defaultPaymentMethod" data-on-change="$ctrl.defaultPaymentChange(data)">
-    </ovh-manager-enterprise-cloud-database-service-details-default-payment-component>
 </oui-modal>

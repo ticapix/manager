@@ -14,7 +14,8 @@
   "enterprise_cloud_database_create_additional_replicas": "Select additional Replicas (Optional)",
   "enterprise_cloud_database_create_additional_replicas_desc": "You will be able to add, remove, or resize Replicas at any time after the cluster is created. 1 Replica is included by default.",
   "enterprise_cloud_database_create_additional_replicas_empty": "No additional replicas",
-  "enterprise_cloud_database_create_additional_replicas_price": "{{replicaCount}} Replicas - {{currencySymbol}}{{replicaPrice}} incl. VAT/month",
+  "enterprise_cloud_database_create_additional_replica_price": "1 Replica",
+  "enterprise_cloud_database_create_additional_replicas_price": "{{replicaCount}} Replicas",
   "enterprise_cloud_database_create_choose_commitment": "Choose a commitment period",
   "enterprise_cloud_database_create_choose_commitment_desc": "More the commitment more the savings.",
   "enterprise_cloud_database_create_choose_commitment_total_price": "Total amount to pay",
@@ -37,8 +38,9 @@
   "enterprise_cloud_database_create_order_summary_payment_type": "Payment Type",
   "enterprise_cloud_database_create_order_summary_payment_total_label": "Total price",
   "enterprise_cloud_database_create_order_1_month": "1 Month",
-  "enterprise_cloud_database_create_order_months": "{{numMonths}} Months",
+  "enterprise_cloud_database_create_order_months": "{{ numMonths }} Months",
   "enterprise_cloud_database_create_order_payment_monthly": "Monthly",
   "enterprise_cloud_database_create_order_payment_one_time": "One time",
-  "enterprise_cloud_database_create_order_month": "month"
+  "enterprise_cloud_database_create_order_month": "month",
+  "enterprise_cloud_database_common_price":"Additional Replicas price"
 }

@@ -17,8 +17,6 @@ export default /* @ngInject */($stateProvider) => {
       getBackupDetails: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => backupId => enterpriseCloudDatabaseService
           .getBackupDetails(clusterId, backupId),
-      catalog: /* @ngInject */
-        enterpriseCloudDatabaseService => enterpriseCloudDatabaseService.getCatalog(),
       backupPrice: /* @ngInject */ catalog => get(find(catalog.addons, { planCode: 'backup' }), 'pricings[0]'),
       restorePrice: /* @ngInject */ catalog => ({
         instance: get(find(catalog.addons, { planCode: 'restored-instance' }), 'pricings[0]'),

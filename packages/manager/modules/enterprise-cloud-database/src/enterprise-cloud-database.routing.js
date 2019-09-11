@@ -10,10 +10,15 @@ export default /* @ngInject */($stateProvider) => {
     },
     url: '/enterprise-cloud-database',
     resolve: {
+      user: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
+        .getMe(),
       offers: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
         .getOffers(),
-      catalog: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
-        .getCatalog(),
+      catalog: /* @ngInject */ (
+        enterpriseCloudDatabaseService,
+        user,
+      ) => enterpriseCloudDatabaseService
+        .getCatalog(user.ovhSubsidiary),
       capabilities: /* @ngInject */ (
         offers,
         catalog,

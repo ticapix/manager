@@ -9,6 +9,7 @@ export default {
     getBackupDetails: '<',
     defaultPaymentMethod: '<',
     restorePrice: '<',
+    user: '<',
   },
   controller,
   template,

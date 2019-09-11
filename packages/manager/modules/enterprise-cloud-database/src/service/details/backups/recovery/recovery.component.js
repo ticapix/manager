@@ -8,6 +8,7 @@ const component = {
     defaultPaymentMethod: '<',
     goBackToBackups: '<',
     minDate: '<',
+    user: '<',
   },
   controller,
   template,

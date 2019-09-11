@@ -5,6 +5,7 @@ const component = {
   template,
   controller,
   bindings: {
+    clusterId: '<',
     goBackToClusterSize: '<',
     hosts: '<',
   },

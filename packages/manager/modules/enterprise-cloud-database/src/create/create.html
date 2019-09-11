@@ -11,6 +11,7 @@
         </oui-back-button>
         <p data-translate="enterprise_cloud_database_create_description"></p>
         <form novalidate>
+            <!-- database -->
             <section class="choose-database mb-5">
                 <h4 data-translate="enterprise_cloud_database_create_choose_db"></h4>
                 <p data-translate="enterprise_cloud_database_create_choose_db_desc"></p>
@@ -20,6 +21,7 @@
                     data-on-change="$ctrl.onDatabaseSelect(database)">
                 </enterprise-cloud-database-order-choose-database>
             </section>
+            <!-- region -->
             <section class="choose-region mb-5">
                 <h4 data-translate="enterprise_cloud_database_create_choose_dc"></h4>
                 <p data-translate="enterprise_cloud_database_create_choose_dc_desc"></p>
@@ -29,6 +31,7 @@
                     data-on-change="$ctrl.onRegionSelect(region)">
                 </enterprise-cloud-database-order-choose-region>
             </section>
+            <!-- cluster -->
             <section class="choose-cluster mb-5">
                 <h4 data-translate="enterprise_cloud_database_create_choose_cluster"></h4>
                 <p data-translate="enterprise_cloud_database_create_choose_cluster_desc"></p>
@@ -41,9 +44,11 @@
                 </ul>
                 <enterprise-cloud-database-order-choose-cluster-config
                     clusters="$ctrl.clusters"
-                    enterprice-db="$ctrl.enterpriceDb">
+                    enterprice-db="$ctrl.enterpriceDb"
+                    data-on-change="$ctrl.onClusterSelect(cluster)">
                 </enterprise-cloud-database-order-choose-cluster-config>
             </section>
+            <!-- additional replicas -->
             <section class="additional-replica mb-4 clearfix">
                 <h4 data-translate="enterprise_cloud_database_create_additional_replicas"></h4>
                 <p data-translate="enterprise_cloud_database_create_additional_replicas_desc"></p>
@@ -52,27 +57,39 @@
                         name="replicas"
                         class="oui-select__input"
                         data-ng-model="$ctrl.enterpriceDb.additionalReplica"
-                        data-ng-options="replica as replica.label for replica in $ctrl.additionalReplicas track by replica.value">
+                        data-ng-options="replica as replica.label for replica in $ctrl.additionalReplicas track by replica.price">
                     </select>
                     <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
                 </label>
+                <div data-ng-if="$ctrl.enterpriceDb.additionalReplica.value > 0">
+                    <span data-translate="enterprise_cloud_database_common_price">
+                    </span>:
+                    <ovh-manager-enterprise-cloud-database-price-component
+                        data-price="$ctrl.enterpriceDb.additionalReplica.price"
+                        data-tax="$ctrl.enterpriceDb.additionalReplica.tax"
+                        data-user="$ctrl.user">
+                    </ovh-manager-enterprise-cloud-database-price-component>
+                </div>
             </section>
+            <!-- commitment period -->
             <section class="choose-commitment mb-5">
                 <h4 data-translate="enterprise_cloud_database_create_choose_commitment"></h4>
-                <p data-translate="enterprise_cloud_database_create_choose_commitment_desc"></p>
                 <enterprise-cloud-database-order-choose-commitment-period
-                    enterprice-db="$ctrl.enterpriceDb"
-                    commitment-periods="$ctrl.commitmentPeriods">
+                    data-enterprice-db="$ctrl.enterpriceDb"
+                    data-commitment-periods="$ctrl.commitmentPeriods"
+                    data-user="$ctrl.user">
                 </enterprise-cloud-database-order-choose-commitment-period>
             </section>
+            <!-- payment type -->
             <section class="choose-payment-type mb-5">
                 <h4 data-translate="enterprise_cloud_database_create_choose_payment"></h4>
-                <p data-translate="enterprise_cloud_database_create_choose_payment_desc"></p>
                 <enterprise-cloud-database-order-choose-payment-type
-                    enterprice-db="$ctrl.enterpriceDb"
-                    payment-types="$ctrl.paymentTypes">
+                    data-enterprice-db="$ctrl.enterpriceDb"
+                    data-payment-types="$ctrl.paymentTypes"
+                    data-user="$ctrl.user">
                 </enterprise-cloud-database-order-choose-payment-type>
             </section>
+            <!-- summary -->
             <section class="order-summary mb-5">
                 <h4 data-translate="enterprise_cloud_database_create_order_summary_title"></h4>
                 <dl class="border-top mt-1">
@@ -110,7 +127,8 @@
                         <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_commitment_period"></dt>
                         <dd class="col-sm-9 my-auto">
                             <span data-ng-if="$ctrl.enterpriceDb.commitmentPeriod === 1"
-                                data-translate="enterprise_cloud_database_create_order_month">
+                                data-translate="enterprise_cloud_database_create_order_1_month"
+                                data-translate-values="{ numMonths: $ctrl.enterpriceDb.commitmentPeriod }">
                             </span>
                             <span data-ng-if="$ctrl.enterpriceDb.commitmentPeriod > 1"
                                 data-translate="enterprise_cloud_database_create_order_months"
@@ -129,14 +147,16 @@
                         <dd class="col-sm-9 my-auto" data-ng-if="$ctrl.enterpriceDb.paymentType.monthly">
                             <ovh-manager-enterprise-cloud-database-price-component
                                 data-price="$ctrl.enterpriceDb.cluster.price.price * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value)"
-                                data-tax="$ctrl.enterpriceDb.cluster.price.tax * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value)">
+                                data-tax="$ctrl.enterpriceDb.cluster.price.tax * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value)"
+                                data-user="$ctrl.user">
                             </ovh-manager-enterprise-cloud-database-price-component>
                             /<span data-translate="enterprise_cloud_database_create_order_month"></span>
                         </dd>
                         <dd class="col-sm-9 my-auto" data-ng-if="!$ctrl.enterpriceDb.paymentType.monthly">
                             <ovh-manager-enterprise-cloud-database-price-component
                                 data-price="$ctrl.enterpriceDb.cluster.price.price * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * $ctrl.enterpriceDb.commitmentPeriod"
-                                data-tax="$ctrl.enterpriceDb.cluster.price.tax * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * $ctrl.enterpriceDb.commitmentPeriod">
+                                data-tax="$ctrl.enterpriceDb.cluster.price.tax * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * $ctrl.enterpriceDb.commitmentPeriod"
+                                data-user="$ctrl.user">
                             </ovh-manager-enterprise-cloud-database-price-component>  
                         </dd>
                     </div>

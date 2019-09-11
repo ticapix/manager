@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import range from 'lodash/range';
@@ -31,6 +32,19 @@ export default class EnterpriseCloudDatabaseServiceDetailsClusterSizeDeleteCtrl 
 
   deleteReplicas() {
     this.isLoading = true;
-    this.goBackToClusterSize(this.$translate.instant('enterprise_cloud_database_service_details_cluster_nodes_delete_success'));
+    this.enterpriseCloudDatabaseService
+      .scaleCluster(this.clusterId, -this.selectedReplicaCount.replicaNumber)
+      .then(() => {
+        this.enterpriseCloudDatabaseService.resetHostsCache();
+        return this.goBackToClusterSize(this.$translate.instant('enterprise_cloud_database_service_details_cluster_nodes_delete_success', {
+          replicaCount: this.selectedReplicaCount.replicaNumber,
+        }));
+      })
+      .catch(error => this.goBackToClusterSize(this.$translate.instant('enterprise_cloud_database_service_details_cluster_nodes_delete_error', {
+        message: get(error, 'data.message'),
+      }), 'error'))
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 }

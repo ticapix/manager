@@ -1,5 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import { MESSAGE_CONTAINER } from '../../details.constants';
 import deleteComponent from './delete.component';
 
 const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsClusterSizeDelete';
@@ -20,11 +21,10 @@ angular
       resolve: {
         goBackToClusterSize: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
-          const state = 'enterprise-cloud-database.service.details.cluster-nodes';
-          const promise = $state.go(state, {}, { reload });
+          const promise = $state.go('enterprise-cloud-database.service.details.cluster-nodes', {}, { reload });
           if (message) {
             promise.then(() => {
-              CucCloudMessage[type](message, state);
+              CucCloudMessage[type](message, MESSAGE_CONTAINER);
             });
           }
           return promise;

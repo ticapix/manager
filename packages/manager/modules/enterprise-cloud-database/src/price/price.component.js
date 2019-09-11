@@ -5,6 +5,7 @@ const component = {
   bindings: {
     price: '<',
     tax: '<',
+    user: '<',
   },
   controller,
   template,
