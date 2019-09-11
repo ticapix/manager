@@ -3,23 +3,27 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import range from 'lodash/range';
 
-import { WEEKDAY_NUMBERS } from './maintenance-window.constants';
-
 export default class {
   /* @ngInject */
-  constructor() {
-    this.WEEKDAY_NUMBERS = WEEKDAY_NUMBERS;
+  constructor($translate) {
+    this.$translate = $translate;
   }
 
   $onInit() {
     this.adjustWindowEnabled = false;
+    this.weekDayMap = map(range(1, 8), number => ({
+      number,
+      day: this.$translate.instant(`enterprise_cloud_database_service_maintenance_window_day${number}`),
+    }));
     this.hourMap = map(range(24), hour => ({
       hour,
-      time: ((hour % 12 === 0 ? 12 : hour % 12) + (hour >= 12 ? ' pm' : ' am')),
+      time: ((hour % 12 === 0 ? 12 : hour % 12) + (hour >= 12 ? ' PM' : ' AM')),
     }));
     this.durationMap = map(range(1, 13), hour => ({
       hour,
-      time: (hour > 1 ? `${hour} hours` : `${hour} hour`),
+      time: (hour > 1
+        ? `${hour} ${this.$translate.instant('enterprise_cloud_database_service_maintenance_window_adjust_window_hours')}`
+        : `${hour} ${this.$translate.instant('enterprise_cloud_database_service_maintenance_window_adjust_window_hour')}`),
     }));
     this.data = {};
     this.resetMaintenanceWindow();
@@ -44,7 +48,7 @@ export default class {
   resetMaintenanceWindow() {
     Object.assign(this.data, {
       weekdayNumber: this.maintenanceWindow
-        ? find(this.WEEKDAY_NUMBERS, { number: this.maintenanceWindow.dayOfWeek })
+        ? find(this.weekDayMap, { number: this.maintenanceWindow.dayOfWeek })
         : undefined,
       hour: this.maintenanceWindow
         ? find(this.hourMap, { hour: parseInt(head(this.maintenanceWindow.startTime.split(':')), 10) })

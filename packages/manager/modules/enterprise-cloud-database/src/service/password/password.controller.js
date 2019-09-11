@@ -11,6 +11,10 @@ export default class EnterpriseCloudDatabasePasswordCtrl {
     this.PASSWORD_LENGTH = ENTERPRISE_CLOUD_DATABASE_PASSWORD_LENGTH;
   }
 
+  $onInit() {
+    this.password = '';
+  }
+
   checkPasswordLength(password) {
     return password
       && (password.length >= this.PASSWORD_LENGTH.MIN)
@@ -19,6 +23,7 @@ export default class EnterpriseCloudDatabasePasswordCtrl {
 
   passwordChanged(password) {
     this.passwordScore = password ? get(zxcvbn(password), 'score') : 0;
+    this.password = password || '';
     this.onChange({ data: password });
   }
 }

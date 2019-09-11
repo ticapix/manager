@@ -5,6 +5,14 @@
   "enterprise_cloud_database_service_maintenance_window_adjust_window": "Adjust window",
   "enterprise_cloud_database_service_maintenance_window_adjust_window_day": "Day",
   "enterprise_cloud_database_service_maintenance_window_adjust_window_hour": "Hour",
+  "enterprise_cloud_database_service_maintenance_window_adjust_window_hours": "Hours",
   "enterprise_cloud_database_service_maintenance_window_adjust_window_duration": "Duration",
-  "enterprise_cloud_database_service_maintenance_window_reset": "Reset"
+  "enterprise_cloud_database_service_maintenance_window_reset": "Reset",
+  "enterprise_cloud_database_service_maintenance_window_day1": "Monday",
+  "enterprise_cloud_database_service_maintenance_window_day2": "Tuesday",
+  "enterprise_cloud_database_service_maintenance_window_day3": "Wednesday",
+  "enterprise_cloud_database_service_maintenance_window_day4": "Thursday",
+  "enterprise_cloud_database_service_maintenance_window_day5": "Friday",
+  "enterprise_cloud_database_service_maintenance_window_day6": "Saturday",
+  "enterprise_cloud_database_service_maintenance_window_day7": "Sunday"
 }

@@ -19,7 +19,7 @@ export default /* @ngInject */($stateProvider) => {
           .getHostsWithDetails(clusterId)
           .then(hosts => each(hosts, (host) => {
             set(host, 'ram', `${get(planCatalog, 'memory.size', 0)} GB`);
-            set(host, 'storage', `${get(planCatalog, 'storage.size')} GB X ${get(planCatalog, 'storage.count', 0)} ${get(planCatalog, 'storage.type')} RAID ${get(planCatalog, 'storage.raid.level')} disk(s)`);
+            set(host, 'storage', `${get(planCatalog, 'storage.size')} GB ${get(planCatalog, 'storage.type')} RAID ${get(planCatalog, 'storage.raid.level')} X ${get(planCatalog, 'storage.count', 0)} disk(s)`);
           })),
       planCatalog: /* @ngInject */
         (capabilities, clusterDetails) => find(capabilities, { name: clusterDetails.offerName }),
