@@ -5,6 +5,7 @@ export default {
   bindings: {
     enterpriceDb: '<',
     commitmentPeriods: '<',
+    user: '<',
   },
   controller,
   template,

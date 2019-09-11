@@ -11,9 +11,8 @@ import { ERROR_STATUS, PROCESSING_STATUS } from './enterprise-cloud-database.con
 
 export default class EnterpriseCloudDatabaseService {
   /* @ngInject */
-  constructor($q, mockData, OvhApiCloudDBEnterprise, OvhApiMe) {
+  constructor($q, OvhApiCloudDBEnterprise, OvhApiMe, OvhApiOrder) {
     this.$q = $q;
-    this.mockData = mockData;
     this.OvhApiCloudDBEnterpriseCluster = OvhApiCloudDBEnterprise.v6();
     this.OvhApiCloudDBEnterpriseBackup = OvhApiCloudDBEnterprise.Backup().v6();
     this.OvhApiCloudDBEnterpriseEndpoint = OvhApiCloudDBEnterprise.Endpoint().v6();
@@ -27,16 +26,8 @@ export default class EnterpriseCloudDatabaseService {
     this.OvhApiCloudDBEnterpriseServiceInfos = OvhApiCloudDBEnterprise.ServiceInfos().v6();
     this.OvhApiCloudDBEnterpriseUser = OvhApiCloudDBEnterprise.User().v6();
     this.OvhApiCloudDBEnterpriseOffers = OvhApiCloudDBEnterprise.Offers().v6();
+    this.OvhApiOrderEnterpriseCloudDB = OvhApiOrder.Catalog().Public().v6();
     this.OvhApiMe = OvhApiMe;
-    this.userData = {
-      currencySymbol: null,
-      ovhSubsidiary: null,
-    };
-    this.initialize();
-  }
-
-  initialize() {
-    this.getMe();
   }
 
   getDefaultPaymentMethod() {
@@ -44,15 +35,7 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getMe() {
-    return this.OvhApiMe.v6().get().$promise.then((me) => {
-      this.userData.ovhSubsidiary = me.ovhSubsidiary;
-      this.userData.currencySymbol = me.currency.symbol;
-      return this.data;
-    });
-  }
-
-  getPriceText(priceInCents) {
-    return `${priceInCents / 100000000} ${this.userData.currencySymbol}`;
+    return this.OvhApiMe.v6().get().$promise;
   }
 
   createMaintenanceWindow(clusterId, windowData) {
@@ -93,8 +76,9 @@ export default class EnterpriseCloudDatabaseService {
     return this.OvhApiCloudDBEnterpriseOffers.get({ name: offerName }).$promise;
   }
 
-  getCatalog() {
-    return this.mockData.getCatalog();
+  getCatalog(ovhSubsidiary) {
+    return this.OvhApiOrderEnterpriseCloudDB
+      .get({ productName: 'enterpriseCloudDatabases', ovhSubsidiary }).$promise;
   }
 
   getClusterDetails(clusterId) {

@@ -77,17 +77,19 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
       {
         value: 0,
         price: 0,
+        tax: 0,
         label: this.$translate.instant('enterprise_cloud_database_create_additional_replicas_empty'),
       },
     ];
     for (let i = 1; i <= maxReplicas - minReplicas; i += 1) {
       this.additionalReplicas[i] = {
         value: i,
-        price: price * i,
-        label: this.$translate.instant('enterprise_cloud_database_create_additional_replicas_price', {
+        price: price.price * i,
+        tax: price.tax * i,
+        label: this.$translate.instant((i === 1
+          ? 'enterprise_cloud_database_create_additional_replica'
+          : 'enterprise_cloud_database_create_additional_replicas'), {
           replicaCount: i,
-          replicaPrice: price.total * i,
-          currencySymbol: '$',
         }),
       };
     }
@@ -145,6 +147,11 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     const regionMap = this.databasePlanMap[databaseName][region];
     this.clusters = regionMap.clusters;
     this.clusters = sortBy(this.clusters, cluster => cluster.memory.size);
+  }
+
+  onClusterSelect(cluster) {
+    this.populateAdditionalReplicas(cluster);
+    this.enterpriceDb.additionalReplica = head(this.additionalReplicas);
   }
 
   orderDatabaseCluster() {

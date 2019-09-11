@@ -5,6 +5,7 @@ export default {
   bindings: {
     clusters: '<',
     enterpriceDb: '<',
+    onChange: '&',
   },
   controller,
   template,
