@@ -86,6 +86,9 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
   }
 
   saveSecurityInfo(form) {
+    if (!get(form, '$valid')) {
+      return false;
+    }
     set(form, '$valid', false);
     this.CucCloudMessage.flushMessages('enterprise-cloud-database.service.get-started');
     this.loaders.savingSecuritySettings = true;

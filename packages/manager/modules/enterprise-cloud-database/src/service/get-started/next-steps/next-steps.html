@@ -1,11 +1,5 @@
-<div class="mb-3">
+<fieldset data-ng-disabled="$ctrl.disabled">
     <h6 data-translate="enterprise_cloud_database_service_get_started_next_steps_migrate_database_title"></h6>
-    <p data-translate="enterprise_cloud_database_service_get_started_next_steps_migrate_database_description"></p>
-    <ovh-manager-enterprise-cloud-database-service-connection-details-flags-component
-        data-command="$ctrl.COMMANDS_LIST.RESTORE"
-        data-cluster-type="$ctrl.clusterType"
-        data-end-point="$ctrl.readWriteEndpoint">
-    </ovh-manager-enterprise-cloud-database-service-connection-details-flags-component>
     <a href="#" class="mb-3 oui-link_icon">
         <span data-translate="enterprise_cloud_database_service_get_started_next_steps_migrate_database_help"></span>
         <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
@@ -58,4 +52,4 @@
         <span data-translate="enterprise_cloud_database_service_get_started_next_steps_maintenance_window_help"></span>
         <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
     </a>
-</div>
+</fieldset>

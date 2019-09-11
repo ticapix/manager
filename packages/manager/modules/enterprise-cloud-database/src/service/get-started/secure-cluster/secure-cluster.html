@@ -1,4 +1,4 @@
-<div class="mb-3">
+<fieldset data-ng-disabled="$ctrl.disabled">
     <!-- cluster name -->
     <oui-field data-label="{{ ::'enterprise_cloud_database_service_get_started_secure_cluster_name' | translate }}"
                data-size="xl"
@@ -22,11 +22,10 @@
     <p data-translate="enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_description2"></p>
     <!-- security group name -->
     <ovh-manager-enterprise-cloud-database-service-security-group-name-component
-        data-security-groups="$ctrl.securityGroups"
         data-on-change="$ctrl.securityGroupDataChanged(data)">
     </ovh-manager-enterprise-cloud-database-service-security-group-name-component>
     <!-- rule -->
     <ovh-manager-enterprise-cloud-database-service-rule-component
         data-on-change="$ctrl.securityGroupDataChanged(data)">
     </ovh-manager-enterprise-cloud-database-service-rule-component>
-</div>
+</fieldset>

@@ -6,7 +6,6 @@ const component = {
   bindings: {
     label: '<',
     onChange: '&',
-    securityGroups: '<',
   },
   controller,
 };

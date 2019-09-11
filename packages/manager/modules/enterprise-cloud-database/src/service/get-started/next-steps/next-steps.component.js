@@ -8,6 +8,7 @@ export default {
     addReplicas: '&',
     clusterDetails: '<',
     clusterType: '<',
+    disabled: '<',
     endPoints: '<',
     hostList: '<',
     maintenanceWindow: '<',

@@ -2,7 +2,7 @@
   "enterprise_cloud_database_service_get_started_next_steps_migrate_database_title": "Migrate existing databases",
   "enterprise_cloud_database_service_get_started_next_steps_migrate_database_description": "You can use the PostgreSQL extension pg_restore or third-party tools to migrate an existing database to this cluster",
   "enterprise_cloud_database_service_get_started_next_steps_migrate_database_help": "How can i migrate my data ?",
-  "enterprise_cloud_database_service_get_started_next_steps_add_replica_title": "Add more replica",
+  "enterprise_cloud_database_service_get_started_next_steps_add_replica_title": "Add more replicas",
   "enterprise_cloud_database_service_get_started_next_steps_add_replica_description": "By default, you have a replica with your cluster. But you can add some more, to manage concurrent connections to your cluster effectively",
   "enterprise_cloud_database_service_get_started_next_steps_add_replica_help": "How does replica work ?",
   "enterprise_cloud_database_service_get_started_next_steps_add_replica_added_count": "You have added {{ replicaCount }} replica(s).",
