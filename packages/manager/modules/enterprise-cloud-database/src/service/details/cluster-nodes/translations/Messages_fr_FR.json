@@ -1,6 +1,6 @@
 {
   "enterprise_cloud_database_service_details_cluster_nodes_description": "One Primary, Replica and Backup nodes are included as a part of the cluster. While the Primary node handle the read and write operations, the replicas can share the read operations load. Add more replicas to share the load of read operations.",
-  "enterprise_cloud_database_service_details_cluster_nodes_included_title": "Inclus",
+  "enterprise_cloud_database_service_details_cluster_nodes_included_title": "Included",
   "enterprise_cloud_database_service_details_cluster_nodes_included_primary": "Primary (Read-Write)",
   "enterprise_cloud_database_service_details_cluster_nodes_included_replica": "Replica (Read-Only)",
   "enterprise_cloud_database_service_details_cluster_nodes_included_backup": "Backup",

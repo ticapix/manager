@@ -1,13 +1,11 @@
 import {
   ENTERPRISE_CLOUD_DATABASE_CLUSTER_NAME_PATTERN,
-  ENTERPRISE_CLOUD_DATABASE_PASSWORD_LENGTH,
 } from './secure-cluster.constants';
 
 export default class {
   /* @ngInject */
   constructor() {
     this.CLUSTER_NAME_PATTERN = ENTERPRISE_CLOUD_DATABASE_CLUSTER_NAME_PATTERN;
-    this.PASSWORD_LENGTH = ENTERPRISE_CLOUD_DATABASE_PASSWORD_LENGTH;
   }
 
   $onInit() {
@@ -25,12 +23,6 @@ export default class {
         clusterPassword: clusterPassword || this.data.clusterPassword,
       }),
     });
-  }
-
-  checkPasswordLength(password) {
-    return password
-      && (password.length >= this.PASSWORD_LENGTH.MIN)
-      && (password.length <= this.PASSWORD_LENGTH.MAX);
   }
 
   securityGroupDataChanged(data) {

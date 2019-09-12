@@ -56,7 +56,7 @@
                         data-on-data-change="$ctrl.dataChanged(data)"
                         data-replica-config="$ctrl.data.replicaConfig">
                     </ovh-manager-enterprise-cloud-database-service-get-started-next-steps-component>
-                    <div class="mt-3" data-ng-if="$ctrl.loaders.savingSettings">
+                    <div data-ng-if="$ctrl.loaders.savingSettings">
                         <oui-spinner size="s"></oui-spinner>
                         <span class="ml-2" data-translate="enterprise_cloud_database_service_get_started_saving"></span>
                     </div>

@@ -3,6 +3,7 @@ import zxcvbn from 'zxcvbn';
 
 import {
   ENTERPRISE_CLOUD_DATABASE_PASSWORD_LENGTH,
+  MIN_PASSWORD_STRENGTH,
 } from './password.constants';
 
 export default class EnterpriseCloudDatabasePasswordCtrl {
@@ -13,12 +14,17 @@ export default class EnterpriseCloudDatabasePasswordCtrl {
 
   $onInit() {
     this.password = '';
+    this.passwordScore = 0;
   }
 
   checkPasswordLength(password) {
     return password
       && (password.length >= this.PASSWORD_LENGTH.MIN)
       && (password.length <= this.PASSWORD_LENGTH.MAX);
+  }
+
+  checkPasswordStrength() {
+    return this.passwordScore >= MIN_PASSWORD_STRENGTH;
   }
 
   passwordChanged(password) {
