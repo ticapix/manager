@@ -1,6 +1,13 @@
 import PG_SQL from './assets/postgreSQL.svg';
 import MARIA_DB from './assets/mariadb.svg';
 
+export const OFFERS = {
+  cluster16: 'Cluster 16',
+  cluster32: 'Cluster 32',
+  cluster64: 'Cluster 64',
+  cluster128: 'Cluster 128',
+};
+
 export const ENTERPRISE_CLOUD_DATABASE_STATUS_MAP = {
   created: 'success',
   creating: 'warning',
@@ -66,4 +73,5 @@ export default {
   GUIDELINK,
   MASKED_PASSWORD,
   PROCESSING_STATUS,
+  OFFERS,
 };

@@ -25,7 +25,9 @@
                 data-ng-class=":: $ctrl.image"
                 data-ng-if="!$ctrl.isImgPath"></span>
         </div>
-        <span data-ng-if="!$ctrl.bodyTranscluded" data-ng-bind="$ctrl.label"></span>
+        <span data-ng-if="!$ctrl.bodyTranscluded"
+            data-ng-bind="$ctrl.label"
+            class="card-heading"></span>
     </div>
     <div class="card-footer"
         data-ng-if="$ctrl.footerTranscluded"

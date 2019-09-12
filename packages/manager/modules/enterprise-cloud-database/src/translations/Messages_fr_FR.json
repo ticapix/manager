@@ -44,5 +44,6 @@
   "enterprise_cloud_database_common_manage": "Manage",
   "enterprise_cloud_database_common_subscription_contact_admin": "Administrator",
   "enterprise_cloud_database_common_subscription_contact_billing": "Billing",
-  "enterprise_cloud_database_common_subscription_contact_technical": "Technical"
+  "enterprise_cloud_database_common_subscription_contact_technical": "Technical",
+  "enterprise_cloud_database_common_storage_description": "{{ storageSize }} GB {{storageType}}"
 }

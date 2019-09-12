@@ -1,4 +1,3 @@
-import capitalize from 'lodash/capitalize';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import head from 'lodash/head';
@@ -7,12 +6,13 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import toUpper from 'lodash/toUpper';
 
-import { ERROR_STATUS, PROCESSING_STATUS } from './enterprise-cloud-database.constants';
+import { ERROR_STATUS, PROCESSING_STATUS, OFFERS } from './enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseService {
   /* @ngInject */
-  constructor($q, OvhApiCloudDBEnterprise, OvhApiMe, OvhApiOrder) {
+  constructor($q, $translate, OvhApiCloudDBEnterprise, OvhApiMe, OvhApiOrder) {
     this.$q = $q;
+    this.$translate = $translate;
     this.OvhApiCloudDBEnterpriseCluster = OvhApiCloudDBEnterprise.v6();
     this.OvhApiCloudDBEnterpriseBackup = OvhApiCloudDBEnterprise.Backup().v6();
     this.OvhApiCloudDBEnterpriseEndpoint = OvhApiCloudDBEnterprise.Endpoint().v6();
@@ -67,7 +67,7 @@ export default class EnterpriseCloudDatabaseService {
       .$promise
       .then(offers => this.$q.all(map(offers, offer => this.getOfferDetails(offer)
         .then((offerDetails) => {
-          set(offerDetails, 'displayName', capitalize(offerDetails.name));
+          set(offerDetails, 'displayName', get(OFFERS, offerDetails.name, offerDetails.name));
           return offerDetails;
         }))));
   }
@@ -295,11 +295,15 @@ export default class EnterpriseCloudDatabaseService {
 
   static populateStorage(capability, plan) {
     const storages = get(plan, 'blobs.technical.storage');
+    const size = get(head(storages.disks), 'capacity', 0);
+    const count = get(head(storages.disks), 'number', 0);
+    const raid = get(storages, 'raid');
     const storage = {
-      size: get(head(storages.disks), 'capacity', 0),
+      size,
+      count,
+      raid,
+      usableSize: get(raid, 'level', 0) === 10 ? (size * count) / 2 : size * count,
       type: toUpper(get(head(storages.disks), 'technology', null)),
-      count: get(head(storages.disks), 'number', 0),
-      raid: get(storages, 'raid'),
     };
     set(capability, 'storage', storage);
   }
