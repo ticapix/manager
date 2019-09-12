@@ -1,6 +1,5 @@
 {
   "enterprise_cloud_database_backup_id": "Backup ID",
-  "enterprise_cloud_database_backup_name": "Name",
   "enterprise_cloud_database_backup_time": "Backup Time",
   "enterprise_cloud_database_backup_expiration_date": "Expiration Date",
   "enterprise_cloud_database_backup_mode": "Mode",
