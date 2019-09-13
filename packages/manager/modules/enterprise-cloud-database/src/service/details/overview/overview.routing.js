@@ -17,7 +17,7 @@ export default /* @ngInject */($stateProvider) => {
           .getServiceInfo(clusterId),
       goToOverview: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success') => {
         const state = 'enterprise-cloud-database.service.details.overview';
-        const promise = $state.go(state, {});
+        const promise = $state.go(state, {}, { reload: type === 'success' });
         if (message) {
           promise.then(() => {
             CucCloudMessage[type](message, state);
@@ -25,12 +25,12 @@ export default /* @ngInject */($stateProvider) => {
         }
         return promise;
       },
-      offerDetails: /* @ngInject */
-        (clusterDetails, capabilities) => find(capabilities, { name: clusterDetails.offerName }),
-      goToUpdatePassword: /* @ngInject */ ($state, clusterId) => () => $state
-        .go('enterprise-cloud-database.service.details.overview.update-password', { clusterId }),
       goToSettings: /* @ngInject */ ($state, clusterId) => () => $state
         .go('enterprise-cloud-database.service.details.settings', { clusterId }),
+      goToUpdatePassword: /* @ngInject */ ($state, clusterId) => () => $state
+        .go('enterprise-cloud-database.service.details.overview.update-password', { clusterId }),
+      offerDetails: /* @ngInject */
+        (clusterDetails, capabilities) => find(capabilities, { name: clusterDetails.offerName }),
       goToClusterSize: /* @ngInject */ ($state, clusterId) => () => $state
         .go('enterprise-cloud-database.service.details.cluster-nodes', { clusterId }),
     },

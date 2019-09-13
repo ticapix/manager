@@ -11,6 +11,7 @@
   "enterprise_cloud_database_list_ram_size": "{{ size }} GB",
   "enterprise_cloud_database_common_storage_size": "{{count}} X {{ size }} GB {{ type }}",
   "enterprise_cloud_database_getting_started": "Getting Started",
+  "enterprise_cloud_database_manage_cluster": "Manage Cluster",
   "enterprise_cloud_database_common_add": "Add",
   "enterprise_cloud_database_common_delete": "Delete",
   "enterprise_cloud_database_common_status": "Status",

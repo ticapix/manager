@@ -160,6 +160,10 @@ export default class EnterpriseCloudDatabaseService {
     return this.OvhApiCloudDBEnterpriseServiceInfos.get({ clusterId }).$promise;
   }
 
+  getUser(clusterId) {
+    return this.OvhApiCloudDBEnterpriseUser.get({ clusterId }).$promise;
+  }
+
   setClusterDetails(clusterId, clusterDetails) {
     return this.OvhApiCloudDBEnterpriseCluster.update({ clusterId }, clusterDetails).$promise;
   }
