@@ -11,7 +11,7 @@
         data-on-change="$ctrl.onCommitmentPeriodSelect(modelValue)">
         <enterprise-cloud-database-card-footer>
             <div class="mt-2" data-translate="enterprise_cloud_database_create_choose_commitment_total_price"></div>
-            <div class="mb-2 font-weight-bold">
+            <div class="mb-2">
                 <ovh-manager-enterprise-cloud-database-price-component
                     data-price="$ctrl.enterpriceDb.cluster.price.price * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * commitmentPeriod"
                     data-tax="$ctrl.enterpriceDb.cluster.price.tax * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * commitmentPeriod"

@@ -110,13 +110,16 @@
                         <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_cluster_label"></dt>
                         <dd class="col-sm-9 my-auto">
                             <span> {{ $ctrl.minHostCount + $ctrl.enterpriceDb.additionalReplica.value }} X (
-                                <span data-translate="enterprise_cloud_database_create_order_summary_cluster"
+                                <span data-translate="enterprise_cloud_database_create_RAM"
+                                    data-translate-values="{RAM: $ctrl.enterpriceDb.cluster.memory.size}">
+                                </span>,
+                                <span  data-translate="enterprise_cloud_database_create_CPU"
+                                    data-translate-values="{CPU: $ctrl.enterpriceDb.cluster.cpu.cores}">
+                                </span>,
+                                <span data-translate="enterprise_cloud_database_common_storage_description"
                                     data-translate-values="{
-                                        ram: $ctrl.enterpriceDb.cluster.memory.size,
-                                        cpu: $ctrl.enterpriceDb.cluster.cpu.cores,
-                                        storage: $ctrl.enterpriceDb.cluster.storage.size,
+                                        storageSize: $ctrl.enterpriceDb.cluster.storage.usableSize,
                                         storageType: $ctrl.enterpriceDb.cluster.storage.type,
-                                        storageCount: $ctrl.enterpriceDb.cluster.storage.count,
                                     }">
                                 </span>
                                 )

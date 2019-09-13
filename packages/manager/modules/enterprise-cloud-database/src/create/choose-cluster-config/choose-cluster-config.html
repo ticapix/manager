@@ -1,4 +1,3 @@
-
 <div class="row">
     <enterprise-cloud-database-card
         data-ng-repeat="cluster in $ctrl.clusters track by cluster.name"
@@ -8,16 +7,19 @@
         data-selected="$ctrl.selectedCluster.name === cluster.name"
         data-on-change="$ctrl.onClusterSelect(modelValue)">
         <enterprise-cloud-database-card-footer>
-            <div class="mt-2"
-                data-translate="enterprise_cloud_database_create_RAM"
+            <div class="mt-2 mb-2" data-translate="enterprise_cloud_database_create_choose_cluster_specifications"></div>
+            <div data-translate="enterprise_cloud_database_create_RAM"
                 data-translate-values="{RAM: cluster.memory.size}">
             </div>
             <div  data-translate="enterprise_cloud_database_create_CPU"
                 data-translate-values="{CPU: cluster.cpu.cores}">
             </div>
             <div class="mb-2"
-                data-translate="enterprise_cloud_database_create_storage"
-                data-translate-values="{storage: cluster.storage.size, storageType: cluster.storage.type, storageCount: cluster.storage.count}">
+                data-translate="enterprise_cloud_database_common_storage_description"
+                data-translate-values="{
+                    storageSize: cluster.storage.usableSize,
+                    storageType: cluster.storage.type,
+                }">
             </div>
         </enterprise-cloud-database-card-footer>
     </enterprise-cloud-database-card>

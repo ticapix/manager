@@ -1,4 +1,3 @@
-
 <div class="row">
     <enterprise-cloud-database-card
         data-ng-repeat="paymentType in $ctrl.paymentTypes track by paymentType.name"
@@ -8,14 +7,14 @@
         data-selected="$ctrl.selectedPaymentType.name === paymentType.name"
         data-on-change="$ctrl.onPaymentTypeSelect(modelValue)">
         <enterprise-cloud-database-card-footer>
-            <div class="mt-2 mb-2 font-weight-bold" data-ng-if="::paymentType.monthly">
+            <div class="mt-2 mb-2" data-ng-if="::paymentType.monthly">
                 <ovh-manager-enterprise-cloud-database-price-component
                     data-price="$ctrl.enterpriceDb.cluster.price.price * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value)"
                     data-tax="$ctrl.enterpriceDb.cluster.price.tax * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value)"
                     data-user="$ctrl.user">
                 </ovh-manager-enterprise-cloud-database-price-component>
             </div>
-            <div class="mt-2 mb-2 font-weight-bold" data-ng-if=":: !paymentType.monthly">
+            <div class="mt-2 mb-2" data-ng-if=":: !paymentType.monthly">
                 <ovh-manager-enterprise-cloud-database-price-component
                     data-price="$ctrl.enterpriceDb.cluster.price.price * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * $ctrl.enterpriceDb.commitmentPeriod"
                     data-tax="$ctrl.enterpriceDb.cluster.price.tax * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * $ctrl.enterpriceDb.commitmentPeriod"
