@@ -33,6 +33,8 @@ export default class EnterpriseCloudDatabaseCtrl {
     return this.$q.all([
       this.getClusterDetails(cluster.id),
       this.enterpriseCloudDatabaseService.getEndpointsWithDetails(cluster.id),
-    ]).then(res => assign({ endpoints: res[1] }, res[0]));
+      this.enterpriseCloudDatabaseService.getUser(cluster.id)
+        .catch(error => ((error.status === 404) ? null : this.$q.reject(error))),
+    ]).then(res => assign({ endpoints: res[1], user: res[2] }, res[0]));
   }
 }

@@ -1122,6 +1122,29 @@ export default class MockData {
         ],
         serviceId: 25317707,
       },
+      'efd91649-fde4-4c53-859b-a35c4d25e69f': {
+        renew: {
+          period: null,
+          manualPayment: false,
+          deleteAtExpiration: false,
+          forced: false,
+          automatic: false,
+        },
+        expiration: '2019-08-20',
+        creation: '2019-08-21',
+        contactTech: 'ls148374-ovh',
+        canDeleteAtExpiration: false,
+        contactAdmin: 'ls148374-ovh',
+        contactBilling: 'ls148374-ovh',
+        status: 'ok',
+        engagedUpTo: null,
+        renewalType: 'manual',
+        domain: 'efd91649-fde4-4c53-859b-a35c4d25e69f',
+        possibleRenewPeriod: [
+          1,
+        ],
+        serviceId: 25317707,
+      },
     };
 
     this.backups = [

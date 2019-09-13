@@ -1,13 +1,15 @@
+import reduce from 'lodash/reduce';
+
 export default class EnterpriseCloudDatabaseServiceDetailsCtrl {
   /* @ngInject */
-  constructor(
-    CucCloudMessage,
-  ) {
+  constructor(CucCloudMessage) {
     this.CucCloudMessage = CucCloudMessage;
   }
 
   $onInit() {
     this.subscribeToMessages();
+    this.rulesCount = reduce(this.securityGroups,
+      (rulesCount, securityGroup) => rulesCount + securityGroup.rulesCount, 0);
   }
 
   refreshMessage() {
