@@ -1,10 +1,14 @@
+import {
+  ASIATOUCH, DEUTCHTOUCH, FRENCHTOUCH, USTOUCH,
+} from './price.constants';
+
 export default class EnterpriseCloudDatabasePriceCtrl {
   /* @ngInject */
   constructor() {
-    this.frenchTouch = ['CZ', 'ES', 'FR', 'GB', 'IE', 'IT', 'LT', 'MA', 'NL', 'PL', 'PT', 'TN'];
-    this.deutchTouch = ['DE', 'FI', 'SN'];
-    this.usTouch = ['CA', 'WE', 'WS', 'QC', 'US'];
-    this.asiaTouch = ['SG', 'ASIA', 'AU'];
+    this.ASIATOUCH = ASIATOUCH;
+    this.DEUTCHTOUCH = DEUTCHTOUCH;
+    this.FRENCHTOUCH = FRENCHTOUCH;
+    this.USTOUCH = USTOUCH;
   }
 
   $onInit() {

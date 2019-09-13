@@ -22,6 +22,14 @@ export default /* @ngInject */($stateProvider) => {
         instance: get(find(catalog.addons, { planCode: 'restored-instance' }), 'pricings[0]'),
         volume: get(find(catalog.addons, { planCode: 'restored-volume' }), 'pricings[0]'),
       }),
+      goToManualBackup: /* @ngInject */ $state => () => $state
+        .go('enterprise-cloud-database.service.details.backups.manual'),
+      goToRecovery: /* @ngInject */ $state => minDate => $state
+        .go('enterprise-cloud-database.service.details.backups.recovery', { minDate }),
+      goToRestore: /* @ngInject */ $state => backupInstance => $state
+        .go('enterprise-cloud-database.service.details.backups.restore', { backupInstance }),
+      goToDeleteBackup: /* @ngInject */ $state => backupInstance => $state
+        .go('enterprise-cloud-database.service.details.backups.delete', { backupInstance }),
       goBackToBackups: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success') => {
         const reload = message && type === 'success';
         const state = 'enterprise-cloud-database.service.details.backups';

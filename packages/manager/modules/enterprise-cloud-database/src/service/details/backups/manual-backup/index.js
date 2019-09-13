@@ -19,7 +19,7 @@ angular
       layout: 'modal',
     });
   })
-  .component('manualBackupComponent', manualBackupComponent)
+  .component('enterpriseCloudDatabaseManualBackupComponent', manualBackupComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

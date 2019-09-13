@@ -28,7 +28,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsRecoveryCtrl {
 
   restoreBackup() {
     this.isLoading = true;
-    this.timestamp = moment(`${this.selectedDate} ${this.timePicker}`).format();
+    this.timestamp = moment(`${this.selectedDate} ${this.selectedTime}`).format();
     return this.service.createRestore(this.clusterId, null, this.timestamp)
       .then(res => this.goBackToBackups(
         this.$translate.instant('enterprise_cloud_database_backups_recovery_success'),
@@ -42,5 +42,13 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsRecoveryCtrl {
         'error',
       ))
       .finally(() => { this.isLoading = false; });
+  }
+
+  validDate() {
+    const selectedDateTime = moment(`${this.selectedDate} ${this.selectedTime}`);
+    if (selectedDateTime.isAfter(this.minDate) && selectedDateTime.isBefore(this.maxDate)) {
+      return true;
+    }
+    return false;
   }
 }

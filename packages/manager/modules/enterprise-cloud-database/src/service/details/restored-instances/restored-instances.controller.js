@@ -14,7 +14,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsRestoredInstancesCtrl 
     this.$scope = $scope;
     this.$state = $state;
     this.CucCloudMessage = CucCloudMessage;
-    this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
+    this.service = enterpriseCloudDatabaseService;
     this.ENTERPRISE_CLOUD_DATABASE_STATUS_MAP = ENTERPRISE_CLOUD_DATABASE_STATUS_MAP;
     this.ENTERPRISE_CLOUD_DATABASE_STATUS = ENTERPRISE_CLOUD_DATABASE_STATUS;
   }
