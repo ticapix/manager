@@ -1,15 +1,22 @@
 import angular from 'angular';
-
-import createRuleComponent from './create-rule.component';
-import ruleComponent from '../../../rule';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
 const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsCreateRule';
 
-angular
-  .module(moduleName, [
-    ruleComponent,
-  ])
-  .component('ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsCreateRuleComponent', createRuleComponent)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, [
+  'oc.lazyLoad',
+  'ui.router',
+]).config(/* @ngInject */($stateProvider) => {
+  $stateProvider.state('enterprise-cloud-database.service.details.settings.add-rule.**', {
+    url: '/add-rule',
+    lazyLoad: ($transition$) => {
+      const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+      return import('./create-rule.module')
+        .then(mod => $ocLazyLoad.inject(mod.default || mod));
+    },
+  });
+});
 
 export default moduleName;

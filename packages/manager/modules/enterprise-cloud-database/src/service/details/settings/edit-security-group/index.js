@@ -1,15 +1,22 @@
 import angular from 'angular';
-
-import editSecurityGroupComponent from './edit-security-group.component';
-import securityGroupNameComponent from '../../../security-group-name';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
 const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsEditSecurityGroup';
 
-angular
-  .module(moduleName, [
-    securityGroupNameComponent,
-  ])
-  .component('ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsEditSecurityGroupComponent', editSecurityGroupComponent)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, [
+  'oc.lazyLoad',
+  'ui.router',
+]).config(/* @ngInject */($stateProvider) => {
+  $stateProvider.state('enterprise-cloud-database.service.details.settings.edit-security-group.**', {
+    url: '/edit-security-group',
+    lazyLoad: ($transition$) => {
+      const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+      return import('./edit-security-group.module')
+        .then(mod => $ocLazyLoad.inject(mod.default || mod));
+    },
+  });
+});
 
 export default moduleName;
