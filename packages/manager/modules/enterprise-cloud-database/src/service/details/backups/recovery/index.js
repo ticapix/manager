@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import recoveryComponent from './recovery.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsBackupsRecovery';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsBackupsRecovery';
 
 angular
   .module(moduleName, [
@@ -16,7 +16,7 @@ angular
       },
       views: {
         modal: {
-          component: 'recoveryComponent',
+          component: 'enterpriseCloudDatabaseServiceDetailsBackupsRecoveryComponent',
         },
       },
       layout: 'modal',
@@ -25,7 +25,7 @@ angular
       },
     });
   })
-  .component('recoveryComponent', recoveryComponent)
+  .component('enterpriseCloudDatabaseServiceDetailsBackupsRecoveryComponent', recoveryComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

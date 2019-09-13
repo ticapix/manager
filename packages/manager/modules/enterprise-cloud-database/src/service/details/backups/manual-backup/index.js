@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import manualBackupComponent from './manual-backup.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsBackupsManual';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsBackupsManual';
 
 angular
   .module(moduleName, [
@@ -13,13 +13,13 @@ angular
       url: '/manual-backup',
       views: {
         modal: {
-          component: 'manualBackupComponent',
+          component: 'enterpriseCloudDatabaseServiceDetailsBackupsBackupComponent',
         },
       },
       layout: 'modal',
     });
   })
-  .component('enterpriseCloudDatabaseManualBackupComponent', manualBackupComponent)
+  .component('enterpriseCloudDatabaseServiceDetailsBackupsBackupComponent', manualBackupComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

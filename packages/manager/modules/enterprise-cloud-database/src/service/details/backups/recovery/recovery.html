@@ -12,6 +12,11 @@
             <span data-translate="enterprise_cloud_database_backups_recovery_desc1"></span>
             <span data-translate="enterprise_cloud_database_backups_recovery_desc2"></span>
         </p>
+        <div>
+            <span class="font-weight-bold"
+                  data-translate="enterprise_cloud_database_backups_recovery_time_slots_helper"
+                  data-translate-values="{ fromDate: $ctrl.minDateText, toDate: $ctrl.maxDateText }"></span>
+        </div>
         <oui-field data-label="{{ ::'enterprise_cloud_database_backups_recovery_date' | translate }}"
                    data-size="l">
             <oui-calendar data-model="$ctrl.selectedDate"
@@ -21,7 +26,7 @@
                           data-min-date="$ctrl.minDate"
                           data-max-date="$ctrl.maxDate" data-required></oui-calendar>
             <div class="oui-field__helper">
-                <span data-translate="enterprise_cloud_database_backups_recovery_time_slots"></span>
+                <span data-translate="enterprise_cloud_database_backups_recovery_time_slots"></span><br />
             </div>
         </oui-field>
         <oui-field data-label="{{ ::'enterprise_cloud_database_backups_recovery_hour' | translate }}"
@@ -40,6 +45,9 @@
                 data-user="$ctrl.user">
             </ovh-manager-enterprise-cloud-database-price-component>
         </p>
+        <oui-message data-type="error" data-dismissable data-ng-if="!$ctrl.isValidDate">
+            <span data-translate="enterprise_cloud_database_backups_recovery_date_invalid"></span>
+        </oui-message>
         <span data-translate="enterprise_cloud_database_backup_billing_info_text"></span>
     </oui-modal>
 </form>

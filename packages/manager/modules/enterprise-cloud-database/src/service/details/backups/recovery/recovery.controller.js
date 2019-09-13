@@ -16,6 +16,9 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsRecoveryCtrl {
   $onInit() {
     this.maxDate = moment().toDate();
     this.minDate = moment(this.minDate).toDate();
+    this.minDateText = moment(this.minDate).format('MM-DD-YYYY HH:mm A');
+    this.maxDateText = moment(this.maxDate).format('MM-DD-YYYY HH:mm A');
+    this.isValidDate = true;
   }
 
   cancel() {
@@ -47,8 +50,10 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsRecoveryCtrl {
   validDate() {
     const selectedDateTime = moment(`${this.selectedDate} ${this.selectedTime}`);
     if (selectedDateTime.isAfter(this.minDate) && selectedDateTime.isBefore(this.maxDate)) {
+      this.isValidDate = true;
       return true;
     }
+    this.isValidDate = false;
     return false;
   }
 }
