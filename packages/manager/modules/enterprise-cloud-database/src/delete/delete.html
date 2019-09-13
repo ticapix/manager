@@ -1,10 +1,10 @@
-<form id="clusterDelete"
-      name="clusterDelete"
-      data-ng-submit="clusterDelete.$valid && $ctrl.deleteCluster()"
+<form id="$ctrl.clusterDelete"
+      name="$ctrl.clusterDelete"
       novalidate>
     <oui-modal data-heading="{{:: 'enterprise_cloud_database_delete' | translate }}"
                data-primary-label="{{:: 'enterprise_cloud_database_common_delete' | translate }}"
                data-secondary-label="{{:: 'enterprise_cloud_database_common_cancel' | translate }}"
+               data-primary-action="$ctrl.clusterDelete.$valid && $ctrl.deleteCluster()"
                data-secondary-action="$ctrl.goBack()"
                data-on-dismiss="$ctrl.goBack()"
                data-loading="$ctrl.isLoading"
@@ -16,7 +16,7 @@
                    type="text"
                    name="clusterDeleteConfirm"
                    data-ng-model="$ctrl.deleteConfirmation"
-                   data-ng-pattern="$ctrl.DELETE_CONFIRMATION_INPUT"
+                   data-ng-pattern="$ctrl.DELETE_CONFIRMATION_INPUT_PATTERN"
                    required
                    autofocus>
         </oui-field>

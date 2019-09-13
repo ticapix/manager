@@ -3,7 +3,7 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import range from 'lodash/range';
 
-import { DELETE_CONFIRMATION_INPUT } from '../../../../enterprise-cloud-database.constants';
+import { DELETE_CONFIRMATION_INPUT_PATTERN } from '../../../../enterprise-cloud-database.constants';
 import { INCLUDED_CLUSTER_SIZE } from '../../../service.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsClusterSizeDeleteCtrl {
@@ -13,7 +13,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsClusterSizeDeleteCtrl 
     enterpriseCloudDatabaseService,
   ) {
     this.$translate = $translate;
-    this.DELETE_CONFIRMATION_INPUT = DELETE_CONFIRMATION_INPUT;
+    this.DELETE_CONFIRMATION_INPUT_PATTERN = DELETE_CONFIRMATION_INPUT_PATTERN;
     this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
     this.isLoading = false;
   }

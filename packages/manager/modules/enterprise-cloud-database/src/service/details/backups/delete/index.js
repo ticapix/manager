@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import deleteComponent from './delete.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsBackupsDelete';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsBackupsDelete';
 
 angular
   .module(moduleName, [
@@ -16,7 +16,7 @@ angular
       },
       views: {
         modal: {
-          component: 'ovhManagerEnterpriseCloudDatabaseServiceDetailsBackupsDeleteComponent',
+          component: 'enterpriseCloudDatabaseServiceDetailsBackupsDeleteComponent',
         },
       },
       layout: 'modal',
@@ -25,7 +25,7 @@ angular
       },
     });
   })
-  .component('ovhManagerEnterpriseCloudDatabaseServiceDetailsBackupsDeleteComponent', deleteComponent)
+  .component('enterpriseCloudDatabaseServiceDetailsBackupsDeleteComponent', deleteComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

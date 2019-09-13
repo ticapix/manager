@@ -3,9 +3,12 @@ import controller from './enterprise-cloud-database.controller';
 
 export default {
   bindings: {
-    clusters: '<',
     capabilities: '<',
+    clusters: '<',
+    createCluster: '<',
+    deleteCluster: '<',
     getClusterDetails: '<',
+    gettingStarted: '<',
     user: '<',
   },
   controller,

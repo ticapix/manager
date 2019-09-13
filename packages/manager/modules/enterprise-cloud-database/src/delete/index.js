@@ -22,6 +22,7 @@ angular
       layout: 'modal',
       resolve: {
         goBack: /* @ngInject */  goBackToList => goBackToList,
+        clusterName: /* @ngInject */ $transition$ => $transition$.params().clusterName,
       },
     });
   })

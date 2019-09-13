@@ -16,7 +16,7 @@ angular
       },
       views: {
         modal: {
-          component: 'deleteRestoredInstanceComponent',
+          component: 'enterpriseCloudDatabaseServiceDeleteRestoredInstanceComponent',
         },
       },
       layout: 'modal',
@@ -25,7 +25,7 @@ angular
       },
     });
   })
-  .component('deleteRestoredInstanceComponent', deleteRestoredInstanceComponent)
+  .component('enterpriseCloudDatabaseServiceDeleteRestoredInstanceComponent', deleteRestoredInstanceComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

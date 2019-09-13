@@ -33,6 +33,15 @@ export default /* @ngInject */($stateProvider) => {
       ) => clusterId => enterpriseCloudDatabaseService
         .getClusterDetails(clusterId)
         .then(details => ({ offer: find(capabilities, { name: details.offerName }), details })),
+      deleteCluster: /* @ngInject */ $state => (clusterId, clusterName) => $state
+        .go('enterprise-cloud-database.delete', {
+          projectId: 'projectId',
+          clusterId,
+          clusterName,
+        }),
+      gettingStarted: /* @ngInject */ $state => clusterId => $state
+        .go('enterprise-cloud-database.service.get-started', { clusterId }),
+      createCluster: /* @ngInject */ $state => () => $state.go('enterprise-cloud-database.create'),
       goBackToList: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success', clusterId = null) => {
         const reload = message && type === 'success';
         const state = 'enterprise-cloud-database';

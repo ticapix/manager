@@ -3,11 +3,15 @@ import controller from './backups.controller';
 
 export default {
   bindings: {
-    clusterDetails: '<',
     backupList: '<',
     backupPrice: '<',
-    getBackupDetails: '<',
+    clusterDetails: '<',
     defaultPaymentMethod: '<',
+    getBackupDetails: '<',
+    goToManualBackup: '<',
+    goToRecovery: '<',
+    goToRestore: '<',
+    goToDeleteBackup: '<',
     restorePrice: '<',
     user: '<',
   },

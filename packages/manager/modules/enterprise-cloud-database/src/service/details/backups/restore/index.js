@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import restoreComponent from './restore.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsBackupsRestore';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsBackupsRestore';
 
 angular
   .module(moduleName, [
@@ -16,7 +16,7 @@ angular
       },
       views: {
         modal: {
-          component: 'restoreComponent',
+          component: 'enterpriseCloudDatabaseServiceDetailsBackupsRestoreComponent',
         },
       },
       layout: 'modal',
@@ -25,7 +25,7 @@ angular
       },
     });
   })
-  .component('restoreComponent', restoreComponent)
+  .component('enterpriseCloudDatabaseServiceDetailsBackupsRestoreComponent', restoreComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

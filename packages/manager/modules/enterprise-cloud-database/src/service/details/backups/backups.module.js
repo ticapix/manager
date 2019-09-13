@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 import deleteComponent from './delete';
-import enterpriseCloudDatabaseServiceDetailsBackupsComponent from './backups.component';
+import backupsComponent from './backups.component';
 import manualBackup from './manual-backup';
 import routing from './backups.routing';
 import recovery from './recovery';
@@ -12,7 +12,7 @@ const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsBackups';
 angular
   .module(moduleName, [deleteComponent, manualBackup, recovery, restore])
   .config(routing)
-  .component('enterpriseCloudDatabaseServiceDetailsBackupsComponent', enterpriseCloudDatabaseServiceDetailsBackupsComponent)
+  .component('enterpriseCloudDatabaseServiceDetailsBackupsComponent', backupsComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
