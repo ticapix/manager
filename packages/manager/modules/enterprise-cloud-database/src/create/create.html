@@ -118,7 +118,7 @@
                                 </span>,
                                 <span data-translate="enterprise_cloud_database_common_storage_description"
                                     data-translate-values="{
-                                        storageSize: $ctrl.enterpriceDb.cluster.storage.usableSize,
+                                        storageSize: ($ctrl.enterpriceDb.cluster.storage.usableSize | cucBytes:2:false:'GB'),
                                         storageType: $ctrl.enterpriceDb.cluster.storage.type,
                                     }">
                                 </span>

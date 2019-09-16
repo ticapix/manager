@@ -18,7 +18,7 @@
             data-searchable
             data-filterable>
             <span class="oui-status"
-                  data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.getStatusGroup($row.status)"
+                  data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.status)"
                   data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.status) | translate">
             </span>
         </oui-column>

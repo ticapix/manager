@@ -320,7 +320,7 @@ export default class EnterpriseCloudDatabaseService {
     set(capability, 'node', find(catalog.addons, { planCode: nodePlan }));
   }
 
-  getStatusGroup(status) {
+  static getStatusGroup(status) {
     if (includes(PROCESSING_STATUS, status)) {
       return 'warning';
     }

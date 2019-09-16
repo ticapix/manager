@@ -7,7 +7,7 @@ export default /* @ngInject */($stateProvider) => {
       securityGroups: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getSecurityGroupList(clusterId),
-      user: /* @ngInject */
+      clusterUser: /* @ngInject */
         ($q, clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getUser(clusterId)
           .catch(error => ((error.status === 404) ? null : $q.reject(error))),
