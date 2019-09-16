@@ -1,10 +1,9 @@
-import { ENTERPRISE_CLOUD_DATABASE_STATUS_MAP } from '../../../enterprise-cloud-database.constants';
 import { INCLUDED_CLUSTER_SIZE } from '../../service.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsClusterSizeCtrl {
   /* @ngInject */
-  constructor() {
-    this.ENTERPRISE_CLOUD_DATABASE_STATUS_MAP = ENTERPRISE_CLOUD_DATABASE_STATUS_MAP;
+  constructor(enterpriseCloudDatabaseService) {
+    this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
     this.INCLUDED_CLUSTER_SIZE = INCLUDED_CLUSTER_SIZE;
   }
 

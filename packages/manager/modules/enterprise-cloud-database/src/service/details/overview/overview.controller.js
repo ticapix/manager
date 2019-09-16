@@ -1,5 +1,4 @@
 import {
-  ENTERPRISE_CLOUD_DATABASE_STATUS_MAP,
   DATABASE_CONSTANTS, MASKED_PASSWORD,
 } from '../../../enterprise-cloud-database.constants';
 import {
@@ -12,17 +11,18 @@ export default class EnterpriseCloudDatabaseServiceDetailsOverviewCtrl {
   constructor(
     $state,
     CucCloudMessage,
+    enterpriseCloudDatabaseService,
   ) {
     this.$state = $state;
     this.CucCloudMessage = CucCloudMessage;
     this.AUTO_BACKUP = AUTO_BACKUP;
-    this.ENTERPRISE_CLOUD_DATABASE_STATUS_MAP = ENTERPRISE_CLOUD_DATABASE_STATUS_MAP;
     this.INCLUDED_CLUSTER_SIZE = INCLUDED_CLUSTER_SIZE;
     this.MASKED_PASSWORD = MASKED_PASSWORD;
     this.BACKUP_FREQUENCY = BACKUP_FREQUENCY;
     this.BACKUP_RETENTION = BACKUP_RETENTION;
     this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
     this.USERNAME = USERNAME;
+    this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
   }
 
   $onInit() {

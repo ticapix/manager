@@ -41,6 +41,8 @@ export default /* @ngInject */($stateProvider) => {
         }),
       gettingStarted: /* @ngInject */ $state => clusterId => $state
         .go('enterprise-cloud-database.service.get-started', { clusterId }),
+      manageCluster: /* @ngInject */ $state => clusterId => $state
+        .go('enterprise-cloud-database.service.details.overview', { clusterId }),
       createCluster: /* @ngInject */ $state => () => $state.go('enterprise-cloud-database.create'),
       goBackToList: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success', clusterId = null) => {
         const reload = message && type === 'success';
