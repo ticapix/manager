@@ -6,12 +6,12 @@ export default class {
   }
 
   $onInit() {
-    this.selectedDatabase = this.enterpriceDb.database;
+    this.selectedDatabase = this.enterpriseDb.database;
   }
 
   onDatabaseSelect(database) {
     this.selectedDatabase = database;
-    this.enterpriceDb.database = database;
+    this.enterpriseDb.database = database;
     if (this.onChange) {
       this.$timeout(() => this.onChange({
         database: this.selectedDatabase,

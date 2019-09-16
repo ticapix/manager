@@ -1,5 +1,5 @@
-import template from './create.html';
 import controller from './create.controller';
+import template from './create.html';
 
 export default {
   bindings: {

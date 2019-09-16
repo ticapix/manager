@@ -26,8 +26,8 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
 
   $onInit() {
     this.commitmentPeriods = COMMITMENT_PERIODS;
-    this.paymentTypes = PAYMENT_TYPES;
     this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
+    this.paymentTypes = PAYMENT_TYPES;
     this.minHostCount = get(head(this.capabilities), 'minHostCount', 0);
     this.databasePlanMap = {};
     this.populateCapabilityDetails();
@@ -43,7 +43,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
       .databasePlanMap[defaultDb.originalName][defaultDatacenter].clusters;
     const defaultCluster = find(defaultClusters, cluster => cluster.memory.size === 32);
     this.populateAdditionalReplicas(defaultCluster);
-    this.enterpriceDb = {
+    this.enterpriseDb = {
       database: defaultDb,
       datacenter: defaultDatacenter,
       cluster: defaultCluster,
@@ -52,9 +52,19 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
       additionalReplica: head(this.additionalReplicas),
       defaultReplicaCount: this.minHostCount,
     };
+    this.populateEnterpriseDatabasePrice();
     this.regions = toArray(defaultRegions);
     this.clusters = defaultClusters;
     this.clusters = sortBy(this.clusters, cluster => cluster.memory.size);
+  }
+
+  populateEnterpriseDatabasePrice() {
+    this.totalDatabasePrice = {
+      price: this.enterpriseDb.cluster.price.price
+        * (this.enterpriseDb.defaultReplicaCount + this.enterpriseDb.additionalReplica.value),
+      tax: this.enterpriseDb.cluster.price.tax
+        * (this.enterpriseDb.defaultReplicaCount + this.enterpriseDb.additionalReplica.value),
+    };
   }
 
   populateCapabilityDetails() {
@@ -144,7 +154,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
   }
 
   onRegionSelect(region) {
-    const databaseName = this.enterpriceDb.database.originalName;
+    const databaseName = this.enterpriseDb.database.originalName;
     const regionMap = this.databasePlanMap[databaseName][region];
     this.clusters = regionMap.clusters;
     this.clusters = sortBy(this.clusters, cluster => cluster.memory.size);
@@ -152,12 +162,21 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
 
   onClusterSelect(cluster) {
     this.populateAdditionalReplicas(cluster);
-    this.enterpriceDb.additionalReplica = head(this.additionalReplicas);
+    this.enterpriseDb.additionalReplica = head(this.additionalReplicas);
+    this.populateEnterpriseDatabasePrice();
+  }
+
+  onAdditionalReplicaChange() {
+    this.populateEnterpriseDatabasePrice();
+  }
+
+  onCommitmentPeriodSelect() {
+    this.populateEnterpriseDatabasePrice();
   }
 
   orderDatabaseCluster() {
     this.order = true;
-    console.log(this.enterpriceDb);
+    console.log(this.enterpriseDb);
   }
 
   static getUniqueDatabasesAndVersions(databaseNames, status) {

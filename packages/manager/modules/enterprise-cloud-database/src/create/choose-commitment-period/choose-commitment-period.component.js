@@ -3,9 +3,11 @@ import template from './choose-commitment-period.html';
 
 export default {
   bindings: {
-    enterpriceDb: '<',
     commitmentPeriods: '<',
+    enterpriseDb: '<',
+    onChange: '&',
     user: '<',
+    databasePrice: '<',
   },
   controller,
   template,

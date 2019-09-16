@@ -12,7 +12,6 @@ angular.module(moduleName, [
     url: '/create',
     lazyLoad: ($transition$) => {
       const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
       return import('./create.module')
         .then(mod => $ocLazyLoad.inject(mod.default || mod));
     },

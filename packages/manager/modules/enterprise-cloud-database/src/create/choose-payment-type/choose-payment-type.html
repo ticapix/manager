@@ -9,15 +9,15 @@
         <enterprise-cloud-database-card-footer>
             <div class="mt-2 mb-2" data-ng-if="::paymentType.monthly">
                 <ovh-manager-enterprise-cloud-database-price-component
-                    data-price="$ctrl.enterpriceDb.cluster.price.price * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value)"
-                    data-tax="$ctrl.enterpriceDb.cluster.price.tax * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value)"
+                    data-price="$ctrl.databasePrice.price"
+                    data-tax="$ctrl.databasePrice.tax"
                     data-user="$ctrl.user">
                 </ovh-manager-enterprise-cloud-database-price-component>
             </div>
             <div class="mt-2 mb-2" data-ng-if=":: !paymentType.monthly">
                 <ovh-manager-enterprise-cloud-database-price-component
-                    data-price="$ctrl.enterpriceDb.cluster.price.price * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * $ctrl.enterpriceDb.commitmentPeriod"
-                    data-tax="$ctrl.enterpriceDb.cluster.price.tax * ($ctrl.enterpriceDb.defaultReplicaCount + $ctrl.enterpriceDb.additionalReplica.value) * $ctrl.enterpriceDb.commitmentPeriod"
+                    data-price="$ctrl.databasePrice.price * $ctrl.enterpriseDb.commitmentPeriod"
+                    data-tax="$ctrl.databasePrice.tax * $ctrl.enterpriseDb.commitmentPeriod"
                     data-user="$ctrl.user">
                 </ovh-manager-enterprise-cloud-database-price-component>
             </div>

@@ -5,7 +5,7 @@ import 'ovh-ui-angular';
 
 import component from './choose-database.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseOrderChooseDatabaseModule';
+const moduleName = 'ovhManagerEnterpriseCloudDatabaseCreateChooseDatabaseModule';
 
 angular
   .module(moduleName, [
@@ -13,6 +13,6 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('enterpriseCloudDatabaseOrderChooseDatabase', component);
+  .component('enterpriseCloudDatabaseCreateChooseDatabase', component);
 
 export default moduleName;

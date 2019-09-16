@@ -8,12 +8,12 @@ export default class {
   }
 
   $onInit() {
-    this.selectedRegion = this.enterpriceDb.datacenter;
+    this.selectedRegion = this.enterpriseDb.datacenter;
   }
 
   onRegionSelect(region) {
     this.selectedRegion = region;
-    this.enterpriceDb.datacenter = region;
+    this.enterpriseDb.datacenter = region;
     if (this.onChange) {
       this.$timeout(() => this.onChange({ region: this.selectedRegion }));
     }

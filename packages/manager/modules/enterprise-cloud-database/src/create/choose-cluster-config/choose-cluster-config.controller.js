@@ -6,12 +6,12 @@ export default class {
   }
 
   $onInit() {
-    this.selectedCluster = this.enterpriceDb.cluster;
+    this.selectedCluster = this.enterpriseDb.cluster;
   }
 
   onClusterSelect(cluster) {
     this.selectedCluster = cluster;
-    this.enterpriceDb.cluster = cluster;
+    this.enterpriseDb.cluster = cluster;
     if (this.onChange) {
       this.$timeout(() => this.onChange({
         cluster: this.selectedCluster,

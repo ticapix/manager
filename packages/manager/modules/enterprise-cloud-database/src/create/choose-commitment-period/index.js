@@ -5,7 +5,7 @@ import 'ovh-ui-angular';
 
 import component from './choose-commitment-period.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseOrderChooseCommitmentPeriodModule';
+const moduleName = 'ovhManagerEnterpriseCloudDatabaseCreateChooseCommitmentPeriodModule';
 
 angular
   .module(moduleName, [
@@ -13,6 +13,6 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('enterpriseCloudDatabaseOrderChooseCommitmentPeriod', component);
+  .component('enterpriseCloudDatabaseCreateChooseCommitmentPeriod', component);
 
 export default moduleName;

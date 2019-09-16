@@ -5,7 +5,7 @@ import 'ovh-ui-angular';
 
 import component from './choose-cluster-config.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseOrderChooseClusterConfigModule';
+const moduleName = 'ovhManagerEnterpriseCloudDatabaseCreateChooseClusterConfigModule';
 
 angular
   .module(moduleName, [
@@ -13,6 +13,6 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('enterpriseCloudDatabaseOrderChooseClusterConfig', component);
+  .component('enterpriseCloudDatabaseCreateChooseClusterConfig', component);
 
 export default moduleName;

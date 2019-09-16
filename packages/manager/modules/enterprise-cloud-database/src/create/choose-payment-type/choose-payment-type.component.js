@@ -3,9 +3,10 @@ import template from './choose-payment-type.html';
 
 export default {
   bindings: {
-    enterpriceDb: '<',
+    enterpriseDb: '<',
     paymentTypes: '<',
     user: '<',
+    databasePrice: '<',
   },
   controller,
   template,

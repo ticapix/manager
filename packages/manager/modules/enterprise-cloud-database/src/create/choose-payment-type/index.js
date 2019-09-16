@@ -5,7 +5,7 @@ import 'ovh-ui-angular';
 
 import component from './choose-payment-type.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseOrderChoosePaymentTypeModule';
+const moduleName = 'ovhManagerEnterpriseCloudDatabaseCreateChoosePaymentTypeModule';
 
 angular
   .module(moduleName, [
@@ -13,6 +13,6 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('enterpriseCloudDatabaseOrderChoosePaymentType', component);
+  .component('enterpriseCloudDatabaseCreateChoosePaymentType', component);
 
 export default moduleName;

@@ -1,10 +1,10 @@
 export default class {
   $onInit() {
-    this.selectedPaymentType = this.enterpriceDb.paymentType;
+    this.selectedPaymentType = this.enterpriseDb.paymentType;
   }
 
   onPaymentTypeSelect(paymentType) {
     this.selectedPaymentType = paymentType;
-    this.enterpriceDb.paymentType = paymentType;
+    this.enterpriseDb.paymentType = paymentType;
   }
 }

@@ -3,7 +3,7 @@ import template from './choose-region.html';
 
 export default {
   bindings: {
-    enterpriceDb: '<',
+    enterpriseDb: '<',
     regions: '<',
     onChange: '&',
   },
