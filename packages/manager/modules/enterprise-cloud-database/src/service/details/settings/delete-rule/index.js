@@ -1,12 +1,22 @@
 import angular from 'angular';
-
-import deleteRuleComponent from './delete-rule.component';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
 const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsDeleteRule';
 
-angular
-  .module(moduleName, [])
-  .component('ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsDeleteRuleComponent', deleteRuleComponent)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, [
+  'oc.lazyLoad',
+  'ui.router',
+]).config(/* @ngInject */($stateProvider) => {
+  $stateProvider.state('enterprise-cloud-database.service.details.settings.delete-rule.**', {
+    url: '/delete-rule',
+    lazyLoad: ($transition$) => {
+      const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+      return import('./delete-rule.module')
+        .then(mod => $ocLazyLoad.inject(mod.default || mod));
+    },
+  });
+});
 
 export default moduleName;
