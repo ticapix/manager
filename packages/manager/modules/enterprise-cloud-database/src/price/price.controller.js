@@ -13,7 +13,6 @@ export default class EnterpriseCloudDatabasePriceCtrl {
 
   $onInit() {
     this.ovhSubsidiary = this.user.ovhSubsidiary;
-    console.log(this.user);
   }
 
   getPriceText(priceInCents) {
