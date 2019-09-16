@@ -1,14 +1,18 @@
 <div class="mt-3">
     <h6 data-translate="enterprise_cloud_database_service_maintenance_window_title"></h6>
-    <p data-ng-if="$ctrl.isMaintenanceWindowInfoAvailable()"
-       data-translate="enterprise_cloud_database_service_maintenance_window_description"
-       data-translate-values="{
-            dayOfWeek: $ctrl.data.weekdayNumber.day,
-            time: $ctrl.data.hour.time,
-            duration: $ctrl.data.duration.time
-       }"></p>
-    <p data-ng-if="!$ctrl.isMaintenanceWindowInfoAvailable()"
-       data-translate="enterprise_cloud_database_service_maintenance_window_default_description"></p>
+    <p data-ng-if="$ctrl.isMaintenanceWindowInfoAvailable()">
+       <span data-translate="enterprise_cloud_database_service_maintenance_window_description"
+             data-translate-values="{
+                    dayOfWeek: $ctrl.data.weekdayNumber.day,
+                    time: $ctrl.data.hour.time,
+                    duration: $ctrl.data.duration.time
+             }"></span>
+        <span data-translate="enterprise_cloud_database_service_maintenance_window_recommendation"></span>
+    </p>
+    <p data-ng-if="!$ctrl.isMaintenanceWindowInfoAvailable()">
+       <span data-translate="enterprise_cloud_database_service_maintenance_window_default_description"></span>
+       <span data-translate="enterprise_cloud_database_service_maintenance_window_recommendation"></span>
+    </p>
     <button type="button"
             class="d-block mb-3 oui-button oui-button_secondary"
             data-ng-disabled="$ctrl.disabled"

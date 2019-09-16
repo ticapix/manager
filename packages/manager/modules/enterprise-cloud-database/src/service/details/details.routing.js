@@ -8,9 +8,8 @@ export default /* @ngInject */($stateProvider) => {
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getSecurityGroupList(clusterId),
       clusterUser: /* @ngInject */
-        ($q, clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getUser(clusterId)
-          .catch(error => ((error.status === 404) ? null : $q.reject(error))),
+        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+          .getUser(clusterId),
     },
     translations: {
       value: ['.'],

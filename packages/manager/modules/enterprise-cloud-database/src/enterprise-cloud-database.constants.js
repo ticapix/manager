@@ -36,6 +36,12 @@ export const DATABASE_CONSTANTS = {
   },
 };
 
+export const STATUS = {
+  ERROR: 'error',
+  SUCCESS: 'success',
+  WARNING: 'warning',
+};
+
 export const MASKED_PASSWORD = '********';
 export const GUIDELINK = 'https://docs.ovh.com/';
 export const DELETE_CONFIRMATION_INPUT_PATTERN = /^DELETE$/;
@@ -48,5 +54,6 @@ export default {
   MASKED_PASSWORD,
   PROCESSING_STATUS,
   OFFERS,
+  STATUS,
   SUCCESS_STATUS,
 };

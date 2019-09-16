@@ -13,9 +13,8 @@ export default /* @ngInject */($stateProvider) => {
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getHosts(clusterId),
       maintenanceWindow: /* @ngInject */
-          ($q, clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-            .getMaintenanceWindow(clusterId)
-            .catch(error => ((error.status === 404) ? null : $q.reject(error))),
+          (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+            .getMaintenanceWindow(clusterId),
       securityGroups: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getSecurityGroupList(clusterId),

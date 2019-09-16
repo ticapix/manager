@@ -7,7 +7,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsCtrl {
   }
 
   $onInit() {
-    this.subscribeToMessages();
+    this.loadMessages();
     this.rulesCount = reduce(this.securityGroups,
       (rulesCount, securityGroup) => rulesCount + securityGroup.rulesCount, 0);
   }
@@ -16,7 +16,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsCtrl {
     this.messages = this.messageHandler.getMessages();
   }
 
-  subscribeToMessages() {
+  loadMessages() {
     this.CucCloudMessage.unSubscribe('enterprise-cloud-database.service.details');
     this.messageHandler = this.CucCloudMessage.subscribe(
       'enterprise-cloud-database.service.details',

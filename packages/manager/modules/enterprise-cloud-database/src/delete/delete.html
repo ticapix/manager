@@ -2,10 +2,11 @@
       name="$ctrl.clusterDelete"
       novalidate>
     <oui-modal data-heading="{{:: 'enterprise_cloud_database_delete' | translate }}"
+               data-primary-action="$ctrl.deleteCluster()"
+               data-primary-disabled="!$ctrl.clusterDelete.$valid"
                data-primary-label="{{:: 'enterprise_cloud_database_common_delete' | translate }}"
-               data-secondary-label="{{:: 'enterprise_cloud_database_common_cancel' | translate }}"
-               data-primary-action="$ctrl.clusterDelete.$valid && $ctrl.deleteCluster()"
                data-secondary-action="$ctrl.goBack()"
+               data-secondary-label="{{:: 'enterprise_cloud_database_common_cancel' | translate }}"
                data-on-dismiss="$ctrl.goBack()"
                data-loading="$ctrl.isLoading"
                data-type="warning">

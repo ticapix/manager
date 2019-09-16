@@ -2,14 +2,16 @@ import get from 'lodash/get';
 import zxcvbn from 'zxcvbn';
 
 import {
+  ENTERPRISE_CLOUD_DATABASE_MIN_PASSWORD_STRENGTH,
   ENTERPRISE_CLOUD_DATABASE_PASSWORD_LENGTH,
-  MIN_PASSWORD_STRENGTH,
+  ENTERPRISE_CLOUD_DATABASE_PASSWORD_PATTERNS,
 } from './password.constants';
 
 export default class EnterpriseCloudDatabasePasswordCtrl {
   /* @ngInject */
   constructor() {
     this.PASSWORD_LENGTH = ENTERPRISE_CLOUD_DATABASE_PASSWORD_LENGTH;
+    this.PATTERNS = ENTERPRISE_CLOUD_DATABASE_PASSWORD_PATTERNS;
   }
 
   $onInit() {
@@ -24,7 +26,7 @@ export default class EnterpriseCloudDatabasePasswordCtrl {
   }
 
   checkPasswordStrength() {
-    return this.passwordScore >= MIN_PASSWORD_STRENGTH;
+    return this.passwordScore >= ENTERPRISE_CLOUD_DATABASE_MIN_PASSWORD_STRENGTH;
   }
 
   passwordChanged(password) {
