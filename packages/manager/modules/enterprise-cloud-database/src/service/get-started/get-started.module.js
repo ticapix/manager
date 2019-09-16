@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import addReplicas from '../add-replicas';
+import addReplicas from './add-replicas';
 import connectionDetails from '../connection-details';
 import enterpriseCloudDatabaseServiceGetStartedComponent from './get-started.component';
 import routing from './get-started.routing';
