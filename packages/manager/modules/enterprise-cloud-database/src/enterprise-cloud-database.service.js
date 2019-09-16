@@ -1,12 +1,15 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
 import head from 'lodash/head';
+import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import set from 'lodash/set';
 import toUpper from 'lodash/toUpper';
 
-import { ERROR_STATUS, PROCESSING_STATUS, OFFERS } from './enterprise-cloud-database.constants';
+import {
+  ERROR_STATUS, PROCESSING_STATUS, OFFERS, SUCCESS_STATUS,
+} from './enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseService {
   /* @ngInject */
@@ -315,6 +318,19 @@ export default class EnterpriseCloudDatabaseService {
   static populateNodeDetails(capability, catalog, plan) {
     const nodePlan = get(find(plan.addonFamilies, { name: 'node' }), 'addons[0]');
     set(capability, 'node', find(catalog.addons, { planCode: nodePlan }));
+  }
+
+  getStatusGroup(status) {
+    if (includes(PROCESSING_STATUS, status)) {
+      return 'warning';
+    }
+    if (includes(ERROR_STATUS, status)) {
+      return 'error';
+    }
+    if (includes(SUCCESS_STATUS, status)) {
+      return 'success';
+    }
+    return status;
   }
 
   static isProcessing(status) {

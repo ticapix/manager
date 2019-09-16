@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import addReplicas from '../../add-replicas';
+import addReplicas from './add';
 import deleteReplicas from './delete';
 import enterpriseCloudDatabaseServiceDetailsClusterSizeComponent from './cluster-nodes.component';
 import routing from './cluster-nodes.routing';

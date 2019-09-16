@@ -10,12 +10,6 @@ export default /* @ngInject */($stateProvider) => {
       endPoints: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getEndpointsWithDetails(clusterId),
-      restoredInstances: /* @ngInject */
-        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getRestoreList(clusterId),
-      endpoints: /* @ngInject */
-        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getEndpointsWithDetails(clusterId),
       goBackToRestore: /* @ngInject */
         ($state, CucCloudMessage) => (message = false, type = 'success', clusterId = null) => {
           const reload = message && type === 'success';
@@ -34,6 +28,9 @@ export default /* @ngInject */($stateProvider) => {
           return promise;
         },
       goToDelete: /* @ngInject */ $state => instanceId => $state.go('enterprise-cloud-database.service.details.restored-instances.delete', { instanceId }),
+      restoredInstances: /* @ngInject */
+        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+          .getRestoreList(clusterId),
     },
   });
 };

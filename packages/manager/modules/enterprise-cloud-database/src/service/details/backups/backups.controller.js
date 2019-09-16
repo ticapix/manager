@@ -1,7 +1,6 @@
 import assign from 'lodash/assign';
 import moment from 'moment';
 
-import { ENTERPRISE_CLOUD_DATABASE_STATUS_MAP } from '../../../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
   /* @ngInject */
@@ -11,7 +10,6 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
   ) {
     this.CucCloudMessage = CucCloudMessage;
     this.service = enterpriseCloudDatabaseService;
-    this.ENTERPRISE_CLOUD_DATABASE_STATUS_MAP = ENTERPRISE_CLOUD_DATABASE_STATUS_MAP;
   }
 
   $onInit() {

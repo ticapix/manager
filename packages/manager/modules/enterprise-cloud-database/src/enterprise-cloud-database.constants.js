@@ -8,30 +8,6 @@ export const OFFERS = {
   cluster128: 'Cluster 128',
 };
 
-export const ENTERPRISE_CLOUD_DATABASE_STATUS_MAP = {
-  created: 'success',
-  creating: 'warning',
-  deleting: 'warning',
-  reopening: 'warning',
-  restarting: 'warning',
-  scaling: 'warning',
-  suspended: 'error',
-  suspending: 'warning',
-  updating: 'warning',
-};
-
-export const ENTERPRISE_CLOUD_DATABASE_STATUS = {
-  created: 'created',
-  creating: 'creating',
-  deleting: 'deleting',
-  reopening: 'reopening',
-  restarting: 'restarting',
-  scaling: 'scaling',
-  suspended: 'suspended',
-  suspending: 'suspending',
-  updating: 'updating',
-};
-
 export const PROCESSING_STATUS = [
   'creating',
   'deleting',
@@ -67,11 +43,10 @@ export const DELETE_CONFIRMATION_INPUT_PATTERN = /^DELETE$/;
 export default {
   DATABASE_CONSTANTS,
   DELETE_CONFIRMATION_INPUT_PATTERN,
-  ENTERPRISE_CLOUD_DATABASE_STATUS_MAP,
-  ENTERPRISE_CLOUD_DATABASE_STATUS,
   ERROR_STATUS,
   GUIDELINK,
   MASKED_PASSWORD,
   PROCESSING_STATUS,
   OFFERS,
+  SUCCESS_STATUS,
 };

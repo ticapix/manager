@@ -9,6 +9,7 @@ export default {
     deleteCluster: '<',
     getClusterDetails: '<',
     gettingStarted: '<',
+    manageCluster: '<',
     user: '<',
   },
   controller,

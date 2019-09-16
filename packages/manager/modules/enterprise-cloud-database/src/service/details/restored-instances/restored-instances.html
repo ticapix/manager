@@ -15,7 +15,7 @@
         <oui-column data-title=":: 'enterprise_cloud_database_restored_instances_current_usage' | translate" data-property="name"></oui-column>
         <oui-column data-title=":: 'enterprise_cloud_database_common_status' | translate" data-property="status" data-type="string">
             <span class="oui-status"
-                  data-ng-class="'oui-status_' + $ctrl.ENTERPRISE_CLOUD_DATABASE_STATUS_MAP[$row.status]"
+                  data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.getStatusGroup($row.status)"
                   data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.status) | translate"></span>
         </oui-column>
         <oui-action-menu data-align="end" data-compact>

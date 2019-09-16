@@ -5,7 +5,7 @@
             <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_common_status' | translate }}">
                 <oui-tile-description>
                     <span class="oui-status"
-                          data-ng-class="'oui-status_' + $ctrl.ENTERPRISE_CLOUD_DATABASE_STATUS_MAP[$ctrl.clusterDetails.status]"
+                          data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.getStatusGroup($ctrl.clusterDetails.status)"
                           data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $ctrl.clusterDetails.status) | translate"></span>
                 </oui-tile-description>
             </oui-tile-definition>
@@ -21,8 +21,11 @@
             </oui-tile-definition>
             <oui-tile-definition data-term="{{ ::'enterprise_cloud_database_storage_title' | translate }}">
                 <oui-tile-description>
-                    <span data-translate="enterprise_cloud_database_common_storage_size"
-                          data-translate-values="{ size: $ctrl.offerDetails.storage.size, type: $ctrl.offerDetails.storage.type, count: $ctrl.offerDetails.storage.count }">
+                    <span data-translate="enterprise_cloud_database_common_storage_description"
+                        data-translate-values="{
+                            storageSize: $ctrl.offerDetails.storage.usableSize,
+                            storageType: $ctrl.offerDetails.storage.type,
+                        }">
                     </span>
                 </oui-tile-description>
             </oui-tile-definition>

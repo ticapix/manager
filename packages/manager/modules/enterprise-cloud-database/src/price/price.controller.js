@@ -1,12 +1,12 @@
 import {
-  ASIATOUCH, DEUTCHTOUCH, FRENCHTOUCH, USTOUCH,
+  ASIATOUCH, GERMANTOUCH, FRENCHTOUCH, USTOUCH,
 } from './price.constants';
 
 export default class EnterpriseCloudDatabasePriceCtrl {
   /* @ngInject */
   constructor() {
     this.ASIATOUCH = ASIATOUCH;
-    this.DEUTCHTOUCH = DEUTCHTOUCH;
+    this.GERMANTOUCH = GERMANTOUCH;
     this.FRENCHTOUCH = FRENCHTOUCH;
     this.USTOUCH = USTOUCH;
   }
