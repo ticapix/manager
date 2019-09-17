@@ -33,7 +33,7 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
       savingSettings: false,
     };
 
-    this.subscribeToMessages();
+    this.loadMessages();
   }
 
   dataChanged(data) {
@@ -77,7 +77,7 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
     this.dataChanged({ replicaConfig: data });
   }
 
-  subscribeToMessages() {
+  loadMessages() {
     this.CucCloudMessage.unSubscribe('enterprise-cloud-database.service.get-started');
     this.messageHandler = this.CucCloudMessage.subscribe(
       'enterprise-cloud-database.service.get-started',

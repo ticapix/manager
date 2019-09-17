@@ -18,11 +18,17 @@
     <h6 data-translate="enterprise_cloud_database_service_details_cluster_nodes_nodes"></h6>
     <oui-datagrid data-rows="$ctrl.hosts" data-page-size="10">
         <oui-column data-title=":: 'enterprise_cloud_database_service_details_cluster_nodes_node_name' | translate" data-property="name" data-sortable="asc" data-type="string" data-searchable data-filterable></oui-column>
-        <oui-column data-title=":: 'enterprise_cloud_database_list_ram_title' | translate" data-property="ram" data-type="string"></oui-column>
-        <oui-column data-title=":: 'enterprise_cloud_database_list_storage_title' | translate" data-property="storage" data-type="string"></oui-column>
+        <oui-column data-title=":: 'enterprise_cloud_database_list_ram_title' | translate" data-property="ram" data-type="number">
+            <span data-translate="enterprise_cloud_database_common_storage_description"
+                  data-translate-values="{ storageSize: ($row.ram | cucBytes:2:false:'GB'), storageType: '' }"></span>
+        </oui-column>
+        <oui-column data-title=":: 'enterprise_cloud_database_list_storage_title' | translate" data-property="storage.usableSize" data-type="number">
+            <span data-translate="enterprise_cloud_database_common_storage_description"
+                  data-translate-values="{ storageSize: ($row.storage.usableSize | cucBytes:2:false:'GB'), storageType: $row.storage.type }"></span>
+        </oui-column>
         <oui-column data-title=":: 'enterprise_cloud_database_common_status' | translate" data-property="status" data-type="string" data-searchable data-filterable>
             <span class="oui-status"
-                  data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.getStatusGroup($row.status)"
+                  data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.status)"
                   data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.status) | translate"></span>
         </oui-column>
         <extra-top>

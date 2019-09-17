@@ -1,11 +1,12 @@
-<form id="replicasDelete"
-      name="replicasDelete"
-      data-ng-submit="replicasDelete.$valid && $ctrl.deleteReplicas()"
+<form id="$ctrl.replicasDelete"
+      name="$ctrl.replicasDelete"
       novalidate>
     <oui-modal data-heading="{{:: 'enterprise_cloud_database_service_details_cluster_nodes_delete_title' | translate }}"
+               data-primary-action="$ctrl.deleteReplicas()"
+               data-primary-disabled="!$ctrl.replicasDelete.$valid"
                data-primary-label="{{:: 'enterprise_cloud_database_common_delete' | translate }}"
-               data-secondary-label="{{:: 'enterprise_cloud_database_common_cancel' | translate }}"
                data-secondary-action="$ctrl.goBackToClusterSize()"
+               data-secondary-label="{{:: 'enterprise_cloud_database_common_cancel' | translate }}"
                data-on-dismiss="$ctrl.goBackToClusterSize()"
                data-loading="$ctrl.isLoading"
                data-type="warning">

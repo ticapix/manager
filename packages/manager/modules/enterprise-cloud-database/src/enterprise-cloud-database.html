@@ -31,7 +31,7 @@
             </oui-column>
             <oui-column data-title=":: 'enterprise_cloud_database_common_status' | translate" data-property="details.status" data-type="string" data-sortable data-filterable data-searchable>
                 <span class="oui-status"
-                      data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.getStatusGroup($row.details.status)"
+                      data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.details.status)"
                       data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.details.status) | translate"></span>
             </oui-column>
             <oui-action-menu data-align="end" data-compact>

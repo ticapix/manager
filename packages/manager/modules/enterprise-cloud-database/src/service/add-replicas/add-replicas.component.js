@@ -13,6 +13,7 @@ const component = {
     goBack: '<',
     maxHostCount: '<',
     nodeCatalog: '<',
+    user: '<',
   },
 };
 

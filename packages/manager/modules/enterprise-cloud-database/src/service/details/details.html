@@ -24,7 +24,7 @@
     </oui-header-tabs>
 </oui-page-header>
 <div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
-    <oui-message data-ng-if="!$ctrl.user" data-type="warning">
+    <oui-message data-ng-if="!$ctrl.clusterUser" data-type="warning">
         <p data-translate="enterprise_cloud_database_service_details_no_password_warning"></p>
         <a data-ui-sref="enterprise-cloud-database.service.details.overview.update-password({ clusterId: $ctrl.clusterDetails.id })"
            data-translate="enterprise_cloud_database_service_details_set_password"></a>

@@ -17,7 +17,7 @@
             <div class="mb-2"
                 data-translate="enterprise_cloud_database_common_storage_description"
                 data-translate-values="{
-                    storageSize: cluster.storage.usableSize,
+                    storageSize: (cluster.storage.usableSize | cucBytes:2:false:'GB'),
                     storageType: cluster.storage.type,
                 }">
             </div>

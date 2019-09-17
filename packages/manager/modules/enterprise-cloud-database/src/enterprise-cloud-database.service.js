@@ -8,7 +8,7 @@ import set from 'lodash/set';
 import toUpper from 'lodash/toUpper';
 
 import {
-  ERROR_STATUS, PROCESSING_STATUS, OFFERS, SUCCESS_STATUS,
+  ERROR_STATUS, PROCESSING_STATUS, OFFERS, STATUS, SUCCESS_STATUS,
 } from './enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseService {
@@ -128,7 +128,8 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getMaintenanceWindow(clusterId) {
-    return this.OvhApiCloudDBEnterpriseWindow.get({ clusterId }).$promise;
+    return this.OvhApiCloudDBEnterpriseWindow.get({ clusterId }).$promise
+      .catch(error => ((error.status === 404) ? null : this.$q.reject(error)));
   }
 
   getRuleDetails(clusterId, securityGroupId, ruleId) {
@@ -164,7 +165,8 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getUser(clusterId) {
-    return this.OvhApiCloudDBEnterpriseUser.get({ clusterId }).$promise;
+    return this.OvhApiCloudDBEnterpriseUser.get({ clusterId }).$promise
+      .catch(error => ((error.status === 404) ? null : this.$q.reject(error)));
   }
 
   setClusterDetails(clusterId, clusterDetails) {
@@ -320,15 +322,15 @@ export default class EnterpriseCloudDatabaseService {
     set(capability, 'node', find(catalog.addons, { planCode: nodePlan }));
   }
 
-  getStatusGroup(status) {
+  static getStatusGroup(status) {
     if (includes(PROCESSING_STATUS, status)) {
-      return 'warning';
+      return STATUS.WARNING;
     }
     if (includes(ERROR_STATUS, status)) {
-      return 'error';
+      return STATUS.ERROR;
     }
     if (includes(SUCCESS_STATUS, status)) {
-      return 'success';
+      return STATUS.SUCCESS;
     }
     return status;
   }

@@ -1,7 +1,8 @@
 {
   "enterprise_cloud_database_service_maintenance_window_title": "Maintenance window",
-  "enterprise_cloud_database_service_maintenance_window_default_description": "The maintenance operations will be carried out at the default maintenance window. You may adjust the window, if you would like the maintenance to be carried out at a time of your choice. The longer the maintenance duration, the higher is the maintenance jobs performed. The recommended duration is 3 Hours.",
-  "enterprise_cloud_database_service_maintenance_window_description": "The routine maintenance would be carried out on {{ dayOfWeek }} at {{ time }} (UTC Time) for {{ duration }}. The longer the maintenance duration, the higher is the maintenance jobs performed. The recommended duration is 3 Hours.",
+  "enterprise_cloud_database_service_maintenance_window_default_description": "The maintenance operations will be carried out at the default maintenance window. You may adjust the window, if you would like the maintenance to be carried out at a time of your choice.",
+  "enterprise_cloud_database_service_maintenance_window_description": "The routine maintenance would be carried out on {{ dayOfWeek }} at {{ time }} (UTC Time) for {{ duration }}.",
+  "enterprise_cloud_database_service_maintenance_window_recommendation": "The longer the maintenance duration, the higher is the maintenance jobs performed. The recommended duration is 3 Hours.",
   "enterprise_cloud_database_service_maintenance_window_adjust_window": "Adjust window",
   "enterprise_cloud_database_service_maintenance_window_adjust_window_day": "Day",
   "enterprise_cloud_database_service_maintenance_window_adjust_window_hour": "Hour",
