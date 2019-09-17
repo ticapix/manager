@@ -49,8 +49,9 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsRecoveryCtrl {
     const selectedDateTime = moment(`${this.selectedDate} ${this.selectedTime}`);
     if (selectedDateTime.isAfter(this.minDate) && selectedDateTime.isBefore(this.maxDate)) {
       this.isValidDate = true;
+    } else {
+      this.isValidDate = false;
     }
-    this.isValidDate = false;
     return this.isValidDate;
   }
 }
