@@ -16,8 +16,6 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsRecoveryCtrl {
   $onInit() {
     this.maxDate = moment().toDate();
     this.minDate = moment(this.minDate).toDate();
-    this.minDateText = moment(this.minDate).format('MM-DD-YYYY HH:mm A');
-    this.maxDateText = moment(this.maxDate).format('MM-DD-YYYY HH:mm A');
     this.isValidDate = true;
   }
 

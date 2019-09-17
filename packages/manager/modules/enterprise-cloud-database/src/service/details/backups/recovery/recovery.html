@@ -13,9 +13,10 @@
             <span data-translate="enterprise_cloud_database_backups_recovery_desc2"></span>
         </p>
         <div>
-            <span class="font-weight-bold"
-                  data-translate="enterprise_cloud_database_backups_recovery_time_slots_helper"
-                  data-translate-values="{ fromDate: $ctrl.minDateText, toDate: $ctrl.maxDateText }"></span>
+            <span data-translate="enterprise_cloud_database_backups_recovery_time_slots_helper"></span>
+            <span class="bold" data-ng-bind="$ctrl.minDate | date: 'medium'"></span>
+            <span data-translate="enterprise_cloud_database_backups_recovery_time_slots_helper_to"></span>
+            <span class="bold" data-ng-bind="$ctrl.maxDate | date: 'medium'"></span>
         </div>
         <oui-field data-label="{{ ::'enterprise_cloud_database_backups_recovery_date' | translate }}"
                    data-size="l">
@@ -29,7 +30,7 @@
                 <span data-translate="enterprise_cloud_database_backups_recovery_time_slots"></span><br />
             </div>
         </oui-field>
-        <oui-field data-label="{{ ::'enterprise_cloud_database_backups_recovery_hour' | translate }}"
+        <oui-field data-label="{{ ::'enterprise_cloud_database_backups_recovery_time' | translate }}"
                    data-size="s">
             <oui-timepicker
                 data-model="$ctrl.selectedTime"

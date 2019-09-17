@@ -5,7 +5,7 @@
 
     <p data-translate="enterprise_cloud_database_backup_consumption"></p>
     <p>
-        <span data-translate="enterprise_cloud_database_backup_size"></span>:
+        <span data-translate="enterprise_cloud_database_backup_size"></span>
         <span data-ng-bind="$ctrl.clusterDetails.restoredVolumeSize ? $ctrl.clusterDetails.restoredVolumeSize : 0"></span>
     </p>
     <p>
@@ -23,10 +23,10 @@
                     data-type="string"
                     data-searchable data-filterable></oui-column>
         <oui-column data-title=":: 'enterprise_cloud_database_backup_time' | translate" data-property="creationDate" data-sortable>
-            <span data-ng-bind="$row.creationDate | date: 'dd/MM/yyyy'"></span>
+            <span data-ng-bind="$row.creationDate | date: 'medium'"></span>
         </oui-column>
         <oui-column data-title=":: 'enterprise_cloud_database_backup_expiration_date' | translate" data-property="expirationDate" data-sortable>
-            <span data-ng-bind="$row.expirationDate | date: 'dd/MM/yyyy'"></span>
+            <span data-ng-bind="$row.expirationDate | date: 'medium'"></span>
         </oui-column>
         <oui-column data-title=":: 'enterprise_cloud_database_backup_mode' | translate"
                     data-property="internal"
