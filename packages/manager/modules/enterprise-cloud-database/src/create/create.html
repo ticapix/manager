@@ -63,7 +63,7 @@
                     <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
                 </label>
                 <div data-ng-if="$ctrl.enterpriseDb.additionalReplica.value > 0">
-                    <span data-translate="enterprise_cloud_database_common_price">
+                    <span data-translate="enterprise_cloud_database_create_additional_replicas_price">
                     </span>:
                     <ovh-manager-enterprise-cloud-database-price-component
                         data-price="$ctrl.enterpriseDb.additionalReplica.price"
@@ -115,17 +115,13 @@
                         <dd class="col-sm-9 my-auto">
                             <span> {{ $ctrl.minHostCount + $ctrl.enterpriseDb.additionalReplica.value }} X (
                                 <span data-translate="enterprise_cloud_database_create_RAM"
-                                    data-translate-values="{RAM: $ctrl.enterpriseDb.cluster.memory.size}">
+                                    data-translate-values="{ RAM: $ctrl.enterpriseDb.cluster.memory.size }">
                                 </span>,
                                 <span  data-translate="enterprise_cloud_database_create_CPU"
-                                    data-translate-values="{CPU: $ctrl.enterpriseDb.cluster.cpu.cores}">
+                                    data-translate-values="{ CPU: $ctrl.enterpriseDb.cluster.cpu.cores }">
                                 </span>,
-                                <span data-translate="enterprise_cloud_database_common_storage_description"
-                                    data-translate-values="{
-                                        storageSize: ($ctrl.enterpriceDb.cluster.storage.usableSize | cucBytes:2:false:'GB'),
-                                        storageType: $ctrl.enterpriceDb.cluster.storage.type,
-                                    }">
-                                </span>
+                                <span data-ng-bind="$ctrl.enterpriseDb.cluster.storage.usableSize | cucBytes:2:false:'GB'"></span>
+                                <span data-ng-bind="$ctrl.enterpriseDb.cluster.storage.type"></span>
                                 )
                             </span>
                         </dd>

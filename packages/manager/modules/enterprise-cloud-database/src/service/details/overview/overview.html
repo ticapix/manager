@@ -21,12 +21,8 @@
             </oui-tile-definition>
             <oui-tile-definition data-term="{{ ::'enterprise_cloud_database_storage_title' | translate }}">
                 <oui-tile-description>
-                    <span data-translate="enterprise_cloud_database_common_storage_description"
-                        data-translate-values="{
-                            storageSize: ($ctrl.offerDetails.storage.usableSize | cucBytes:2:false:'GB'),
-                            storageType: $ctrl.offerDetails.storage.type,
-                        }">
-                    </span>
+                    <span data-ng-bind="$ctrl.offerDetails.storage.usableSize | cucBytes:2:false:'GB'"></span>
+                    <span data-ng-bind="$ctrl.offerDetails.storage.type"></span>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_engine' | translate }}">

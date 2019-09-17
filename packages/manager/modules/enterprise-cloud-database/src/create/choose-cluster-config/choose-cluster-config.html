@@ -14,12 +14,9 @@
             <div  data-translate="enterprise_cloud_database_create_CPU"
                 data-translate-values="{ CPU: cluster.cpu.cores }">
             </div>
-            <div class="mb-2"
-                data-translate="enterprise_cloud_database_common_storage_description"
-                data-translate-values="{
-                    storageSize: (cluster.storage.usableSize | cucBytes:2:false:'GB'),
-                    storageType: cluster.storage.type,
-                }">
+            <div class="mb-2">
+                <span data-ng-bind="cluster.storage.usableSize | cucBytes:2:false:'GB'"></span>
+                <span data-ng-bind="cluster.storage.type"></span>
             </div>
         </enterprise-cloud-database-card-footer>
     </enterprise-cloud-database-card>
