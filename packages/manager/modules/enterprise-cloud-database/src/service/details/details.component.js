@@ -5,6 +5,7 @@ export default {
   bindings: {
     clusterDetails: '<',
     clusterUser: '<',
+    securityGroups: '<',
   },
   controller,
   template,

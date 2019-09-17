@@ -4,12 +4,12 @@ export default /* @ngInject */($stateProvider) => {
     cache: false,
     component: 'enterpriseCloudDatabaseServiceDetailsComponent',
     resolve: {
-      securityGroups: /* @ngInject */
-        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getSecurityGroupList(clusterId),
       clusterUser: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getUser(clusterId),
+      securityGroups: /* @ngInject */
+        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+          .getSecurityGroupList(clusterId),
     },
     translations: {
       value: ['.'],
