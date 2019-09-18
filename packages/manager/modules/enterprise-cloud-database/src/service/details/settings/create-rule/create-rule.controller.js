@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 
+import { STATUS } from '../../../../enterprise-cloud-database.constants';
+
 export default class EnterpriseCloudDatabaseServiceDetailsSettingsCreateRuleCtrl {
   /* @ngInject */
   constructor(
@@ -27,14 +29,14 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCreateRuleCtrl
         this.enterpriseCloudDatabaseService.resetSecurityGroupDetailsCache();
         return this.goBack(
           this.$translate.instant('enterprise_cloud_database_service_details_settings_create_rule_success'),
-          'success',
+          STATUS.SUCCESS,
         );
       })
       .catch(error => this.goBack(
         this.$translate.instant('enterprise_cloud_database_service_details_settings_create_rule_error', {
           message: get(error, 'data.message'),
         }),
-        'error',
+        STATUS.ERROR,
       ))
       .finally(() => {
         this.loaders.rule = false;

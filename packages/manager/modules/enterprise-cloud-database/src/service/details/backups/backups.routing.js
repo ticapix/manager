@@ -2,6 +2,8 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
+import { STATUS } from '../../../enterprise-cloud-database.constants';
+
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.backups', {
     component: 'enterpriseCloudDatabaseServiceDetailsBackupsComponent',
@@ -18,8 +20,9 @@ export default /* @ngInject */($stateProvider) => {
       getBackupDetails: /* @ngInject */
       (clusterId, enterpriseCloudDatabaseService) => backupId => enterpriseCloudDatabaseService
         .getBackupDetails(clusterId, backupId),
-      goBackToBackups: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success') => {
-        const reload = message && type === 'success';
+      goBackToBackups: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
+        type = STATUS.SUCCESS) => {
+        const reload = message && type === STATUS.SUCCESS;
         const state = 'enterprise-cloud-database.service.details.backups';
         const promise = $state.go(state, {}, { reload });
         if (message) {

@@ -1,4 +1,5 @@
 import { MESSAGE_CONTAINER } from '../../details.constants';
+import { STATUS } from '../../../../enterprise-cloud-database.constants';
 
 export default /* @ngInject */($stateProvider) => {
   $stateProvider
@@ -8,8 +9,9 @@ export default /* @ngInject */($stateProvider) => {
         securityGroup: null,
       },
       resolve: {
-        goBack: /* @ngInject */ ($state, clusterId, CucCloudMessage) => (message = false, type = 'success') => {
-          const reload = message && type === 'success';
+        goBack: /* @ngInject */ ($state, clusterId, CucCloudMessage) => (message = false,
+          type = STATUS.SUCCESS) => {
+          const reload = message && type === STATUS.SUCCESS;
           const state = 'enterprise-cloud-database.service.details.settings';
           const promise = $state.go(state, { clusterId }, { reload });
           if (message) {

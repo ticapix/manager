@@ -3,6 +3,8 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import range from 'lodash/range';
 
+import { STATUS } from '../../enterprise-cloud-database.constants';
+
 export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
   /* @ngInject */
   constructor(
@@ -47,7 +49,7 @@ export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
         })
         .catch(error => this.goBack(this.$translate.instant('enterprise_cloud_database_service_add_replicas_error', {
           message: get(error, 'data.message'),
-        }), 'error'))
+        }), STATUS.ERROR))
         .finally(() => {
           this.isLoading = false;
           if (this.callback) {

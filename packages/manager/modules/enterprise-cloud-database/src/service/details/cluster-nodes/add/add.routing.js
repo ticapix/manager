@@ -1,4 +1,5 @@
 import { MESSAGE_CONTAINER } from '../../details.constants';
+import { STATUS } from '../../../../enterprise-cloud-database.constants';
 
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.cluster-nodes.add', {
@@ -9,8 +10,9 @@ export default /* @ngInject */($stateProvider) => {
     },
     resolve: {
       createReplicas: /* @ngInject */ $transition$ => $transition$.params().createReplicas,
-      goBack: /* @ngInject */ ($state, clusterId, CucCloudMessage) => (message = false, type = 'success') => {
-        const reload = message && type === 'success';
+      goBack: /* @ngInject */ ($state, clusterId, CucCloudMessage) => (message = false,
+        type = STATUS.SUCCESS) => {
+        const reload = message && type === STATUS.SUCCESS;
         const promise = $state.go('enterprise-cloud-database.service.details.cluster-nodes', { clusterId }, { reload });
         if (message) {
           promise.then(() => {
