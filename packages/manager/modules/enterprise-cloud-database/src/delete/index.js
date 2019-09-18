@@ -13,6 +13,7 @@ angular
       url: '/delete?clusterId',
       params: {
         clusterId: null,
+        clusterName: null,
       },
       views: {
         modal: {

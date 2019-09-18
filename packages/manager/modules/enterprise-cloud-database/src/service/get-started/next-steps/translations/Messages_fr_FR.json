@@ -9,10 +9,11 @@
   "enterprise_cloud_database_service_get_started_next_steps_add_replica_count": "You have chosen to add {{ replicaCount }} more replica(s).",
   "enterprise_cloud_database_service_get_started_next_steps_add_replica": "Add replicas",
   "enterprise_cloud_database_service_get_started_next_steps_add_replica_modify": "Modify",
+  "enterprise_cloud_database_service_get_started_next_steps_add_replica_reset": "Remove",
   "enterprise_cloud_database_service_get_started_next_steps_backup_title": "Daily backups",
   "enterprise_cloud_database_service_get_started_next_steps_backup_description": "Auto backups are made on a daily basis, and are kept during 3 rolling months.",
   "enterprise_cloud_database_service_get_started_next_steps_backup_warning": "By doing this, you acknowledge that OVH will not be able to restore your backup in case of any failure",
   "enterprise_cloud_database_service_get_started_next_steps_backup_help": "How does daily snapshot work ?",
-  "enterprise_cloud_database_service_get_started_next_steps_backup": "Daily backups activated",
+  "enterprise_cloud_database_service_get_started_next_steps_backup": "Daily backups enabled",
   "enterprise_cloud_database_service_get_started_next_steps_maintenance_window_help": "How does maintenance window work ?"
 }

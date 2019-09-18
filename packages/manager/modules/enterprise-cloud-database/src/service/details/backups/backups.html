@@ -31,7 +31,8 @@
                     data-property="name"
                     data-sortable="asc"
                     data-type="string"
-                    data-searchable data-filterable></oui-column>
+                    data-searchable
+                    data-filterable></oui-column>
         <oui-column data-title=":: 'enterprise_cloud_database_backup_time' | translate" data-property="creationDate" data-sortable>
             <span data-ng-bind="$row.creationDate | date: 'medium'"></span>
         </oui-column>
@@ -48,7 +49,9 @@
         <oui-column data-title=":: 'enterprise_cloud_database_common_status' | translate"
                     data-property="status"
                     data-type="string"
-                    data-searchable data-sortable data-filterable>
+                    data-searchable
+                    data-sortable
+                    data-filterable>
             <span class="oui-status"
                   data-ng-class="'oui-status_' + $ctrl.service.constructor.getStatusGroup($row.status)"
                   data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.status) | translate"></span>

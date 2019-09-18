@@ -10,11 +10,14 @@
                 data-model="$ctrl.data.selectedReplicaCount"
                 data-items="$ctrl.replicaCounts"
                 data-match="text"></oui-select>
-    <span data-translate="enterprise_cloud_database_common_price"></span>
-    <ovh-manager-enterprise-cloud-database-price-component
-        data-price="$ctrl.data.selectedReplicaCount.price"
-        data-tax="$ctrl.data.selectedReplicaCount.tax"
-        data-user="$ctrl.user">
-    </ovh-manager-enterprise-cloud-database-price-component>
+    <div>
+        <span data-translate="enterprise_cloud_database_common_price"></span>
+        <ovh-manager-enterprise-cloud-database-price-component
+            data-price="$ctrl.data.selectedReplicaCount.price"
+            data-tax="$ctrl.data.selectedReplicaCount.tax"
+            data-user="$ctrl.user">
+        </ovh-manager-enterprise-cloud-database-price-component>
+        <span data-translate="enterprise_cloud_database_common_per_hour"></span>
+    </div>
     <p class="mt-2" data-translate="enterprise_cloud_database_service_add_replicas_billing_info"></p>
 </oui-modal>
