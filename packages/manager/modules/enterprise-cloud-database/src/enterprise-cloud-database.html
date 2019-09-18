@@ -15,7 +15,7 @@
                 </div>
             </oui-column>
             <oui-column data-title=":: 'enterprise_cloud_database_list_database_engine' | translate" data-property="details.offerType" data-type="string" data-sortable>
-                <span data-ng-bind="$ctrl.DATABASE_CONSTANTS[$row.details.offerType].name + '-' + $row.details.version"></span>
+                <span data-ng-bind="$ctrl.DATABASE_CONSTANTS[$row.details.offerType].name + ' ' + $row.details.version"></span>
             </oui-column>
             <oui-column data-title=":: 'enterprise_cloud_database_list_region' | translate" data-property="details.regionName" data-type="string" data-sortable></oui-column>
             <oui-column data-title=":: 'enterprise_cloud_database_list_ram_title' | translate" data-property="offer.memory.size" data-type="string" data-sortable>

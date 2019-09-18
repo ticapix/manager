@@ -27,13 +27,13 @@
             </oui-tile-definition>
             <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_engine' | translate }}">
                 <oui-tile-description>
-                    <span data-ng-bind="$ctrl.DATABASE_CONSTANTS[$ctrl.clusterDetails.offerType].name + '-' + $ctrl.clusterDetails.version"></span>
+                    <span data-ng-bind="$ctrl.DATABASE_CONSTANTS[$ctrl.clusterDetails.offerType].name + ' ' + $ctrl.clusterDetails.version"></span>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_admin_credentials' | translate }}">
                 <oui-tile-description>
                     <div>
-                        <span data-translate="enterprise_cloud_database_admin_credentials_user"></span>
+                        <span data-translate="enterprise_cloud_database_admin_credentials_username"></span>
                         <span data-ng-bind="$ctrl.USERNAME[$ctrl.clusterDetails.offerType]"></span>
                     </div>
                     <div>

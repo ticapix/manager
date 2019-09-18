@@ -14,7 +14,7 @@
   "enterprise_cloud_database_common_add": "Add",
   "enterprise_cloud_database_common_delete": "Delete",
   "enterprise_cloud_database_common_status": "Status",
-  "enterprise_cloud_database_common_price": "Price",
+  "enterprise_cloud_database_common_price": "Price:",
   "enterprise_cloud_database_common_actions": "Actions",
   "enterprise_cloud_database_common_replica": "Replica",
   "enterprise_cloud_database_common_replicas": "Replicas",

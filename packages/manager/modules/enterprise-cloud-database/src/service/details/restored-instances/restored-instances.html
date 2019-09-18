@@ -15,13 +15,13 @@
         <oui-column data-title=":: 'enterprise_cloud_database_restored_instances_current_usage' | translate" data-property="name"></oui-column>
         <oui-column data-title=":: 'enterprise_cloud_database_common_status' | translate" data-property="status" data-type="string">
             <span class="oui-status"
-                  data-ng-class="'oui-status_' + $ctrl.enterpriseCloudDatabaseService.constructor.getStatusGroup($row.status)"
+                  data-ng-class="'oui-status_' + $ctrl.service.constructor.getStatusGroup($row.status)"
                   data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.status) | translate"></span>
         </oui-column>
         <oui-action-menu data-align="end" data-compact>
             <oui-action-menu-item
                 data-on-click="$ctrl.goToDelete($row.id)"
-                data-disabled="$ctrl.service.constructor.isProcessing($row.status) || $ctrl.service.constructor.isError($row.status)"></oui-action-menu-item>
+                data-disabled="$ctrl.service.constructor.isProcessing($row.status) || $ctrl.service.constructor.isError($row.status)">
                 <span data-translate="enterprise_cloud_database_common_delete"></span>
             </oui-action-menu-item>
         </oui-action-menu>
