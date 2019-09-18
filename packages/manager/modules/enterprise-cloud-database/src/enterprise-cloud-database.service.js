@@ -21,14 +21,15 @@ export default class EnterpriseCloudDatabaseService {
     this.OvhApiCloudDBEnterpriseEndpoint = OvhApiCloudDBEnterprise.Endpoint().v6();
     this.OvhApiCloudDBEnterpriseHost = OvhApiCloudDBEnterprise.Host().v6();
     this.OvhApiCloudDBEnterpriseLogs = OvhApiCloudDBEnterprise.Logs().v6();
+    this.OvhApiCloudDBEnterpriseOffers = OvhApiCloudDBEnterprise.Offers().v6();
     this.OvhApiCloudDBEnterpriseMaintenance = OvhApiCloudDBEnterprise.Maintenance().v6();
-    this.OvhApiCloudDBEnterpriseWindow = OvhApiCloudDBEnterprise.MaintenanceWindow().v6();
+    this.OvhApiCloudDBEnterpriseRegion = OvhApiCloudDBEnterprise.Region().v6();
     this.OvhApiCloudDBEnterpriseRestore = OvhApiCloudDBEnterprise.Restore().v6();
     this.OvhApiCloudDBEnterpriseRule = OvhApiCloudDBEnterprise.SecurityGroup().Rule().v6();
     this.OvhApiCloudDBEnterpriseSecurityGroup = OvhApiCloudDBEnterprise.SecurityGroup().v6();
     this.OvhApiCloudDBEnterpriseServiceInfos = OvhApiCloudDBEnterprise.ServiceInfos().v6();
     this.OvhApiCloudDBEnterpriseUser = OvhApiCloudDBEnterprise.User().v6();
-    this.OvhApiCloudDBEnterpriseOffers = OvhApiCloudDBEnterprise.Offers().v6();
+    this.OvhApiCloudDBEnterpriseWindow = OvhApiCloudDBEnterprise.MaintenanceWindow().v6();
     this.OvhApiOrderEnterpriseCloudDB = OvhApiOrder.Catalog().Public().v6();
     this.OvhApiMe = OvhApiMe;
   }
@@ -130,6 +131,10 @@ export default class EnterpriseCloudDatabaseService {
   getMaintenanceWindow(clusterId) {
     return this.OvhApiCloudDBEnterpriseWindow.get({ clusterId }).$promise
       .catch(error => ((error.status === 404) ? null : this.$q.reject(error)));
+  }
+
+  getRegionDetails(name) {
+    return this.OvhApiCloudDBEnterpriseRegion.get({ name }).$promise;
   }
 
   getRuleDetails(clusterId, securityGroupId, ruleId) {

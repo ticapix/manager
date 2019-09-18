@@ -11,6 +11,7 @@ export default {
     hostList: '<',
     maintenanceWindow: '<',
     maxHostCount: '<',
+    regionInfo: '<',
     securityGroups: '<',
   },
   controller,

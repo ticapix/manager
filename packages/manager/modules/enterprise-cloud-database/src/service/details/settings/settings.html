@@ -16,9 +16,10 @@
             data-disabled="$ctrl.loaders.maintenanceWindow"
             data-disable-toggle="true"
             data-maintenance-window="$ctrl.maintenanceWindow"
-            data-on-data-change="$ctrl.maintenanceWindowChanged(data)">
+            data-on-data-change="$ctrl.maintenanceWindowChanged(data)"
+            data-region-info="$ctrl.regionInfo">
         </ovh-manager-enterprise-cloud-database-service-maintenance-window-component>
-        <oui-button data-disabled="!$ctrl.hasMaintenanceWindowChanged()"
+        <oui-button data-disabled="!$ctrl.hasMaintenanceWindowChanged() || ($ctrl.isDefaultMaintenanceWindow() && !$ctrl.maintenanceWindow)"
                     data-ng-if="!$ctrl.loaders.maintenanceWindow"
                     data-on-click="$ctrl.saveMaintenanceWindow()"
                     data-text="Primary"
