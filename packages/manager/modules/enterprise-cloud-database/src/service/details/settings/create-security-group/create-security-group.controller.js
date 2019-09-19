@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 
+import { STATUS } from '../../../../enterprise-cloud-database.constants';
+
 export default class EnterpriseCloudDatabaseServiceDetailsSettingsCreateSecurityGroupCtrl {
   /* @ngInject */
   constructor(
@@ -25,13 +27,13 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCreateSecurity
       .createSecurityGroup(this.clusterId, this.data.securityGroupName)
       .then(() => this.goBack(
         this.$translate.instant('enterprise_cloud_database_service_details_settings_create_security_group_success'),
-        'success',
+        STATUS.SUCCESS,
       ))
       .catch(error => this.goBack(
         this.$translate.instant('enterprise_cloud_database_service_details_settings_create_security_group_error', {
           message: get(error, 'data.message'),
         }),
-        'error',
+        STATUS.ERROR,
       ))
       .finally(() => {
         this.loaders.securityGroup = false;

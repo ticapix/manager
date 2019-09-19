@@ -78,6 +78,13 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
       : false;
   }
 
+  isDefaultMaintenanceWindow() {
+    const maintenanceWindow = this.getMaintenanceWindowConfig();
+    return maintenanceWindow.dayOfWeek === this.regionInfo.maintenanceDayOfWeek
+      && maintenanceWindow.startTime === this.regionInfo.maintenanceStartTime
+      && maintenanceWindow.duration === this.regionInfo.maintenanceDuration;
+  }
+
   loadRules(group) {
     return get(this.rules, group.id) || this.getRules(group);
   }
@@ -103,6 +110,9 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
     const maintenanceWindowConfig = this.getMaintenanceWindowConfig();
     this.setupMaintenanceWindow(maintenanceWindowConfig)
       .then(() => {
+        if (!this.maintenanceWindow) {
+          this.maintenanceWindow = {};
+        }
         Object.assign(this.maintenanceWindow, maintenanceWindowConfig);
         this.handleSuccess('enterprise_cloud_database_service_details_settings_save_success');
       })

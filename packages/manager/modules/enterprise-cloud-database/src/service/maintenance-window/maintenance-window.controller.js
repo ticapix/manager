@@ -30,32 +30,35 @@ export default class {
   }
 
   dataChange() {
-    this.onDataChange({
-      data: {
-        dayOfWeek: this.data.weekdayNumber ? this.data.weekdayNumber.number : undefined,
-        duration: this.data.duration ? this.data.duration.hour * 60 : undefined,
-        startTime: this.data.hour ? `${`0${this.data.hour.hour}`.slice(-2)}:00:00` : undefined,
-      },
-    });
+    this.onDataChange({ data: this.getMaintenanceWindowFromData() });
   }
 
-  isMaintenanceWindowInfoAvailable() {
-    return this.maintenanceWindow || (
-      this.data.weekdayNumber && this.data.hour && this.data.duration
-    );
+  getMaintenanceWindowFromData() {
+    return {
+      dayOfWeek: this.data.weekdayNumber ? this.data.weekdayNumber.number : undefined,
+      duration: this.data.duration ? this.data.duration.hour * 60 : undefined,
+      startTime: this.data.hour ? `${`0${this.data.hour.hour}`.slice(-2)}:00:00` : undefined,
+    };
+  }
+
+  isDefaultMaintenanceWindow() {
+    const maintenanceWindow = this.getMaintenanceWindowFromData();
+    return maintenanceWindow.dayOfWeek === this.regionInfo.maintenanceDayOfWeek
+      && maintenanceWindow.startTime === this.regionInfo.maintenanceStartTime
+      && maintenanceWindow.duration === this.regionInfo.maintenanceDuration;
   }
 
   resetMaintenanceWindow() {
     Object.assign(this.data, {
       weekdayNumber: this.maintenanceWindow
         ? find(this.weekDayMap, { number: this.maintenanceWindow.dayOfWeek })
-        : undefined,
+        : find(this.weekDayMap, { number: this.regionInfo.maintenanceDayOfWeek }),
       hour: this.maintenanceWindow
         ? find(this.hourMap, { hour: parseInt(head(this.maintenanceWindow.startTime.split(':')), 10) })
-        : undefined,
+        : find(this.hourMap, { hour: parseInt(head(this.regionInfo.maintenanceStartTime.split(':')), 10) }),
       duration: this.maintenanceWindow
         ? find(this.durationMap, { hour: (this.maintenanceWindow.duration / 60) })
-        : undefined,
+        : find(this.durationMap, { hour: (this.regionInfo.maintenanceDuration / 60) }),
     });
     this.dataChange();
   }

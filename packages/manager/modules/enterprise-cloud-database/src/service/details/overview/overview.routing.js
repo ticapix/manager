@@ -1,5 +1,7 @@
 import find from 'lodash/find';
 
+import { STATUS } from '../../../enterprise-cloud-database.constants';
+
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.overview', {
     component: 'enterpriseCloudDatabaseServiceDetailsOverviewComponent',
@@ -15,9 +17,14 @@ export default /* @ngInject */($stateProvider) => {
       serviceInfo: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getServiceInfo(clusterId),
-      goToOverview: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success') => {
+      goBack: /* @ngInject */
+        $state => () => $state.go('^'),
+      goToChangeName: /* @ngInject */ ($state, clusterId) => () => $state
+        .go('enterprise-cloud-database.service.details.overview.update-name', { clusterId }),
+      goToOverview: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
+        type = STATUS.SUCCESS) => {
         const state = 'enterprise-cloud-database.service.details.overview';
-        const promise = $state.go(state, {}, { reload: type === 'success' });
+        const promise = $state.go(state, {}, { reload: type === STATUS.SUCCESS });
         if (message) {
           promise.then(() => {
             CucCloudMessage[type](message, state);

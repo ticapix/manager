@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 
+import { STATUS } from '../../../../enterprise-cloud-database.constants';
+
 export default class EnterpriseCloudDatabaseServiceDetailsLogsGrantAccessCtrl {
   /* @ngInject */
   constructor(
@@ -25,7 +27,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsLogsGrantAccessCtrl {
       .catch(error => this.goBackToLogs(
         this.$translate.instant('enterprise_cloud_database_service_details_logs_grant_access_error', {
           message: get(error, 'data.message'),
-        }), 'error',
+        }), STATUS.ERROR,
       ));
   }
 }

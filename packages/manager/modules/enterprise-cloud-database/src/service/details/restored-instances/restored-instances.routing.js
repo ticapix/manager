@@ -1,3 +1,5 @@
+import { STATUS } from '../../../enterprise-cloud-database.constants';
+
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.restored-instances', {
     component: 'enterpriseCloudDatabaseServiceDetailsRestoredInstancesComponent',
@@ -11,8 +13,8 @@ export default /* @ngInject */($stateProvider) => {
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getEndpointsWithDetails(clusterId),
       goBackToRestore: /* @ngInject */
-        ($state, CucCloudMessage) => (message = false, type = 'success', clusterId = null) => {
-          const reload = message && type === 'success';
+        ($state, CucCloudMessage) => (message = false, type = STATUS.SUCCESS, clusterId = null) => {
+          const reload = message && type === STATUS.SUCCESS;
           const state = 'enterprise-cloud-database.service.details.restored-instances';
           const promise = $state.go(state, {
             clusterId,

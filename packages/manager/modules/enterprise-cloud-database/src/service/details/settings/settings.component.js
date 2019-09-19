@@ -10,6 +10,7 @@ export default {
     deleteSecurityGroup: '<',
     editSecurityGroup: '<',
     maintenanceWindow: '<',
+    regionInfo: '<',
     securityGroups: '<',
   },
   controller,

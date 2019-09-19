@@ -14,7 +14,7 @@
   "enterprise_cloud_database_common_add": "Add",
   "enterprise_cloud_database_common_delete": "Delete",
   "enterprise_cloud_database_common_status": "Status",
-  "enterprise_cloud_database_common_price": "Price",
+  "enterprise_cloud_database_common_price": "Price:",
   "enterprise_cloud_database_common_actions": "Actions",
   "enterprise_cloud_database_common_replica": "Replica",
   "enterprise_cloud_database_common_replicas": "Replicas",
@@ -24,6 +24,7 @@
   "enterprise_cloud_database_common_remove": "Remove",
   "enterprise_cloud_database_common_save": "Save",
   "enterprise_cloud_database_common_name": "Name",
+  "enterprise_cloud_database_common_edit": "Edit",
   "enterprise_cloud_database_common_confirm": "Confirm",
   "enterprise_cloud_database_common_status_create": "Create",
   "enterprise_cloud_database_common_status_created": "Created",
@@ -44,5 +45,6 @@
   "enterprise_cloud_database_common_manage": "Manage",
   "enterprise_cloud_database_common_subscription_contact_admin": "Administrator",
   "enterprise_cloud_database_common_subscription_contact_billing": "Billing",
-  "enterprise_cloud_database_common_subscription_contact_technical": "Technical"
+  "enterprise_cloud_database_common_subscription_contact_technical": "Technical",
+  "enterprise_cloud_database_common_per_hour": "/Month"
 }

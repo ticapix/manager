@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import moment from 'moment';
 
+import { STATUS } from '../../../../enterprise-cloud-database.constants';
+
 export default class EnterpriseCloudDatabaseServiceDetailsBackupsRecoveryCtrl {
   /* @ngInject */
   constructor(
@@ -33,14 +35,14 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsRecoveryCtrl {
     return this.service.createRestore(this.clusterId, null, this.timestamp)
       .then(res => this.goBackToBackups(
         this.$translate.instant('enterprise_cloud_database_backups_recovery_success'),
-        'success',
+        STATUS.SUCCESS,
         res.id,
       ))
       .catch(error => this.goBackToBackups(
         this.$translate.instant('enterprise_cloud_database_backups_recovery_error', {
           message: get(error, 'data.message'),
         }),
-        'error',
+        STATUS.ERROR,
       ))
       .finally(() => { this.isLoading = false; });
   }

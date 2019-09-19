@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 
+import { STATUS } from '../../../../enterprise-cloud-database.constants';
+
 export default class EnterpriseCloudDatabaseDeleteCtrl {
   /* @ngInject */
   constructor(
@@ -23,14 +25,14 @@ export default class EnterpriseCloudDatabaseDeleteCtrl {
       .then(res => this.goBack(
         this.$translate.instant('enterprise_cloud_database_restored_instance_delete_success',
           { instanceId: this.instanceId }),
-        'success',
+        STATUS.SUCCESS,
         res.id,
       ))
       .catch(error => this.goBack(
         this.$translate.instant('enterprise_cloud_database_restored_instance_delete_error', {
           message: get(error, 'data.message'),
         }),
-        'error',
+        STATUS.ERROR,
       ))
       .finally(() => { this.isLoading = false; });
   }

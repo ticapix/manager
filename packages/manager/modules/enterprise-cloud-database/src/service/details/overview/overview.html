@@ -2,6 +2,16 @@
 <div class="row d-lg-flex m-3">
     <div class="col-md-4">
         <oui-tile class="h-100" data-heading="{{:: 'enterprise_cloud_database_information' | translate }}">
+            <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_common_name' | translate }}">
+                <oui-tile-description>
+                    <span data-ng-bind="$ctrl.clusterDetails.name"></span>
+                </oui-tile-description>
+                <oui-action-menu data-align="end" data-compact>
+                    <oui-action-menu-item data-on-click="$ctrl.goToChangeName()">
+                        <span data-translate="enterprise_cloud_database_common_edit"></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-tile-definition>
             <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_common_status' | translate }}">
                 <oui-tile-description>
                     <span class="oui-status"
@@ -27,13 +37,13 @@
             </oui-tile-definition>
             <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_engine' | translate }}">
                 <oui-tile-description>
-                    <span data-ng-bind="$ctrl.DATABASE_CONSTANTS[$ctrl.clusterDetails.offerType].name + '-' + $ctrl.clusterDetails.version"></span>
+                    <span data-ng-bind="$ctrl.DATABASE_CONSTANTS[$ctrl.clusterDetails.offerType].name + ' ' + $ctrl.clusterDetails.version"></span>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition data-term="{{:: 'enterprise_cloud_database_admin_credentials' | translate }}">
                 <oui-tile-description>
                     <div>
-                        <span data-translate="enterprise_cloud_database_admin_credentials_user"></span>
+                        <span data-translate="enterprise_cloud_database_admin_credentials_username"></span>
                         <span data-ng-bind="$ctrl.USERNAME[$ctrl.clusterDetails.offerType]"></span>
                     </div>
                     <div>

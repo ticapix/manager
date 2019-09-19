@@ -1,9 +1,10 @@
-import controller from './update-password.controller';
-import template from './update-password.html';
+import controller from './update-name.controller';
+import template from './update-name.html';
 
 const component = {
   bindings: {
     clusterId: '<',
+    clusterDetails: '<',
     goBack: '<',
     goToOverview: '<',
   },

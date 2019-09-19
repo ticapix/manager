@@ -24,6 +24,10 @@ export default /* @ngInject */($stateProvider) => {
           'enterprise-cloud-database.service.details.settings.edit-security-group',
           { clusterId, securityGroup },
         ),
+        regionInfo: /* @ngInject */
+          (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+            .getRegionDetails(clusterDetails.regionName)
+            .then(regionInfo => Object.assign(regionInfo, { maintenanceDuration: 60 })),
         maintenanceWindow: /* @ngInject */
           (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
             .getMaintenanceWindow(clusterId),

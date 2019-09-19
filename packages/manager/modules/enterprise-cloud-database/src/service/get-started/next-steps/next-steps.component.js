@@ -13,6 +13,7 @@ export default {
     hostList: '<',
     maintenanceWindow: '<',
     onDataChange: '&',
+    regionInfo: '<',
     replicaConfig: '<',
   },
 };

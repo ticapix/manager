@@ -1,6 +1,6 @@
 <div class="mt-3">
     <h6 data-translate="enterprise_cloud_database_service_maintenance_window_title"></h6>
-    <p data-ng-if="$ctrl.isMaintenanceWindowInfoAvailable()">
+    <p data-ng-if="!$ctrl.isDefaultMaintenanceWindow() || $ctrl.maintenanceWindow">
        <span data-translate="enterprise_cloud_database_service_maintenance_window_description"
              data-translate-values="{
                     dayOfWeek: $ctrl.data.weekdayNumber.day,
@@ -9,8 +9,13 @@
              }"></span>
         <span data-translate="enterprise_cloud_database_service_maintenance_window_recommendation"></span>
     </p>
-    <p data-ng-if="!$ctrl.isMaintenanceWindowInfoAvailable()">
-       <span data-translate="enterprise_cloud_database_service_maintenance_window_default_description"></span>
+    <p data-ng-if="$ctrl.isDefaultMaintenanceWindow() && !$ctrl.maintenanceWindow">
+       <span data-translate="enterprise_cloud_database_service_maintenance_window_default_description"
+             data-translate-values="{
+                dayOfWeek: $ctrl.data.weekdayNumber.day,
+                time: $ctrl.data.hour.time,
+                duration: $ctrl.data.duration.time
+             }"></span>
        <span data-translate="enterprise_cloud_database_service_maintenance_window_recommendation"></span>
     </p>
     <button type="button"

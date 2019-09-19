@@ -9,5 +9,6 @@ export default {
     disableToggle: '<',
     maintenanceWindow: '<',
     onDataChange: '&',
+    regionInfo: '<',
   },
 };

@@ -1,6 +1,8 @@
 import map from 'lodash/map';
 import find from 'lodash/find';
 
+import { STATUS } from './enterprise-cloud-database.constants';
+
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database', {
     component: 'enterpriseCloudDatabaseComponent',
@@ -44,8 +46,9 @@ export default /* @ngInject */($stateProvider) => {
       manageCluster: /* @ngInject */ $state => clusterId => $state
         .go('enterprise-cloud-database.service.details.overview', { clusterId }),
       createCluster: /* @ngInject */ $state => () => $state.go('enterprise-cloud-database.create'),
-      goBackToList: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success', clusterId = null) => {
-        const reload = message && type === 'success';
+      goBackToList: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
+        type = STATUS.SUCCESS, clusterId = null) => {
+        const reload = message && type === STATUS.SUCCESS;
         const state = 'enterprise-cloud-database';
         const promise = $state.go(state, {
           clusterId,

@@ -13,8 +13,11 @@ export default /* @ngInject */($stateProvider) => {
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getHosts(clusterId),
       maintenanceWindow: /* @ngInject */
-          (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-            .getMaintenanceWindow(clusterId),
+        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+          .getMaintenanceWindow(clusterId),
+      regionInfo: /* @ngInject */
+        (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+          .getRegionDetails(clusterDetails.regionName),
       securityGroups: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getSecurityGroupList(clusterId),

@@ -1,27 +1,38 @@
 <div class="container-fluid px-0 mt-3">
     <!-- error messages -->
     <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
-    <span data-translate="enterprise_cloud_database_backup_description"></span>
 
-    <p data-translate="enterprise_cloud_database_backup_consumption"></p>
-    <p>
-        <span data-translate="enterprise_cloud_database_backup_size"></span>
-        <span data-ng-bind="$ctrl.clusterDetails.restoredVolumeSize ? $ctrl.clusterDetails.restoredVolumeSize : 0"></span>
-    </p>
-    <p>
-        <span data-translate="enterprise_cloud_database_backup_price"></span>
-        <ovh-manager-enterprise-cloud-database-price-component
-            data-price="$ctrl.backupPrice.price" data-tax="$ctrl.backupPrice.tax" data-user="$ctrl.user">
-        </ovh-manager-enterprise-cloud-database-price-component>
-        <span data-translate="enterprise_cloud_database_backup_per_gb_hour"></span>
-    </p>
+    <span data-translate="enterprise_cloud_database_backup_description"></span>
+    <div class="row d-lg-flex my-3">
+        <div class="col-md-4">
+            <oui-tile data-heading="{{ ::'enterprise_cloud_database_backups_auto_heading' | translate }}" class="h-100">
+                <span data-translate="enterprise_cloud_database_backups_manual_included"></span>
+            </oui-tile>
+        </div>
+        <div class="col-md-4">
+            <oui-tile data-heading="{{ ::'enterprise_cloud_database_backups_manual_heading' | translate }}" class="h-100">
+                <p>
+                    <span data-translate="enterprise_cloud_database_backup_size"></span>
+                    <span data-ng-bind="($ctrl.clusterDetails.backupSize ? $ctrl.clusterDetails.backupSize : 0) | cucBytes:2:false:'GB'"></span>
+                </p>
+                <p>
+                    <span data-translate="enterprise_cloud_database_common_price"></span>
+                    <ovh-manager-enterprise-cloud-database-price-component
+                        data-price="$ctrl.backupPrice.price" data-tax="$ctrl.backupPrice.tax" data-user="$ctrl.user">
+                    </ovh-manager-enterprise-cloud-database-price-component>
+                    <span data-translate="enterprise_cloud_database_backup_per_gb_hour"></span>
+                </p>
+            </oui-tile>
+        </div>
+    </div>
 
     <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.backupList" data-row-loader="$ctrl.loadBackupDetails($row.id)">
         <oui-column data-title=":: 'enterprise_cloud_database_common_name' | translate"
                     data-property="name"
                     data-sortable="asc"
                     data-type="string"
-                    data-searchable data-filterable></oui-column>
+                    data-searchable
+                    data-filterable></oui-column>
         <oui-column data-title=":: 'enterprise_cloud_database_backup_time' | translate" data-property="creationDate" data-sortable>
             <span data-ng-bind="$row.creationDate | date: 'medium'"></span>
         </oui-column>
@@ -38,7 +49,9 @@
         <oui-column data-title=":: 'enterprise_cloud_database_common_status' | translate"
                     data-property="status"
                     data-type="string"
-                    data-searchable data-sortable data-filterable>
+                    data-searchable
+                    data-sortable
+                    data-filterable>
             <span class="oui-status"
                   data-ng-class="'oui-status_' + $ctrl.service.constructor.getStatusGroup($row.status)"
                   data-ng-bind=":: ('enterprise_cloud_database_common_status_' + $row.status) | translate"></span>

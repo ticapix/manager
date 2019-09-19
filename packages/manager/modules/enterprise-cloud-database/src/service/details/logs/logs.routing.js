@@ -1,3 +1,5 @@
+import { STATUS } from '../../../enterprise-cloud-database.constants';
+
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.logs', {
     component: 'enterpriseCloudDatabaseServiceDetailsLogsComponent',
@@ -24,8 +26,9 @@ export default /* @ngInject */($stateProvider) => {
           logId: ldpAccount.id,
         });
       },
-      goBackToLogs: /* @ngInject */ ($state, CucCloudMessage) => (message = false, type = 'success') => {
-        const reload = message && type === 'success';
+      goBackToLogs: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
+        type = STATUS.SUCCESS) => {
+        const reload = message && type === STATUS.SUCCESS;
         const state = 'enterprise-cloud-database.service.details.logs';
         const promise = $state.go(state, {}, { reload });
         if (message) {

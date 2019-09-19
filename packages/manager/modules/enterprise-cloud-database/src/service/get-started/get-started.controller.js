@@ -48,6 +48,12 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
     } : undefined;
   }
 
+  getMaintenanceWindowToSave() {
+    const maintenanceWindow = this.getMaintenanceWindowConfig();
+    return (this.isDefaultMaintenanceWindow(maintenanceWindow) && !this.maintenanceWindow)
+      ? undefined : maintenanceWindow;
+  }
+
   getSecurityGroup(name) {
     const securityGroup = find(this.securityGroups, { name });
     return isUndefined(securityGroup)
@@ -67,6 +73,12 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
       }),
     );
     this.CucControllerHelper.scrollPageToTop();
+  }
+
+  isDefaultMaintenanceWindow(maintenanceWindow) {
+    return maintenanceWindow.dayOfWeek === this.regionInfo.maintenanceDayOfWeek
+      && maintenanceWindow.startTime === this.regionInfo.maintenanceStartTime
+      && maintenanceWindow.duration === this.regionInfo.maintenanceDuration;
   }
 
   refreshMessage() {
@@ -118,7 +130,7 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
     set(form, '$valid', false);
     this.CucCloudMessage.flushMessages('enterprise-cloud-database.service.get-started');
     this.loaders.savingSettings = true;
-    const newMaintenanceWindow = this.getMaintenanceWindowConfig();
+    const newMaintenanceWindow = this.getMaintenanceWindowToSave();
     return this.$q.all([
       this.data.replicaConfig.replicaCount
         ? this.enterpriseCloudDatabaseService

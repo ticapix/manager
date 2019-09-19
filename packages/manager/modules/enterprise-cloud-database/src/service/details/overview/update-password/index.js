@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import updatePasswordComponent from './update-password.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsOverviewUpdatePassword';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsOverviewUpdatePassword';
 
 angular
   .module(moduleName, [
@@ -16,13 +16,13 @@ angular
       },
       views: {
         modal: {
-          component: 'updatePasswordComponent',
+          component: 'enterpriseCloudDatabaseServiceDetailsOverviewUpdatePasswordComponent',
         },
       },
       layout: 'modal',
     });
   })
-  .component('updatePasswordComponent', updatePasswordComponent)
+  .component('enterpriseCloudDatabaseServiceDetailsOverviewUpdatePasswordComponent', updatePasswordComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

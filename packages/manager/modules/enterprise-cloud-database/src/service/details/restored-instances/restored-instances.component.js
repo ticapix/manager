@@ -4,6 +4,7 @@ import controller from './restored-instances.controller';
 export default {
   bindings: {
     clusterId: '<',
+    clusterDetails: '<',
     endpoints: '<',
     goToDelete: '<',
     restoredInstances: '<',
