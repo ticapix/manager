@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import grantAdpAccessComponent from './grant-access.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsLogsGrantAccess';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsLogsGrantAccess';
 
 angular
   .module(moduleName, [
@@ -13,13 +13,13 @@ angular
       url: '/grant-access',
       views: {
         modal: {
-          component: 'ovhManagerEnterpriseCloudDatabaseServiceDetailsLogsGrantAccessComponent',
+          component: 'enterpriseCloudDatabaseServiceDetailsLogsGrantAccessComponent',
         },
       },
       layout: 'modal',
     });
   })
-  .component('ovhManagerEnterpriseCloudDatabaseServiceDetailsLogsGrantAccessComponent', grantAdpAccessComponent)
+  .component('enterpriseCloudDatabaseServiceDetailsLogsGrantAccessComponent', grantAdpAccessComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

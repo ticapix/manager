@@ -65,11 +65,11 @@
                 <div data-ng-if="$ctrl.enterpriseDb.additionalReplica.value > 0">
                     <span data-translate="enterprise_cloud_database_create_additional_replicas_price">
                     </span>:
-                    <ovh-manager-enterprise-cloud-database-price-component
+                    <enterprise-cloud-database-price-component
                         data-price="$ctrl.enterpriseDb.additionalReplica.price"
                         data-tax="$ctrl.enterpriseDb.additionalReplica.tax"
                         data-user="$ctrl.user">
-                    </ovh-manager-enterprise-cloud-database-price-component>
+                    </enterprise-cloud-database-price-component>
                     /<span data-translate="enterprise_cloud_database_create_order_month"></span>
                 </div>
             </section>
@@ -148,19 +148,19 @@
                     <div class="row mb-2">
                         <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_payment_total_label"></dt>
                         <dd class="col-sm-9 my-auto" data-ng-if="$ctrl.enterpriseDb.paymentType.monthly">
-                            <ovh-manager-enterprise-cloud-database-price-component
+                            <enterprise-cloud-database-price-component
                                 data-price="$ctrl.totalDatabasePrice.price"
                                 data-tax="$ctrl.totalDatabasePrice.tax"
                                 data-user="$ctrl.user">
-                            </ovh-manager-enterprise-cloud-database-price-component>
+                            </enterprise-cloud-database-price-component>
                             /<span data-translate="enterprise_cloud_database_create_order_month"></span>
                         </dd>
                         <dd class="col-sm-9 my-auto" data-ng-if="!$ctrl.enterpriseDb.paymentType.monthly">
-                            <ovh-manager-enterprise-cloud-database-price-component
+                            <enterprise-cloud-database-price-component
                                 data-price="$ctrl.totalDatabasePrice.price * $ctrl.enterpriseDb.commitmentPeriod.months"
                                 data-tax="$ctrl.totalDatabasePrice.tax * $ctrl.enterpriseDb.commitmentPeriod.months"
                                 data-user="$ctrl.user">
-                            </ovh-manager-enterprise-cloud-database-price-component>  
+                            </enterprise-cloud-database-price-component>  
                         </dd>
                     </div>
                 </dl>

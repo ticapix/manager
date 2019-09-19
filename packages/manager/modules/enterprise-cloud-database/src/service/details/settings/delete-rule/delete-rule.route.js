@@ -30,7 +30,7 @@ export default /* @ngInject */($stateProvider) => {
       url: '/delete-rule',
       views: {
         modal: {
-          component: 'ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsDeleteRuleComponent',
+          component: 'enterpriseCloudDatabaseServiceDetailsSettingsDeleteRuleComponent',
         },
       },
     });

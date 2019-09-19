@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import deleteComponent from './revoke-access.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsLogsRevokeAccess';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsLogsRevokeAccess';
 
 angular
   .module(moduleName, [
@@ -13,7 +13,7 @@ angular
       url: '/revoke-access?logId',
       views: {
         modal: {
-          component: 'ovhManagerEnterpriseCloudDatabaseServiceDetailsLogsRevokeAccessComponent',
+          component: 'enterpriseCloudDatabaseServiceDetailsLogsRevokeAccessComponent',
         },
       },
       params: {
@@ -26,7 +26,7 @@ angular
       },
     });
   })
-  .component('ovhManagerEnterpriseCloudDatabaseServiceDetailsLogsRevokeAccessComponent', deleteComponent)
+  .component('enterpriseCloudDatabaseServiceDetailsLogsRevokeAccessComponent', deleteComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

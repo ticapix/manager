@@ -24,7 +24,7 @@ export default /* @ngInject */($stateProvider) => {
     url: '/delete',
     views: {
       modal: {
-        component: 'ovhManagerEnterpriseCloudDatabaseServiceDetailsClusterSizeDeleteComponent',
+        component: 'enterpriseCloudDatabaseServiceDetailsClusterSizeDeleteComponent',
       },
     },
   });

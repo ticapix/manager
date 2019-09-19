@@ -5,7 +5,7 @@ import ruleComponent from '../../rule';
 import secureClusterComponent from './secure-cluster.component';
 import securityGroupNameComponent from '../../security-group-name';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceGetStartedSecureClusterComponent';
+const moduleName = 'enterpriseCloudDatabaseServiceGetStartedSecureClusterComponent';
 
 angular
   .module(moduleName, [
@@ -13,7 +13,7 @@ angular
     securityGroupNameComponent,
     'ui.router',
   ])
-  .component('ovhManagerEnterpriseCloudDatabaseServiceGetStartedSecureClusterComponent', secureClusterComponent)
+  .component('enterpriseCloudDatabaseServiceGetStartedSecureClusterComponent', secureClusterComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

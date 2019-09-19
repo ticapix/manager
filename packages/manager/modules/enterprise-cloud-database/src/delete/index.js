@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import deleteComponent from './delete.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseDelete';
+const moduleName = 'enterpriseCloudDatabaseDelete';
 
 angular
   .module(moduleName, [

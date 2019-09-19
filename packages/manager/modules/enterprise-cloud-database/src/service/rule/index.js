@@ -1,11 +1,11 @@
 import angular from 'angular';
 import ruleComponent from './rule.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceRule';
+const moduleName = 'enterpriseCloudDatabaseServiceRule';
 
 angular
   .module(moduleName, [])
-  .component('ovhManagerEnterpriseCloudDatabaseServiceRuleComponent', ruleComponent)
+  .component('enterpriseCloudDatabaseServiceRuleComponent', ruleComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

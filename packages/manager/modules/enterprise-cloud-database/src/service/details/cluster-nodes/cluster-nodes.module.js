@@ -5,7 +5,7 @@ import deleteReplicas from './delete';
 import enterpriseCloudDatabaseServiceDetailsClusterSizeComponent from './cluster-nodes.component';
 import routing from './cluster-nodes.routing';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsClusterSize';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsClusterSize';
 
 angular
   .module(moduleName, [

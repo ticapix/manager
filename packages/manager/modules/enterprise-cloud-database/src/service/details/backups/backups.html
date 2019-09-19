@@ -5,24 +5,36 @@
     <span data-translate="enterprise_cloud_database_backup_description"></span>
     <div class="row d-lg-flex my-3">
         <div class="col-md-4">
-            <oui-tile data-heading="{{ ::'enterprise_cloud_database_backups_auto_heading' | translate }}" class="h-100">
-                <span data-translate="enterprise_cloud_database_backups_manual_included"></span>
-            </oui-tile>
+            <div class="oui-tile h-100">
+                <h5 class="oui-heading_5 oui-tile__title">
+                    <span data-translate="enterprise_cloud_database_backups_auto_heading"></span>
+                </h5>
+                <div class="oui-tile__body">
+                    <span data-translate="enterprise_cloud_database_backups_manual_included"></span>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
-            <oui-tile data-heading="{{ ::'enterprise_cloud_database_backups_manual_heading' | translate }}" class="h-100">
-                <p>
-                    <span data-translate="enterprise_cloud_database_backup_size"></span>
-                    <span data-ng-bind="($ctrl.clusterDetails.backupSize ? $ctrl.clusterDetails.backupSize : 0) | cucBytes:2:false:'GB'"></span>
-                </p>
-                <p>
-                    <span data-translate="enterprise_cloud_database_common_price"></span>
-                    <ovh-manager-enterprise-cloud-database-price-component
-                        data-price="$ctrl.backupPrice.price" data-tax="$ctrl.backupPrice.tax" data-user="$ctrl.user">
-                    </ovh-manager-enterprise-cloud-database-price-component>
-                    <span data-translate="enterprise_cloud_database_backup_per_gb_hour"></span>
-                </p>
-            </oui-tile>
+            <div class="oui-tile h-100">
+                <h5 class="oui-heading_5 oui-tile__title">
+                    <span data-translate="enterprise_cloud_database_backups_manual_heading"></span>
+                </h5>
+                <div class="oui-tile__body">
+                    <p>
+                        <span data-translate="enterprise_cloud_database_backup_size"></span>
+                        <span data-ng-bind="($ctrl.clusterDetails.backupSize ? $ctrl.clusterDetails.backupSize : 0) | cucBytes:2:false:'GB'"></span>
+                    </p>
+                    <p>
+                        <span data-translate="enterprise_cloud_database_common_price"></span>
+                        <enterprise-cloud-database-price-component
+                            data-price="$ctrl.backupPrice.price"
+                            data-tax="$ctrl.backupPrice.tax"
+                            data-user="$ctrl.user">
+                        </enterprise-cloud-database-price-component>
+                        <span data-translate="enterprise_cloud_database_backup_per_gb_hour"></span>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 

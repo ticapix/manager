@@ -3,11 +3,11 @@ import angular from 'angular';
 import deleteSecurityGroupComponent from './delete-security-group.component';
 import routing from './delete-security-group.routing';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurityGroup';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurityGroup';
 
 angular
   .module(moduleName, [])
-  .component('ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurityGroupComponent', deleteSecurityGroupComponent)
+  .component('enterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurityGroupComponent', deleteSecurityGroupComponent)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

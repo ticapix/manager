@@ -5,7 +5,7 @@ import 'ovh-ui-angular';
 
 import component from './choose-payment-type.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseCreateChoosePaymentTypeModule';
+const moduleName = 'enterpriseCloudDatabaseCreateChoosePaymentTypeModule';
 
 angular
   .module(moduleName, [

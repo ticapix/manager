@@ -15,7 +15,7 @@ import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 import './index.scss';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabase';
+const moduleName = 'enterpriseCloudDatabase';
 
 angular.module(moduleName, [
   'ngUiRouterLayout',

@@ -11,7 +11,7 @@ import routing from './settings.routing';
 
 import './settings.less';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsSettings';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsSettings';
 
 angular
   .module(moduleName, [

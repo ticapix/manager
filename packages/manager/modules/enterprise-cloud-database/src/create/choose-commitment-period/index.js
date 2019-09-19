@@ -5,7 +5,7 @@ import 'ovh-ui-angular';
 
 import component from './choose-commitment-period.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseCreateChooseCommitmentPeriodModule';
+const moduleName = 'enterpriseCloudDatabaseCreateChooseCommitmentPeriodModule';
 
 angular
   .module(moduleName, [

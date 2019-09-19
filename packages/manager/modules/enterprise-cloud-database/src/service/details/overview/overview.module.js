@@ -6,7 +6,7 @@ import routing from './overview.routing';
 import updateName from './update-name';
 import updatePassword from './update-password';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsOverview';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsOverview';
 
 angular
   .module(moduleName, [connectionDetails, updateName, updatePassword])

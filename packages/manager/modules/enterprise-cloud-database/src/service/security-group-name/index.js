@@ -1,11 +1,11 @@
 import angular from 'angular';
 import securityGroupNameComponent from './security-group-name.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceSecurityGroupName';
+const moduleName = 'enterpriseCloudDatabaseServiceSecurityGroupName';
 
 angular
   .module(moduleName, [])
-  .component('ovhManagerEnterpriseCloudDatabaseServiceSecurityGroupNameComponent', securityGroupNameComponent)
+  .component('enterpriseCloudDatabaseServiceSecurityGroupNameComponent', securityGroupNameComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

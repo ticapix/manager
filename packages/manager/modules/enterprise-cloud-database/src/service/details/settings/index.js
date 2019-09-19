@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsSettings';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsSettings';
 
 angular.module(moduleName, [
   'oc.lazyLoad',

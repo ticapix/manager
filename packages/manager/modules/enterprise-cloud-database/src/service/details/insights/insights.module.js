@@ -3,7 +3,7 @@ import angular from 'angular';
 import enterpriseCloudDatabaseServiceDetailsInsightsComponent from './insights.component';
 import routing from './insights.routing';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsInsights';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsInsights';
 
 angular
   .module(moduleName, [])

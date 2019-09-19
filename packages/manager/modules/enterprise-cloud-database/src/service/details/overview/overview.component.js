@@ -9,6 +9,7 @@ export default {
     goToChangeName: '<',
     goToClusterSize: '<',
     getMyServicesURL: '<',
+    goToClusterNodes: '<',
     goToSettings: '<',
     goToUpdatePassword: '<',
     hosts: '<',

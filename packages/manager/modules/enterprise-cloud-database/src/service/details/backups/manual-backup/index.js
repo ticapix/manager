@@ -13,13 +13,13 @@ angular
       url: '/manual-backup',
       views: {
         modal: {
-          component: 'enterpriseCloudDatabaseServiceDetailsBackupsBackupComponent',
+          component: 'enterpriseCloudDatabaseServiceDetailsBackupsManualComponent',
         },
       },
       layout: 'modal',
     });
   })
-  .component('enterpriseCloudDatabaseServiceDetailsBackupsBackupComponent', manualBackupComponent)
+  .component('enterpriseCloudDatabaseServiceDetailsBackupsManualComponent', manualBackupComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

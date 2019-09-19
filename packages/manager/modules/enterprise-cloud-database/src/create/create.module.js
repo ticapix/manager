@@ -9,7 +9,7 @@ import chooseRegionComponent from './choose-region';
 import createComponent from './create.component';
 import routing from './create.routing';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseCreateModule';
+const moduleName = 'enterpriseCloudDatabaseCreateModule';
 
 angular
   .module(moduleName, [

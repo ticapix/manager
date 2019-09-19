@@ -14,18 +14,18 @@
                data-ng-pattern="$ctrl.CLUSTER_NAME_PATTERN">
     </oui-field>
     <!-- password -->
-    <ovh-manager-enterprise-cloud-database-service-password-component data-on-change="$ctrl.dataChange(data)">
-    </ovh-manager-enterprise-cloud-database-service-password-component>
+    <enterprise-cloud-database-service-password-component data-on-change="$ctrl.dataChange(data)">
+    </enterprise-cloud-database-service-password-component>
     <!-- security group -->
     <h6 data-translate="enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_title"></h6>
     <p data-translate="enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_description1"></p>
     <p data-translate="enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_description2"></p>
     <!-- security group name -->
-    <ovh-manager-enterprise-cloud-database-service-security-group-name-component
+    <enterprise-cloud-database-service-security-group-name-component
         data-on-change="$ctrl.securityGroupDataChanged(data)">
-    </ovh-manager-enterprise-cloud-database-service-security-group-name-component>
+    </enterprise-cloud-database-service-security-group-name-component>
     <!-- rule -->
-    <ovh-manager-enterprise-cloud-database-service-rule-component
+    <enterprise-cloud-database-service-rule-component
         data-on-change="$ctrl.securityGroupDataChanged(data)">
-    </ovh-manager-enterprise-cloud-database-service-rule-component>
+    </enterprise-cloud-database-service-rule-component>
 </fieldset>

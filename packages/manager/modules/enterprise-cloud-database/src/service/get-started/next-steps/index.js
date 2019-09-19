@@ -4,14 +4,14 @@ import flags from '../../connection-details/flags';
 import maintenanceWindow from '../../maintenance-window';
 import nextStepsComponent from './next-steps.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceGetStartedNextStepsComponent';
+const moduleName = 'enterpriseCloudDatabaseServiceGetStartedNextStepsComponent';
 
 angular
   .module(moduleName, [
     flags,
     maintenanceWindow,
   ])
-  .component('ovhManagerEnterpriseCloudDatabaseServiceGetStartedNextStepsComponent', nextStepsComponent)
+  .component('enterpriseCloudDatabaseServiceGetStartedNextStepsComponent', nextStepsComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

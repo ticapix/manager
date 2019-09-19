@@ -5,7 +5,7 @@ import 'ovh-ui-angular';
 
 import component from './choose-cluster-config.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseCreateChooseClusterConfigModule';
+const moduleName = 'enterpriseCloudDatabaseCreateChooseClusterConfigModule';
 
 angular
   .module(moduleName, [

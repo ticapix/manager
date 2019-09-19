@@ -4,7 +4,7 @@ import enterpriseCloudDatabaseServiceDetailsRestoredInstancesComponent from './r
 import routing from './restored-instances.routing';
 import deleteBackup from './delete';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsRestoredInstances';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsRestoredInstances';
 
 angular
   .module(moduleName, [deleteBackup])

@@ -4,7 +4,7 @@ import '@uirouter/angularjs';
 import addComponent from '../../add-replicas';
 import routing from './add-replicas.routing';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceGetStartedAddReplicas';
+const moduleName = 'enterpriseCloudDatabaseServiceGetStartedAddReplicas';
 
 angular
   .module(moduleName, [

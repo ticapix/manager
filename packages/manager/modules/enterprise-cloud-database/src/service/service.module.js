@@ -7,7 +7,7 @@ import enterpriseCloudDatabaseServiceComponent from './service.component';
 import routing from './service.routing';
 import password from './password';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseService';
+const moduleName = 'enterpriseCloudDatabaseService';
 
 angular
   .module(moduleName, [

@@ -116,6 +116,15 @@ export const NETWORKS_CONFIG = {
   regions: ['EU', 'CA'],
 };
 
+export const ENTERPRISE_CLOUD_DATABASE = {
+  app: [DEDICATED],
+  icon: 'fa fa-database',
+  id: 'enterprise_cloud_database',
+  regions: ['EU'],
+  state: 'enterprise-cloud-database',
+  stateUrl: '#/enterprise-cloud-database',
+};
+
 export const MICROSOFT_CONFIG = {
   id: 'microsoft_exchange',
   types: [
@@ -327,6 +336,7 @@ export const SIDEBAR_CONFIG = [
   DEDICATED_SERVER_CONFIG,
   DEDICATED_CLOUD_CONFIG,
   NETWORKS_CONFIG,
+  ENTERPRISE_CLOUD_DATABASE,
 
   // CLOUD IMPORT
   IAAS_CONFIG,

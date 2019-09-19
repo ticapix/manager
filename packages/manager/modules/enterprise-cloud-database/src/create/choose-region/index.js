@@ -5,7 +5,7 @@ import 'ovh-ui-angular';
 
 import component from './choose-region.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseCreateChooseRegionModule';
+const moduleName = 'enterpriseCloudDatabaseCreateChooseRegionModule';
 
 angular
   .module(moduleName, [

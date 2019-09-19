@@ -1,11 +1,11 @@
 import angular from 'angular';
 import passwordComponent from './password.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServicePassword';
+const moduleName = 'enterpriseCloudDatabaseServicePassword';
 
 angular
   .module(moduleName, [])
-  .component('ovhManagerEnterpriseCloudDatabaseServicePasswordComponent', passwordComponent)
+  .component('enterpriseCloudDatabaseServicePasswordComponent', passwordComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

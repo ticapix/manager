@@ -1,11 +1,11 @@
 import angular from 'angular';
 import priceComponent from './price.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabasePriceComponent';
+const moduleName = 'enterpriseCloudDatabasePriceComponent';
 
 angular
   .module(moduleName, [])
-  .component('ovhManagerEnterpriseCloudDatabasePriceComponent', priceComponent)
+  .component('enterpriseCloudDatabasePriceComponent', priceComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
