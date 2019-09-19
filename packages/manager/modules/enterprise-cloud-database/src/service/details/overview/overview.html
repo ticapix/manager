@@ -71,7 +71,7 @@
                     <oui-action-menu-item
                         data-text="{{ ::'enterprise_cloud_database_common_manage' | translate }}"
                         aria-label="{{ ::'enterprise_cloud_database_common_manage' | translate }}"
-                        data-on-click="$ctrl.manageOffer()">
+                        data-href="{{ ::$ctrl.getManageServiceURL() }}">
                     </oui-action-menu-item>
                 </oui-action-menu>
             </oui-tile-definition>

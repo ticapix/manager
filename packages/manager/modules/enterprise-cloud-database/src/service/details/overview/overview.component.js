@@ -8,6 +8,7 @@ export default {
     endPoints: '<',
     goToChangeName: '<',
     goToClusterSize: '<',
+    getMyServicesURL: '<',
     goToSettings: '<',
     goToUpdatePassword: '<',
     hosts: '<',

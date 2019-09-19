@@ -37,4 +37,8 @@ export default class EnterpriseCloudDatabaseServiceDetailsOverviewCtrl {
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
   }
+
+  getManageServiceURL() {
+    return this.getMyServicesURL(this.clusterDetails.name, 'ENTERPRISE_CLOUD_DATABASE');
+  }
 }
