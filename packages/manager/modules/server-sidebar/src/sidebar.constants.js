@@ -116,6 +116,14 @@ export const NETWORKS_CONFIG = {
   regions: ['EU', 'CA'],
 };
 
+export const ENTERPRISE_CLOUD_DATABASE = {
+  id: 'enterprise_cloud_database',
+  loadOnState: 'enterprise-cloud-database',
+  icon: 'ovh-font ovh-font-server',
+  app: [DEDICATED],
+  regions: ['EU'],
+};
+
 export const MICROSOFT_CONFIG = {
   id: 'microsoft_exchange',
   types: [
@@ -327,6 +335,7 @@ export const SIDEBAR_CONFIG = [
   DEDICATED_SERVER_CONFIG,
   DEDICATED_CLOUD_CONFIG,
   NETWORKS_CONFIG,
+  ENTERPRISE_CLOUD_DATABASE,
 
   // CLOUD IMPORT
   IAAS_CONFIG,
