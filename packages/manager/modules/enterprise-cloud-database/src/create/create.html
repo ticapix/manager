@@ -70,6 +70,7 @@
                         data-tax="$ctrl.enterpriseDb.additionalReplica.tax"
                         data-user="$ctrl.user">
                     </enterprise-cloud-database-price-component>
+                    /<span data-translate="enterprise_cloud_database_create_order_month"></span>
                 </div>
             </section>
             <!-- commitment period -->
@@ -113,29 +114,28 @@
                     <div class="row mb-2">
                         <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_cluster_label"></dt>
                         <dd class="col-sm-9 my-auto">
-                            <span> {{ $ctrl.minHostCount + $ctrl.enterpriseDb.additionalReplica.value }} X (
-                                <span data-translate="enterprise_cloud_database_create_RAM"
+                            <span> {{ $ctrl.minHostCount + $ctrl.enterpriseDb.additionalReplica.value }} X
+                                (<span data-translate="enterprise_cloud_database_create_RAM"
                                     data-translate-values="{ RAM: $ctrl.enterpriseDb.cluster.memory.size }">
                                 </span>,
                                 <span  data-translate="enterprise_cloud_database_create_CPU"
                                     data-translate-values="{ CPU: $ctrl.enterpriseDb.cluster.cpu.cores }">
                                 </span>,
                                 <span data-ng-bind="$ctrl.enterpriseDb.cluster.storage.usableSize | cucBytes:2:false:'GB'"></span>
-                                <span data-ng-bind="$ctrl.enterpriseDb.cluster.storage.type"></span>
-                                )
+                                <span data-ng-bind="$ctrl.enterpriseDb.cluster.storage.type"></span>)
                             </span>
                         </dd>
                     </div>
                     <div class="row mb-2">
                         <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_commitment_period"></dt>
                         <dd class="col-sm-9 my-auto">
-                            <span data-ng-if="$ctrl.enterpriseDb.commitmentPeriod === 1"
+                            <span data-ng-if="$ctrl.enterpriseDb.commitmentPeriod.months === 1"
                                 data-translate="enterprise_cloud_database_create_order_1_month"
-                                data-translate-values="{ numMonths: $ctrl.enterpriseDb.commitmentPeriod }">
+                                data-translate-values="{ numMonths: $ctrl.enterpriseDb.commitmentPeriod.months }">
                             </span>
-                            <span data-ng-if="$ctrl.enterpriseDb.commitmentPeriod > 1"
+                            <span data-ng-if="$ctrl.enterpriseDb.commitmentPeriod.months > 1"
                                 data-translate="enterprise_cloud_database_create_order_months"
-                                data-translate-values="{ numMonths: $ctrl.enterpriseDb.commitmentPeriod }">
+                                data-translate-values="{ numMonths: $ctrl.enterpriseDb.commitmentPeriod.months }">
                             </span>
                         </dd>
                     </div>
@@ -157,17 +157,29 @@
                         </dd>
                         <dd class="col-sm-9 my-auto" data-ng-if="!$ctrl.enterpriseDb.paymentType.monthly">
                             <enterprise-cloud-database-price-component
-                                data-price="$ctrl.totalDatabasePrice.price * $ctrl.enterpriseDb.commitmentPeriod"
-                                data-tax="$ctrl.totalDatabasePrice.tax * $ctrl.enterpriseDb.commitmentPeriod"
+                                data-price="$ctrl.totalDatabasePrice.price * $ctrl.enterpriseDb.commitmentPeriod.months"
+                                data-tax="$ctrl.totalDatabasePrice.tax * $ctrl.enterpriseDb.commitmentPeriod.months"
                                 data-user="$ctrl.user">
                             </enterprise-cloud-database-price-component>  
                         </dd>
                     </div>
                 </dl>
             </section>
-            <oui-button data-variant="primary" data-on-click="$ctrl.orderDatabaseCluster()">
+            <oui-button data-variant="primary"
+                data-on-click="$ctrl.orderDatabaseCluster()"
+                data-disabled="$ctrl.orderInProgress">
                 <span data-translate="enterprise_cloud_database_create_order_button_label"></span>
             </oui-button>
+            <oui-button data-variant="link"
+                data-on-click="$ctrl.cancelOrderDatabaseCluster()"
+                data-disabled="$ctrl.orderInProgress">
+                <span data-translate="enterprise_cloud_database_create_cancel_button_label"></span>
+            </oui-button>
+            <!-- deployment in progress -->
+            <div class="ml-2 mb-3 inline-block d-flex align-items-center" data-ng-if="$ctrl.orderInProgress">
+                <oui-spinner size="s"></oui-spinner>
+                <span class="text-danger" data-translate="enterprise_cloud_database_create_inprogress"></span>
+            </div>
         </form>
     </div>
 </div>

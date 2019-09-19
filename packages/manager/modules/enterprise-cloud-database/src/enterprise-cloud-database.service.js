@@ -13,7 +13,7 @@ import {
 
 export default class EnterpriseCloudDatabaseService {
   /* @ngInject */
-  constructor($q, $translate, OvhApiCloudDBEnterprise, OvhApiMe, OvhApiOrder) {
+  constructor($q, $translate, OvhApiCloudDBEnterprise, OvhApiMe, OvhApiOrder, Poller) {
     this.$q = $q;
     this.$translate = $translate;
     this.OvhApiCloudDBEnterpriseCluster = OvhApiCloudDBEnterprise.v6();
@@ -31,7 +31,12 @@ export default class EnterpriseCloudDatabaseService {
     this.OvhApiCloudDBEnterpriseUser = OvhApiCloudDBEnterprise.User().v6();
     this.OvhApiCloudDBEnterpriseWindow = OvhApiCloudDBEnterprise.MaintenanceWindow().v6();
     this.OvhApiOrderEnterpriseCloudDB = OvhApiOrder.Catalog().Public().v6();
+    this.OvhApiOrderCart = OvhApiOrder.Cart().v6();
+    this.OvhApiOrderCartProduct = OvhApiOrder.Cart().Product().v6();
+    this.OvhApiOrderCartConfig = OvhApiOrder.Cart().Item().Configuration().v6();
+    this.OvhApiMeOrder = OvhApiMe.Order().v6();
     this.OvhApiMe = OvhApiMe;
+    this.Poller = Poller;
   }
 
   getDefaultPaymentMethod() {
@@ -268,6 +273,67 @@ export default class EnterpriseCloudDatabaseService {
       { clusterId, securityGroupId },
       { name },
     ).$promise;
+  }
+
+  createCart() {
+    return this.getMe()
+      .then(me => this.OvhApiOrderCart
+        .post({ ovhSubsidiary: me.ovhSubsidiary }).$promise);
+  }
+
+  addToCart(cartId, cluster) {
+    return this.OvhApiOrderCartProduct.post({
+      cartId,
+      productName: 'enterpriseCloudDatabases',
+      duration: get(cluster, 'commitmentPeriod.duration'),
+      planCode: get(cluster, 'cluster.name'),
+      pricingMode: get(cluster, 'paymentType.mode'),
+      quantity: 1,
+    }).$promise;
+  }
+
+  addConfig(cart, cluster) {
+    return this.$q.all(
+      this.OvhApiOrderCartConfig.post({
+        cartId: cart.cartId,
+        itemId: cart.itemId,
+      },
+      {
+        label: 'dbms',
+        value: `${get(cluster, 'database.originalName')}-${get(cluster, 'database.selectedVersion')}`,
+      }).$promise,
+      this.OvhApiOrderCartConfig.post({
+        cartId: cart.cartId,
+        itemId: cart.itemId,
+      },
+      {
+        label: 'region',
+        value: get(cluster, 'datacenter'),
+        quantity: 1,
+      }).$promise,
+    )
+      .then(() => cart);
+  }
+
+  assignCart(cart) {
+    return this.OvhApiOrderCart
+      .assign({ cartId: cart.cartId, autoPayWithPreferredPaymentMethod: true })
+      .$promise
+      .then(() => cart);
+  }
+
+  checkoutCart(cart) {
+    return this.OvhApiOrderCart
+      .checkout({ cartId: cart.cartId, autoPayWithPreferredPaymentMethod: true })
+      .$promise;
+  }
+
+  orderCluster(cluster) {
+    return this.createCart()
+      .then(cart => this.addToCart(cart.cartId, cluster))
+      .then(cart => this.addConfig(cart, cluster))
+      .then(cart => this.assignCart(cart))
+      .then(cart => this.checkoutCart({ cartId: cart.cartId }));
   }
 
   static getCapabilities(catalog, offers) {

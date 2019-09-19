@@ -19,20 +19,36 @@ import { DATABASE_CONSTANTS } from '../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseCreateCtrl {
   /* @ngInject */
-  constructor($translate, enterpriseCloudDatabaseService) {
+  constructor($timeout, $translate, $window, CucServiceHelper,
+    CucCloudMessage, enterpriseCloudDatabaseService) {
     this.$translate = $translate;
+    this.$timeout = $timeout;
+    this.$window = $window;
+    this.cucServiceHelper = CucServiceHelper;
+    this.cucCloudMessage = CucCloudMessage;
     this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
   }
 
   $onInit() {
+    this.loadMessages();
     this.commitmentPeriods = COMMITMENT_PERIODS;
     this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
     this.paymentTypes = PAYMENT_TYPES;
+    this.orderInProgress = false;
     this.minHostCount = get(head(this.capabilities), 'minHostCount', 0);
     this.databasePlanMap = {};
     this.populateCapabilityDetails();
     this.databases = this.getUniqueDatabases();
     this.populateDefaultValues();
+  }
+
+  loadMessages() {
+    this.cucCloudMessage.unSubscribe('enterprise-cloud-database.create');
+    this.messageHandler = this.cucCloudMessage.subscribe('enterprise-cloud-database.create', { onMessage: () => this.refreshMessages() });
+  }
+
+  refreshMessages() {
+    this.messages = this.messageHandler.getMessages();
   }
 
   populateDefaultValues() {
@@ -175,8 +191,23 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
   }
 
   orderDatabaseCluster() {
-    this.order = true;
-    console.log(this.enterpriseDb);
+    this.orderInProgress = true;
+    this.enterpriseCloudDatabaseService
+      .orderCluster(this.enterpriseDb)
+      .then(() => {
+        this.goBackToList(this.$translate.instant('enterprise_cloud_database_create_success'));
+      })
+      .catch((error) => {
+        this.cucServiceHelper.errorHandler('enterprise_cloud_database_create_error')(error);
+        this.$timeout(() => this.$window.scrollTo(0, 0), 100);
+      })
+      .finally(() => {
+        this.orderInProgress = false;
+      });
+  }
+
+  cancelOrderDatabaseCluster() {
+    this.goBackToList();
   }
 
   static getUniqueDatabasesAndVersions(databaseNames, status) {
