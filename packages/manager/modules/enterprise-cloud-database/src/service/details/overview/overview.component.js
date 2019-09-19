@@ -6,6 +6,7 @@ export default {
     clusterDetails: '<',
     clusterType: '<',
     endPoints: '<',
+    goToChangeName: '<',
     goToClusterSize: '<',
     goToSettings: '<',
     goToUpdatePassword: '<',

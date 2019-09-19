@@ -1,6 +1,6 @@
 import {
   ENTERPRISE_CLOUD_DATABASE_CLUSTER_NAME_PATTERN,
-} from './secure-cluster.constants';
+} from '../../../enterprise-cloud-database.constants';
 
 export default class {
   /* @ngInject */

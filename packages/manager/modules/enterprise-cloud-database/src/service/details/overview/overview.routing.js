@@ -17,6 +17,10 @@ export default /* @ngInject */($stateProvider) => {
       serviceInfo: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getServiceInfo(clusterId),
+      goBack: /* @ngInject */
+        $state => () => $state.go('^'),
+      goToChangeName: /* @ngInject */ ($state, clusterId) => () => $state
+        .go('enterprise-cloud-database.service.details.overview.update-name', { clusterId }),
       goToOverview: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
         type = STATUS.SUCCESS) => {
         const state = 'enterprise-cloud-database.service.details.overview';

@@ -5,17 +5,11 @@ import { STATUS } from '../../../../enterprise-cloud-database.constants';
 export default class EnterpriseCloudDatabaseServiceDetailsOverviewUpdatePasswordCtrl {
   /* @ngInject */
   constructor(
-    $state,
     $translate,
     enterpriseCloudDatabaseService,
   ) {
-    this.$state = $state;
     this.$translate = $translate;
     this.service = enterpriseCloudDatabaseService;
-  }
-
-  goBack() {
-    this.$state.go('^');
   }
 
   passwordChange(password) {

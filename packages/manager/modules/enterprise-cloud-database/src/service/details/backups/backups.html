@@ -13,7 +13,7 @@
             <oui-tile data-heading="{{ ::'enterprise_cloud_database_backups_manual_heading' | translate }}" class="h-100">
                 <p>
                     <span data-translate="enterprise_cloud_database_backup_size"></span>
-                    <span data-ng-bind="($ctrl.clusterDetails.restoredVolumeSize ? $ctrl.clusterDetails.restoredVolumeSize : 0) | cucBytes:2:false:'GB'"></span>
+                    <span data-ng-bind="($ctrl.clusterDetails.backupSize ? $ctrl.clusterDetails.backupSize : 0) | cucBytes:2:false:'GB'"></span>
                 </p>
                 <p>
                     <span data-translate="enterprise_cloud_database_common_price"></span>

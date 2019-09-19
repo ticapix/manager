@@ -2,7 +2,10 @@
     <!-- error messages -->
     <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
     <span data-translate="enterprise_cloud_database_restored_instances_description"></span>
-
+    <p>
+        <span data-translate="enterprise_cloud_database_backup_size"></span>
+        <span data-ng-bind="($ctrl.clusterDetails.restoredVolumeSize ? $ctrl.clusterDetails.restoredVolumeSize : 0) | cucBytes:2:false:'GB'"></span>
+    </p>
     <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.restoredInstances">
         <oui-column data-title=":: 'enterprise_cloud_database_restored_instances_endpoint' | translate" data-property="fqdn" data-searchable></oui-column>
         <oui-column data-title=":: 'enterprise_cloud_database_restored_instances_port' | translate" data-property="port" data-sortable="asc" data-type="string" data-searchable data-filterable></oui-column>
