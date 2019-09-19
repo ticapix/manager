@@ -36,5 +36,9 @@
   "enterprise_cloud_database_create_order_payment_monthly": "Monthly",
   "enterprise_cloud_database_create_order_payment_one_time": "One time",
   "enterprise_cloud_database_create_order_month": "month",
-  "enterprise_cloud_database_coming_soon": "Coming soon"
+  "enterprise_cloud_database_coming_soon": "Coming soon",
+  "enterprise_cloud_database_create_inprogress": "In progress",
+  "enterprise_cloud_database_create_cancel_button_label": "Cancel",
+  "enterprise_cloud_database_create_success": "Enterprise Cloud Database cluster is being deployed. It takes approximately 1 hour for deployment to finish.",
+  "enterprise_cloud_database_create_error": "Failed to create Enterprise Cloud Database: {{ message }}"
 }

@@ -16,8 +16,8 @@
             </div>
             <div class="mt-2 mb-2" data-ng-if=":: !paymentType.monthly">
                 <ovh-manager-enterprise-cloud-database-price-component
-                    data-price="$ctrl.databasePrice.price * $ctrl.enterpriseDb.commitmentPeriod"
-                    data-tax="$ctrl.databasePrice.tax * $ctrl.enterpriseDb.commitmentPeriod"
+                    data-price="$ctrl.databasePrice.price * $ctrl.enterpriseDb.commitmentPeriod.months"
+                    data-tax="$ctrl.databasePrice.tax * $ctrl.enterpriseDb.commitmentPeriod.months"
                     data-user="$ctrl.user">
                 </ovh-manager-enterprise-cloud-database-price-component>
             </div>
