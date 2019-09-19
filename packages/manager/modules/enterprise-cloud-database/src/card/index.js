@@ -7,7 +7,7 @@ import component from './card.component';
 
 import './card.scss';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseCardModule';
+const moduleName = 'enterpriseCloudDatabaseCardModule';
 
 angular
   .module(moduleName, [

@@ -5,7 +5,7 @@ import 'ovh-ui-angular';
 
 import component from './choose-database.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseCreateChooseDatabaseModule';
+const moduleName = 'enterpriseCloudDatabaseCreateChooseDatabaseModule';
 
 angular
   .module(moduleName, [

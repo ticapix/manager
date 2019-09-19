@@ -10,7 +10,7 @@ import restoredInstances from './restored-instances';
 import routing from './details.routing';
 import settings from './settings';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetails';
+const moduleName = 'enterpriseCloudDatabaseServiceDetails';
 
 angular
   .module(moduleName, [

@@ -10,7 +10,7 @@
   "enterprise_cloud_database_backup_actions_time_recovery": "Launch a point in time recovery",
   "enterprise_cloud_database_backup_description": "Below is the list of your Database backups. You can restore, edit or delete each one of them.",
   "enterprise_cloud_database_backup_consumption": "Consumption of your manual backups:",
-  "enterprise_cloud_database_backup_size": "Size: {{ size }}",
+  "enterprise_cloud_database_backup_size": "Total Manual Backup Volume: {{ size }}",
   "enterprise_cloud_database_backup_billing_info_text": "You will billed at end of the month to your default payment method",
   "enterprise_cloud_database_backup_mode_auto": "Auto",
   "enterprise_cloud_database_backup_mode_manual": "Manual",

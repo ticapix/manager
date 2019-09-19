@@ -4,7 +4,7 @@ import '@uirouter/angularjs';
 import addComponent from '../../../add-replicas';
 import routing from './add.routing';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsClusterSizeAdd';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsClusterSizeAdd';
 
 angular
   .module(moduleName, [

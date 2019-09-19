@@ -15,11 +15,11 @@
                            data-on-cancel="$ctrl.gotoClusterDetails()"
                            data-on-submit="$ctrl.saveSecurityInfo(form)"
                            data-submit-text="{{ 'enterprise_cloud_database_service_get_started_secure_cluster_submit' | translate }}">
-                <ovh-manager-enterprise-cloud-database-service-get-started-secure-cluster-component
+                <enterprise-cloud-database-service-get-started-secure-cluster-component
                     data-cluster-name="$ctrl.data.clusterName"
                     data-disabled="$ctrl.loaders.savingSecuritySettings"
                     data-on-data-change="$ctrl.dataChanged(data)">
-                </ovh-manager-enterprise-cloud-database-service-get-started-secure-cluster-component>
+                </enterprise-cloud-database-service-get-started-secure-cluster-component>
                 <div data-ng-if="$ctrl.loaders.savingSecuritySettings">
                     <oui-spinner size="s"></oui-spinner>
                     <span class="ml-2" data-translate="enterprise_cloud_database_service_get_started_saving"></span>
@@ -30,12 +30,12 @@
                            data-header="{{ 'enterprise_cloud_database_service_get_started_connection_details' | translate }}"
                            data-on-cancel="$ctrl.gotoClusterDetails()">
                 <div class="row">
-                    <ovh-manager-enterprise-cloud-database-service-connection-details-component
+                    <enterprise-cloud-database-service-connection-details-component
                         class="col-md-8"
                         data-cluster-details="$ctrl.clusterDetails"
                         data-cluster-type="$ctrl.clusterType"
                         data-end-points="$ctrl.endPoints">
-                    </ovh-manager-enterprise-cloud-database-service-connection-details-component>
+                    </enterprise-cloud-database-service-connection-details-component>
                 </div>
             </oui-step-form>
 
@@ -45,7 +45,7 @@
                            data-submit-text="{{ 'enterprise_cloud_database_service_get_started_submit' | translate }}"
                            data-on-cancel="$ctrl.gotoClusterDetails()"
                            data-on-submit="$ctrl.saveSettings(form)">
-                    <ovh-manager-enterprise-cloud-database-service-get-started-next-steps-component
+                    <enterprise-cloud-database-service-get-started-next-steps-component
                         data-add-replicas="$ctrl.gotoAddReplicas()"
                         data-cluster-details="$ctrl.clusterDetails"
                         data-cluster-type="$ctrl.clusterType"
@@ -56,7 +56,7 @@
                         data-on-data-change="$ctrl.dataChanged(data)"
                         data-region-info="$ctrl.regionInfo"
                         data-replica-config="$ctrl.data.replicaConfig">
-                    </ovh-manager-enterprise-cloud-database-service-get-started-next-steps-component>
+                    </enterprise-cloud-database-service-get-started-next-steps-component>
                     <div data-ng-if="$ctrl.loaders.savingSettings">
                         <oui-spinner size="s"></oui-spinner>
                         <span class="ml-2" data-translate="enterprise_cloud_database_service_get_started_saving"></span>

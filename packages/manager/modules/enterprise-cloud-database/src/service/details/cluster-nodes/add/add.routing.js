@@ -36,7 +36,7 @@ export default /* @ngInject */($stateProvider) => {
     url: '/add',
     views: {
       modal: {
-        component: 'ovhManagerEnterpriseCloudDatabaseServiceAddReplicasComponent',
+        component: 'enterpriseCloudDatabaseServiceAddReplicasComponent',
       },
     },
   });

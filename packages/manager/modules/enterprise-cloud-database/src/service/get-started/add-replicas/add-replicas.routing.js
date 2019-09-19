@@ -27,7 +27,7 @@ export default /* @ngInject */($stateProvider) => {
     url: '/add-replicas',
     views: {
       modal: {
-        component: 'ovhManagerEnterpriseCloudDatabaseServiceAddReplicasComponent',
+        component: 'enterpriseCloudDatabaseServiceAddReplicasComponent',
       },
     },
   });

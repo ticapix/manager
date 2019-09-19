@@ -28,7 +28,7 @@ export default /* @ngInject */($stateProvider) => {
       url: '/delete-security-group',
       views: {
         modal: {
-          component: 'ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurityGroupComponent',
+          component: 'enterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurityGroupComponent',
         },
       },
     });

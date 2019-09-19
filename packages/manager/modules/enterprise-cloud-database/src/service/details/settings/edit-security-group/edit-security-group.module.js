@@ -4,13 +4,13 @@ import editSecurityGroupComponent from './edit-security-group.component';
 import routing from './edit-security-group.routing';
 import securityGroupNameComponent from '../../../security-group-name';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsEditSecurityGroup';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsSettingsEditSecurityGroup';
 
 angular
   .module(moduleName, [
     securityGroupNameComponent,
   ])
-  .component('ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsEditSecurityGroupComponent', editSecurityGroupComponent)
+  .component('enterpriseCloudDatabaseServiceDetailsSettingsEditSecurityGroupComponent', editSecurityGroupComponent)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

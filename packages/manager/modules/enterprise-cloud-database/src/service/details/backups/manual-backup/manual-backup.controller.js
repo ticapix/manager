@@ -32,7 +32,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsManualCtrl {
         res.id,
       ))
       .catch(error => this.goBackToBackups(
-        this.$translate.instant('enterprise_cloud_database_backups_recovery_error', {
+        this.$translate.instant('enterprise_cloud_database_backups_manual_backup_error', {
           message: get(error, 'data.message'),
         }),
         STATUS.ERROR,

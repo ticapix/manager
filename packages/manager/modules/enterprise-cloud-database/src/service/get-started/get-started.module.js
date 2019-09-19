@@ -9,7 +9,7 @@ import secureCluster from './secure-cluster';
 
 import './get-started.less';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceGetStarted';
+const moduleName = 'enterpriseCloudDatabaseServiceGetStarted';
 
 angular
   .module(moduleName, [

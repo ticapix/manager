@@ -4,13 +4,13 @@ import createRuleComponent from './create-rule.component';
 import routing from './create-rule.routing';
 import ruleComponent from '../../../rule';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsCreateRule';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsSettingsCreateRule';
 
 angular
   .module(moduleName, [
     ruleComponent,
   ])
-  .component('ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsCreateRuleComponent', createRuleComponent)
+  .component('enterpriseCloudDatabaseServiceDetailsSettingsCreateRuleComponent', createRuleComponent)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

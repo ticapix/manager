@@ -7,7 +7,7 @@ import routing from './backups.routing';
 import recovery from './recovery';
 import restore from './restore';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsBackups';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsBackups';
 
 angular
   .module(moduleName, [deleteComponent, manualBackup, recovery, restore])

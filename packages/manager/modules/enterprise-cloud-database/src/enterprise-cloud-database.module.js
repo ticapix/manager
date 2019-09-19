@@ -10,7 +10,7 @@ import mockData from './mock-data';
 import priceComponent from './price';
 import service from './service';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabase';
+const moduleName = 'enterpriseCloudDatabase';
 
 angular
   .module(moduleName, [

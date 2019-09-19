@@ -8,18 +8,18 @@
         data-on-change="$ctrl.onPaymentTypeSelect(modelValue)">
         <enterprise-cloud-database-card-footer>
             <div class="mt-2 mb-2" data-ng-if="::paymentType.monthly">
-                <ovh-manager-enterprise-cloud-database-price-component
+                <enterprise-cloud-database-price-component
                     data-price="$ctrl.databasePrice.price"
                     data-tax="$ctrl.databasePrice.tax"
                     data-user="$ctrl.user">
-                </ovh-manager-enterprise-cloud-database-price-component>
+                </enterprise-cloud-database-price-component>
             </div>
             <div class="mt-2 mb-2" data-ng-if=":: !paymentType.monthly">
-                <ovh-manager-enterprise-cloud-database-price-component
+                <enterprise-cloud-database-price-component
                     data-price="$ctrl.databasePrice.price * $ctrl.enterpriseDb.commitmentPeriod"
                     data-tax="$ctrl.databasePrice.tax * $ctrl.enterpriseDb.commitmentPeriod"
                     data-user="$ctrl.user">
-                </ovh-manager-enterprise-cloud-database-price-component>
+                </enterprise-cloud-database-price-component>
             </div>
         </enterprise-cloud-database-card-footer>
     </enterprise-cloud-database-card>

@@ -3,13 +3,13 @@ import '@uirouter/angularjs';
 
 import flagsComponent from './flags.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceConnectionDetailsFlagsComponent';
+const moduleName = 'enterpriseCloudDatabaseServiceConnectionDetailsFlagsComponent';
 
 angular
   .module(moduleName, [
     'ui.router',
   ])
-  .component('ovhManagerEnterpriseCloudDatabaseServiceConnectionDetailsFlagsComponent', flagsComponent)
+  .component('enterpriseCloudDatabaseServiceConnectionDetailsFlagsComponent', flagsComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

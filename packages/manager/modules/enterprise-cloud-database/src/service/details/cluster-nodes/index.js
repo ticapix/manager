@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsClusterSize';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsClusterSize';
 
 angular.module(moduleName, [
   'oc.lazyLoad',

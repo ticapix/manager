@@ -1,11 +1,11 @@
 import angular from 'angular';
 import addReplicasComponent from './add-replicas.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceAddReplicas';
+const moduleName = 'enterpriseCloudDatabaseServiceAddReplicas';
 
 angular
   .module(moduleName, [])
-  .component('ovhManagerEnterpriseCloudDatabaseServiceAddReplicasComponent', addReplicasComponent)
+  .component('enterpriseCloudDatabaseServiceAddReplicasComponent', addReplicasComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

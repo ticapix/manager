@@ -3,13 +3,13 @@ import '@uirouter/angularjs';
 
 import maintenanceWindowComponent from './maintenance-window.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceMaintenanceWindowComponent';
+const moduleName = 'enterpriseCloudDatabaseServiceMaintenanceWindowComponent';
 
 angular
   .module(moduleName, [
     'ui.router',
   ])
-  .component('ovhManagerEnterpriseCloudDatabaseServiceMaintenanceWindowComponent', maintenanceWindowComponent)
+  .component('enterpriseCloudDatabaseServiceMaintenanceWindowComponent', maintenanceWindowComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

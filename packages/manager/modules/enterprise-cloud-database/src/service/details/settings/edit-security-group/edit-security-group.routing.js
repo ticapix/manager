@@ -28,7 +28,7 @@ export default /* @ngInject */($stateProvider) => {
       url: '/edit-security-group',
       views: {
         modal: {
-          component: 'ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsEditSecurityGroupComponent',
+          component: 'enterpriseCloudDatabaseServiceDetailsSettingsEditSecurityGroupComponent',
         },
       },
     });

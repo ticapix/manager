@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import deleteRestoredInstanceComponent from './delete.component';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsRestoredInstancesDelete';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsRestoredInstancesDelete';
 
 angular
   .module(moduleName, [

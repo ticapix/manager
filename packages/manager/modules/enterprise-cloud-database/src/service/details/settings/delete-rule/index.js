@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsDeleteRule';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsSettingsDeleteRule';
 
 angular.module(moduleName, [
   'oc.lazyLoad',

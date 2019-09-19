@@ -5,7 +5,7 @@ import routing from './logs.routing';
 import grantAdpAccess from './grant-access';
 import revokeAdpAccess from './revoke-access';
 
-const moduleName = 'ovhManagerEnterpriseCloudDatabaseServiceDetailsLogs';
+const moduleName = 'enterpriseCloudDatabaseServiceDetailsLogs';
 
 angular
   .module(moduleName, [grantAdpAccess, revokeAdpAccess])

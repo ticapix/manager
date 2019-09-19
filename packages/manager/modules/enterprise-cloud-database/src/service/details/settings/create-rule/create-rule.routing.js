@@ -28,7 +28,7 @@ export default /* @ngInject */($stateProvider) => {
       url: '/add-rule',
       views: {
         modal: {
-          component: 'ovhManagerEnterpriseCloudDatabaseServiceDetailsSettingsCreateRuleComponent',
+          component: 'enterpriseCloudDatabaseServiceDetailsSettingsCreateRuleComponent',
         },
       },
     });
