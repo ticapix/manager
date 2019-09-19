@@ -117,11 +117,12 @@ export const NETWORKS_CONFIG = {
 };
 
 export const ENTERPRISE_CLOUD_DATABASE = {
-  id: 'enterprise_cloud_database',
-  loadOnState: 'enterprise-cloud-database',
-  icon: 'ovh-font ovh-font-server',
   app: [DEDICATED],
+  icon: 'ovh-font ovh-font-server',
+  id: 'enterprise_cloud_database',
   regions: ['EU'],
+  state: 'enterprise-cloud-database',
+  stateUrl: '#/enterprise-cloud-database',
 };
 
 export const MICROSOFT_CONFIG = {
