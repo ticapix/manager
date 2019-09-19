@@ -87,3 +87,7 @@ $selected-border-color: rgba(2, 167, 240, 1);
     opacity: 0.6;
     cursor: default;
 }
+
+.card.disabled:hover {
+    background-color: $default-background-color;
+}

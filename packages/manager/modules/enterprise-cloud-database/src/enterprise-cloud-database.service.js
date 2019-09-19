@@ -1,3 +1,4 @@
+import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import head from 'lodash/head';
@@ -315,6 +316,23 @@ export default class EnterpriseCloudDatabaseService {
       .then(() => cart);
   }
 
+  addOptions(cart, cluster) {
+    const replica = get(cluster, 'additionalReplica');
+    if (replica && replica.value > 0) {
+      return this.OvhApiOrderCartProduct.postOptions({
+        cartId: cart.cartId,
+        productName: 'enterpriseCloudDatabases',
+        duration: get(cluster, 'commitmentPeriod.duration'),
+        planCode: replica.planCode,
+        pricingMode: get(cluster, 'paymentType.mode'),
+        quantity: replica.value,
+        itemId: cart.itemId,
+      }).$promise
+        .then(() => cart);
+    }
+    return this.$q.resolve(cart);
+  }
+
   assignCart(cart) {
     return this.OvhApiOrderCart
       .assign({ cartId: cart.cartId, autoPayWithPreferredPaymentMethod: true })
@@ -332,6 +350,7 @@ export default class EnterpriseCloudDatabaseService {
     return this.createCart()
       .then(cart => this.addToCart(cart.cartId, cluster))
       .then(cart => this.addConfig(cart, cluster))
+      .then(cart => this.addOptions(cart, cluster))
       .then(cart => this.assignCart(cart))
       .then(cart => this.checkoutCart({ cartId: cart.cartId }));
   }
@@ -350,6 +369,8 @@ export default class EnterpriseCloudDatabaseService {
         EnterpriseCloudDatabaseService.populatePricing(capability, plan);
         // populate node details
         EnterpriseCloudDatabaseService.populateNodeDetails(capability, catalog, plan);
+        // populate node details
+        EnterpriseCloudDatabaseService.populateAddons(capability, catalog, plan);
       }
     });
     return capabilities;
@@ -371,6 +392,21 @@ export default class EnterpriseCloudDatabaseService {
   static populateComputation(capability, plan) {
     set(capability, 'cpu', get(plan, 'blobs.technical.cpu'));
     set(capability, 'memory', get(plan, 'blobs.technical.memory'));
+  }
+
+  static populateAddons(capability, catalog, plan) {
+    const planAddons = filter(get(plan, 'addonFamilies', []), { name: 'node' });
+    const nodeAddonName = head(get(head(planAddons), 'addons'));
+    let nodeAddon = filter(get(catalog, 'addons'), { planCode: nodeAddonName });
+    nodeAddon = head(nodeAddon);
+    const price = get(head(nodeAddon.pricings), 'price', 0);
+    const tax = get(head(nodeAddon.pricings), 'tax', 0);
+    nodeAddon.price = {
+      price,
+      tax,
+      total: price + tax,
+    };
+    set(capability, 'nodeAddon', nodeAddon);
   }
 
   static populateStorage(capability, plan) {

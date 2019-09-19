@@ -64,7 +64,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
       datacenter: defaultDatacenter,
       cluster: defaultCluster,
       commitmentPeriod: head(this.commitmentPeriods),
-      paymentType: head(this.paymentTypes),
+      paymentType: this.paymentTypes[1],
       additionalReplica: head(this.additionalReplicas),
       defaultReplicaCount: this.minHostCount,
     };
@@ -97,7 +97,8 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
   }
 
   populateAdditionalReplicas(cluster) {
-    const price = get(cluster, 'price', {});
+    const addon = get(cluster, 'nodeAddon', {});
+    const price = get(addon, 'price', {});
     const minReplicas = get(cluster, 'minHostCount', 0);
     const maxReplicas = get(cluster, 'maxHostCount', 0);
     this.additionalReplicas = [
@@ -111,6 +112,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     for (let i = 1; i <= maxReplicas - minReplicas; i += 1) {
       this.additionalReplicas[i] = {
         value: i,
+        planCode: addon.planCode,
         price: price.price * i,
         tax: price.tax * i,
         label: this.$translate.instant((i === 1

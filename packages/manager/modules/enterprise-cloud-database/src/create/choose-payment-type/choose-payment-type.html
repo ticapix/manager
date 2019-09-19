@@ -5,7 +5,8 @@
         data-label="{{ :: ('enterprise_cloud_database_create_order_payment_'+paymentType.name) | translate }}"
         data-model="paymentType"
         data-selected="$ctrl.selectedPaymentType.name === paymentType.name"
-        data-on-change="$ctrl.onPaymentTypeSelect(modelValue)">
+        data-on-change="$ctrl.onPaymentTypeSelect(modelValue)"
+        data-disabled="paymentType.monthly">
         <enterprise-cloud-database-card-footer>
             <div class="mt-2 mb-2" data-ng-if="::paymentType.monthly">
                 <enterprise-cloud-database-price-component
@@ -13,6 +14,7 @@
                     data-tax="$ctrl.databasePrice.tax"
                     data-user="$ctrl.user">
                 </enterprise-cloud-database-price-component>
+                <strong><div data-translate="enterprise_cloud_database_coming_soon"></div></strong>
             </div>
             <div class="mt-2 mb-2" data-ng-if=":: !paymentType.monthly">
                 <enterprise-cloud-database-price-component
