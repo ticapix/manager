@@ -1,9 +1,11 @@
 import reduce from 'lodash/reduce';
+import { GUIDELINK } from '../../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsCtrl {
   /* @ngInject */
   constructor(CucCloudMessage) {
     this.CucCloudMessage = CucCloudMessage;
+    this.GUIDELINK = GUIDELINK;
   }
 
   $onInit() {

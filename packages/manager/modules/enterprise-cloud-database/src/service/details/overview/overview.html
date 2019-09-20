@@ -136,8 +136,8 @@
             <oui-tile-button data-on-click="$ctrl.gettingStarted()">
                 <span data-translate="enterprise_cloud_database_getting_started"></span>
             </oui-tile-button>
-            <oui-tile-button data-on-click="$ctrl.deleteCluster()">
-                <span data-translate="enterprise_cloud_database_delete"></span>
+            <oui-tile-button data-on-click="$ctrl.goToClusterNodes()">
+                <span data-translate="enterprise_cloud_database_manage_cluster"></span>
             </oui-tile-button>
         </oui-tile>
         <oui-tile class="mt-3" data-heading="{{ ::'enterprise_cloud_database_cluster_info' | translate }}">
@@ -146,7 +146,7 @@
                     <span data-ng-bind="$ctrl.INCLUDED_CLUSTER_SIZE.PRIMARY"></span>
                 </oui-tile-description>
                 <oui-action-menu data-align="end" data-compact>
-                    <oui-action-menu-item data-on-click="$ctrl.goToClusterSize()">
+                    <oui-action-menu-item data-on-click="$ctrl.goToClusterNodes()">
                         <span data-translate="enterprise_cloud_database_common_manage"></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
