@@ -1,6 +1,6 @@
 import assign from 'lodash/assign';
 
-import { DATABASE_CONSTANTS } from './enterprise-cloud-database.constants';
+import { DATABASE_CONSTANTS, GUIDELINK } from './enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseCtrl {
   /* @ngInject */
@@ -13,6 +13,7 @@ export default class EnterpriseCloudDatabaseCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
     this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
+    this.GUIDELINK = GUIDELINK;
   }
 
   $onInit() {

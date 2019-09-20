@@ -41,8 +41,6 @@ export default /* @ngInject */($stateProvider) => {
         .go('enterprise-cloud-database.service.details.overview.update-password', { clusterId }),
       offerDetails: /* @ngInject */
         (clusterDetails, capabilities) => find(capabilities, { name: clusterDetails.offerName }),
-      goToClusterSize: /* @ngInject */ ($state, clusterId) => () => $state
-        .go('enterprise-cloud-database.service.details.cluster-nodes', { clusterId }),
     },
   });
 };

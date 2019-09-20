@@ -3,7 +3,6 @@ import { DELETE_CONFIRMATION_INPUT_PATTERN } from '../enterprise-cloud-database.
 export default class EnterpriseCloudDatabaseDeleteCtrl {
   /* @ngInject */
   constructor(
-    $stateParams,
     $translate,
     enterpriseCloudDatabaseService,
   ) {

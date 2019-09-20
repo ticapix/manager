@@ -1,4 +1,10 @@
 <oui-page-header data-heading="{{ $ctrl.clusterDetails.name }}" data-description="{{ $ctrl.clusterDetails.id }}">
+    <oui-guide-menu data-text="{{ ::'enterprise_cloud_database_guides' | translate }}">
+        <oui-guide-menu-item data-text="{{ ::'enterprise_cloud_database_guides_main' | translate }}"
+                             data-href="{{:: $ctrl.GUIDELINK }}"
+                             data-external>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
     <oui-header-tabs>
         <oui-header-tabs-item
             data-text="{{ ::'enterprise_cloud_database_service_details_overview' | translate }}"

@@ -43,7 +43,7 @@ export const STATUS = {
 };
 
 export const MASKED_PASSWORD = '********';
-export const GUIDELINK = 'https://docs.ovh.com/';
+export const GUIDELINK = 'https://docs.ovh.com/fr/enterprise-cloud-databases/';
 export const DELETE_CONFIRMATION_INPUT_PATTERN = /^DELETE$/;
 export const ENTERPRISE_CLOUD_DATABASE_CLUSTER_NAME_PATTERN = /^[a-zA-Z][a-zA-Z0-9-_]{0,253}[a-zA-Z0-9]$/;
 export const SERVICE_TYPE = 'ENTERPRISE_CLOUD_DATABASE';

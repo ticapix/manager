@@ -28,5 +28,6 @@
   "enterprise_cloud_database_connection_information": "Connection Information",
   "enterprise_cloud_database_connection_message": "The addition of IP makes it possible to secure your cluster.",
   "enterprise_cloud_database_common_status_ON": "On",
-  "enterprise_cloud_database_common_status_OFF": "Off"
+  "enterprise_cloud_database_common_status_OFF": "Off",
+  "enterprise_cloud_database_manage_cluster": "Manage cluster"
 }
