@@ -9,11 +9,15 @@ enterprise-cloud-database-service-details-settings-component {
     }
   }
 
-  .ip-container {
+  .rule-container {
     height: 0;
 
     &_expanded {
       height: auto;
+    }
+
+    &__rule {
+      margin-bottom: 1.1rem;
     }
   }
 
@@ -21,5 +25,10 @@ enterprise-cloud-database-service-details-settings-component {
     cursor: pointer;
     font-size: 0.8em;
     margin-left: 0.3rem;
+
+    &_disabled {
+      pointer-events: none;
+      opacity: 0.6;
+    }
   }
 }

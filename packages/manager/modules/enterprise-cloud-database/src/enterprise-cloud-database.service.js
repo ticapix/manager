@@ -140,7 +140,8 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getRegionDetails(name) {
-    return this.OvhApiCloudDBEnterpriseRegion.get({ name }).$promise;
+    return this.OvhApiCloudDBEnterpriseRegion.get({ name }).$promise
+      .then(regionInfo => set(regionInfo, 'maintenanceDuration', get(regionInfo, 'maintenanceDuration', 1) * 60));
   }
 
   getRuleDetails(clusterId, securityGroupId, ruleId) {

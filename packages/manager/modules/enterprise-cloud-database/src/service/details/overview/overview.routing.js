@@ -4,6 +4,7 @@ import { STATUS } from '../../../enterprise-cloud-database.constants';
 
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.overview', {
+    cache: false,
     component: 'enterpriseCloudDatabaseServiceDetailsOverviewComponent',
     translations: {
       value: ['.'],

@@ -26,8 +26,7 @@ export default /* @ngInject */($stateProvider) => {
         ),
         regionInfo: /* @ngInject */
           (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-            .getRegionDetails(clusterDetails.regionName)
-            .then(regionInfo => Object.assign(regionInfo, { maintenanceDuration: 60 })),
+            .getRegionDetails(clusterDetails.regionName),
         maintenanceWindow: /* @ngInject */
           (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
             .getMaintenanceWindow(clusterId),
