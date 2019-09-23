@@ -5,6 +5,7 @@ import {
   AUTO_BACKUP, BACKUP_FREQUENCY, BACKUP_RETENTION, USERNAME,
 } from './overview.constants';
 import { INCLUDED_CLUSTER_SIZE } from '../../service.constants';
+import { MESSAGE_CONTAINER } from '../details.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsOverviewCtrl {
   /* @ngInject */
@@ -27,6 +28,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsOverviewCtrl {
 
   $onInit() {
     this.loadMessages();
+    this.CucCloudMessage.flushMessages(MESSAGE_CONTAINER);
   }
 
   loadMessages() {

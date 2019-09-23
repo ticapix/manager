@@ -6,6 +6,7 @@ const component = {
   bindings: {
     label: '<',
     onChange: '&',
+    value: '<',
   },
   controller,
 };

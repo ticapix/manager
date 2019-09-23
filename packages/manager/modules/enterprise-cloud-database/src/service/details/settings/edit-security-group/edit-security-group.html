@@ -10,7 +10,8 @@
                data-secondary-action="$ctrl.goBack()">
         <enterprise-cloud-database-service-security-group-name-component
             data-label="::'enterprise_cloud_database_service_details_settings_edit_security_group_choose_group_name' | translate"
-            data-on-change="$ctrl.securityGroupNameChanged(data)">
+            data-on-change="$ctrl.securityGroupNameChanged(data)"
+            data-value="$ctrl.securityGroup.name">
         </enterprise-cloud-database-service-security-group-name-component>
     </oui-modal>
 </form>
