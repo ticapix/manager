@@ -30,5 +30,5 @@
   "enterprise_cloud_database_common_status_ON": "On",
   "enterprise_cloud_database_common_status_OFF": "Off",
   "enterprise_cloud_database_admin_credentials_username": "Username :",
-  "enterprise_cloud_database_manage_cluster": "Manage cluster"
+  "enterprise_cloud_database_manage_nodes": "Manage Nodes"
 }
