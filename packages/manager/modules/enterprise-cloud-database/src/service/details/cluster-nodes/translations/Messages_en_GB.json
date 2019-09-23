@@ -7,5 +7,6 @@
   "enterprise_cloud_database_service_details_cluster_nodes_nodes": "Cluster Nodes",
   "enterprise_cloud_database_service_details_cluster_nodes_node_name": "Node Name",
   "enterprise_cloud_database_service_details_cluster_nodes_add_replica": "Add Replica",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_replica": "Delete Replica"
+  "enterprise_cloud_database_service_details_cluster_nodes_delete_replica": "Delete Replica",
+  "enterprise_cloud_database_service_details_cluster_nodes_refresh": "Refresh Nodes"
 }

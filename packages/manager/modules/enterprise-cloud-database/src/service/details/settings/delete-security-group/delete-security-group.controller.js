@@ -23,7 +23,9 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurity
     this.enterpriseCloudDatabaseService
       .deleteSecurityGroup(this.clusterId, this.securityGroup.id)
       .then(() => this.goBack(
-        this.$translate.instant('enterprise_cloud_database_service_details_settings_delete_security_group_success'),
+        this.$translate.instant('enterprise_cloud_database_service_details_settings_delete_security_group_success', {
+          groupName: this.securityGroup.name,
+        }),
         STATUS.SUCCESS,
       ))
       .catch(error => this.goBack(
