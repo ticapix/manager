@@ -1,5 +1,5 @@
 import {
-  DATABASE_CONSTANTS, MASKED_PASSWORD,
+  DATABASE_CONSTANTS, MASKED_PASSWORD, SERVICE_TYPE,
 } from '../../../enterprise-cloud-database.constants';
 import {
   AUTO_BACKUP, BACKUP_FREQUENCY, BACKUP_RETENTION, USERNAME,
@@ -41,6 +41,6 @@ export default class EnterpriseCloudDatabaseServiceDetailsOverviewCtrl {
   }
 
   getManageServiceURL() {
-    return this.getMyServicesURL(this.clusterDetails.name, 'ENTERPRISE_CLOUD_DATABASE');
+    return this.getMyServicesURL(this.clusterDetails.id, SERVICE_TYPE);
   }
 }

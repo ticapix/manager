@@ -28,5 +28,7 @@
   "enterprise_cloud_database_connection_information": "Informations de connexion",
   "enterprise_cloud_database_connection_message": "L'ajout d'IP rend possible la connexion au cluster depuis l'extérieur.",
   "enterprise_cloud_database_common_status_ON": "On",
-  "enterprise_cloud_database_common_status_OFF": "Off"
+  "enterprise_cloud_database_common_status_OFF": "Off",
+  "enterprise_cloud_database_admin_credentials_username": "Username :",
+  "enterprise_cloud_database_manage_nodes": "Manage Nodes"
 }

@@ -8,6 +8,7 @@ export default {
     createCluster: '<',
     deleteCluster: '<',
     getClusterDetails: '<',
+    getMyServicesURL: '<',
     gettingStarted: '<',
     manageCluster: '<',
     user: '<',
