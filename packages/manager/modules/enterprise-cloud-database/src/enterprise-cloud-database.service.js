@@ -203,6 +203,11 @@ export default class EnterpriseCloudDatabaseService {
       ));
   }
 
+  resetRestoredInstancesCache() {
+    this.OvhApiCloudDBEnterpriseRestore.resetQueryCache();
+    this.OvhApiCloudDBEnterpriseRestore.resetCache();
+  }
+
   createRestore(clusterId, backupId, timestamp) {
     const payLoad = backupId ? { backupId } : { timestamp };
     return this.OvhApiCloudDBEnterpriseRestore.create({ clusterId }, payLoad).$promise;

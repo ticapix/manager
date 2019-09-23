@@ -1,4 +1,5 @@
 import assign from 'lodash/assign';
+import compact from 'lodash/compact';
 import moment from 'moment';
 
 import { MESSAGE_CONTAINER } from '../details.constants';
@@ -15,10 +16,13 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
 
   $onInit() {
     this.loadMessages();
-    const firstBackupId = this.backupList[this.backupList.length - 1].id;
-    this.getBackupDetails(firstBackupId).then((backup) => {
-      this.minDate = backup.creationDate;
-    });
+    let firstBackupId = null;
+    if (compact(this.backupList).length > 0) {
+      firstBackupId = this.backupList[this.backupList.length - 1].id;
+      this.getBackupDetails(firstBackupId).then((backup) => {
+        this.minDate = backup.creationDate;
+      });
+    }
     this.CucCloudMessage.flushMessages(MESSAGE_CONTAINER);
   }
 

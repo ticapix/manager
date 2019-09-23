@@ -3,11 +3,14 @@ import isUndefined from 'lodash/isUndefined';
 import { COMMANDS_LIST } from '../../connection-details/flags/flags.constants';
 import { ENDPOINT_TYPES } from '../../connection-details/connection-details.constants';
 import { INCLUDED_CLUSTER_SIZE } from '../../service.constants';
+import { GUIDELINK } from '../../../enterprise-cloud-database.constants';
 
 export default class {
   /* @ngInject */
   constructor() {
     this.COMMANDS_LIST = COMMANDS_LIST;
+    this.GUIDELINK = GUIDELINK;
+    console.log(this.GUIDELINK);
   }
 
   $onInit() {

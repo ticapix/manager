@@ -9,5 +9,5 @@
   "enterprise_cloud_database_restored_instances_current_usage" : "Current Usage",
   "enterprise_cloud_database_restored_instances_size": "Total Restored Volume: {{ size }}",
   "enterprise_cloud_database_restored_instances_info": "The instance can take from few minutes to hours depending on the backup data size",
-  "enterprise_cloud_database_restored_instances_popover": "Sum of all volumes"
+  "enterprise_cloud_database_restored_instances_popover": "Sum of volumes of all restored instances"
 }
