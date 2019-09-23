@@ -7,5 +7,8 @@
   "enterprise_cloud_database_backups_recovery_hour": "Heure",
   "enterprise_cloud_database_backups_recovery_success": "Restauration lancée avec succès",
   "enterprise_cloud_database_backups_recovery_error": "Impossible de lancer la restauration : {{ message }}",
-  "enterprise_cloud_database_backups_recovery_date_placeholder": "Sélectionnez une date à restaurer"
+  "enterprise_cloud_database_backups_recovery_date_placeholder": "Sélectionnez une date à restaurer",
+  "enterprise_cloud_database_backups_recovery_time_slots_helper_to": " to ",
+  "enterprise_cloud_database_backups_recovery_time_slots_helper": "You can choose dates from ",
+  "enterprise_cloud_database_backups_recovery_time": "Time"
 }

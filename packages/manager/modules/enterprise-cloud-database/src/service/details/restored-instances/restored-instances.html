@@ -1,13 +1,23 @@
 <div class="container-fluid px-0 mt-3">
     <!-- error messages -->
     <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
-    <span data-translate="enterprise_cloud_database_restored_instances_description"></span>
+    <p>
+        <span data-translate="enterprise_cloud_database_restored_instances_description"></span>
+        <span data-translate="enterprise_cloud_database_restored_instances_info"></span>
+    </p>
     <p>
         <span data-translate="enterprise_cloud_database_restored_instances_size"></span>
         <span data-ng-bind="($ctrl.clusterDetails.restoredVolumeSize ? $ctrl.clusterDetails.restoredVolumeSize : 0) | cucBytes:2:false:'GB'"></span>
+        <button type="button"
+                class="oui-popover-button"
+                data-oui-popover="{{:: 'enterprise_cloud_database_restored_instances_popover' | translate }}">
+        </button>
     </p>
     <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.restoredInstances">
-        <oui-column data-title=":: 'enterprise_cloud_database_restored_instances_endpoint' | translate" data-property="fqdn" data-searchable></oui-column>
+        <oui-column data-title=":: 'enterprise_cloud_database_restored_instances_endpoint' | translate" data-property="fqdn" data-searchable>
+            <span data-ng-bind="$row.fqdn" data-ng-if="$row.fqdn"></span>
+            <span data-translate="N/A" data-ng-if="!$row.fqdn"></span>
+        </oui-column>
         <oui-column data-title=":: 'enterprise_cloud_database_restored_instances_port' | translate" data-property="port" data-sortable="asc" data-type="string" data-searchable data-filterable></oui-column>
         <oui-column data-title=":: 'enterprise_cloud_database_restored_instances_restoration_date' | translate" data-property="creationDate" data-sortable>
             <span data-ng-bind="$row.creationDate | date: 'medium'"></span>
