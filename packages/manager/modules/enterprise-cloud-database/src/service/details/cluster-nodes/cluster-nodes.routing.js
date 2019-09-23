@@ -21,6 +21,11 @@ export default /* @ngInject */($stateProvider) => {
           })),
       planCatalog: /* @ngInject */
         (capabilities, clusterDetails) => find(capabilities, { name: clusterDetails.offerName }),
+      refreshNodes: /* @ngInject */
+        ($state, enterpriseCloudDatabaseService) => () => {
+          enterpriseCloudDatabaseService.resetHostsCache();
+          return $state.reload();
+        },
     },
     translations: {
       value: ['.'],

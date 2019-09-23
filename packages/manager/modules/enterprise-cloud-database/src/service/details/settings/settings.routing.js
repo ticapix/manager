@@ -27,6 +27,7 @@ export default /* @ngInject */($stateProvider) => {
         regionInfo: /* @ngInject */
           (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
             .getRegionDetails(clusterDetails.regionName),
+        reload: /* @ngInject */ $state => () => $state.reload(),
         maintenanceWindow: /* @ngInject */
           (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
             .getMaintenanceWindow(clusterId),

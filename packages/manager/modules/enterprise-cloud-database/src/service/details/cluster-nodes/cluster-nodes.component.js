@@ -8,6 +8,7 @@ export default {
     deleteReplicas: '<',
     hosts: '<',
     planCatalog: '<',
+    refreshNodes: '<',
   },
   controller,
   template,

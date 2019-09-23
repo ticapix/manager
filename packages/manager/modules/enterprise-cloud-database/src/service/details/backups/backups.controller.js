@@ -1,6 +1,7 @@
 import assign from 'lodash/assign';
 import moment from 'moment';
 
+import { MESSAGE_CONTAINER } from '../details.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
   /* @ngInject */
@@ -18,6 +19,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
     this.getBackupDetails(firstBackupId).then((backup) => {
       this.minDate = backup.creationDate;
     });
+    this.CucCloudMessage.flushMessages(MESSAGE_CONTAINER);
   }
 
   loadMessages() {

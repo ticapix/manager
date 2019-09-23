@@ -1,3 +1,5 @@
+import { MESSAGE_CONTAINER } from '../details.constants';
+
 export default class EnterpriseCloudDatabaseServiceDetailsRestoredInstancesCtrl {
   /* @ngInject */
   constructor(
@@ -14,6 +16,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsRestoredInstancesCtrl 
 
   $onInit() {
     this.loadMessages();
+    this.CucCloudMessage.flushMessages(MESSAGE_CONTAINER);
   }
 
   loadMessages() {

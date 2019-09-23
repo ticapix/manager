@@ -29,6 +29,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
     };
 
     this.rules = {};
+    this.CucCloudMessage.flushMessages(MESSAGE_CONTAINER);
   }
 
   getMaintenanceWindowConfig() {
@@ -105,7 +106,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
     this.enterpriseCloudDatabaseService.setClusterDetails(this.clusterDetails.id, {
       autoBackup,
       name: this.data.clusterName,
-    }).then(() => this.handleSuccess('enterprise_cloud_database_service_details_settings_save_success'))
+    }).then(() => this.reload().then(() => this.handleSuccess('enterprise_cloud_database_service_details_settings_save_success')))
       .catch(error => this.handleError('enterprise_cloud_database_service_details_settings_save_error', error))
       .finally(() => { this.loaders.autoBackup = false; });
   }

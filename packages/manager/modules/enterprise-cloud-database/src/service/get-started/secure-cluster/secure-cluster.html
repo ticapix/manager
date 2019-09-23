@@ -11,7 +11,8 @@
                placeholder="{{ ::'enterprise_cloud_database_service_get_started_secure_cluster_name_placeholder' | translate }}"
                data-ng-model="$ctrl.data.clusterName"
                data-ng-change="$ctrl.dataChange()"
-               data-ng-pattern="$ctrl.CLUSTER_NAME_PATTERN">
+               data-ng-pattern="$ctrl.CLUSTER_NAME_PATTERN"
+               autofocus>
     </oui-field>
     <!-- password -->
     <enterprise-cloud-database-service-password-component data-on-change="$ctrl.dataChange(data)">

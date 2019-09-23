@@ -10,7 +10,7 @@ export default class EnterpriseCloudDatabaseServiceSecurityGroupNameCtrl {
 
   $onInit() {
     this.data = {
-      securityGroupName: '',
+      securityGroupName: this.value || '',
     };
   }
 }

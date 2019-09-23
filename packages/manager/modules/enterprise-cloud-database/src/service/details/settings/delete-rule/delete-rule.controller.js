@@ -25,7 +25,9 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurity
       .then(() => {
         this.enterpriseCloudDatabaseService.resetSecurityGroupDetailsCache();
         return this.goBack(
-          this.$translate.instant('enterprise_cloud_database_service_details_settings_delete_rule_success'),
+          this.$translate.instant('enterprise_cloud_database_service_details_settings_delete_rule_success', {
+            source: this.rule.source,
+          }),
           STATUS.SUCCESS,
         );
       })

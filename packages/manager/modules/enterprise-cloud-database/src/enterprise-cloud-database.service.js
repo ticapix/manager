@@ -254,7 +254,8 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   resetHostsCache() {
-    return this.OvhApiCloudDBEnterpriseHost.resetQueryCache();
+    this.OvhApiCloudDBEnterpriseHost.resetQueryCache();
+    this.OvhApiCloudDBEnterpriseHost.resetCache();
   }
 
   resetSecurityGroupDetailsCache() {
