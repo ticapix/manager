@@ -8,7 +8,7 @@ export default /* @ngInject */($stateProvider) => {
           .getClusterDetails(clusterId),
       clusterId: /* @ngInject */ $transition$ => $transition$.params().clusterId,
       clusterType: /* @ngInject */ clusterDetails => clusterDetails.offerType,
-      gotoClusterDetails: /* @ngInject */ ($state, clusterId) => () => $state.go('enterprise-cloud-database.service.details.overview', { clusterId }),
+      gotoClusterDetails: /* @ngInject */ ($state, clusterId) => reload => $state.go('enterprise-cloud-database.service.details.overview', { clusterId }, { reload }),
     },
     translations: {
       value: ['.'],

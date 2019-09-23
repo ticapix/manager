@@ -1,9 +1,9 @@
 {
-  "enterprise_cloud_database_service_details_logs_grant_access_title": "Grant access",
-  "enterprise_cloud_database_service_details_logs_grant_access_description": "Grant access to Logs Data Platform account to access this cluster logs.",
-  "enterprise_cloud_database_service_details_logs_grant_access_label": "Enter Logs Data Platform service name",
+  "enterprise_cloud_database_service_details_logs_grant_access_title": "Accorder l'accès",
+  "enterprise_cloud_database_service_details_logs_grant_access_description": "Accorder gratuitement l'accès à OVH Logs Data Platform pour accèder aux journaux d'évènements (logs) de votre cluster.",
+  "enterprise_cloud_database_service_details_logs_grant_access_label": "Entrez votre nom de service OVH Logs Data Platform",
   "enterprise_cloud_database_service_details_logs_grant_access_note": "Note",
-  "enterprise_cloud_database_service_details_logs_grant_access_action": "Grant access",
-  "enterprise_cloud_database_service_details_logs_grant_access_success": "Access granted to Logs Data Platform '{{ldpName}}'",
-  "enterprise_cloud_database_service_details_logs_grant_access_error": "An error occurred while granting access to Logs Data Platform: {{message}}"
+  "enterprise_cloud_database_service_details_logs_grant_access_action": "Accorder l'accès",
+  "enterprise_cloud_database_service_details_logs_grant_access_success": "Accès accordé à OVH Logs Data Platform '{{ldpName}}'",
+  "enterprise_cloud_database_service_details_logs_grant_access_error": "Une erreur est survenue lors du pairage avec OVH Logs Data Platform: {{message}}"
 }

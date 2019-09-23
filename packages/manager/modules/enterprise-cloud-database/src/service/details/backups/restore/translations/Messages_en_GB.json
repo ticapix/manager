@@ -1,0 +1,7 @@
+{
+  "enterprise_cloud_database_backups_restore_title": "Restore Backup",
+  "enterprise_cloud_database_backups_restore_description": "Do you want to restore your backup: {{ name }}",
+  "enterprise_cloud_database_backups_restore_price": "Price: {{ price }}",
+  "enterprise_cloud_database_backups_restore_success": "Request to restore backup instance {{ name }} taken successfully",
+  "enterprise_cloud_database_backups_restore_error": "Unable to restore the backup instance: {{ message }}"
+}

@@ -1,11 +1,11 @@
 {
-  "enterprise_cloud_database_service_cluster_password": "Choose an admin password to secure your cluster",
-  "enterprise_cloud_database_service_cluster_password_description": "A password is required in order to be able to connect to your cluster",
-  "enterprise_cloud_database_service_cluster_password_help": "Your password must contain at least 2 numbers and must be alphanumeric with a minimum length of 12 and maximum of 32 characters.",
-  "enterprise_cloud_database_service_cluster_password_help_strength": "Your password is not strong enough",
-  "enterprise_cloud_database_service_cluster_password_help_alphanumeric": "Must be alphanumeric",
-  "enterprise_cloud_database_service_cluster_password_help_upper_case": "Must contain atleast 1 upper case character",
-  "enterprise_cloud_database_service_cluster_password_help_number": "Must contain at least two numbers",
-  "enterprise_cloud_database_service_cluster_password_help_length": "Must contain 12 to 32 characters",
-  "enterprise_cloud_database_service_cluster_password_placeholder": "Enter a password"
+  "enterprise_cloud_database_service_cluster_password": "Choisissez un mot de passe administrateur pour sécuriser votre cluster",
+  "enterprise_cloud_database_service_cluster_password_description": "Un mot de passe est requis pour vous connecter à votre cluster",
+  "enterprise_cloud_database_service_cluster_password_help": "Votre mot de passe doit contenir au moins 2 nombres, doit être alphanumérique et contenir entre 12 et 32 caractères.",
+  "enterprise_cloud_database_service_cluster_password_help_strength": "Votre mot de passe n'est pas assez fort",
+  "enterprise_cloud_database_service_cluster_password_help_alphanumeric": "Doit être alphanumérique [A-Za-z0-9]",
+  "enterprise_cloud_database_service_cluster_password_help_upper_case": "Doit contenir au moins une majuscule",
+  "enterprise_cloud_database_service_cluster_password_help_number": "Doit contenir au moins 2 nombres",
+  "enterprise_cloud_database_service_cluster_password_help_length": "Doit contenir entre 12 et 32 caractères",
+  "enterprise_cloud_database_service_cluster_password_placeholder": "Entrez un mot de passe"
 }

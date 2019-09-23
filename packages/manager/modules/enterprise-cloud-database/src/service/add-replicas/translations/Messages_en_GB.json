@@ -1,0 +1,8 @@
+{
+  "enterprise_cloud_database_service_add_replicas_title": "Add Replica",
+  "enterprise_cloud_database_service_add_replicas_description": "Select the desired number of Replica(s)",
+  "enterprise_cloud_database_service_add_replicas_add": "Add",
+  "enterprise_cloud_database_service_add_replicas_billing_info": "You will billed at end of the month to your default payment method",
+  "enterprise_cloud_database_service_add_replicas_success": "Request to add {{replicaCount}} replica(s) created successfully and is under process",
+  "enterprise_cloud_database_service_add_replicas_error": "An error occurred while trying to add replica(s): {{message}}"
+}

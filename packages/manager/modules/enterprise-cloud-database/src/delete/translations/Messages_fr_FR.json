@@ -1,8 +1,8 @@
 {
-  "enterprise_cloud_database_delete": "Delete Enterprise Cloud Database",
-  "enterprise_cloud_database_delete_confirmation": "Are you sure you want to delete {{ clusterName }} Enterprise Cloud Database?",
-  "enterprise_cloud_database_delete_warning": "This action cannot be cancelled or reversed.",
-  "enterprise_cloud_database_delete_enter": "Enter DELETE into the following field to confirm your action.",
-  "enterprise_cloud_database_delete_success": "Delete the {{ clusterName }} enterprise cloud database",
-  "enterprise_cloud_database_delete_error": "An error has occurred while deleting {{ clusterName }} database: {{ message }}"
+  "enterprise_cloud_database_delete": "Supprimer un cluster Enterprise Cloud Database",
+  "enterprise_cloud_database_delete_confirmation": "Êtes-vous sûr de vouloir supprimer le cluster {{ clusterName }} ?",
+  "enterprise_cloud_database_delete_warning": "Cette action ne poura pas être annulée et toutes vos données seront effacées, incluant sauvegardes et restaurations.",
+  "enterprise_cloud_database_delete_enter": "Entrez le mot DELETE dans le champ ci-dessous pour confirmer cette action.",
+  "enterprise_cloud_database_delete_success": "Supprimer le cluster {{ clusterName }}",
+  "enterprise_cloud_database_delete_error": "Une erreur s'est produite lors de la suppression du cluster {{ clusterName }} : {{ message }}"
 }
