@@ -48,5 +48,6 @@
   "enterprise_cloud_database_common_subscription_contact_technical": "Technical",
   "enterprise_cloud_database_common_per_hour": "/Month",
   "enterprise_cloud_database_guides": "Guides",
-  "enterprise_cloud_database_guides_main": "Enterprise Cloud Database"
+  "enterprise_cloud_database_guides_main": "Enterprise Cloud Database",
+  "enterprise_cloud_database_common_refresh": "Refresh"
 }
