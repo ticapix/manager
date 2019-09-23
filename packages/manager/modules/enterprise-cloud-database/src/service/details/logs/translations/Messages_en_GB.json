@@ -1,5 +1,5 @@
 {
-    "enterprise_cloud_database_logs_description": "Manage cluster logs access by granting, revoking access to Logs Data Platform accounts",
+    "enterprise_cloud_database_logs_description": "Manage cluster logs access by granting, revoking access to Logs Data Platform accounts.",
     "enterprise_cloud_database_logs_ldp_accounts": "Logs Data Platform accounts",
     "enterprise_cloud_database_logs_ldp_access": "Access your logs data platform account",
     "enterprise_cloud_database_logs_username": "Username",
