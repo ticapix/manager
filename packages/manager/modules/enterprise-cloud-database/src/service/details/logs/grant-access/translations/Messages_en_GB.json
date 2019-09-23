@@ -1,0 +1,9 @@
+{
+  "enterprise_cloud_database_service_details_logs_grant_access_title": "Grant access",
+  "enterprise_cloud_database_service_details_logs_grant_access_description": "Grant access to Logs Data Platform account to access this cluster logs.",
+  "enterprise_cloud_database_service_details_logs_grant_access_label": "Enter Logs Data Platform service name",
+  "enterprise_cloud_database_service_details_logs_grant_access_note": "Note",
+  "enterprise_cloud_database_service_details_logs_grant_access_action": "Grant access",
+  "enterprise_cloud_database_service_details_logs_grant_access_success": "Access granted to Logs Data Platform '{{ldpName}}'",
+  "enterprise_cloud_database_service_details_logs_grant_access_error": "An error occurred while granting access to Logs Data Platform: {{message}}"
+}

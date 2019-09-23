@@ -1,0 +1,8 @@
+{
+  "enterprise_cloud_database_delete": "Delete Enterprise Cloud Database",
+  "enterprise_cloud_database_delete_confirmation": "Are you sure you want to delete {{ clusterName }} Enterprise Cloud Database?",
+  "enterprise_cloud_database_delete_warning": "This action cannot be cancelled or reversed.",
+  "enterprise_cloud_database_delete_enter": "Enter DELETE into the following field to confirm your action.",
+  "enterprise_cloud_database_delete_success": "Delete the {{ clusterName }} enterprise cloud database",
+  "enterprise_cloud_database_delete_error": "An error has occurred while deleting {{ clusterName }} database: {{ message }}"
+}
