@@ -39,6 +39,7 @@
   "enterprise_cloud_database_coming_soon": "Coming soon",
   "enterprise_cloud_database_create_inprogress": "In progress",
   "enterprise_cloud_database_create_cancel_button_label": "Cancel",
-  "enterprise_cloud_database_create_success": "Enterprise Cloud Database cluster is being deployed. It takes approximately 1 hour for deployment to finish.",
-  "enterprise_cloud_database_create_error": "Failed to create Enterprise Cloud Database: {{ message }}"
+  "enterprise_cloud_database_create_success": "Enterprise Cloud Database cluster is being deployed.",
+  "enterprise_cloud_database_create_error": "Failed to create Enterprise Cloud Database: {{ message }}",
+  "enterprise_cloud_database_no_default_payment_method": "No default payment method found. You will need to set a default payment method to create a Enterprise Cloud Database. <a href=\"{{ href }}\">Set a default payment method</a>"
 }

@@ -14,7 +14,7 @@ import {
 
 export default class EnterpriseCloudDatabaseService {
   /* @ngInject */
-  constructor($q, $translate, OvhApiCloudDBEnterprise, OvhApiMe, OvhApiOrder, Poller) {
+  constructor($q, $translate, OvhApiCloudDBEnterprise, OvhApiMe, OvhApiOrder) {
     this.$q = $q;
     this.$translate = $translate;
     this.OvhApiCloudDBEnterpriseCluster = OvhApiCloudDBEnterprise.v6();
@@ -37,11 +37,6 @@ export default class EnterpriseCloudDatabaseService {
     this.OvhApiOrderCartConfig = OvhApiOrder.Cart().Item().Configuration().v6();
     this.OvhApiMeOrder = OvhApiMe.Order().v6();
     this.OvhApiMe = OvhApiMe;
-    this.Poller = Poller;
-  }
-
-  getDefaultPaymentMethod() {
-    return this.OvhApiMe.PaymentMean().v6().getDefaultPaymentMean();
   }
 
   getMe() {
