@@ -1,17 +1,25 @@
 <div data-ui-view>
-    <oui-guide-menu data-text="{{ ::'enterprise_cloud_database_guides' | translate }}">
-        <oui-guide-menu-item data-text="{{ ::'enterprise_cloud_database_guides_main' | translate }}"
-                             data-href="{{:: $ctrl.GUIDELINK }}"
-                             data-external>
-        </oui-guide-menu-item>
-    </oui-guide-menu>
+    <oui-page-header data-heading="{{ ::'enterprise_cloud_database_title' | translate }}">
+        <oui-guide-menu data-text="{{ ::'enterprise_cloud_database_guides' | translate }}">
+            <oui-guide-menu-item data-text="{{ ::'enterprise_cloud_database_guides_main' | translate }}"
+                                 data-href="{{:: $ctrl.GUIDELINK }}"
+                                 data-external>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-page-header>
     <div class="container-fluid w-100 h-100 pt-4 px-3 px-md-5">
         <!-- error messages -->
         <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
         <span data-translate="enterprise_cloud_database_description"></span>
 
         <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.clusters" data-row-loader="$ctrl.loadRow($row)">
-            <oui-column data-title=":: 'enterprise_cloud_database_list_service_name' | translate" data-property="details.name" data-sortable="asc" data-type="string" data-searchable data-filterable></oui-column>
+            <oui-column data-title=":: 'enterprise_cloud_database_list_service_name' | translate" data-property="details.name" data-sortable="asc" data-type="string" data-searchable data-filterable>
+                <oui-button
+                    data-variant="link"
+                    data-on-click="$ctrl.manageCluster($row.id)">
+                    <span data-ng-bind="::$row.details.name"></span>
+                </oui-button>
+            </oui-column>
             <oui-column data-title=":: 'enterprise_cloud_database_list_endpoint' | translate" data-property="endpoints">
                 <div data-ng-repeat="endpoint in $row.endpoints track by $index">
                     <span data-ng-bind="endpoint.name"></span>:

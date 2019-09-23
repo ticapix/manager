@@ -450,4 +450,8 @@ export default class EnterpriseCloudDatabaseService {
   static isError(status) {
     return ERROR_STATUS.includes(status);
   }
+
+  static isCreated(status) {
+    return SUCCESS_STATUS.includes(status);
+  }
 }

@@ -20,5 +20,6 @@
   "enterprise_cloud_database_backups_volume_price": "Volume:",
   "enterprise_cloud_database_backups_auto_heading": "Auto Backup",
   "enterprise_cloud_database_backups_manual_heading": "Manual Backup",
-  "enterprise_cloud_database_backups_manual_included": "Included in Offer"
+  "enterprise_cloud_database_backups_manual_included": "Price included in the Offer",
+  "enterprise_cloud_database_backups_manual_popover": "Sum of all manual backup volume"
 }

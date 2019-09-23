@@ -133,10 +133,10 @@
             <oui-tile-button data-on-click="$ctrl.createCluster()">
                 <span data-translate="enterprise_cloud_database_create_cluster"></span>
             </oui-tile-button>
-            <oui-tile-button data-on-click="$ctrl.gettingStarted()">
+            <oui-tile-button data-on-click="$ctrl.gettingStarted($ctrl.clusterDetails.id)">
                 <span data-translate="enterprise_cloud_database_getting_started"></span>
             </oui-tile-button>
-            <oui-tile-button data-on-click="$ctrl.goToClusterNodes()">
+            <oui-tile-button data-on-click="$ctrl.goToClusterNodes($ctrl.clusterDetails.id)">
                 <span data-translate="enterprise_cloud_database_manage_cluster"></span>
             </oui-tile-button>
         </oui-tile>
