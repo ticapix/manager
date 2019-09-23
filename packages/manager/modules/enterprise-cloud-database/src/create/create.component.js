@@ -5,6 +5,8 @@ export default {
   bindings: {
     capabilities: '<',
     catalog: '<',
+    hasDefaultPaymentMethod: '<',
+    paymentMethodURL: '<',
     goBackToList: '<',
     user: '<',
   },

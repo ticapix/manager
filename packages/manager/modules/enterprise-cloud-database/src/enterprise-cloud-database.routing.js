@@ -46,10 +46,8 @@ export default /* @ngInject */($stateProvider) => {
       manageCluster: /* @ngInject */ $state => clusterId => $state
         .go('enterprise-cloud-database.service.details.overview', { clusterId }),
       createCluster: /* @ngInject */ $state => () => $state.go('enterprise-cloud-database.create'),
-      getMyServicesURL: /* @ngInject */ () => (serviceName, serviceType) => {
-        console.log('getMyServicesURL');
-        return `#/billing/autoRenew?searchText=${serviceName}&selectedType=${serviceType}`;
-      },
+      getMyServicesURL: /* @ngInject */ () => (serviceName, serviceType) => `#/billing/autoRenew?searchText=${serviceName}&selectedType=${serviceType}`,
+      paymentMethodURL: /* @ngInject */ () => '#/billing/payment/method',
       goBackToList: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
         type = STATUS.SUCCESS, clusterId = null) => {
         const reload = message && type === STATUS.SUCCESS;
@@ -67,8 +65,6 @@ export default /* @ngInject */($stateProvider) => {
         }
         return promise;
       },
-      defaultPaymentMethod: /* @ngInject */
-        enterpriseCloudDatabaseService => enterpriseCloudDatabaseService.getDefaultPaymentMethod(),
     },
   });
 };

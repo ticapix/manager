@@ -4,6 +4,7 @@ import 'oclazyload';
 
 import '@ovh-ux/manager-cloud-styles';
 import '@ovh-ux/ng-ui-router-layout';
+import '@ovh-ux/ng-ovh-payment-method';
 
 import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ovhManagerCore from '@ovh-ux/manager-core';
@@ -19,6 +20,7 @@ const moduleName = 'enterpriseCloudDatabase';
 
 angular.module(moduleName, [
   'ngUiRouterLayout',
+  'ngOvhPaymentMethod',
   'oc.lazyLoad',
   'ui.router',
   'ovh-api-services',

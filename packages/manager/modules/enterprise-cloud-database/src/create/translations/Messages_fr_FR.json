@@ -39,6 +39,6 @@
   "enterprise_cloud_database_coming_soon": "Coming soon",
   "enterprise_cloud_database_create_inprogress": "In progress",
   "enterprise_cloud_database_create_cancel_button_label": "Cancel",
-  "enterprise_cloud_database_create_success": "Enterprise Cloud Database cluster is being deployed. It takes approximately 1 hour for deployment to finish.",
+  "enterprise_cloud_database_create_success": "Enterprise Cloud Database cluster is being deployed. The cluster will appear in below table as soon as the deployment is complete.",
   "enterprise_cloud_database_create_error": "Failed to create Enterprise Cloud Database: {{ message }}"
 }

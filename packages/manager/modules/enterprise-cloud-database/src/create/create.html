@@ -10,7 +10,10 @@
             <span data-translate="enterprise_cloud_database_create_title"></span>
         </oui-back-button>
         <p data-translate="enterprise_cloud_database_create_description"></p>
-        <form novalidate>
+        <oui-message data-type="error" data-ng-if="!$ctrl.hasDefaultPaymentMethod">
+            <span data-ng-bind-html="'enterprise_cloud_database_no_default_payment_method' | translate: { href: $ctrl.paymentMethodURL }"></span>
+        </oui-message>
+        <form novalidate data-ng-if="$ctrl.hasDefaultPaymentMethod">
             <!-- database -->
             <section class="choose-database mb-5">
                 <h4 data-translate="enterprise_cloud_database_create_choose_db"></h4>
