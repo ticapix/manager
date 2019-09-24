@@ -48,6 +48,11 @@ export const DELETE_CONFIRMATION_INPUT_PATTERN = /^DELETE$/;
 export const ENTERPRISE_CLOUD_DATABASE_CLUSTER_NAME_PATTERN = /^[a-zA-Z][a-zA-Z0-9-_]{0,253}[a-zA-Z0-9]$/;
 export const SERVICE_TYPE = 'ENTERPRISE_CLOUD_DATABASE';
 
+export const ADP_URL = {
+  EU: 'https://www.ovh.com/manager/cloud/repsac/#/dbaas/logs/list',
+  CA: 'https://ca.ovh.com/manager/cloud/repsac/#/dbaas/logs/list',
+};
+
 export default {
   DATABASE_CONSTANTS,
   DELETE_CONFIRMATION_INPUT_PATTERN,
@@ -60,4 +65,5 @@ export default {
   STATUS,
   SUCCESS_STATUS,
   SERVICE_TYPE,
+  ADP_URL,
 };

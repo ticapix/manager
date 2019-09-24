@@ -1,4 +1,4 @@
-import { STATUS } from '../../../enterprise-cloud-database.constants';
+import { STATUS, ADP_URL } from '../../../enterprise-cloud-database.constants';
 
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.logs', {
@@ -26,6 +26,12 @@ export default /* @ngInject */($stateProvider) => {
           logId: ldpAccount.id,
         });
       },
+      refreshLogs: /* @ngInject */
+      ($state, enterpriseCloudDatabaseService) => () => {
+        enterpriseCloudDatabaseService.resetLogsCache();
+        return $state.reload();
+      },
+      ldpHomeUrl: /* @ngInject */ coreConfig => ADP_URL[coreConfig.getRegion()],
       goBackToLogs: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
         type = STATUS.SUCCESS) => {
         const reload = message && type === STATUS.SUCCESS;

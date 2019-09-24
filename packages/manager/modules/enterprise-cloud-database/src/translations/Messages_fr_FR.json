@@ -46,5 +46,6 @@
   "enterprise_cloud_database_common_manage": "Administrer",
   "enterprise_cloud_database_common_subscription_contact_admin": "Administrateur",
   "enterprise_cloud_database_common_subscription_contact_billing": "Facturation",
-  "enterprise_cloud_database_common_subscription_contact_technical": "Technique"
+  "enterprise_cloud_database_common_subscription_contact_technical": "Technique",
+  "enterprise_cloud_database_common_refresh": "Rafraîchir"
 }
