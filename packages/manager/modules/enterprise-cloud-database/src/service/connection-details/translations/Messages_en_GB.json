@@ -9,6 +9,6 @@
   "enterprise_cloud_database_service_connection_details_parameters_port": "port",
   "enterprise_cloud_database_service_connection_details_parameters_database": "database",
   "enterprise_cloud_database_service_connection_details_parameters_sslmode": "sslmode",
-  "enterprise_cloud_database_service_connection_details_string_description_postgresql": "Copy the connection string to paste directly into an interactive psql session.",
-  "enterprise_cloud_database_service_connection_details_flags_description_postgresql": "Use to connect to this database cluster in conjuction with Postgre extensions like pg_restore or from within the psql monitor."
+  "enterprise_cloud_database_service_connection_details_string_description_postgresql": "Copy the connection string to paste directly into an interactive psql session or any compliant application.",
+  "enterprise_cloud_database_service_connection_details_flags_description_postgresql": "Use to connect to this database cluster in conjuction with PostgreSQL tools like pg_restore or from within the psql monitor."
 }

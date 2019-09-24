@@ -1,5 +1,5 @@
 {
-  "enterprise_cloud_database_service_get_started_secure_cluster_name": "Rename your Enterprise Cloud Database",
+  "enterprise_cloud_database_service_get_started_secure_cluster_name": "Rename your cluster",
   "enterprise_cloud_database_service_get_started_secure_cluster_name_help": "The cluster name must contain between 1 and 255 characters. Only lowercase letters, uppercase letters, '-', '_', and numbers are allowed.",
   "enterprise_cloud_database_service_get_started_secure_cluster_name_placeholder": "Enter a cluster name",
   "enterprise_cloud_database_service_get_started_secure_cluster_trusted_sources_title": "Trusted sources",

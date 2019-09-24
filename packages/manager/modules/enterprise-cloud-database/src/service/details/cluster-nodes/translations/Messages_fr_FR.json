@@ -7,5 +7,6 @@
   "enterprise_cloud_database_service_details_cluster_nodes_nodes": "Nœud du cluster",
   "enterprise_cloud_database_service_details_cluster_nodes_node_name": "Nom du nœud",
   "enterprise_cloud_database_service_details_cluster_nodes_add_replica": "Ajouter un réplica",
-  "enterprise_cloud_database_service_details_cluster_nodes_delete_replica": "Supprimer un réplica"
+  "enterprise_cloud_database_service_details_cluster_nodes_delete_replica": "Supprimer un réplica",
+  "enterprise_cloud_database_service_details_cluster_nodes_refresh": "Refresh Nœuds"
 }
