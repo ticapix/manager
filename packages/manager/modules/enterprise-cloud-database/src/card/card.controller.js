@@ -1,9 +1,8 @@
 import { addBooleanParameter } from 'ovh-ui-angular/packages/common/component-utils';
 
 export default class CardController {
+  /* @ngInject */
   constructor($element, $timeout, $transclude) {
-    'ngInject';
-
     this.$element = $element;
     this.$timeout = $timeout;
     this.$transclude = $transclude;

@@ -13,14 +13,14 @@
             </div>
         </enterprise-cloud-database-card-body>
         <enterprise-cloud-database-card-footer>
-            <div class="mt-2 mb-2" data-ng-if="::paymentType.monthly">
+            <div class="my-2" data-ng-if="::paymentType.monthly">
                 <enterprise-cloud-database-price-component
                     data-price="$ctrl.databasePrice.price"
                     data-tax="$ctrl.databasePrice.tax"
                     data-user="$ctrl.user">
                 </enterprise-cloud-database-price-component>
             </div>
-            <div class="mt-2 mb-2" data-ng-if=":: !paymentType.monthly">
+            <div class="my-2" data-ng-if=":: !paymentType.monthly">
                 <enterprise-cloud-database-price-component
                     data-price="$ctrl.databasePrice.price * $ctrl.enterpriseDb.commitmentPeriod.months"
                     data-tax="$ctrl.databasePrice.tax * $ctrl.enterpriseDb.commitmentPeriod.months"

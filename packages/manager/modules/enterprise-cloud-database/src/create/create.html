@@ -5,10 +5,10 @@
     </oui-page-header>
     <div class="container-fluid w-100 h-100 pt-4 pb-4 px-3 px-md-5">
         <!-- error messages -->
-        <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
         <oui-back-button data-state="enterprise-cloud-database">
             <span data-translate="enterprise_cloud_database_create_title"></span>
         </oui-back-button>
+        <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
         <p data-translate="enterprise_cloud_database_create_description"></p>
         <oui-message data-type="error" data-ng-if="!$ctrl.hasDefaultPaymentMethod">
             <span data-ng-bind-html="'enterprise_cloud_database_no_default_payment_method' | translate: { href: $ctrl.paymentMethodURL }"></span>
@@ -41,9 +41,9 @@
                 <h5><span data-translate="enterprise_cloud_database_create_choose_cluster_info"
                     data-translate-values="{ numDefaultNodes: $ctrl.minHostCount }"></span>:</h5>
                 <ul class="list-unstyled">
-                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_primary"></span> (Primary)</li>
-                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_replica"></span> (Replica)</li>
-                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_backup"></span> (Backup)</li>
+                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_primary"></span></li>
+                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_replica"></span></li>
+                    <li>1 x <span data-translate="enterprise_cloud_database_create_choose_cluster_backup"></span></li>
                 </ul>
                 <enterprise-cloud-database-create-choose-cluster-config
                     clusters="$ctrl.clusters"

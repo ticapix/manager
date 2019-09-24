@@ -1,6 +1,6 @@
 <div class="row">
     <enterprise-cloud-database-card
-        data-ng-repeat="commitmentPeriod in $ctrl.commitmentPeriods track by $index"
+        data-ng-repeat="commitmentPeriod in ::$ctrl.commitmentPeriods track by $index"
         class="col-sm-4 col-md-3 col-lg-2"
         data-label="{{ :: commitmentPeriod.months === 1 ?
             ('enterprise_cloud_database_create_order_1_month' | translate) :

@@ -1,6 +1,6 @@
 <div class="row">
     <enterprise-cloud-database-card
-        data-ng-repeat="database in $ctrl.databases track by database.name"
+        data-ng-repeat="database in ::$ctrl.databases track by database.name"
         class="col-sm-4 col-md-3 col-lg-2"
         data-label="{{ ::database.displayName }}"
         data-model="database"
