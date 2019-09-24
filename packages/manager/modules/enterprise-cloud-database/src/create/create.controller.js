@@ -15,7 +15,7 @@ import toArray from 'lodash/toArray';
 import uniqBy from 'lodash/uniqBy';
 
 import { COMMITMENT_PERIODS, PAYMENT_TYPES } from './create.constants';
-import { DATABASE_CONSTANTS } from '../enterprise-cloud-database.constants';
+import { DATABASE_CONSTANTS, GUIDELINK } from '../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseCreateCtrl {
   /* @ngInject */
@@ -27,6 +27,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     this.cucServiceHelper = CucServiceHelper;
     this.cucCloudMessage = CucCloudMessage;
     this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
+    this.GUIDELINK = GUIDELINK;
   }
 
   $onInit() {
