@@ -108,21 +108,21 @@
                 <h4 data-translate="enterprise_cloud_database_create_order_summary_title"></h4>
                 <dl class="border-top mt-1">
                     <div class="row mb-2">
-                        <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_database"></dt>
-                        <dd class="col-sm-9 my-auto">
+                        <dt class="col-sm-2 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_database"></dt>
+                        <dd class="col-sm-10 my-auto">
                             <span data-ng-bind="$ctrl.enterpriseDb.database.displayName"></span>
                             <span data-ng-bind="$ctrl.enterpriseDb.database.selectedVersion"></span>
                         </dd>
                     </div>
                     <div class="row mb-2">
-                        <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_region"></dt>
-                        <dd class="col-sm-9 my-auto">
+                        <dt class="col-sm-2 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_region"></dt>
+                        <dd class="col-sm-10 my-auto">
                             <span data-ng-bind="$ctrl.enterpriseDb.datacenter"></span>
                         </dd>
                     </div>
                     <div class="row mb-2">
-                        <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_cluster_label"></dt>
-                        <dd class="col-sm-9 my-auto">
+                        <dt class="col-sm-2 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_cluster_label"></dt>
+                        <dd class="col-sm-10 my-auto">
                             <span> {{ $ctrl.minHostCount + $ctrl.enterpriseDb.additionalReplica.value }} X
                                 (<span data-translate="enterprise_cloud_database_create_RAM"
                                     data-translate-values="{ RAM: $ctrl.enterpriseDb.cluster.memory.size }">
@@ -136,8 +136,8 @@
                         </dd>
                     </div>
                     <div class="row mb-2">
-                        <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_commitment_period"></dt>
-                        <dd class="col-sm-9 my-auto">
+                        <dt class="col-sm-2 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_commitment_period"></dt>
+                        <dd class="col-sm-10 my-auto">
                             <span data-ng-if="$ctrl.enterpriseDb.commitmentPeriod.months === 1"
                                 data-translate="enterprise_cloud_database_create_order_1_month"
                                 data-translate-values="{ numMonths: $ctrl.enterpriseDb.commitmentPeriod.months }">
@@ -149,14 +149,14 @@
                         </dd>
                     </div>
                     <div class="row mb-2">
-                        <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_payment_type"></dt>
-                        <dd class="col-sm-9 my-auto">
+                        <dt class="col-sm-2 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_payment_type"></dt>
+                        <dd class="col-sm-10 my-auto">
                             <span data-translate="{{ 'enterprise_cloud_database_create_order_payment_'+$ctrl.enterpriseDb.paymentType.name }}"></span>
                         </dd>
                     </div>
                     <div class="row mb-2">
-                        <dt class="col-sm-3 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_payment_total_label"></dt>
-                        <dd class="col-sm-9 my-auto" data-ng-if="$ctrl.enterpriseDb.paymentType.monthly">
+                        <dt class="col-sm-2 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_payment_total_label"></dt>
+                        <dd class="col-sm-10 my-auto" data-ng-if="$ctrl.enterpriseDb.paymentType.monthly">
                             <enterprise-cloud-database-price-component
                                 data-price="$ctrl.totalDatabasePrice.price"
                                 data-tax="$ctrl.totalDatabasePrice.tax"
@@ -164,7 +164,7 @@
                             </enterprise-cloud-database-price-component>
                             /<span data-translate="enterprise_cloud_database_create_order_month"></span>
                         </dd>
-                        <dd class="col-sm-9 my-auto" data-ng-if="!$ctrl.enterpriseDb.paymentType.monthly">
+                        <dd class="col-sm-10 my-auto" data-ng-if="!$ctrl.enterpriseDb.paymentType.monthly">
                             <enterprise-cloud-database-price-component
                                 data-price="$ctrl.totalDatabasePrice.price * $ctrl.enterpriseDb.commitmentPeriod.months"
                                 data-tax="$ctrl.totalDatabasePrice.tax * $ctrl.enterpriseDb.commitmentPeriod.months"
