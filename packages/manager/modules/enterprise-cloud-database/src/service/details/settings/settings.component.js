@@ -12,6 +12,7 @@ export default {
     maintenanceWindow: '<',
     regionInfo: '<',
     reload: '<',
+    securityGroupId: '<',
     securityGroups: '<',
   },
   controller,

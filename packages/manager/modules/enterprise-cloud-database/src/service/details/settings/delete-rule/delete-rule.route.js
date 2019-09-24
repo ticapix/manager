@@ -11,10 +11,10 @@ export default /* @ngInject */($stateProvider) => {
       },
       resolve: {
         goBack: /* @ngInject */ ($state, clusterId, CucCloudMessage) => (message = false,
-          type = STATUS.SUCCESS) => {
+          type = STATUS.SUCCESS, securityGroupId = null) => {
           const reload = message && type === STATUS.SUCCESS;
           const state = 'enterprise-cloud-database.service.details.settings';
-          const promise = $state.go(state, { clusterId }, { reload });
+          const promise = $state.go(state, { clusterId, securityGroupId }, { reload });
           if (message) {
             promise.then(() => CucCloudMessage[type](message, MESSAGE_CONTAINER));
           }
