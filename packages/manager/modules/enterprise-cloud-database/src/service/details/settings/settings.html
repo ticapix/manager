@@ -31,7 +31,10 @@
     <div class="oui-box oui-box_light">
         <h6 data-translate="enterprise_cloud_database_service_details_settings_allowed_ips"></h6>
         <span data-translate="enterprise_cloud_database_service_details_settings_allowed_ips_description"></span>
-        <a href="#" data-translate="enterprise_cloud_database_service_details_settings_allowed_ips_help"></a>
+        <a href="{{:: $ctrl.GUIDELINK }}" class="mb-3 oui-link_icon" target="_blank">
+            <span data-translate="enterprise_cloud_database_service_details_settings_allowed_ips_help"></span>
+            <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+        </a>
         <oui-datagrid class="mt-3" data-rows="$ctrl.securityGroups">
             <oui-column data-property="name">
                 <span class="oui-icon oui-icon-chevron-down_extra-thin expand-button"
