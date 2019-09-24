@@ -118,7 +118,7 @@ export const NETWORKS_CONFIG = {
 
 export const ENTERPRISE_CLOUD_DATABASE = {
   app: [DEDICATED],
-  icon: 'fa fa-database',
+  icon: 'ovh-font ovh-font-database',
   id: 'enterprise_cloud_database',
   regions: ['EU'],
   state: 'enterprise-cloud-database',
