@@ -33,7 +33,7 @@ export default /* @ngInject */($stateProvider) => {
         getClusterDetails,
       ) => enterpriseCloudDatabaseService
         .getClusters()
-          .then(clusters => $q.all(map(clusters, clusterId => getClusterDetails(clusterId)))),
+        .then(clusters => $q.all(map(clusters, clusterId => getClusterDetails(clusterId)))),
       getClusterDetails: /* @ngInject */ (
         capabilities,
         enterpriseCloudDatabaseService,
