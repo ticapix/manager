@@ -12,6 +12,7 @@ export default {
     goToManualBackup: '<',
     goToRecovery: '<',
     goToRestore: '<',
+    refreshBackups: '<',
     restorePrice: '<',
     user: '<',
   },

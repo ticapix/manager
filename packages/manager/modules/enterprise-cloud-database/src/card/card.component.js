@@ -3,14 +3,14 @@ import template from './card.html';
 
 export default {
   bindings: {
-    id: '@?',
-    name: '@?',
-    label: '@',
-    image: '@?',
     disabled: '<?',
+    id: '@?',
+    image: '@?',
+    label: '@',
     model: '=?',
-    selected: '<?',
+    name: '@?',
     onChange: '&',
+    selected: '<?',
   },
   controller,
   template,

@@ -16,5 +16,11 @@
   "enterprise_cloud_database_backup_mode_auto": "Auto",
   "enterprise_cloud_database_backup_mode_manual": "Manuel",
   "enterprise_cloud_database_backup_per_gb_hour": "/Go/Heure",
-  "enterprise_cloud_database_backup_per_hour": "/Heure"
+  "enterprise_cloud_database_backup_per_hour": "/Heure",
+  "enterprise_cloud_database_backups_instance_price": "Instance:",
+  "enterprise_cloud_database_backups_volume_price": "Volume:",
+  "enterprise_cloud_database_backups_auto_heading": "Auto Sauvegarde",
+  "enterprise_cloud_database_backups_manual_heading": "Sauvegarde Manuelle",
+  "enterprise_cloud_database_backups_manual_included": "Prix ​​inclus dans l'offre",
+  "enterprise_cloud_database_backups_manual_popover": "Somme de tout le volume de sauvegarde manuelle"
 }
