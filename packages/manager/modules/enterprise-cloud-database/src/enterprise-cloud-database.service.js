@@ -99,6 +99,11 @@ export default class EnterpriseCloudDatabaseService {
     return this.OvhApiCloudDBEnterpriseCluster.query().$promise;
   }
 
+  resetClusterListCache() {
+    this.OvhApiCloudDBEnterpriseCluster.resetQueryCache();
+    this.OvhApiCloudDBEnterpriseCluster.resetCache();
+  }
+
   getEndpointDetails(clusterId, endpointId) {
     return this.OvhApiCloudDBEnterpriseEndpoint.get({ clusterId, endpointId }).$promise;
   }

@@ -1,4 +1,0 @@
-{
-  "enterprise_cloud_database_service_details_default_payment_checkbox": "Utiliser le moyen de paiement par défaut {{ paymentDetails }}",
-  "enterprise_cloud_database_service_details_no_default_payment": "Aucun moyen de paiement par défaut disponible"
-}

@@ -1,6 +1,8 @@
 import assign from 'lodash/assign';
 
-import { DATABASE_CONSTANTS, GUIDELINK, SERVICE_TYPE } from './enterprise-cloud-database.constants';
+import {
+  DATABASE_CONSTANTS, GUIDELINK, SERVICE_TYPE, STATUS,
+} from './enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseCtrl {
   /* @ngInject */
@@ -15,6 +17,7 @@ export default class EnterpriseCloudDatabaseCtrl {
     this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
     this.GUIDELINK = GUIDELINK;
     this.SERVICE_TYPE = SERVICE_TYPE;
+    this.STATUS = STATUS;
   }
 
   $onInit() {
@@ -32,9 +35,8 @@ export default class EnterpriseCloudDatabaseCtrl {
 
   loadRow(cluster) {
     return this.$q.all([
-      this.getClusterDetails(cluster.id),
-      this.enterpriseCloudDatabaseService.getEndpointsWithDetails(cluster.id),
-      this.enterpriseCloudDatabaseService.getUser(cluster.id),
-    ]).then(res => assign({ endpoints: res[1], user: res[2] }, res[0]));
+      this.enterpriseCloudDatabaseService.getEndpointsWithDetails(cluster.details.id),
+      this.enterpriseCloudDatabaseService.getUser(cluster.details.id),
+    ]).then(res => assign({ endpoints: res[0], user: res[1] }));
   }
 }

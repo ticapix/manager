@@ -40,6 +40,13 @@ export const STATUS = {
   ERROR: 'error',
   SUCCESS: 'success',
   WARNING: 'warning',
+  CREATING: 'creating',
+  DELETING: 'deleting',
+  REOPENING: 'reopening',
+  RESTARTING: 'restarting',
+  SCALING: 'scaling',
+  SUSPENDING: 'suspending',
+  UPDATING: 'updating',
 };
 
 export const MASKED_PASSWORD = '********';

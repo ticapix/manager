@@ -27,26 +27,31 @@ export default /* @ngInject */($stateProvider) => {
         enterpriseCloudDatabaseService,
       ) => enterpriseCloudDatabaseService
         .constructor.getCapabilities(catalog, offers),
-      clusters: /* @ngInject */ enterpriseCloudDatabaseService => enterpriseCloudDatabaseService
-        .getClusters().then(clusters => map(clusters, clusterId => ({ id: clusterId }))),
+      clusters: /* @ngInject */ (
+        $q,
+        enterpriseCloudDatabaseService,
+        getClusterDetails,
+      ) => enterpriseCloudDatabaseService
+        .getClusters()
+          .then(clusters => $q.all(map(clusters, clusterId => getClusterDetails(clusterId)))),
       getClusterDetails: /* @ngInject */ (
         capabilities,
         enterpriseCloudDatabaseService,
       ) => clusterId => enterpriseCloudDatabaseService
         .getClusterDetails(clusterId)
         .then(details => ({ offer: find(capabilities, { name: details.offerName }), details })),
-      deleteCluster: /* @ngInject */ $state => (clusterId, clusterName) => $state
-        .go('enterprise-cloud-database.delete', {
-          projectId: 'projectId',
-          clusterId,
-          clusterName,
-        }),
       gettingStarted: /* @ngInject */ $state => clusterId => $state
         .go('enterprise-cloud-database.service.get-started', { clusterId }),
       manageCluster: /* @ngInject */ $state => clusterId => $state
         .go('enterprise-cloud-database.service.details.overview', { clusterId }),
       createCluster: /* @ngInject */ $state => () => $state.go('enterprise-cloud-database.create'),
-      getMyServicesURL: /* @ngInject */ () => (serviceName, serviceType) => `#/billing/autoRenew?searchText=${serviceName}&selectedType=${serviceType}`,
+      goToMyServices: /* @ngInject */ $window => (
+        serviceName,
+        serviceType,
+      ) => {
+        $window.location = `#/billing/autoRenew?searchText=${serviceName}&selectedType=${serviceType}`;
+        $window.location.reload();
+      },
       paymentMethodURL: /* @ngInject */ () => '#/billing/payment/method',
       goBackToList: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
         type = STATUS.SUCCESS, clusterId = null) => {
@@ -64,6 +69,10 @@ export default /* @ngInject */($stateProvider) => {
           });
         }
         return promise;
+      },
+      refreshClusterList: /* @ngInject */ ($state, enterpriseCloudDatabaseService) => () => {
+        enterpriseCloudDatabaseService.resetClusterListCache();
+        return $state.reload();
       },
     },
   });
