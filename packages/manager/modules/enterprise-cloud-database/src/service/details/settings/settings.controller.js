@@ -1,3 +1,4 @@
+import find from 'lodash/find';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
 import reduce from 'lodash/reduce';
@@ -30,6 +31,10 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
 
     this.rules = {};
     this.CucCloudMessage.flushMessages(MESSAGE_CONTAINER);
+    const securityGroup = find(this.securityGroups, { id: this.securityGroupId });
+    if (securityGroup) {
+      this.toggleRules(securityGroup);
+    }
   }
 
   getMaintenanceWindowConfig() {
