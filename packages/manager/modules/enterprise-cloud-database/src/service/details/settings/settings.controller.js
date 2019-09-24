@@ -5,7 +5,7 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 
 import { MESSAGE_CONTAINER } from '../details.constants';
-import { STATUS } from '../../../enterprise-cloud-database.constants';
+import { GUIDELINK, STATUS } from '../../../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
   /* @ngInject */
@@ -17,6 +17,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
+    this.GUIDELINK = GUIDELINK;
   }
 
   $onInit() {
