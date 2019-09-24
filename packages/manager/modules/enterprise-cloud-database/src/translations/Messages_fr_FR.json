@@ -26,6 +26,7 @@
   "enterprise_cloud_database_common_remove": "Supprimer",
   "enterprise_cloud_database_common_save": "Sauvegarder",
   "enterprise_cloud_database_common_name": "Nom",
+  "enterprise_cloud_database_common_edit": "Modifier",
   "enterprise_cloud_database_common_confirm": "Confirmer",
   "enterprise_cloud_database_common_status_create": "Créer",
   "enterprise_cloud_database_common_status_created": "Créé",
@@ -47,5 +48,7 @@
   "enterprise_cloud_database_common_subscription_contact_admin": "Administrateur",
   "enterprise_cloud_database_common_subscription_contact_billing": "Facturation",
   "enterprise_cloud_database_common_subscription_contact_technical": "Technique",
-  "enterprise_cloud_database_common_refresh": "Rafraîchir"
+  "enterprise_cloud_database_common_refresh": "Rafraîchir",
+  "enterprise_cloud_database_guides": "Guides",
+  "enterprise_cloud_database_guides_main": "Enterprise Cloud Database"
 }

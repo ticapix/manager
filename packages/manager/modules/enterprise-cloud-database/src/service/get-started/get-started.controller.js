@@ -2,6 +2,7 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 import set from 'lodash/set';
+import { GUIDELINK } from '../../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
   /* @ngInject */
@@ -17,6 +18,7 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
+    this.GUIDELINK = GUIDELINK;
   }
 
   $onInit() {
