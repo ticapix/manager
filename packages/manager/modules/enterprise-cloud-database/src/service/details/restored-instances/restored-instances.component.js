@@ -7,6 +7,7 @@ export default {
     clusterDetails: '<',
     endpoints: '<',
     goToDelete: '<',
+    refreshRestoredInstances: '<',
     restoredInstances: '<',
   },
   controller,

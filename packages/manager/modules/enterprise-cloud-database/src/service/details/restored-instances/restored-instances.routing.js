@@ -30,6 +30,10 @@ export default /* @ngInject */($stateProvider) => {
           return promise;
         },
       goToDelete: /* @ngInject */ $state => instanceId => $state.go('enterprise-cloud-database.service.details.restored-instances.delete', { instanceId }),
+      refreshRestoredInstances: /* @ngInject */ ($state, enterpriseCloudDatabaseService) => () => {
+        enterpriseCloudDatabaseService.resetRestoredInstancesCache();
+        return $state.reload();
+      },
       restoredInstances: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getRestoreList(clusterId),

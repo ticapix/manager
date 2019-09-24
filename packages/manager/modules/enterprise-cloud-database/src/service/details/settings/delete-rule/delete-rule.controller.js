@@ -29,6 +29,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsDeleteSecurity
             source: this.rule.source,
           }),
           STATUS.SUCCESS,
+          this.securityGroup.id,
         );
       })
       .catch(error => this.goBack(
