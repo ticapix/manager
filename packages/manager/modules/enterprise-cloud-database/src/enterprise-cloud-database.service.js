@@ -237,6 +237,11 @@ export default class EnterpriseCloudDatabaseService {
     ).$promise;
   }
 
+  resetBackupsCache() {
+    this.OvhApiCloudDBEnterpriseBackup.resetQueryCache();
+    this.OvhApiCloudDBEnterpriseBackup.resetCache();
+  }
+
   getLogs(clusterId) {
     return this.OvhApiCloudDBEnterpriseLogs.query({ clusterId })
       .$promise

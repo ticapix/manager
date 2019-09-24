@@ -10,7 +10,6 @@ export default class {
   constructor() {
     this.COMMANDS_LIST = COMMANDS_LIST;
     this.GUIDELINK = GUIDELINK;
-    console.log(this.GUIDELINK);
   }
 
   $onInit() {
