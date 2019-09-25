@@ -10,13 +10,14 @@ export default /* @ngInject */($stateProvider) => {
     },
     resolve: {
       createReplicas: /* @ngInject */ $transition$ => $transition$.params().createReplicas,
-      goBack: /* @ngInject */ ($state, clusterId, CucCloudMessage) => (message = false,
-        type = STATUS.SUCCESS) => {
+      goBack: /* @ngInject */ ($state, clusterId,
+        CucCloudMessage, CucControllerHelper) => (message = false, type = STATUS.SUCCESS) => {
         const reload = message && type === STATUS.SUCCESS;
         const promise = $state.go('enterprise-cloud-database.service.details.cluster-nodes', { clusterId }, { reload });
         if (message) {
           promise.then(() => {
             CucCloudMessage[type](message, MESSAGE_CONTAINER);
+            CucControllerHelper.scrollPageToTop();
           });
         }
         return promise;
