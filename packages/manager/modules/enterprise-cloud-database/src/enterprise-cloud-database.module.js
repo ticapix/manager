@@ -5,7 +5,6 @@ import enterpriseCloudDatabaseComponent from './enterprise-cloud-database.compon
 import enterpriseCloudDatabaseService from './enterprise-cloud-database.service';
 import routing from './enterprise-cloud-database.routing';
 import create from './create';
-import deleteCluster from './delete';
 import mockData from './mock-data';
 import priceComponent from './price';
 import service from './service';
@@ -15,7 +14,6 @@ const moduleName = 'enterpriseCloudDatabase';
 angular
   .module(moduleName, [
     create,
-    deleteCluster,
     priceComponent,
     service,
   ])

@@ -75,7 +75,7 @@
         <oui-action-menu data-align="end" data-compact>
             <oui-action-menu-item
                 data-on-click="$ctrl.goToRestore($row)"
-                data-disabled="$ctrl.service.constructor.isProcessing($row.status) || $ctrl.service.constructor.isError($row.status)">
+                data-disabled="$ctrl.clusterDetails.status === $ctrl.STATUS.SCALING || $ctrl.service.constructor.isError($row.status)">
                 <span data-translate="enterprise_cloud_database_backup_restore"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
@@ -86,10 +86,12 @@
         </oui-action-menu>
         <extra-top data-ng-if="$ctrl.backupList > 0">
             <oui-action-menu data-text="{{:: 'enterprise_cloud_database_backup_actions' | translate }}">
-                <oui-action-menu-item data-on-click="$ctrl.goToManualBackup()" data-disabled="!$ctrl.service.constructor.isCreated($ctrl.clusterDetails.status)">
+                <oui-action-menu-item data-on-click="$ctrl.goToManualBackup()"
+                                      data-disabled="!($ctrl.STATUS.CREATING === $ctrl.clusterDetails.status || $ctrl.service.constructor.isError($ctrl.clusterDetails.status))">
                     <span data-translate="enterprise_cloud_database_backup_actions_manual_backup"></span>
                 </oui-action-menu-item>
-                <oui-action-menu-item data-on-click="$ctrl.goToRecovery($ctrl.minDate)" data-ng-if="$ctrl.backupList.length > 0" data-disabled="!$ctrl.service.constructor.isCreated($ctrl.clusterDetails.status)">
+                <oui-action-menu-item data-on-click="$ctrl.goToRecovery($ctrl.minDate)"
+                                      data-disabled="!$ctrl.service.constructor.isCreated($ctrl.clusterDetails.status)">
                     <span data-translate="enterprise_cloud_database_backup_actions_time_recovery"></span>
                 </oui-action-menu-item>
             </oui-action-menu>

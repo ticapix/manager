@@ -19,11 +19,12 @@ import { DATABASE_CONSTANTS, GUIDELINK } from '../enterprise-cloud-database.cons
 
 export default class EnterpriseCloudDatabaseCreateCtrl {
   /* @ngInject */
-  constructor($timeout, $translate, $window, CucServiceHelper,
-    CucCloudMessage, enterpriseCloudDatabaseService) {
+  constructor($timeout, $translate, $window, CucControllerHelper,
+    CucServiceHelper, CucCloudMessage, enterpriseCloudDatabaseService) {
     this.$translate = $translate;
     this.$timeout = $timeout;
     this.$window = $window;
+    this.CucControllerHelper = CucControllerHelper;
     this.cucServiceHelper = CucServiceHelper;
     this.cucCloudMessage = CucCloudMessage;
     this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
@@ -202,7 +203,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
       })
       .catch((error) => {
         this.cucServiceHelper.errorHandler('enterprise_cloud_database_create_error')(error);
-        this.$timeout(() => this.$window.scrollTo(0, 0), 100);
+        this.CucControllerHelper.scrollPageToTop();
       })
       .finally(() => {
         this.orderInProgress = false;

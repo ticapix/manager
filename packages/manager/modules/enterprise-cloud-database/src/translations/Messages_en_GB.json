@@ -13,6 +13,7 @@
   "enterprise_cloud_database_manage_cluster": "Manage cluster",
   "enterprise_cloud_database_common_add": "Add",
   "enterprise_cloud_database_common_delete": "Delete",
+  "enterprise_cloud_database_common_terminate": "Terminate",
   "enterprise_cloud_database_common_status": "Status",
   "enterprise_cloud_database_common_price": "Price:",
   "enterprise_cloud_database_common_actions": "Actions",

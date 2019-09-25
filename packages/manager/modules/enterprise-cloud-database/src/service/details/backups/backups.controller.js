@@ -3,6 +3,7 @@ import compact from 'lodash/compact';
 import moment from 'moment';
 
 import { MESSAGE_CONTAINER } from '../details.constants';
+import { STATUS } from '../../../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
   /* @ngInject */
@@ -12,6 +13,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsCtrl {
   ) {
     this.CucCloudMessage = CucCloudMessage;
     this.service = enterpriseCloudDatabaseService;
+    this.STATUS = STATUS;
   }
 
   $onInit() {
