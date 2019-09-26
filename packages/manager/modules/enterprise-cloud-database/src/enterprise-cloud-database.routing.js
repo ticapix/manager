@@ -49,7 +49,7 @@ export default /* @ngInject */($stateProvider) => {
         serviceName,
         serviceType,
       ) => {
-        $window.location = `#/billing/autoRenew?searchText=${serviceName}&selectedType=${serviceType}`;
+        $window.location.replace(`#/billing/autoRenew?searchText=${serviceName}&selectedType=${serviceType}`);
         $window.location.reload();
       },
       paymentMethodURL: /* @ngInject */ () => '#/billing/payment/method',
