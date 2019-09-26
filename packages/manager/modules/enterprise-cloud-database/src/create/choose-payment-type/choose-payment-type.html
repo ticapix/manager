@@ -7,10 +7,12 @@
         data-on-change="$ctrl.onPaymentTypeSelect(modelValue)"
         data-disabled="paymentType.monthly">
         <enterprise-cloud-database-card-body>
-            <div class="card-heading">
-                <p data-ng-bind=":: ('enterprise_cloud_database_create_order_payment_'+paymentType.name) | translate"></p>
-                <p data-ng-if="::paymentType.monthly" data-ng-bind=":: '(' + ('enterprise_cloud_database_coming_soon' | translate) + ')'"></p>
-            </div>
+            <span class="card-heading"
+                data-ng-bind=":: ('enterprise_cloud_database_create_order_payment_'+paymentType.name) | translate">
+            </span>
+            <span class="card-subheading" data-ng-if="::paymentType.monthly">
+                ({{ ::'enterprise_cloud_database_coming_soon' | translate }})
+            </span>
         </enterprise-cloud-database-card-body>
         <enterprise-cloud-database-card-footer>
             <div class="my-2" data-ng-if="::paymentType.monthly">

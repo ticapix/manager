@@ -1,5 +1,4 @@
 import compact from 'lodash/compact';
-import each from 'lodash/each';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
@@ -310,16 +309,15 @@ export default class EnterpriseCloudDatabaseService {
 
   getAllHostCount(offers) {
     const mapObj = {};
-    return this.$q.all(each(offers, (offer) => {
+    return this.$q.all(map(offers, (offer) => {
       if (isEmpty(mapObj[offer.offerName])) {
         mapObj[offer.offerName] = {};
       }
-      each(offer.regions, region => this
-        .$q.all(this.getHostCount(offer.offerName, region)
-          .then((count) => {
-            mapObj[offer.offerName][count.regionName] = { hostLeft: count.hostLeft };
-            return mapObj;
-          })));
+      return this.$q.all(map(offer.regions, region => this.getHostCount(offer.offerName, region)
+        .then((count) => {
+          mapObj[offer.offerName][count.regionName] = { hostLeft: count.hostLeft };
+          return mapObj;
+        })));
     }))
       .then(() => mapObj);
   }

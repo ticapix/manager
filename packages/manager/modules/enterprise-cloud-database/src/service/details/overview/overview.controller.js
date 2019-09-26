@@ -15,14 +15,15 @@ export default class EnterpriseCloudDatabaseServiceDetailsOverviewCtrl {
     enterpriseCloudDatabaseService,
   ) {
     this.$state = $state;
-    this.CucCloudMessage = CucCloudMessage;
     this.AUTO_BACKUP = AUTO_BACKUP;
+    this.BACKUP_RETENTION = BACKUP_RETENTION;
+    this.BACKUP_FREQUENCY = BACKUP_FREQUENCY;
+    this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
     this.INCLUDED_CLUSTER_SIZE = INCLUDED_CLUSTER_SIZE;
     this.MASKED_PASSWORD = MASKED_PASSWORD;
-    this.BACKUP_FREQUENCY = BACKUP_FREQUENCY;
-    this.BACKUP_RETENTION = BACKUP_RETENTION;
-    this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
+    this.SERVICE_TYPE = SERVICE_TYPE;
     this.USERNAME = USERNAME;
+    this.CucCloudMessage = CucCloudMessage;
     this.enterpriseCloudDatabaseService = enterpriseCloudDatabaseService;
   }
 
@@ -38,9 +39,5 @@ export default class EnterpriseCloudDatabaseServiceDetailsOverviewCtrl {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
-  }
-
-  getManageServiceURL() {
-    return this.getMyServicesURL(this.clusterDetails.id, SERVICE_TYPE);
   }
 }

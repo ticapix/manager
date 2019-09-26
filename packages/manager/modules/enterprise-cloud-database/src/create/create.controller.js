@@ -37,9 +37,12 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
     this.paymentTypes = PAYMENT_TYPES;
     this.orderInProgress = false;
-    this.minHostCount = get(head(this.capabilities), 'minHostCount', 0);
+    const catalog = get(this, 'catalog');
+    const capabilities = get(this, 'capabilities');
+    const hostCount = get(this, 'hostCount');
+    this.minHostCount = get(head(capabilities), 'minHostCount', 0);
     this.databasePlanMap = {};
-    this.populateCapabilityDetails();
+    this.populateCapabilityDetails(catalog, capabilities, hostCount);
     this.databases = this.getUniqueDatabases();
     this.populateDefaultValues();
   }
@@ -59,8 +62,10 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     const defaultDatacenter = head(defaultRegions);
     const defaultClusters = this
       .databasePlanMap[defaultDb.originalName][defaultDatacenter].clusters;
-    const defaultCluster = find(defaultClusters, cluster => cluster.memory.size === 32);
-    this.populateAdditionalReplicas(defaultCluster);
+    this.clusters = defaultClusters;
+    this.clusters = sortBy(this.clusters, cluster => cluster.memory.size);
+    const defaultCluster = this.getDefaultCluster(this.clusters, defaultDatacenter);
+    this.populateAdditionalReplicas(defaultCluster, defaultDatacenter);
     this.enterpriseDb = {
       database: defaultDb,
       datacenter: defaultDatacenter,
@@ -72,11 +77,19 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     };
     this.populateEnterpriseDatabasePrice();
     this.regions = toArray(defaultRegions);
-    this.clusters = defaultClusters;
-    this.clusters = sortBy(this.clusters, cluster => cluster.memory.size);
+  }
+
+  getDefaultCluster(clusters, region) {
+    return find(clusters, (cluster) => {
+      const count = get(cluster, ['hostCount', region, 'hostLeft'], 0);
+      return count >= this.minHostCount;
+    });
   }
 
   populateEnterpriseDatabasePrice() {
+    if (isEmpty(this.enterpriseDb.cluster)) {
+      return;
+    }
     this.totalDatabasePrice = {
       price: this.enterpriseDb.cluster.price.price
         * (this.enterpriseDb.defaultReplicaCount + this.enterpriseDb.additionalReplica.value),
@@ -85,24 +98,21 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     };
   }
 
-  populateCapabilityDetails() {
-    const catalog = get(this, 'catalog');
-    const capabilities = get(this, 'capabilities');
+  populateCapabilityDetails(catalog, capabilities, hostCount) {
     map(capabilities, (capability) => {
       const plans = get(catalog, 'plans', []);
       const plan = find(plans, p => p.planCode === capability.name);
       if (!isEmpty(plan)) {
         // populate supported databases and regions
-        this.populateDatabasesAndRegions(capability, plan, get(capability, 'status'));
+        this.populateDatabasesAndRegions(capability, plan, get(capability, 'status'), hostCount);
       }
     });
   }
 
-  populateAdditionalReplicas(cluster) {
-    const addon = get(cluster, 'nodeAddon', {});
-    const price = get(addon, 'price', {});
-    const minReplicas = get(cluster, 'minHostCount', 0);
-    const maxReplicas = get(cluster, 'maxHostCount', 0);
+  populateAdditionalReplicas(cluster, region) {
+    if (isEmpty(cluster)) {
+      return;
+    }
     this.additionalReplicas = [
       {
         value: 0,
@@ -111,7 +121,20 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
         label: this.$translate.instant('enterprise_cloud_database_create_additional_replicas_empty'),
       },
     ];
-    for (let i = 1; i <= maxReplicas - minReplicas; i += 1) {
+    const addon = get(cluster, 'nodeAddon', {});
+    const price = get(addon, 'price', {});
+    const minReplicas = get(cluster, 'minHostCount', 0);
+    const maxReplicas = get(cluster, 'maxHostCount', 0);
+    const availableReplicas = get(cluster, ['hostCount', region, 'hostLeft'], 0) - minReplicas;
+    if (availableReplicas <= 0) {
+      set(cluster, 'numReplicasAvailable', availableReplicas);
+      return;
+    }
+    let numReplicas = maxReplicas - minReplicas;
+    numReplicas = numReplicas <= availableReplicas
+      ? numReplicas : availableReplicas;
+    set(cluster, 'numReplicasAvailable', numReplicas);
+    for (let i = 1; i <= numReplicas; i += 1) {
       this.additionalReplicas[i] = {
         value: i,
         planCode: addon.planCode,
@@ -131,7 +154,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     return uniqBy(allDatabases, 'originalName');
   }
 
-  populateDatabasesAndRegions(capability, plan, status) {
+  populateDatabasesAndRegions(capability, plan, status, hostCount) {
     const configurations = get(plan, 'configurations');
     each(configurations, (conf) => {
       if (conf.name === 'dbms') {
@@ -142,10 +165,10 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
         set(capability, 'regions', get(conf, 'values'), []);
       }
     });
-    this.updateDatabasePlanMap(capability, capability);
+    this.updateDatabasePlanMap(capability, hostCount);
   }
 
-  updateDatabasePlanMap(capability) {
+  updateDatabasePlanMap(capability, hostCount) {
     const databases = get(capability, 'databases');
     const regions = get(capability, 'regions');
     each(databases, (db) => {
@@ -163,6 +186,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
         const clusters = get(dbPlanMap[region], 'clusters', []);
         if (!includes(clusters, capability.name)) {
           clusters[clusters.length] = capability;
+          set(capability, 'hostCount', hostCount[capability.name]);
         }
       });
     });
@@ -178,10 +202,11 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     const regionMap = this.databasePlanMap[databaseName][region];
     this.clusters = regionMap.clusters;
     this.clusters = sortBy(this.clusters, cluster => cluster.memory.size);
+    this.enterpriseDb.cluster = this.getDefaultCluster(this.clusters, this.enterpriseDb.datacenter);
   }
 
   onClusterSelect(cluster) {
-    this.populateAdditionalReplicas(cluster);
+    this.populateAdditionalReplicas(cluster, this.enterpriseDb.datacenter);
     this.enterpriseDb.additionalReplica = head(this.additionalReplicas);
     this.populateEnterpriseDatabasePrice();
   }
