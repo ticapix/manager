@@ -9,6 +9,10 @@ export default /* @ngInject */($stateProvider) => {
       hostList: null,
     },
     resolve: {
+      availableReplicas: /* @ngInject */
+      (clusterDetails, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
+        .getHostCount(clusterDetails.offerName, clusterDetails.regionName)
+        .then(hostCountDetails => hostCountDetails.hostLeft),
       createReplicas: /* @ngInject */ $transition$ => $transition$.params().createReplicas,
       goBack: /* @ngInject */ ($state, clusterId,
         CucCloudMessage, CucControllerHelper) => (message = false, type = STATUS.SUCCESS) => {
