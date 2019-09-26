@@ -1,3 +1,4 @@
+import each from 'lodash/each';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
@@ -291,6 +292,37 @@ export default class EnterpriseCloudDatabaseService {
       { clusterId, securityGroupId },
       { name },
     ).$promise;
+  }
+
+  getRegions(offerName) {
+    return this.OvhApiCloudDBEnterpriseOffers.getRegions({ name: offerName })
+      .$promise
+      .then((regions) => {
+        const regionObj = { offerName, regions };
+        return regionObj;
+      });
+  }
+
+  getAllHostCount(offers) {
+    const mapObj = {};
+    return this.$q.all(each(offers, (offer) => {
+      if (isEmpty(mapObj[offer.offerName])) {
+        mapObj[offer.offerName] = {};
+      }
+      each(offer.regions, region => this
+        .$q.all(this.getHostCount(offer.offerName, region)
+          .then((count) => {
+            mapObj[offer.offerName][count.regionName] = { hostLeft: count.hostLeft };
+            return mapObj;
+          })));
+    }))
+      .then(() => mapObj);
+  }
+
+  getHostCount(offerName, regionName) {
+    return this.OvhApiCloudDBEnterpriseOffers
+      .getAvailableHostCount({ name: offerName, regionName })
+      .$promise;
   }
 
   createCart() {

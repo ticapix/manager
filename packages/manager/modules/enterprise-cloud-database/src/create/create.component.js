@@ -5,9 +5,11 @@ export default {
   bindings: {
     capabilities: '<',
     catalog: '<',
-    hasDefaultPaymentMethod: '<',
-    paymentMethodURL: '<',
     goBackToList: '<',
+    hasDefaultPaymentMethod: '<',
+    hostCount: '<',
+    paymentMethodURL: '<',
+    regions: '<',
     user: '<',
   },
   controller,
