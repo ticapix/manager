@@ -2,22 +2,29 @@
            data-loading="$ctrl.isLoading"
            data-on-dismiss="$ctrl.goBack()"
            data-primary-action="$ctrl.saveData()"
+           data-primary-disabled="$ctrl.availableReplicas === 0"
            data-primary-label="{{:: 'enterprise_cloud_database_service_add_replicas_add' | translate }}"
            data-secondary-label="{{:: 'enterprise_cloud_database_common_cancel' | translate }}"
            data-secondary-action="$ctrl.goBack()">
-    <p data-translate="enterprise_cloud_database_service_add_replicas_description"></p>
-    <oui-select data-name="replicaCount"
-                data-model="$ctrl.data.selectedReplicaCount"
-                data-items="$ctrl.replicaCounts"
-                data-match="text"></oui-select>
-    <div>
-        <span data-translate="enterprise_cloud_database_common_price"></span>
-        <enterprise-cloud-database-price-component
-            data-price="$ctrl.data.selectedReplicaCount.price"
-            data-tax="$ctrl.data.selectedReplicaCount.tax"
-            data-user="$ctrl.user">
-        </enterprise-cloud-database-price-component>
-        <span data-translate="enterprise_cloud_database_common_per_hour"></span>
+    <div data-ng-if="$ctrl.availableReplicas === 0">
+        <strong data-translate="enterprise_cloud_database_service_add_replicas_no_stock_heading"></strong>
+        <p data-translate="enterprise_cloud_database_service_add_replicas_no_stock_description"></p>
     </div>
-    <p class="mt-2" data-translate="enterprise_cloud_database_service_add_replicas_billing_info"></p>
+    <div data-ng-if="$ctrl.availableReplicas > 0">
+        <p data-translate="enterprise_cloud_database_service_add_replicas_description"></p>
+        <oui-select data-name="replicaCount"
+                    data-model="$ctrl.data.selectedReplicaCount"
+                    data-items="$ctrl.replicaCounts"
+                    data-match="text"></oui-select>
+        <div>
+            <span data-translate="enterprise_cloud_database_common_price"></span>
+            <enterprise-cloud-database-price-component
+                data-price="$ctrl.data.selectedReplicaCount.price"
+                data-tax="$ctrl.data.selectedReplicaCount.tax"
+                data-user="$ctrl.user">
+            </enterprise-cloud-database-price-component>
+            <span data-translate="enterprise_cloud_database_common_per_hour"></span>
+        </div>
+        <p class="mt-2" data-translate="enterprise_cloud_database_service_add_replicas_billing_info"></p>
+    </div>
 </oui-modal>
