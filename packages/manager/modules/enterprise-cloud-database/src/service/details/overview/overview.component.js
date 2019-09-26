@@ -10,7 +10,7 @@ export default {
     gettingStarted: '<',
     goToChangeName: '<',
     goToClusterSize: '<',
-    getMyServicesURL: '<',
+    goToMyServices: '<',
     goToClusterNodes: '<',
     goToSettings: '<',
     goToUpdatePassword: '<',
