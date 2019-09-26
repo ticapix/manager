@@ -4,6 +4,7 @@ import template from './card.html';
 export default {
   bindings: {
     disabled: '<?',
+    disabledMessage: '@',
     id: '@?',
     image: '@?',
     label: '@',

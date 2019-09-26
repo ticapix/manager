@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 export default class {
   constructor($timeout) {
     'ngInject';
@@ -5,16 +7,16 @@ export default class {
     this.$timeout = $timeout;
   }
 
-  $onInit() {
-    this.selectedCluster = this.enterpriseDb.cluster;
+  outOfStock(cluster) {
+    const count = get(cluster, ['hostCount', this.enterpriseDb.datacenter, 'hostLeft'], 0);
+    return count < 3;
   }
 
   onClusterSelect(cluster) {
-    this.selectedCluster = cluster;
     this.enterpriseDb.cluster = cluster;
     if (this.onChange) {
       this.$timeout(() => this.onChange({
-        cluster: this.selectedCluster,
+        cluster,
       }));
     }
   }

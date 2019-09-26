@@ -58,7 +58,8 @@
                 </enterprise-cloud-database-create-choose-cluster-config>
             </section>
             <!-- additional replicas -->
-            <section class="additional-replica mb-4 clearfix">
+            <section class="additional-replica mb-4 clearfix"
+                data-ng-if="$ctrl.enterpriseDb.cluster && $ctrl.enterpriseDb.cluster.numReplicasAvailable > 0">
                 <h4 data-translate="enterprise_cloud_database_create_additional_replicas_title"></h4>
                 <p data-translate="enterprise_cloud_database_create_additional_replicas_desc"></p>
                 <label class="oui-select oui-select_l">
@@ -83,7 +84,7 @@
                 </div>
             </section>
             <!-- commitment period -->
-            <section class="choose-commitment mb-5">
+            <section class="choose-commitment mb-5" data-ng-if="$ctrl.enterpriseDb.cluster">
                 <h4 data-translate="enterprise_cloud_database_create_choose_commitment"></h4>
                 <enterprise-cloud-database-create-choose-commitment-period
                     data-enterprise-db="$ctrl.enterpriseDb"
@@ -94,7 +95,7 @@
                 </enterprise-cloud-database-create-choose-commitment-period>
             </section>
             <!-- payment type -->
-            <section class="choose-payment-type mb-5">
+            <section class="choose-payment-type mb-5" data-ng-if="$ctrl.enterpriseDb.cluster">
                 <h4 data-translate="enterprise_cloud_database_create_choose_payment"></h4>
                 <enterprise-cloud-database-create-choose-payment-type
                     data-enterprise-db="$ctrl.enterpriseDb"
@@ -120,7 +121,7 @@
                             <span data-ng-bind="$ctrl.enterpriseDb.datacenter"></span>
                         </dd>
                     </div>
-                    <div class="row mb-2">
+                    <div class="row mb-2" data-ng-if="$ctrl.enterpriseDb.cluster">
                         <dt class="col-sm-2 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_cluster_label"></dt>
                         <dd class="col-sm-10 my-auto">
                             <span> {{ $ctrl.minHostCount + $ctrl.enterpriseDb.additionalReplica.value }} X
@@ -135,7 +136,7 @@
                             </span>
                         </dd>
                     </div>
-                    <div class="row mb-2">
+                    <div class="row mb-2" data-ng-if="$ctrl.enterpriseDb.cluster">
                         <dt class="col-sm-2 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_commitment_period"></dt>
                         <dd class="col-sm-10 my-auto">
                             <span data-ng-if="$ctrl.enterpriseDb.commitmentPeriod.months === 1"
@@ -148,13 +149,13 @@
                             </span>
                         </dd>
                     </div>
-                    <div class="row mb-2">
+                    <div class="row mb-2" data-ng-if="$ctrl.enterpriseDb.cluster">
                         <dt class="col-sm-2 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_payment_type"></dt>
                         <dd class="col-sm-10 my-auto">
                             <span data-translate="{{ 'enterprise_cloud_database_create_order_payment_'+$ctrl.enterpriseDb.paymentType.name }}"></span>
                         </dd>
                     </div>
-                    <div class="row mb-2">
+                    <div class="row mb-2" data-ng-if="$ctrl.enterpriseDb.cluster">
                         <dt class="col-sm-2 font-weight-normal" data-translate="enterprise_cloud_database_create_order_summary_payment_total_label"></dt>
                         <dd class="col-sm-10 my-auto" data-ng-if="$ctrl.enterpriseDb.paymentType.monthly">
                             <enterprise-cloud-database-price-component
@@ -175,6 +176,7 @@
                 </dl>
             </section>
             <oui-button data-variant="primary"
+                data-disabled="!$ctrl.enterpriseDb.cluster"
                 data-on-click="$ctrl.orderDatabaseCluster()"
                 data-disabled="$ctrl.orderInProgress">
                 <span data-translate="enterprise_cloud_database_create_order_button_label"></span>
