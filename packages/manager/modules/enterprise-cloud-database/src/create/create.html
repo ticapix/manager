@@ -169,11 +169,12 @@
                                 data-price="$ctrl.totalDatabasePrice.price * $ctrl.enterpriseDb.commitmentPeriod.months"
                                 data-tax="$ctrl.totalDatabasePrice.tax * $ctrl.enterpriseDb.commitmentPeriod.months"
                                 data-user="$ctrl.user">
-                            </enterprise-cloud-database-price-component>  
+                            </enterprise-cloud-database-price-component>
                         </dd>
                     </div>
                 </dl>
             </section>
+            <p data-translate="enterprise_cloud_database_create_billing_info"></p>
             <oui-button data-variant="primary"
                 data-on-click="$ctrl.orderDatabaseCluster()"
                 data-disabled="$ctrl.orderInProgress">

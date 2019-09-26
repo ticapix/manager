@@ -1,6 +1,6 @@
 {
   "enterprise_cloud_database_create_title": "Commander un cluster Enterprise Cloud Database",
-  "enterprise_cloud_database_create_description": "Enterprise Cloud Databases est un service de bases de données totalement managées et hautement performantes. Chaque cluster inclut par défaut 3 nœuds dédiés à votre usage pour une haute disponibilité, des sauvegardes automatiques journalières, le trafic réseau entrant/sortant et plus encore. Choisir Enterprise Cloud Databases pour vos applicatifs critiques c'est bénéficier de toute l'expertice d'OVHcloud en la matière, vous permettant de vous concentrer sur votre métier.",
+  "enterprise_cloud_database_create_description": "Des bases de données managées hautement disponibles, reposant sur une infrastructure matérielle dédiée et scalable. Nos clusters de bases de données sont répliqués sur plusieurs zones géographiques et disposent de mécanismes automatiques de failover et de sauvegardes (backups) journalières. Chaque cluster dispose de ses propres ressources physiques dédiées, afin de tirer parti de la puissance de notre matériel de dernière génération. Offrez à vos utilisateurs des applications aux performances optimales.",
   "enterprise_cloud_database_create_choose_db": "Choisissez un SGBD",
   "enterprise_cloud_database_create_choose_db_desc": "Un cluster est configuré pour utiliser un SBGB, qui permettra de créer de multiples bases de données.",
   "enterprise_cloud_database_create_choose_dc": "Choisissez une région",
@@ -40,6 +40,7 @@
   "enterprise_cloud_database_create_order_payment_one_time": "En une fois",
   "enterprise_cloud_database_create_order_month": "mois",
   "enterprise_cloud_database_coming_soon": "Bientôt disponible",
+  "enterprise_cloud_database_create_billing_info": "Vous serez facturé via votre moyen de paiement par défaut",
   "enterprise_cloud_database_create_inprogress": "En cours",
   "enterprise_cloud_database_create_cancel_button_label": "annuler",
   "enterprise_cloud_database_create_success": "Le cluster est en cours de déploiement.",
