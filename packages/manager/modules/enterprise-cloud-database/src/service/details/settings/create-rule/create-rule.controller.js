@@ -30,6 +30,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCreateRuleCtrl
         return this.goBack(
           this.$translate.instant('enterprise_cloud_database_service_details_settings_create_rule_success'),
           STATUS.SUCCESS,
+          this.securityGroup.id,
         );
       })
       .catch(error => this.goBack(

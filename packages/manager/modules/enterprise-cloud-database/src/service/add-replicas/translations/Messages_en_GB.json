@@ -3,6 +3,6 @@
   "enterprise_cloud_database_service_add_replicas_description": "Select the desired number of replica(s)",
   "enterprise_cloud_database_service_add_replicas_add": "Add",
   "enterprise_cloud_database_service_add_replicas_billing_info": "You will billed on your default payment method",
-  "enterprise_cloud_database_service_add_replicas_success": "Request to add {{replicaCount}} replica(s) created successfully and is under process",
+  "enterprise_cloud_database_service_add_replicas_success": "Request to add {{replicaCount}} replica(s) created successfully and is under process. Please allow around 30 minutes for the process to complete",
   "enterprise_cloud_database_service_add_replicas_error": "An error occurred while trying to add replica(s): {{message}}"
 }

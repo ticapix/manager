@@ -135,7 +135,7 @@ export default class EnterpriseCloudDatabaseServiceGetStartedCtrl {
     return this.$q.all([
       this.data.replicaConfig.replicaCount
         ? this.enterpriseCloudDatabaseService
-          .scaleCluster(this.clusterDetails.id, this.data.replicaConfig.replicaCount)
+          .orderAddons(this.clusterDetails.id, this.data.replicaConfig.replicaCount)
           .then(() => this.enterpriseCloudDatabaseService.resetHostsCache())
         : this.$q.when(0),
       this.enterpriseCloudDatabaseService.setClusterDetails(this.clusterDetails.id, {

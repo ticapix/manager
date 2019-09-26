@@ -1,3 +1,4 @@
+import compact from 'lodash/compact';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
@@ -36,6 +37,8 @@ export default class EnterpriseCloudDatabaseService {
     this.OvhApiOrderCart = OvhApiOrder.Cart().v6();
     this.OvhApiOrderCartProduct = OvhApiOrder.Cart().Product().v6();
     this.OvhApiOrderCartConfig = OvhApiOrder.Cart().Item().Configuration().v6();
+    this.OvhApiOrderCartServiceOption = OvhApiOrder.CartServiceOption()
+      .EnterpriseCloudDatabases().v6();
     this.OvhApiMeOrder = OvhApiMe.Order().v6();
     this.OvhApiMe = OvhApiMe;
   }
@@ -124,11 +127,13 @@ export default class EnterpriseCloudDatabaseService {
     return this.getHosts(clusterId)
       .then(hosts => this.$q.all(
         map(hosts, hostId => this.getHostDetails(clusterId, hostId)),
-      ));
+      ))
+      .then(hosts => compact(hosts));
   }
 
   getHostDetails(clusterId, hostId) {
-    return this.OvhApiCloudDBEnterpriseHost.get({ clusterId, hostId }).$promise;
+    return this.OvhApiCloudDBEnterpriseHost.get({ clusterId, hostId }).$promise
+      .catch(error => ((error.status === 400) ? null : this.$q.reject(error)));
   }
 
   getHosts(clusterId) {
@@ -393,6 +398,32 @@ export default class EnterpriseCloudDatabaseService {
     return this.OvhApiOrderCart
       .checkout({ cartId: cart.cartId, autoPayWithPreferredPaymentMethod: true })
       .$promise;
+  }
+
+  getOrderableAddon(clusterId) {
+    return this.OvhApiOrderCartServiceOption.getAdditionalOffers({
+      serviceName: clusterId,
+    }).$promise.then(addons => head(addons));
+  }
+
+  orderAddon(addon, cart, clusterId, quantity) {
+    return this.OvhApiOrderCartServiceOption.orderOptions(
+      { serviceName: clusterId }, {
+        cartId: cart.cartId,
+        duration: get(addon, 'prices[0].duration'),
+        planCode: addon.planCode,
+        pricingMode: get(addon, 'prices[0].pricingMode'),
+        quantity,
+      },
+    ).$promise.then(() => cart);
+  }
+
+  orderAddons(clusterId, quantity) {
+    return this.createCart()
+      .then(cart => this.assignCart(cart))
+      .then(cart => this.getOrderableAddon(clusterId).then(addon => [addon, cart]))
+      .then(([addon, cart]) => this.orderAddon(addon, cart, clusterId, quantity))
+      .then(cart => this.checkoutCart({ cartId: cart.cartId }));
   }
 
   orderCluster(cluster) {

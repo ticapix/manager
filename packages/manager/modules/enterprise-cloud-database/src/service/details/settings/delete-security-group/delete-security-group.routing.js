@@ -9,13 +9,17 @@ export default /* @ngInject */($stateProvider) => {
         securityGroup: null,
       },
       resolve: {
-        goBack: /* @ngInject */ ($state, clusterId, CucCloudMessage) => (message = false,
+        goBack: /* @ngInject */ ($state, clusterId,
+          CucControllerHelper, CucCloudMessage) => (message = false,
           type = STATUS.SUCCESS) => {
           const reload = message && type === STATUS.SUCCESS;
           const state = 'enterprise-cloud-database.service.details.settings';
           const promise = $state.go(state, { clusterId }, { reload });
           if (message) {
-            promise.then(() => CucCloudMessage[type](message, MESSAGE_CONTAINER));
+            promise.then(() => {
+              CucCloudMessage[type](message, MESSAGE_CONTAINER);
+              CucControllerHelper.scrollPageToTop();
+            });
           }
           return promise;
         },

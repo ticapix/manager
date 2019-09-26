@@ -40,7 +40,7 @@ export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
     if (this.createReplicas) {
       this.isLoading = true;
       this.enterpriseCloudDatabaseService
-        .scaleCluster(this.clusterId, data.replicaCount)
+        .orderAddons(this.clusterId, data.replicaCount)
         .then(() => {
           this.enterpriseCloudDatabaseService.resetHostsCache();
           return this.goBack(this.$translate.instant('enterprise_cloud_database_service_add_replicas_success', {
