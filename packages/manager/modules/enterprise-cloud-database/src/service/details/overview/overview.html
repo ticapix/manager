@@ -72,7 +72,7 @@
                     <oui-action-menu-item
                         data-text="{{ ::'enterprise_cloud_database_common_manage' | translate }}"
                         aria-label="{{ ::'enterprise_cloud_database_common_manage' | translate }}"
-                        data-on-click="$ctrl.goToMyServices($row.clusterDetails.id, $ctrl.SERVICE_TYPE)">
+                        data-on-click="$ctrl.goToMyServices($ctrl.clusterDetails.id, $ctrl.SERVICE_TYPE)">
                     </oui-action-menu-item>
                 </oui-action-menu>
             </oui-tile-definition>
