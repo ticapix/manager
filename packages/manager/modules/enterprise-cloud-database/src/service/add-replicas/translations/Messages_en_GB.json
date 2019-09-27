@@ -4,7 +4,7 @@
   "enterprise_cloud_database_service_add_replicas_add": "Add",
   "enterprise_cloud_database_service_add_replicas_billing_info": "You will billed on your default payment method",
   "enterprise_cloud_database_service_add_replicas_no_stock_heading": "Replicas out of stock",
-  "enterprise_cloud_database_service_add_replicas_no_stock_description": "We currently so not have stock of additional replicas. Please check back later",
+  "enterprise_cloud_database_service_add_replicas_no_stock_description": "We currently do not have stock of additional replicas. Please check back later",
   "enterprise_cloud_database_service_add_replicas_success": "Request to add {{replicaCount}} replica(s) created successfully and is under process. Please allow around 30 minutes for the process to complete",
   "enterprise_cloud_database_service_add_replicas_error": "An error occurred while trying to add replica(s): {{message}}",
   "enterprise_cloud_database_service_add_replicas_get_availability_error": "An error occurred while trying to retrieve the availability of replicas : {{message}}"
