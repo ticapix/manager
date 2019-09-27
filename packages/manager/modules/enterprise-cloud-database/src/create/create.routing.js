@@ -11,6 +11,8 @@ export default /* @ngInject */($stateProvider) => {
     resolve: {
       hasDefaultPaymentMethod: /* @ngInject */
         ovhPaymentMethod => ovhPaymentMethod.hasDefaultPaymentMethod(),
+      defaultPaymentMethod: /* @ngInject */
+      ovhPaymentMethod => ovhPaymentMethod.getDefaultPaymentMethod(),
       regions: /* @ngInject */ (
         $q,
         capabilities,

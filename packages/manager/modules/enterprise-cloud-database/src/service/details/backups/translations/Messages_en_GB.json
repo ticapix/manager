@@ -12,7 +12,6 @@
   "enterprise_cloud_database_backup_description": "Below is the list of your cluster backups. You can restore, edit or delete each one of them.",
   "enterprise_cloud_database_backup_consumption": "Consumption of your manual backups:",
   "enterprise_cloud_database_backup_size": "Total manual backup volume: {{ size }}",
-  "enterprise_cloud_database_backup_billing_info_text": "You will billed on your default payment method",
   "enterprise_cloud_database_backup_mode_auto": "Auto",
   "enterprise_cloud_database_backup_price": "Price : {{ price }}",
   "enterprise_cloud_database_backup_mode_manual": "Manual",
