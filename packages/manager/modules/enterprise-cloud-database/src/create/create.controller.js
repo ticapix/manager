@@ -91,10 +91,8 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
       return;
     }
     this.totalDatabasePrice = {
-      price: this.enterpriseDb.cluster.price.price
-        * (this.enterpriseDb.defaultReplicaCount + this.enterpriseDb.additionalReplica.value),
-      tax: this.enterpriseDb.cluster.price.tax
-        * (this.enterpriseDb.defaultReplicaCount + this.enterpriseDb.additionalReplica.value),
+      price: this.enterpriseDb.cluster.price.price + this.enterpriseDb.additionalReplica.price,
+      tax: this.enterpriseDb.cluster.price.tax + this.enterpriseDb.additionalReplica.tax,
     };
   }
 
@@ -220,6 +218,9 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
   }
 
   orderDatabaseCluster() {
+    if (this.orderInProgress) {
+      return;
+    }
     this.orderInProgress = true;
     this.enterpriseCloudDatabaseService
       .orderCluster(this.enterpriseDb)

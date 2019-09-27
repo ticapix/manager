@@ -177,9 +177,8 @@
             </section>
             <p data-translate="enterprise_cloud_database_create_billing_info"></p>
             <oui-button data-variant="primary"
-                data-disabled="!$ctrl.enterpriseDb.cluster"
-                data-on-click="$ctrl.orderDatabaseCluster()"
-                data-disabled="$ctrl.orderInProgress">
+                data-disabled="!$ctrl.enterpriseDb.cluster || $ctrl.orderInProgress"
+                data-on-click="$ctrl.orderDatabaseCluster()">
                 <span data-translate="enterprise_cloud_database_create_order_button_label"></span>
             </oui-button>
             <oui-button data-variant="link"
