@@ -18,7 +18,6 @@
   "enterprise_cloud_database_create_additional_replica": "1 réplica",
   "enterprise_cloud_database_create_additional_replicas": "{{replicaCount}} réplicas",
   "enterprise_cloud_database_create_additional_replicas_price":"Prix ​​des réplicas additionnels",
-  "enterprise_cloud_database_common_price":"Prix des réplicas additionnels",
   "enterprise_cloud_database_create_choose_commitment": "Choisissez une période d'engagement",
   "enterprise_cloud_database_create_choose_commitment_total_price": "Total à payer",
   "enterprise_cloud_database_create_choose_payment": "Choisissez une méthode de paiement",

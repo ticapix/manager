@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
+import min from 'lodash/min';
 import range from 'lodash/range';
 
 import { STATUS } from '../../enterprise-cloud-database.constants';
@@ -16,7 +17,8 @@ export default class EnterpriseCloudDatabaseServiceAddReplicasCtrl {
   }
 
   $onInit() {
-    const orderableReplicaCount = this.maxHostCount - this.hostList.length;
+    const orderableReplicaCount = min([this.maxHostCount - this.hostList.length,
+      this.availableReplicas]);
     const replicaCost = get(head(this.nodeCatalog.pricings), 'price');
     const tax = get(head(this.nodeCatalog.pricings), 'tax');
     this.replicaCounts = map(range(1, orderableReplicaCount + 1), replicaNumber => ({
