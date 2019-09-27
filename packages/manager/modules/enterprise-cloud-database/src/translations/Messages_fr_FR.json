@@ -9,7 +9,6 @@
   "enterprise_cloud_database_list_ram_title": "Taille mémoire RAM",
   "enterprise_cloud_database_list_storage_title": "Stockage",
   "enterprise_cloud_database_list_ram_size": "{{ size }} Go",
-  "enterprise_cloud_database_common_storage_size": "{{count}} x {{ size }} Go {{ type }}",
   "enterprise_cloud_database_manage_cluster": "Gérer le cluster",
   "enterprise_cloud_database_getting_started": "Premiers pas",
   "enterprise_cloud_database_common_add": "Ajouter",
@@ -48,6 +47,7 @@
   "enterprise_cloud_database_common_subscription_contact_admin": "Administrateur",
   "enterprise_cloud_database_common_subscription_contact_billing": "Facturation",
   "enterprise_cloud_database_common_subscription_contact_technical": "Technique",
+  "enterprise_cloud_database_common_per_month": "/Mois",
   "enterprise_cloud_database_common_refresh": "Rafraîchir",
   "enterprise_cloud_database_guides": "Guides",
   "enterprise_cloud_database_guides_main": "Enterprise Cloud Database"

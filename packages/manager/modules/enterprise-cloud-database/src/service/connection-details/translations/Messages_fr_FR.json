@@ -1,6 +1,6 @@
 {
   "enterprise_cloud_database_service_connection_details_parameters_title": "Paramètres",
-  "enterprise_cloud_database_service_connection_details_strings_title": "Chaînes de connexxion",
+  "enterprise_cloud_database_service_connection_details_strings_title": "Chaînes de connexion",
   "enterprise_cloud_database_service_connection_details_flags_title": "Options de ligne de commande",
   "enterprise_cloud_database_service_connection_details_parameters_description_postgresql": "Récupérez ici tous les paramètres individuels nécessaires à la connexion et configuration de votre cluster.",
   "enterprise_cloud_database_service_connection_details_parameters_username": "username",

@@ -9,8 +9,8 @@
   "enterprise_cloud_database_list_ram_title": "RAM Size",
   "enterprise_cloud_database_list_storage_title": "Storage Size",
   "enterprise_cloud_database_list_ram_size": "{{ size }} GB",
-  "enterprise_cloud_database_getting_started": "Getting Started",
   "enterprise_cloud_database_manage_cluster": "Manage cluster",
+  "enterprise_cloud_database_getting_started": "Getting Started",
   "enterprise_cloud_database_common_add": "Add",
   "enterprise_cloud_database_common_delete": "Delete",
   "enterprise_cloud_database_common_terminate": "Terminate",
@@ -47,8 +47,8 @@
   "enterprise_cloud_database_common_subscription_contact_admin": "Administrator",
   "enterprise_cloud_database_common_subscription_contact_billing": "Billing",
   "enterprise_cloud_database_common_subscription_contact_technical": "Technical",
-  "enterprise_cloud_database_common_per_hour": "/Month",
+  "enterprise_cloud_database_common_per_month": "/Month",
+  "enterprise_cloud_database_common_refresh": "Refresh",
   "enterprise_cloud_database_guides": "Guides",
-  "enterprise_cloud_database_guides_main": "Enterprise Cloud Database",
-  "enterprise_cloud_database_common_refresh": "Refresh"
+  "enterprise_cloud_database_guides_main": "Enterprise Cloud Database"
 }
