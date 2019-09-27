@@ -86,6 +86,7 @@
             <!-- commitment period -->
             <section class="choose-commitment mb-5" data-ng-if="$ctrl.enterpriseDb.cluster">
                 <h4 data-translate="enterprise_cloud_database_create_choose_commitment"></h4>
+                <p data-translate="enterprise_cloud_database_create_commitment_period_desc"></p>
                 <enterprise-cloud-database-create-choose-commitment-period
                     data-enterprise-db="$ctrl.enterpriseDb"
                     data-commitment-periods="$ctrl.commitmentPeriods"
@@ -175,11 +176,14 @@
                     </div>
                 </dl>
             </section>
-            <p data-translate="enterprise_cloud_database_create_billing_info"></p>
+            <p>
+                <enterprise-cloud-database-billing-info-component
+                    default-payment-method="$ctrl.defaultPaymentMethod">
+                </enterprise-cloud-database-billing-info-component>
+            </p>
             <oui-button data-variant="primary"
-                data-disabled="!$ctrl.enterpriseDb.cluster"
-                data-on-click="$ctrl.orderDatabaseCluster()"
-                data-disabled="$ctrl.orderInProgress">
+                data-disabled="!$ctrl.enterpriseDb.cluster || $ctrl.orderInProgress"
+                data-on-click="$ctrl.orderDatabaseCluster()">
                 <span data-translate="enterprise_cloud_database_create_order_button_label"></span>
             </oui-button>
             <oui-button data-variant="link"

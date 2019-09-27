@@ -2,7 +2,6 @@
   "enterprise_cloud_database_service_add_replicas_title": "Ajouter un réplica",
   "enterprise_cloud_database_service_add_replicas_description": "Sélectionner le nombre désiré de réplicas",
   "enterprise_cloud_database_service_add_replicas_add": "Ajouter",
-  "enterprise_cloud_database_service_add_replicas_billing_info": "Vous serez facturé via votre moyen de paiement par défaut",
   "enterprise_cloud_database_service_add_replicas_no_stock_heading": "Répliques en rupture de stock",
   "enterprise_cloud_database_service_add_replicas_no_stock_description": "Nous n'avons actuellement pas de stock de réplicas supplémentaires. S'il vous plaît revenez plus tard",
   "enterprise_cloud_database_service_add_replicas_success": "La requête d'ajout de {{replicaCount}} réplica(s) a été créée avec succès et est en cours de réalisation. Veuillez prévoir environ 30 minutes pour que le processus se termine",

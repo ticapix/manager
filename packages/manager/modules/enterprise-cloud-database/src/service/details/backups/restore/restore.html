@@ -28,5 +28,9 @@
             <span data-translate="enterprise_cloud_database_backup_per_gb_hour"></span>
         </div>
     </div>
-    <p data-translate="enterprise_cloud_database_backup_billing_info_text" class="mt-3"></p>
+    <p class="mt-2">
+        <enterprise-cloud-database-billing-info-component
+            default-payment-method="$ctrl.defaultPaymentMethod">
+        </enterprise-cloud-database-billing-info-component>
+    </p>
 </oui-modal>

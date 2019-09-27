@@ -8,6 +8,8 @@ export default /* @ngInject */($stateProvider) => {
           .getClusterDetails(clusterId),
       clusterId: /* @ngInject */ $transition$ => $transition$.params().clusterId,
       clusterType: /* @ngInject */ clusterDetails => clusterDetails.offerType,
+      defaultPaymentMethod: /* @ngInject */
+        ovhPaymentMethod => ovhPaymentMethod.getDefaultPaymentMethod(),
       gotoClusterDetails: /* @ngInject */ ($state, clusterId) => reload => $state.go('enterprise-cloud-database.service.details.overview', { clusterId }, { reload }),
     },
     translations: {

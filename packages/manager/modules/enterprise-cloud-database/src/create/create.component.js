@@ -5,6 +5,7 @@ export default {
   bindings: {
     capabilities: '<',
     catalog: '<',
+    defaultPaymentMethod: '<',
     goBackToList: '<',
     hasDefaultPaymentMethod: '<',
     hostCount: '<',
