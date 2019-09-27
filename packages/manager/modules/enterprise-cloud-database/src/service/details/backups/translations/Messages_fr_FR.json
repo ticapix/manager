@@ -12,7 +12,6 @@
   "enterprise_cloud_database_backup_consumption": "Consommation de vos sauvegardes manuelles :",
   "enterprise_cloud_database_backup_size": "Taille : {{ size }}",
   "enterprise_cloud_database_backup_price": "Prix : {{ price }}",
-  "enterprise_cloud_database_backup_billing_info_text": "Vous serez facturé via votre moyen de paiement par défaut",
   "enterprise_cloud_database_backup_mode_auto": "Auto",
   "enterprise_cloud_database_backup_mode_manual": "Manuel",
   "enterprise_cloud_database_backup_per_gb_hour": "/Go/Heure",

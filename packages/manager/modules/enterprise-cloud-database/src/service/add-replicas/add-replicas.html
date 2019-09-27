@@ -25,6 +25,10 @@
             </enterprise-cloud-database-price-component>
             <span data-translate="enterprise_cloud_database_common_per_month"></span>
         </div>
-        <p class="mt-2" data-translate="enterprise_cloud_database_service_add_replicas_billing_info"></p>
+        <p class="mt-2">
+            <enterprise-cloud-database-billing-info-component
+                default-payment-method="$ctrl.defaultPaymentMethod">
+            </enterprise-cloud-database-billing-info-component>
+        </p>
     </div>
 </oui-modal>
