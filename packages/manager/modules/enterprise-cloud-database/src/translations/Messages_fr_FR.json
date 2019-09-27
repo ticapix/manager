@@ -16,7 +16,7 @@
   "enterprise_cloud_database_common_delete": "Supprimer",
   "enterprise_cloud_database_common_terminate": "Résilier",
   "enterprise_cloud_database_common_status": "Statut",
-  "enterprise_cloud_database_common_price": "Prix",
+  "enterprise_cloud_database_common_price": "Prix:",
   "enterprise_cloud_database_common_actions": "Actions",
   "enterprise_cloud_database_common_replica": "Réplica",
   "enterprise_cloud_database_common_replicas": "Réplicas",
