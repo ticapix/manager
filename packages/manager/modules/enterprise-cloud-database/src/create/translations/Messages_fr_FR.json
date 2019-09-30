@@ -46,5 +46,11 @@
   "enterprise_cloud_database_create_error": "Une erreur est survenue lors de la création du cluster : {{ message }}",
   "enterprise_cloud_database_no_default_payment_method": "Aucun mode de paiement par défaut trouvé. Un mode de paiement par défaut doit être défini afin de créer un cluster de Enterprise Cloud Database. <a href=\"{{ href }}\">Définir le mode de paiement par défaut</a>",
   "enterprise_cloud_database_create_out_of_stock": "En rupture de stock",
-  "enterprise_cloud_database_create_commitment_period_desc": "Le service est automatiquement renouvelé après la période d'engagement et facturé selon votre mode de paiement par défaut. Vous pouvez modifier cela à partir de la page Mes services."
+  "enterprise_cloud_database_create_commitment_period_desc": "Le service est automatiquement renouvelé après la période d'engagement et facturé selon votre mode de paiement par défaut. Vous pouvez modifier cela à partir de la page Mes services.",
+  "enterprise_cloud_database_create_configuration_title": "Configuration",
+  "enterprise_cloud_database_create_next": "Next",
+  "enterprise_cloud_database_create_confirmation_title": "Confirmation",
+  "enterprise_cloud_database_create_confirmation_desc": "Enterprise Cloud Database cluster will be created after the payment. This action takes approximatly 1 hour to complete.",
+  "enterprise_cloud_database_create_confirmation_payment_desc": "Le mode de paiement ci-dessous par défaut sera utilisé pour payer cette commande et la renouveler automatiquement après expiration.",
+  "enterprise_cloud_database_create_confirmation_payment_info": "Vous pouvez le modifier à tout moment et configurer les conditions de renouvellement de votre produit à partir de la page Mes services. Vous serez averti par e-mail avant chaque nouvelle date limite."
 }

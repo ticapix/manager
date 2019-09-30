@@ -1,7 +1,7 @@
 import angular from 'angular';
 import 'font-awesome/css/font-awesome.css';
 
-import billingInfoComponent from './billing-info';
+import paymentInfoComponent from './payment-info';
 import create from './create';
 import enterpriseCloudDatabaseComponent from './enterprise-cloud-database.component';
 import enterpriseCloudDatabaseService from './enterprise-cloud-database.service';
@@ -14,7 +14,7 @@ const moduleName = 'enterpriseCloudDatabase';
 
 angular
   .module(moduleName, [
-    billingInfoComponent,
+    paymentInfoComponent,
     create,
     priceComponent,
     service,
