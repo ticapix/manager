@@ -203,7 +203,12 @@ export default class EnterpriseCloudDatabaseService {
   }
 
   getRestoreDetails(clusterId, restoreId) {
-    return this.OvhApiCloudDBEnterpriseRestore.get({ clusterId, restoreId }).$promise;
+    return this.OvhApiCloudDBEnterpriseRestore.get({ clusterId, restoreId })
+      .$promise
+      .then((response) => {
+        delete response.$promise;
+        return response;
+      });
   }
 
   getRestoreList(clusterId) {
