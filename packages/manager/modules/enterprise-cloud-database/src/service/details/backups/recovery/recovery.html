@@ -63,9 +63,10 @@
             <span data-translate="enterprise_cloud_database_backups_recovery_date_invalid"></span>
         </oui-message>
         <p class="mt-2">
-            <enterprise-cloud-database-billing-info-component
-                default-payment-method="$ctrl.defaultPaymentMethod">
-            </enterprise-cloud-database-billing-info-component>
+            <enterprise-cloud-database-payment-info-component
+                default-payment-method="$ctrl.defaultPaymentMethod"
+                data-payment-description="{{ ::'enterprise_cloud_database_common_payment_desc' | translate }}">
+            </enterprise-cloud-database-payment-info-component>
         </p>
     </oui-modal>
 </form>

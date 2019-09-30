@@ -44,5 +44,7 @@
   "enterprise_cloud_database_create_error": "Failed to create Enterprise Cloud Database: {{ message }}",
   "enterprise_cloud_database_no_default_payment_method": "No default payment method found. You will need to set a default payment method to create a Enterprise Cloud Database. <a href=\"{{ href }}\">Set a default payment method</a>",
   "enterprise_cloud_database_create_out_of_stock": "Out of stock",
-  "enterprise_cloud_database_create_commitment_period_desc": "The service is automatically renewed after the commitment period and billed to your default payment method. You can change this from My Services page."
+  "enterprise_cloud_database_create_commitment_period_desc": "The service is automatically renewed after the commitment period and billed to your default payment method. You can change this from My Services page.",
+  "enterprise_cloud_database_create_confirmation_payment_desc": "Below default payment method will be used to pay for this order and to renew it automatically after expiry.",
+  "enterprise_cloud_database_create_confirmation_payment_info": "You can modify it at any time and configure the renewal terms of your product from My Services page. You will be notified by e-mail before each new deadline."
 }
