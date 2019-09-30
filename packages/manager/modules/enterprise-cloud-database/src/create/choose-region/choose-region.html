@@ -6,6 +6,7 @@
         data-model="region"
         data-selected="$ctrl.selectedRegion === region"
         data-on-change="$ctrl.onRegionSelect(modelValue)"
-        data-image="{{ :: $ctrl.constructor.getIcons(region) }}">
+        data-image="{{ :: $ctrl.constructor.getIcons(region) }}"
+        data-disabled="!$ctrl.allowEdit">
     </enterprise-cloud-database-card>
 </div>

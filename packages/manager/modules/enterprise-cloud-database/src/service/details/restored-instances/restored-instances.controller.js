@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import { MESSAGE_CONTAINER } from '../details.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsRestoredInstancesCtrl {
@@ -26,5 +27,10 @@ export default class EnterpriseCloudDatabaseServiceDetailsRestoredInstancesCtrl 
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  loadDetails(backupId) {
+    return this.service.getBackupDetails(this.clusterId, backupId)
+      .then(res => assign({ backupDetails: res }));
   }
 }

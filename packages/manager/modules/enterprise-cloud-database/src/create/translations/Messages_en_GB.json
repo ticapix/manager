@@ -29,12 +29,12 @@
   "enterprise_cloud_database_create_order_summary_region": "Region",
   "enterprise_cloud_database_create_order_summary_cluster_label": "Cluster nodes",
   "enterprise_cloud_database_create_order_summary_commitment_period": "Commitment Period",
-  "enterprise_cloud_database_create_order_summary_payment_type": "Payment Type",
+  "enterprise_cloud_database_create_order_summary_payment_type": "Payment method",
   "enterprise_cloud_database_create_order_summary_payment_total_label": "Total price",
   "enterprise_cloud_database_create_order_1_month": "1 month",
   "enterprise_cloud_database_create_order_months": "{{ numMonths }} months",
-  "enterprise_cloud_database_create_order_payment_monthly": "Monthly",
-  "enterprise_cloud_database_create_order_payment_one_time": "One time",
+  "enterprise_cloud_database_create_order_payment_monthly": "Monthly payment",
+  "enterprise_cloud_database_create_order_payment_one_time": "Payment up-front",
   "enterprise_cloud_database_create_order_month": "month",
   "enterprise_cloud_database_coming_soon": "Coming soon",
   "enterprise_cloud_database_create_billing_info": "Your default payment method will be used to pay this order.",
@@ -44,5 +44,11 @@
   "enterprise_cloud_database_create_error": "Failed to create Enterprise Cloud Database: {{ message }}",
   "enterprise_cloud_database_no_default_payment_method": "No default payment method found. You will need to set a default payment method to create a Enterprise Cloud Database. <a href=\"{{ href }}\">Set a default payment method</a>",
   "enterprise_cloud_database_create_out_of_stock": "Out of stock",
-  "enterprise_cloud_database_create_commitment_period_desc": "The service is automatically renewed after the commitment period and billed to your default payment method. You can change this from My Services page."
+  "enterprise_cloud_database_create_commitment_period_desc": "The service is automatically renewed after the commitment period and billed to your default payment method. You can change this in your account under «My services».",
+  "enterprise_cloud_database_create_configuration_title": "Configuration",
+  "enterprise_cloud_database_create_next": "Next",
+  "enterprise_cloud_database_create_confirmation_title": "Configuration",
+  "enterprise_cloud_database_create_confirmation_desc": "Enterprise Cloud Database cluster will be created after the payment. This action takes approximately 1 hour to complete.",
+  "enterprise_cloud_database_create_confirmation_payment_desc": "Below payment method will be used for this order and for future renewals",
+  "enterprise_cloud_database_create_confirmation_payment_info": "You can change your renewal options at any time in your account under «My services»"
 }

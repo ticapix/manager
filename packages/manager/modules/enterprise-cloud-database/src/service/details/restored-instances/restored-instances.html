@@ -13,7 +13,8 @@
                 data-oui-popover="{{:: 'enterprise_cloud_database_restored_instances_popover' | translate }}">
         </button>
     </p>
-    <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.restoredInstances">
+
+    <oui-datagrid class="mt-5" data-page-size="10" data-rows="$ctrl.restoredInstances" data-row-loader="$ctrl.loadDetails($row.backupId)">
         <oui-column data-title=":: 'enterprise_cloud_database_restored_instances_endpoint' | translate" data-property="fqdn" data-searchable>
             <span data-ng-bind="$row.fqdn" data-ng-if="$row.fqdn"></span>
             <span data-translate="N/A" data-ng-if="!$row.fqdn"></span>
@@ -22,8 +23,8 @@
         <oui-column data-title=":: 'enterprise_cloud_database_restored_instances_restoration_date' | translate" data-property="creationDate" data-sortable>
             <span data-ng-bind="$row.creationDate | date: 'medium'"></span>
         </oui-column>
-        <oui-column data-title=":: 'enterprise_cloud_database_restored_instances_backup_date' | translate" data-property="lastUpdate" data-sortable>
-            <span data-ng-bind="$row.lastUpdate | date: 'medium'"></span>
+        <oui-column data-title=":: 'enterprise_cloud_database_restored_instances_backup_date' | translate" data-property="backupDetails.creationDate" data-sortable>
+            <span data-ng-bind="$row.backupDetails.creationDate | date: 'medium'"></span>
         </oui-column>
         <oui-column data-title=":: 'enterprise_cloud_database_restored_instances_current_usage' | translate" data-property="volumeSize" data-sortable>
             <span data-ng-bind="($row.volumeSize ? $row.volumeSize : 0) | cucBytes:2:false"></span>

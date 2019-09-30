@@ -3,6 +3,7 @@ import template from './choose-cluster-config.html';
 
 export default {
   bindings: {
+    allowEdit: '<',
     clusters: '<',
     enterpriseDb: '<',
     onChange: '&',
