@@ -14,7 +14,6 @@ export default class EnterpriseCloudDatabaseServiceDetailsOverviewUpdatePassword
 
   passwordChange(password) {
     this.passwordText = password;
-    console.log(this.updatePassword);
   }
 
   changePassword() {
