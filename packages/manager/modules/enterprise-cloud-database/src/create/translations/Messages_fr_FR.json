@@ -1,6 +1,6 @@
 {
   "enterprise_cloud_database_create_title": "Commander un cluster Enterprise Cloud Database",
-  "enterprise_cloud_database_create_description": "Des bases de données managées hautement disponibles, reposant sur une infrastructure matérielle dédiée et scalable. Nos clusters de bases de données sont répliqués sur plusieurs zones géographiques et disposent de mécanismes automatiques de failover et de sauvegardes (backups) journalières. Chaque cluster dispose de ses propres ressources physiques dédiées, afin de tirer parti de la puissance de notre matériel de dernière génération. Offrez à vos utilisateurs des applications aux performances optimales.",
+  "enterprise_cloud_database_create_description": "Des bases de données managées hautement disponibles, reposant sur une infrastructure matérielle dédiée et scalable. Nos clusters de bases de données sont répliqués sur différentes zones géographiques et disposent de mécanismes automatiques de fail-over et de sauvegardes (backups) journalières. Chaque cluster dispose de ses propres ressources physiques dédiées, afin de tirer parti de la puissance de notre matériel de dernière génération. Offrez à vos utilisateurs des applications aux performances optimales.",
   "enterprise_cloud_database_create_choose_db": "Choisissez un SGBD",
   "enterprise_cloud_database_create_choose_db_desc": "Un cluster est configuré pour utiliser un SBGB, qui permettra de créer de multiples bases de données.",
   "enterprise_cloud_database_create_choose_dc": "Choisissez une région",
