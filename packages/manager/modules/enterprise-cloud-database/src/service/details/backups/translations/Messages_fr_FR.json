@@ -20,6 +20,6 @@
   "enterprise_cloud_database_backups_volume_price": "Volume:",
   "enterprise_cloud_database_backups_auto_heading": "Auto Sauvegarde",
   "enterprise_cloud_database_backups_manual_heading": "Sauvegarde Manuelle",
-  "enterprise_cloud_database_backups_manual_included": "Prix ​​inclus dans l'offre",
+  "enterprise_cloud_database_backups_manual_included": "Prix: ​​inclus dans l'offre",
   "enterprise_cloud_database_backups_manual_popover": "Somme de tout le volume de sauvegarde manuelle"
 }
