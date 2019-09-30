@@ -6,6 +6,7 @@ export default {
     capabilities: '<',
     catalog: '<',
     defaultPaymentMethod: '<',
+    getOrdersURL: '<',
     goBackToList: '<',
     hasDefaultPaymentMethod: '<',
     hostCount: '<',

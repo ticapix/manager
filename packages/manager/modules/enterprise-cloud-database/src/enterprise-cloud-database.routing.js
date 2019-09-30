@@ -53,6 +53,7 @@ export default /* @ngInject */($stateProvider) => {
         $window.location.reload();
       },
       paymentMethodURL: /* @ngInject */ () => '#/billing/payment/method',
+      getOrdersURL: /* @ngInject */ () => orderId => `#/billing/orders?status=all&orderId=${orderId}`,
       goBackToList: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
         type = STATUS.SUCCESS, clusterId = null) => {
         const reload = message && type === STATUS.SUCCESS;
@@ -65,7 +66,7 @@ export default /* @ngInject */($stateProvider) => {
         });
         if (message) {
           promise.then(() => {
-            CucCloudMessage[type](message, state);
+            CucCloudMessage[type]({ textHtml: message }, state);
           });
         }
         return promise;

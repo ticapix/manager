@@ -224,8 +224,10 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     this.orderInProgress = true;
     this.enterpriseCloudDatabaseService
       .orderCluster(this.enterpriseDb)
-      .then(() => {
-        this.goBackToList(this.$translate.instant('enterprise_cloud_database_create_success'));
+      .then((order) => {
+        this.goBackToList(this.$translate.instant('enterprise_cloud_database_create_success', {
+          orderURL: this.getOrdersURL(order.orderId),
+        }));
       })
       .catch((error) => {
         this.cucServiceHelper.errorHandler('enterprise_cloud_database_create_error')(error);

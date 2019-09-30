@@ -42,7 +42,7 @@
   "enterprise_cloud_database_create_billing_info": "Vous serez facturé via votre moyen de paiement par défaut.",
   "enterprise_cloud_database_create_inprogress": "En cours",
   "enterprise_cloud_database_create_cancel_button_label": "annuler",
-  "enterprise_cloud_database_create_success": "Le cluster est en cours de déploiement. Cela prend environ une heure à compléter.",
+  "enterprise_cloud_database_create_success": "Votre commande a été réalisée avec succès. Votre cluster apparaitra sur cette page une fois livré. Vous pouvez suivre l’évolution de sa livraison dans votre compte, rubrique <a href='{{orderURL}}'>Mes commandes</a>",
   "enterprise_cloud_database_create_error": "Une erreur est survenue lors de la création du cluster : {{ message }}",
   "enterprise_cloud_database_no_default_payment_method": "Aucun mode de paiement par défaut trouvé. Un mode de paiement par défaut doit être défini afin de créer un cluster de Enterprise Cloud Database. <a href=\"{{ href }}\">Définir le mode de paiement par défaut</a>",
   "enterprise_cloud_database_create_out_of_stock": "En rupture de stock",

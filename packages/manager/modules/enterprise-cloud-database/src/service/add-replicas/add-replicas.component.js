@@ -14,6 +14,7 @@ const component = {
     goBack: '<',
     maxHostCount: '<',
     nodeCatalog: '<',
+    orderUrl: '<?',
     user: '<',
   },
 };

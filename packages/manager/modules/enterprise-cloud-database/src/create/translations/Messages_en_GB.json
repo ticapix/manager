@@ -40,7 +40,7 @@
   "enterprise_cloud_database_create_billing_info": "Your default payment method will be used to pay this order.",
   "enterprise_cloud_database_create_inprogress": "In progress",
   "enterprise_cloud_database_create_cancel_button_label": "Cancel",
-  "enterprise_cloud_database_create_success": "Enterprise Cloud Database cluster is being deployed. It takes around one hour to complete.",
+  "enterprise_cloud_database_create_success": "Your order has been approved successfully. Once delivered, your cluster will appear in this page. You can track your order delivery in the Control Panel, <a href='{{orderURL}}'>My Orders</a> section.",
   "enterprise_cloud_database_create_error": "Failed to create Enterprise Cloud Database: {{ message }}",
   "enterprise_cloud_database_no_default_payment_method": "No default payment method found. You will need to set a default payment method to create a Enterprise Cloud Database. <a href=\"{{ href }}\">Set a default payment method</a>",
   "enterprise_cloud_database_create_out_of_stock": "Out of stock",

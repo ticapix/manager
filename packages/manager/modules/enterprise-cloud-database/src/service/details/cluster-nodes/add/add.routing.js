@@ -20,7 +20,7 @@ export default /* @ngInject */($stateProvider) => {
         const promise = $state.go('enterprise-cloud-database.service.details.cluster-nodes', { clusterId }, { reload });
         if (message) {
           promise.then(() => {
-            CucCloudMessage[type](message, MESSAGE_CONTAINER);
+            CucCloudMessage[type]({ textHtml: message }, MESSAGE_CONTAINER);
             CucControllerHelper.scrollPageToTop();
           });
         }
@@ -33,6 +33,7 @@ export default /* @ngInject */($stateProvider) => {
           .then(offer => offer.maxHostCount),
       nodeCatalog: /* @ngInject */
         planCatalog => planCatalog.node,
+      orderUrl: /* @ngInject */ getOrdersURL => getOrdersURL,
     },
     translations: {
       value: ['../../../add-replicas'],
