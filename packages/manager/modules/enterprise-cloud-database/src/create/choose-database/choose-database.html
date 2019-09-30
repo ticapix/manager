@@ -5,7 +5,7 @@
         data-label="{{ ::database.displayName }}"
         data-model="database"
         data-selected="$ctrl.selectedDatabase.name === database.name"
-        data-disabled="!database.isAvailable"
+        data-disabled="!database.isAvailable || !$ctrl.allowEdit"
         data-on-change="$ctrl.onDatabaseSelect(modelValue)"
         data-image="{{ ::database.iconURL }}">
         <enterprise-cloud-database-card-footer>

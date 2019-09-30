@@ -3,6 +3,7 @@ import template from './choose-payment-type.html';
 
 export default {
   bindings: {
+    allowEdit: '<',
     enterpriseDb: '<',
     paymentTypes: '<',
     user: '<',

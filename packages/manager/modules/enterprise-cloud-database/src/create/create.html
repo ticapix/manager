@@ -23,7 +23,10 @@
         <oui-stepper data-ng-if="$ctrl.hasDefaultPaymentMethod">
             <oui-step-form data-header="{{ 'enterprise_cloud_database_create_configuration_title' | translate }}"
                 data-submit-text="{{ 'enterprise_cloud_database_create_next' | translate }}"
-                data-navigation="$ctrl.enterpriseDb.cluster">
+                data-navigation="$ctrl.enterpriseDb.cluster"
+                data-editable="!$ctrl.orderInProgress"
+                data-on-focus="$ctrl.onConfigurationFocus()"
+                data-on-submit="$ctrl.onConfigurationSubmit(form)">
                 <!-- database -->
                 <section class="choose-database mb-5">
                     <h4 data-translate="enterprise_cloud_database_create_choose_db"></h4>
@@ -31,7 +34,8 @@
                     <enterprise-cloud-database-create-choose-database
                         data-enterprise-db="$ctrl.enterpriseDb"
                         data-databases="$ctrl.databases"
-                        data-on-change="$ctrl.onDatabaseSelect(database)">
+                        data-on-change="$ctrl.onDatabaseSelect(database)"
+                        data-allow-edit="$ctrl.allowConfigurationModify">
                     </enterprise-cloud-database-create-choose-database>
                 </section>
                 <!-- region -->
@@ -41,7 +45,8 @@
                     <enterprise-cloud-database-create-choose-region
                         data-enterprise-db="$ctrl.enterpriseDb"
                         data-regions="$ctrl.regions"
-                        data-on-change="$ctrl.onRegionSelect(region)">
+                        data-on-change="$ctrl.onRegionSelect(region)"
+                        data-allow-edit="$ctrl.allowConfigurationModify">
                     </enterprise-cloud-database-create-choose-region>
                 </section>
                 <!-- cluster -->
@@ -58,7 +63,8 @@
                     <enterprise-cloud-database-create-choose-cluster-config
                         clusters="$ctrl.clusters"
                         enterprise-db="$ctrl.enterpriseDb"
-                        data-on-change="$ctrl.onClusterSelect(cluster)">
+                        data-on-change="$ctrl.onClusterSelect(cluster)"
+                        data-allow-edit="$ctrl.allowConfigurationModify">
                     </enterprise-cloud-database-create-choose-cluster-config>
                 </section>
                 <!-- additional replicas -->
@@ -96,7 +102,8 @@
                         data-commitment-periods="$ctrl.commitmentPeriods"
                         data-user="$ctrl.user"
                         data-on-change="$ctrl.onCommitmentPeriodSelect(commitmentPeriod)"
-                        data-database-price="$ctrl.totalDatabasePrice">
+                        data-database-price="$ctrl.totalDatabasePrice"
+                        data-allow-edit="$ctrl.allowConfigurationModify">
                     </enterprise-cloud-database-create-choose-commitment-period>
                 </section>
                 <!-- payment type -->
@@ -106,12 +113,14 @@
                         data-enterprise-db="$ctrl.enterpriseDb"
                         data-payment-types="$ctrl.paymentTypes"
                         data-user="$ctrl.user"
-                        data-database-price="$ctrl.totalDatabasePrice">
+                        data-database-price="$ctrl.totalDatabasePrice"
+                        data-allow-edit="$ctrl.allowConfigurationModify">
                     </enterprise-cloud-database-create-choose-payment-type>
                 </section>
             </oui-step-form>
             <oui-step-form data-header="{{ 'enterprise_cloud_database_create_order_summary_title' | translate }}"
-                data-submit-text="{{ 'enterprise_cloud_database_create_next' | translate }}">
+                data-submit-text="{{ 'enterprise_cloud_database_create_next' | translate }}"
+                data-editable="!$ctrl.orderInProgress">
                 <!-- summary -->
                 <section class="order-summary mb-5">
                     <dl class="mt-1">
@@ -188,7 +197,8 @@
                 data-cancel-text="{{ ::'enterprise_cloud_database_create_cancel_button_label' | translate }}"
                 data-on-cancel="$ctrl.cancelOrderDatabaseCluster()"
                 data-on-submit="$ctrl.orderDatabaseCluster()"
-                data-navigation="!$ctrl.orderInProgress">
+                data-navigation="!$ctrl.orderInProgress"
+                data-editable="!$ctrl.orderInProgress">
                 <p data-translate="enterprise_cloud_database_create_confirmation_desc"></p>
                 <enterprise-cloud-database-payment-info-component
                     data-default-payment-method="$ctrl.defaultPaymentMethod"

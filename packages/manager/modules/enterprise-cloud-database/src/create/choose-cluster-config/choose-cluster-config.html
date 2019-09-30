@@ -6,7 +6,7 @@
         data-model="cluster"
         data-selected="$ctrl.enterpriseDb.cluster.name === cluster.name"
         data-on-change="$ctrl.onClusterSelect(modelValue)"
-        data-disabled="$ctrl.outOfStock(cluster)"
+        data-disabled="$ctrl.outOfStock(cluster) || !$ctrl.allowEdit"
         data-disabled-message="({{ ::'enterprise_cloud_database_create_out_of_stock' | translate }})">
         <enterprise-cloud-database-card-footer>
             <div class="my-2" data-translate="enterprise_cloud_database_create_choose_cluster_specifications"></div>

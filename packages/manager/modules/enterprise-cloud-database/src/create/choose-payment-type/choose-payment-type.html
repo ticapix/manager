@@ -5,7 +5,7 @@
         data-model="paymentType"
         data-selected="$ctrl.selectedPaymentType.name === paymentType.name"
         data-on-change="$ctrl.onPaymentTypeSelect(modelValue)"
-        data-disabled="paymentType.monthly">
+        data-disabled="paymentType.monthly || !$ctrl.allowEdit">
         <enterprise-cloud-database-card-body>
             <span class="card-heading"
                 data-ng-bind=":: ('enterprise_cloud_database_create_order_payment_'+paymentType.name) | translate">

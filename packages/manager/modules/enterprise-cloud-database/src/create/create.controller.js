@@ -36,6 +36,7 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     this.commitmentPeriods = COMMITMENT_PERIODS;
     this.DATABASE_CONSTANTS = DATABASE_CONSTANTS;
     this.paymentTypes = PAYMENT_TYPES;
+    this.allowConfigurationModify = true;
     this.orderInProgress = false;
     const catalog = get(this, 'catalog');
     const capabilities = get(this, 'capabilities');
@@ -238,6 +239,14 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
 
   cancelOrderDatabaseCluster() {
     this.goBackToList();
+  }
+
+  onConfigurationFocus() {
+    this.allowConfigurationModify = true;
+  }
+
+  onConfigurationSubmit() {
+    this.allowConfigurationModify = false;
   }
 
   static getUniqueDatabasesAndVersions(databaseNames, status) {

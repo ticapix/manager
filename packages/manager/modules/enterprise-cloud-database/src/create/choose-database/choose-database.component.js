@@ -3,6 +3,7 @@ import template from './choose-database.html';
 
 export default {
   bindings: {
+    allowEdit: '<',
     enterpriseDb: '<',
     databases: '<',
     onChange: '&',
