@@ -1,6 +1,6 @@
 {
   "enterprise_cloud_database_title": "Enterprise Cloud Databases",
-  "enterprise_cloud_database_description": "Enterprise Cloud Databases are fully managed, high performance databases clusters services. Using Enterprise Cloud Databases is a powerful alternative to installing, configuring, maintaining, and securing databases by hand. Clusters include high availability by default, dedicated nodes, daily backups with point-in-time recovery (PITR), inbound/outbound traffic network, and so on.",
+  "enterprise_cloud_database_description": "Highly available managed databases, based on a dedicated and scalable hardware infrastructure. Our database clusters are replicated across geographies and have automatic fail-over mechanisms and daily backups. Each cluster has its own dedicated physical resources to take advantage of the power of our latest generation hardware. Give your users optimal performance applications.",
   "enterprise_cloud_database_order_new_database": "Order a cluster",
   "enterprise_cloud_database_list_service_name": "Service name",
   "enterprise_cloud_database_list_endpoint": "Endpoint",
