@@ -5,6 +5,7 @@ export default {
   bindings: {
     clusterDetails: '<',
     clusterType: '<',
+    clusterUser: '<',
     createCluster: '<',
     endPoints: '<',
     gettingStarted: '<',

@@ -134,7 +134,8 @@
             <oui-tile-button data-on-click="$ctrl.createCluster()">
                 <span data-translate="enterprise_cloud_database_create_cluster"></span>
             </oui-tile-button>
-            <oui-tile-button data-on-click="$ctrl.gettingStarted($ctrl.clusterDetails.id)">
+            <oui-tile-button data-on-click="$ctrl.gettingStarted($ctrl.clusterDetails.id)"
+                             data-disabled="$ctrl.clusterUser">
                 <span data-translate="enterprise_cloud_database_getting_started"></span>
             </oui-tile-button>
             <oui-tile-button data-on-click="$ctrl.goToClusterNodes($ctrl.clusterDetails.id)">
