@@ -46,7 +46,7 @@
   "enterprise_cloud_database_create_out_of_stock": "En rupture de stock",
   "enterprise_cloud_database_create_commitment_period_desc": "Le service est automatiquement renouvelé après la période d'engagement et facturé selon votre mode de paiement par défaut. Vous pouvez modifier cela à partir de la page «Mes services».",
   "enterprise_cloud_database_create_configuration_title": "Configuration",
-  "enterprise_cloud_database_create_next": "Prochain",
+  "enterprise_cloud_database_create_next": "Suivant",
   "enterprise_cloud_database_create_confirmation_title": "Confirmation",
   "enterprise_cloud_database_create_confirmation_desc": "Le cluster Enterprise Cloud Database sera créé après le paiement. Cette action dure environ 1 heure.",
   "enterprise_cloud_database_create_confirmation_payment_desc": "Le moyen de paiement ci-dessous sera utilisé pour cette commande et pour les prochains renouvellements.",
