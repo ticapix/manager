@@ -1,7 +1,7 @@
 {
   "enterprise_cloud_database_title": "Enterprise Cloud Database",
   "enterprise_cloud_database_description": "Des bases de données managées hautement disponibles, reposant sur une infrastructure matérielle dédiée et scalable. Nos clusters de bases de données sont répliqués sur différentes zones géographiques et disposent de mécanismes automatiques de fail-over et de sauvegardes (backups) journalières. Chaque cluster dispose de ses propres ressources physiques dédiées, afin de tirer parti de la puissance de notre matériel de dernière génération. Offrez à vos utilisateurs des applications aux performances optimales.",
-  "enterprise_cloud_database_order_new_database": "Commander un cluster",
+  "enterprise_cloud_database_order_new_database": "Commander un Enterprise Cloud Database",
   "enterprise_cloud_database_list_service_name": "Nom du service",
   "enterprise_cloud_database_list_endpoint": "Points de terminaison",
   "enterprise_cloud_database_list_database_engine": "SGBD",
@@ -51,5 +51,5 @@
   "enterprise_cloud_database_common_refresh": "Rafraîchir",
   "enterprise_cloud_database_guides": "Guides",
   "enterprise_cloud_database_guides_main": "Enterprise Cloud Database",
-  "enterprise_cloud_database_common_payment_desc": "Below payment method will be used for this order."
+  "enterprise_cloud_database_common_payment_desc": "Le moyen de paiement ci-dessous sera utilisé pour cette commande et pour les prochains renouvellements."
 }

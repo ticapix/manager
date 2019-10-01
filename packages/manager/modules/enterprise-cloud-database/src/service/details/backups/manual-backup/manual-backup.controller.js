@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-import { STATUS } from '../../../../enterprise-cloud-database.constants';
+import { STATUS, ENTERPRISE_CLOUD_DATABASE_CLUSTER_NAME_PATTERN } from '../../../../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsBackupsManualCtrl {
   /* @ngInject */
@@ -12,6 +12,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsBackupsManualCtrl {
     this.$state = $state;
     this.$translate = $translate;
     this.service = enterpriseCloudDatabaseService;
+    this.CLUSTER_NAME_PATTERN = ENTERPRISE_CLOUD_DATABASE_CLUSTER_NAME_PATTERN;
   }
 
   dataChange(defaultPaymentCheck) {

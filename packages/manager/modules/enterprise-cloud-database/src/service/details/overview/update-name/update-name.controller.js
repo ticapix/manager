@@ -11,7 +11,7 @@ export default class EnterpriseCloudDatabaseServiceDetailsOverviewUpdateNameCtrl
   ) {
     this.$translate = $translate;
     this.service = enterpriseCloudDatabaseService;
-    this.NAME_PATTERN = ENTERPRISE_CLOUD_DATABASE_CLUSTER_NAME_PATTERN;
+    this.CLUSTER_NAME_PATTERN = ENTERPRISE_CLOUD_DATABASE_CLUSTER_NAME_PATTERN;
   }
 
   $onInit() {
