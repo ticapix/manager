@@ -2,11 +2,14 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import '@ovh-ux/ng-ovh-contracts';
+
 const moduleName = 'enterpriseCloudDatabaseCreate';
 
 angular.module(moduleName, [
   'oc.lazyLoad',
   'ui.router',
+  'ngOvhContracts',
 ]).config(/* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.create.**', {
     url: '/create',

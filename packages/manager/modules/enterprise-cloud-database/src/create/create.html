@@ -120,6 +120,7 @@
             </oui-step-form>
             <oui-step-form data-header="{{ 'enterprise_cloud_database_create_order_summary_title' | translate }}"
                 data-submit-text="{{ 'enterprise_cloud_database_create_next' | translate }}"
+                data-on-submit="$ctrl.createOrder()"
                 data-editable="!$ctrl.orderInProgress">
                 <!-- summary -->
                 <section class="order-summary mb-5">
@@ -192,13 +193,29 @@
                     </dl>
                 </section>
             </oui-step-form>
+            <oui-step-form data-header="{{ ::'enterprise_cloud_database_create_contracts_title' | translate }}"
+                data-submit-text="{{ 'enterprise_cloud_database_create_next' | translate }}"
+                data-editable="!$ctrl.orderInProgress"
+                data-loading="$ctrl.createOrderInProgress"
+                data-valid="$ctrl.contractsAccepted"
+                prevent-next="!$ctrl.contractsAccepted">
+                <div class="row">
+                    <div class="col-md-6"
+                         data-ng-if="$ctrl.order"
+                         data-ovh-contracts="$ctrl.order.contracts"
+                         data-full-text="false"
+                         data-ovh-contracts-validated="$ctrl.contractsAccepted">
+                    </div>
+                </div>
+            </oui-step-form>
             <oui-step-form data-header="{{ ::'enterprise_cloud_database_create_confirmation_title' | translate }}"
                 data-submit-text="{{ ::'enterprise_cloud_database_create_order_button_label' | translate }}"
                 data-cancel-text="{{ ::'enterprise_cloud_database_create_cancel_button_label' | translate }}"
                 data-on-cancel="$ctrl.cancelOrderDatabaseCluster()"
                 data-on-submit="$ctrl.orderDatabaseCluster()"
                 data-navigation="!$ctrl.orderInProgress"
-                data-editable="!$ctrl.orderInProgress">
+                data-editable="!$ctrl.orderInProgress"
+                data-prevent-next="!$ctrl.contractsAccepted || !$ctrl.order">
                 <p data-translate="enterprise_cloud_database_create_confirmation_desc"></p>
                 <enterprise-cloud-database-payment-info-component
                     data-default-payment-method="$ctrl.defaultPaymentMethod"

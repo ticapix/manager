@@ -38,6 +38,8 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     this.paymentTypes = PAYMENT_TYPES;
     this.allowConfigurationModify = true;
     this.orderInProgress = false;
+    this.createOrderInProgress = false;
+    this.contractsAccepted = false;
     const catalog = get(this, 'catalog');
     const capabilities = get(this, 'capabilities');
     const hostCount = get(this, 'hostCount');
@@ -218,13 +220,31 @@ export default class EnterpriseCloudDatabaseCreateCtrl {
     this.populateEnterpriseDatabasePrice();
   }
 
+  createOrder() {
+    this.order = null;
+    this.createOrderInProgress = true;
+    this.contractsAccepted = false;
+    this.enterpriseCloudDatabaseService
+      .createClusterOrder(this.enterpriseDb)
+      .then((order) => {
+        this.order = order;
+      })
+      .catch((error) => {
+        this.cucServiceHelper.errorHandler('enterprise_cloud_database_create_order_error')(error);
+        this.CucControllerHelper.scrollPageToTop();
+      })
+      .finally(() => {
+        this.createOrderInProgress = false;
+      });
+  }
+
   orderDatabaseCluster() {
     if (this.orderInProgress) {
       return;
     }
     this.orderInProgress = true;
     this.enterpriseCloudDatabaseService
-      .orderCluster(this.enterpriseDb)
+      .orderCluster(this.order.cart)
       .then((order) => {
         this.goBackToList(this.$translate.instant('enterprise_cloud_database_create_success', {
           orderURL: this.getOrdersURL(order.orderId),

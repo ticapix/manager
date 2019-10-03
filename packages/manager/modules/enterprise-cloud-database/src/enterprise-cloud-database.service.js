@@ -403,6 +403,10 @@ export default class EnterpriseCloudDatabaseService {
       .$promise;
   }
 
+  getCheckoutInfo(cart) {
+    return this.OvhApiOrderCart.getCheckout({ cartId: cart.cartId }).$promise;
+  }
+
   getOrderableAddon(clusterId) {
     return this.OvhApiOrderCartServiceOption.getAdditionalOffers({
       serviceName: clusterId,
@@ -429,13 +433,18 @@ export default class EnterpriseCloudDatabaseService {
       .then(cart => this.checkoutCart({ cartId: cart.cartId }));
   }
 
-  orderCluster(cluster) {
+  createClusterOrder(cluster) {
     return this.createCart()
       .then(cart => this.addToCart(cart.cartId, cluster))
       .then(cart => this.addConfig(cart, cluster))
       .then(cart => this.addOptions(cart, cluster))
       .then(cart => this.assignCart(cart))
-      .then(cart => this.checkoutCart({ cartId: cart.cartId }));
+      .then(cart => this.getCheckoutInfo({ cartId: cart.cartId })
+        .then(order => Object.assign({}, order, { cart })));
+  }
+
+  orderCluster(cart) {
+    return this.checkoutCart({ cartId: cart.cartId });
   }
 
   static getCapabilities(catalog, offers) {
