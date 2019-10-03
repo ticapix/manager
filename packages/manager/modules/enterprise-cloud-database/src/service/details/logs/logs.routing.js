@@ -2,36 +2,15 @@ import { STATUS, ADP_URL } from '../../../enterprise-cloud-database.constants';
 
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('enterprise-cloud-database.service.details.logs', {
+    cache: false,
     component: 'enterpriseCloudDatabaseServiceDetailsLogsComponent',
-    url: '/logs',
     translations: {
       value: ['.'],
       format: 'json',
     },
+    url: '/logs',
     resolve: {
-      logs: /* @ngInject */ (
-        clusterId,
-        enterpriseCloudDatabaseService,
-      ) => enterpriseCloudDatabaseService
-        .getLogs(clusterId),
-      grantAccess: /* @ngInject */ ($state, clusterId) => () => {
-        $state.go('enterprise-cloud-database.service.details.logs.grant-access', {
-          clusterId,
-        });
-      },
-      revokeAccess: /* @ngInject */ ($state, clusterId) => (ldpAccount) => {
-        $state.go('enterprise-cloud-database.service.details.logs.revoke-access', {
-          clusterId,
-          ldpAccount,
-          logId: ldpAccount.id,
-        });
-      },
-      refreshLogs: /* @ngInject */
-      ($state, enterpriseCloudDatabaseService) => () => {
-        enterpriseCloudDatabaseService.resetLogsCache();
-        return $state.reload();
-      },
-      ldpHomeUrl: /* @ngInject */ coreConfig => ADP_URL[coreConfig.getRegion()],
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('enterprise_cloud_database_service_details_logs'),
       goBackToLogs: /* @ngInject */ ($state, CucCloudMessage) => (message = false,
         type = STATUS.SUCCESS) => {
         const reload = message && type === STATUS.SUCCESS;
@@ -44,7 +23,28 @@ export default /* @ngInject */($stateProvider) => {
         }
         return promise;
       },
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('enterprise_cloud_database_service_details_logs'),
+      grantAccess: /* @ngInject */ ($state, clusterId) => () => {
+        $state.go('enterprise-cloud-database.service.details.logs.grant-access', {
+          clusterId,
+        });
+      },
+      ldpHomeUrl: /* @ngInject */ coreConfig => ADP_URL[coreConfig.getRegion()],
+      logs: /* @ngInject */ (
+        clusterId,
+        enterpriseCloudDatabaseService,
+      ) => enterpriseCloudDatabaseService
+        .getLogs(clusterId),
+      revokeAccess: /* @ngInject */ ($state, clusterId) => (ldpAccount) => {
+        $state.go('enterprise-cloud-database.service.details.logs.revoke-access', {
+          clusterId,
+          ldpAccount,
+          logId: ldpAccount.id,
+        });
+      },
+      refreshLogs: /* @ngInject */ ($state, enterpriseCloudDatabaseService) => () => {
+        enterpriseCloudDatabaseService.resetLogsCache();
+        return $state.reload();
+      },
     },
   });
 };

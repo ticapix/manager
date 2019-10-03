@@ -5,7 +5,7 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 
 import { MESSAGE_CONTAINER } from '../details.constants';
-import { GUIDELINK, STATUS } from '../../../enterprise-cloud-database.constants';
+import { GUIDELINK } from '../../../enterprise-cloud-database.constants';
 
 export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
   /* @ngInject */
@@ -84,11 +84,6 @@ export default class EnterpriseCloudDatabaseServiceDetailsSettingsCtrl {
         (windowChanged, configKey) => windowChanged || (get(maintenanceWindowConfig, configKey)
           !== get(this.maintenanceWindow, configKey)), false)
       : false;
-  }
-
-  isDisabled(status) {
-    return this.enterpriseCloudDatabaseService.constructor.getStatusGroup(status)
-      !== STATUS.SUCCESS;
   }
 
   isDefaultMaintenanceWindow() {

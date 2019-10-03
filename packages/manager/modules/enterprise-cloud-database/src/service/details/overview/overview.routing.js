@@ -12,10 +12,6 @@ export default /* @ngInject */($stateProvider) => {
     },
     url: '/overview',
     resolve: {
-      clusterDetails: /* @ngInject */ (enterpriseCloudDatabaseService, clusterId) => {
-        enterpriseCloudDatabaseService.resetClusterListCache();
-        return enterpriseCloudDatabaseService.getClusterDetails(clusterId);
-      },
       endPoints: /* @ngInject */
         (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
           .getEndpointsWithDetails(clusterId),

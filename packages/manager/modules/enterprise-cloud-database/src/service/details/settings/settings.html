@@ -56,7 +56,9 @@
                         <span class="oui-icon oui-icon-trash_line delete-button"
                               aria-hidden="true"
                               data-ng-click="$ctrl.deleteRule($row, rule)"
-                              data-ng-class="{ 'delete-button_disabled': $ctrl.isDisabled($row.status) || $ctrl.isDisabled(rule.status) }"></span>
+                              data-ng-class="{ 'delete-button_disabled': $ctrl.enterpriseCloudDatabaseService.constructor.isProcessing($ctrl.clusterDetails.status)
+                                || $ctrl.enterpriseCloudDatabaseService.constructor.isProcessing($row.status)
+                                || $ctrl.enterpriseCloudDatabaseService.constructor.isProcessing(rule.status) }"></span>
                     </div>
                 </div>
             </oui-column>
@@ -87,22 +89,22 @@
             <oui-column data-property="name">
                 <oui-action-menu data-align="end"
                                  data-compact
-                                 data-disabled="$ctrl.isDisabled($row.status)">
+                                 data-disabled="$ctrl.enterpriseCloudDatabaseService.constructor.isProcessing($row.status)
+                                    || $ctrl.enterpriseCloudDatabaseService.constructor.isProcessing($ctrl.clusterDetails.status)">
                     <oui-action-menu-item data-on-click="$ctrl.addRule($row)">
                         <span data-translate="enterprise_cloud_database_service_details_settings_add_a_rule"></span>
                     </oui-action-menu-item>
                     <oui-action-menu-item data-on-click="$ctrl.editSecurityGroup($row)">
                         <span data-translate="enterprise_cloud_database_service_details_settings_edit_group"></span>
                     </oui-action-menu-item>
-                    <oui-action-menu-item data-on-click="$ctrl.deleteSecurityGroup($row)"
-                                          data-disabled="$ctrl.isDisabled($ctrl.clusterDetails.status)">
+                    <oui-action-menu-item data-on-click="$ctrl.deleteSecurityGroup($row)">
                         <span data-translate="enterprise_cloud_database_service_details_settings_delete_group"></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
             </oui-column>
             <extra-top>
                 <oui-button data-on-click="$ctrl.createSecurityGroup()"
-                            data-disabled="$ctrl.isDisabled($ctrl.clusterDetails.status)">
+                            data-disabled="$ctrl.enterpriseCloudDatabaseService.constructor.isProcessing($ctrl.clusterDetails.status)">
                     <span data-translate="enterprise_cloud_database_service_details_settings_create_group"></span>
                 </oui-button>
             </extra-top>

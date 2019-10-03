@@ -3,9 +3,10 @@ export default /* @ngInject */($stateProvider) => {
     abstract: true,
     component: 'enterpriseCloudDatabaseServiceComponent',
     resolve: {
-      clusterDetails: /* @ngInject */
-        (clusterId, enterpriseCloudDatabaseService) => enterpriseCloudDatabaseService
-          .getClusterDetails(clusterId),
+      clusterDetails: /* @ngInject */ (enterpriseCloudDatabaseService, clusterId) => {
+        enterpriseCloudDatabaseService.resetClusterListCache();
+        return enterpriseCloudDatabaseService.getClusterDetails(clusterId);
+      },
       clusterId: /* @ngInject */ $transition$ => $transition$.params().clusterId,
       clusterType: /* @ngInject */ clusterDetails => clusterDetails.offerType,
       defaultPaymentMethod: /* @ngInject */
