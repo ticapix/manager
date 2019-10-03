@@ -1,8 +1,8 @@
 <form name="$ctrl.manualBackup">
     <oui-modal data-heading="{{:: 'enterprise_cloud_database_backups_manual_title' | translate }}"
                data-primary-label="{{:: 'enterprise_cloud_database_common_confirm' | translate }}"
-               data-primary-action="$ctrl.manualBackup.$valid && $ctrl.createBackup()"
-               data-primary-disabled="$ctrl.manualBackup.$invalid"
+               data-primary-action="$ctrl.manualBackup.$valid && $ctrl.isNameValid() && $ctrl.createBackup()"
+               data-primary-disabled="$ctrl.manualBackup.$invalid || !$ctrl.isNameValid()"
                data-secondary-label="{{:: 'enterprise_cloud_database_common_cancel' | translate }}"
                data-secondary-action="$ctrl.cancel()"
                data-on-dismiss="$ctrl.cancel()"
@@ -13,7 +13,7 @@
                    name="backupName"
                    data-ng-model="$ctrl.backupName"
                    required
-                   data-ng-pattern="$ctrl.CLUSTER_NAME_PATTERN"
+                   data-ng-pattern="$ctrl.BACKUP_NAME_PATTERN"
                    autofocus>
         </oui-field>
         <p>
