@@ -9,8 +9,12 @@ export const OFFERS = {
 };
 
 export const PROCESSING_STATUS = [
+  'configured',
   'creating',
   'deleting',
+  'rebooted',
+  'rebooting',
+  'reinstalling',
   'reopening',
   'restarting',
   'scaling',
