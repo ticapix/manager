@@ -86,6 +86,7 @@ module.exports = (env = {}) => {
     plugins: [
       new webpack.DefinePlugin({
         __WEBPACK_REGION__: `'${REGION}'`,
+        __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS ? `'${process.env.NG_APP_INJECTIONS}'` : 'null',
       }),
     ],
   });

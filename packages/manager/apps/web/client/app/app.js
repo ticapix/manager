@@ -51,6 +51,7 @@ Environment.setRegion(__WEBPACK_REGION__);
 
 angular
   .module('App', [
+    __NG_APP_INJECTIONS__,
     ovhManagerCore,
     ngPaginationFront,
     'ngOvhUtils',

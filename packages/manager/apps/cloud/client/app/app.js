@@ -43,6 +43,7 @@ import ovhManagerVps from './vps/vps.module';
 Environment.setRegion(__WEBPACK_REGION__);
 
 angular.module('managerApp', [
+  __NG_APP_INJECTIONS__,
   'ngCookies',
   'ngResource',
   'ngSanitize',

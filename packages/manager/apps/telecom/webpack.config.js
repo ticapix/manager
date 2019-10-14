@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
 const _ = require('lodash');
+const webpack = require('webpack');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 
 const folder = './src/app/telecom';
@@ -62,6 +63,11 @@ module.exports = (env = {}) => {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',
     },
+    plugins: [
+      new webpack.DefinePlugin({
+        __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS ? `'${process.env.NG_APP_INJECTIONS}'` : 'null',
+      }),
+    ],
     resolve: {
       mainFields: ['module', 'browser', 'main'],
     },
