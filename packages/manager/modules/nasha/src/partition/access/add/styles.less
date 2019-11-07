@@ -1,3 +1,7 @@
+@cloud_info_bg_color: #dfeaf8;
+@cloud_info_border_color: #b3becc;
+@cloud_info_text_color: #3f5167;
+
 .nasha-partition-access-add {
   .radio {
     &.disabled {
@@ -11,20 +15,20 @@
     }
   }
 
-  // .nasha-info {
-  //   background-color: @cloud_info_bg_color;
-  //   border: 1px solid @cloud_info_border_color;
-  //   border-radius: 5px;
-  //   display: flex;
-  //   align-items: center;
+  .nasha-info {
+    background-color: @cloud_info_bg_color;
+    border: 1px solid @cloud_info_border_color;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
 
-  //   &-text {
-  //     color: @cloud_info_text_color;
-  //   }
+    &-text {
+      color: @cloud_info_text_color;
+    }
 
-  //   &-icon {
-  //     min-width: 30px;
-  //     height: 30px;
-  //   }
-  // }
+    &-icon {
+      min-width: 30px;
+      height: 30px;
+    }
+  }
 }

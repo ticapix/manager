@@ -15,10 +15,6 @@ export default class NashaPartitionAccessAddCtrl {
       type: 'readwrite', // readonly or readwrite
     };
 
-    self.getDescription = function getDescription(ipAccess) {
-      return ipAccess.description;
-    };
-
     self.loadAccessList = function loadAccessList() {
       self.loading = true;
       OvhApiDedicatedNasha.Partition().Access().Aapi()
