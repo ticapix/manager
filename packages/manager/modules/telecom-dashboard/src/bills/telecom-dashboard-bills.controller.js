@@ -1,19 +1,37 @@
 import constant from '../telecom-dashboard.constant';
 
-export default /* @ngInject */ function (OvhApiMeBill, TucToastError) {
-  const self = this;
+export default class TelecomdashboardBillsController {
+  /* @ngInject */
+  constructor(
+    OvhApiMeBillIceberg,
+    TucToastError,
+  ) {
+    this.OvhApiMeBillIceberg = OvhApiMeBillIceberg;
+    this.TucToastError = TucToastError;
+  }
 
-  self.links = {
-    billing: constant.billing,
-  };
-  self.amountBillsDisplayed = 6;
+  $onInit() {
+    this.links = {
+      billing: constant.billing,
+    };
+    this.amountBillsDisplayed = 6;
+    this.getLastBills();
+  }
 
-  self.$onInit = function getLastBills() {
-    return OvhApiMeBill.Aapi().last().$promise.then((bills) => {
-      self.lastBills = bills;
-    }, (err) => {
-      self.lastBills = [];
-      return TucToastError(err);
-    });
-  };
+  getLastBills() {
+    return this.OvhApiMeBillIceberg
+      .query()
+      .expand('CachedObjectList-Pages')
+      .sort('date', 'DESC')
+      .limit(6)
+      .execute(null, true)
+      .$promise
+      .then(({ data: bills }) => {
+        this.lastBills = bills;
+      })
+      .catch((err) => {
+        this.lastBills = [];
+        return this.TucToastError(err);
+      });
+  }
 }

@@ -8,6 +8,7 @@ import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 import 'angular-translate';
 import '@ovh-ux/manager-banner';
+import '@ovh-ux/ng-ovh-api-wrappers';
 import 'ovh-api-services';
 
 import 'ovh-ui-kit/dist/oui.css';
@@ -17,12 +18,11 @@ import 'ovh-manager-webfont/dist/css/ovh-font.css';
 import './telecom-dashboard.scss';
 import './telecom-dashboard.less';
 
+import bills from './bills';
 import dashboardCtrl from './telecom-dashboard.controller';
-import billsCtrl from './bills/telecom-dashboard-bills.controller';
 import guidesCtrl from './guides/telecom-dashboard-guides.controller';
 
 import template from './telecom-dashboard.html';
-import billsTemplate from './bills/telecom-dashboard-bills.html';
 import guidesTemplate from './guides/telecom-dashboard-guides.html';
 
 const moduleName = 'ovhManagerTelecomDashboard';
@@ -32,12 +32,14 @@ angular
     'ngAtInternet',
     'ngAtInternetUiRouterPlugin',
     'ngUiRouterTitle',
+    'ngOvhApiWrappers',
     'ovh-api-services',
     'ovhManagerBanner',
     'ovhManagerCore',
     'pascalprecht.translate',
     'ngOvhTelecomUniverseComponents',
     'ui.router',
+    bills,
   ])
   .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider.state('telecom-dashboard', {
@@ -49,9 +51,7 @@ angular
           controllerAs: 'TelecomDashboardCtrl',
         },
         'billsView@telecom-dashboard': {
-          template: billsTemplate,
-          controller: billsCtrl,
-          controllerAs: 'BillsCtrl',
+          component: 'telecomDashboardBills',
         },
         'guidesView@telecom-dashboard': {
           template: guidesTemplate,

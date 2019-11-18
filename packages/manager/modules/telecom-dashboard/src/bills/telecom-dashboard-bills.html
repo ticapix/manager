@@ -4,7 +4,7 @@
         data-translate="telecom_dashboard_bill_title">
     </h2>
 
-    <oui-datagrid data-rows="BillsCtrl.lastBills" data-page-size="BillsCtrl.amountBillsDisplayed">
+    <oui-datagrid data-rows="$ctrl.lastBills" data-page-size="$ctrl.amountBillsDisplayed">
         <oui-column data-title="'telecom_dashboard_date' | translate" data-property="date" data-sortable="desc">
             {{$row.date | date:'shortDate'}}
         </oui-column>
@@ -28,8 +28,8 @@
 
 
     <a class="oui-button oui-button_link oui-button_icon-right float-right"
-       data-ng-if="BillsCtrl.lastBills.length === BillsCtrl.amountBillsDisplayed"
-       data-ng-href="{{ BillsCtrl.links.billing }}"
+       data-ng-if="$ctrl.lastBills.length === $ctrl.amountBillsDisplayed"
+       data-ng-href="{{ $ctrl.links.billing }}"
        data-translate-attr="{ 'title': 'telecom_dashboard_bill_more' }">
         <span data-translate="telecom_dashboard_bill_more"></span>
         <i class="oui-icon oui-icon-chevron-right" aria-hidden="true"></i>
