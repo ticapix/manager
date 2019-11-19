@@ -1,0 +1,26 @@
+<oui-progress>
+    <oui-progress-bar
+        data-type="success"
+        data-ng-if="$ctrl.bindings.usagePercentage <= 50"
+        data-value="$ctrl.bindings.usagePercentage">
+    
+        <span
+            data-translate="exchange_account_size_progression"
+            data-translate-values="{
+                usedValue: $ctrl.bindings.used.value,
+                usedSymbol: $ctrl.bindings.used.value === 0 ? '' : $ctrl.bindings.used.symbol,
+                totalValue: $ctrl.bindings.total.value,
+                totalSymbol: $ctrl.bindings.total.symbol,
+            }"></span>
+    </oui-progress-bar>
+
+    <oui-progress-bar
+        data-type="warning"
+        data-ng-if="$ctrl.bindings.usagePercentage > 50 && $ctrl.bindings.usagePercentage <= 80"
+        data-value="$ctrl.bindings.usagePercentage"></oui-progress-bar>
+
+    <oui-progress-bar
+        data-type="error"
+        data-ng-if="$ctrl.bindings.usagePercentage > 80"
+        data-value="$ctrl.bindings.usagePercentage"></oui-progress-bar>
+</oui-progress>

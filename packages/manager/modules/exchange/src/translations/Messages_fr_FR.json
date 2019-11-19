@@ -1565,5 +1565,7 @@
   "exchange_wizardHostedCreation_configureDNSZone_manual_dialog_warning": "Attention",
   "exchange_wizardHostedCreation_lastDialog_closeButton": "Finaliser",
   "exchange_table_manage_entry": ": gérer",
-  "sharepoint_activate_which_service_label": "Serveur Exchange à associer"
+  "sharepoint_activate_which_service_label": "Serveur Exchange à associer",
+
+  "exchange_account_size_progression": "{{usedValue}} {{usedSymbol}}/ {{totalValue}} {{totalSymbol}}"
 }

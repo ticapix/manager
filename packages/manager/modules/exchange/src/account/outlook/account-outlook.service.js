@@ -1,6 +1,3 @@
-import get from 'lodash/get';
-import isBoolean from 'lodash/isBoolean';
-
 export default class ExchangeAccountOutlook {
   /* @ngInject */
   constructor(Exchange, exchangeAccount, exchangeAccountTypes, exchangeSelectedService, OvhHttp) {
@@ -9,14 +6,6 @@ export default class ExchangeAccountOutlook {
     this.exchangeAccountTypes = exchangeAccountTypes;
     this.exchangeSelectedService = exchangeSelectedService;
     this.OvhHttp = OvhHttp;
-
-    this.STATES = {
-      ALREADY_ORDERED: 'ALREADY_ORDERED',
-      ALREADY_ACTIVATED: 'ALREADY_ACTIVATED',
-      TO_ACTIVATE: 'TO_ACTIVATE',
-      TO_ORDER: 'TO_ORDER',
-      CANT_ORDER_OR_ACTIVATE_LICENSE: 'CANT_ORDER_OR_ACTIVATE_LICENSE',
-    };
   }
 
   /**
@@ -174,47 +163,6 @@ export default class ExchangeAccountOutlook {
       !this.exchangeAccountTypes.is(account, this.exchangeAccountTypes.TYPES.BASIC)
       && !this.exchangeAccount.isPlaceholder(account)
     );
-  }
-
-  /**
-   * The status tells if the current user can order a license and if he needs to
-   * @param {object} account
-   * @returns {string} Status of the `account` Outlook license
-   */
-  getStatus(account) {
-    const inputIsValid = isBoolean(get(account, 'outlook'));
-
-    if (!inputIsValid) {
-      throw new Error('Input is not a valid account');
-    }
-
-    const accountAlreadyHasLicence = account.outlook;
-
-    if (accountAlreadyHasLicence) {
-      if (
-        this.exchangeSelectedService.isContractType(
-          this.exchangeSelectedService.CONTRACT_TYPES.PREPAID,
-        )
-      ) {
-        return this.STATES.ALREADY_ORDERED;
-      }
-
-      return this.STATES.ALREADY_ACTIVATED;
-    }
-
-    if (!this.Exchange.currentUserHasConfigurationRights()) {
-      return this.STATES.CANT_ORDER_OR_ACTIVATE_LICENSE;
-    }
-
-    if (
-      this.exchangeSelectedService.isContractType(
-        this.exchangeSelectedService.CONTRACT_TYPES.PAY_AS_YOU_GO,
-      )
-    ) {
-      return this.STATES.TO_ACTIVATE;
-    }
-
-    return this.STATES.TO_ORDER;
   }
 
   /**

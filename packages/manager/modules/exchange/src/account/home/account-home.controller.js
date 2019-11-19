@@ -7,12 +7,12 @@ import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
-import isNull from 'lodash/isNull';
 import isNumber from 'lodash/isNumber';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
 import startsWith from 'lodash/startsWith';
 import snakeCase from 'lodash/snakeCase';
+import sortBy from 'lodash/sortBy';
 import sumBy from 'lodash/sumBy';
 import toUpper from 'lodash/toUpper';
 
@@ -35,6 +35,8 @@ export default class ExchangeAccountHomeController {
     messaging,
     navigation,
     officeAttach,
+    ouiDatagridService,
+    OvhApiEmailExchange,
     OvhApiMe,
     ovhUserPref,
   ) {
@@ -52,6 +54,8 @@ export default class ExchangeAccountHomeController {
     this.messaging = messaging;
     this.navigation = navigation;
     this.officeAttach = officeAttach;
+    this.ouiDatagridService = ouiDatagridService;
+    this.OvhApiEmailExchange = OvhApiEmailExchange;
     this.OvhApiMe = OvhApiMe;
     this.ovhUserPref = ovhUserPref;
   }
@@ -60,6 +64,27 @@ export default class ExchangeAccountHomeController {
     this.$routerParams = this.Exchange.getParams();
     this.hostname = this.Exchange.value.hostname;
     this.webUrl = this.Exchange.value.webUrl;
+    this.bindings = {
+      accounts: {
+        id: 'exchangeAccounts',
+        pagination: {
+          pageNumber: 1,
+          pageSize: 25,
+        },
+        columns: {
+          accountLicense: {
+            typeOptions: {
+              values: {},
+            },
+          },
+          primaryEmailAddress: {
+            typeOptions: {
+              operators: ['contains', 'is', 'isNot', 'startsWith', 'endsWith'],
+            },
+          },
+        },
+      },
+    };
 
     this.linkToSpamTicket = `#/support/tickets?filters={"comparator":"is","field":"serviceName","reference":["${this.$routerParams.productId}"]}`;
     this.initialAccountRetrieval = true;
@@ -92,24 +117,23 @@ export default class ExchangeAccountHomeController {
   }
 
   buildAccountTypeColumnOptions() {
-    this.accountTypeColumnOptions = {
-      values: {
-        STANDARD: this.exchangeAccountTypes.getDisplayValue(
-          this.exchangeAccountTypes.TYPES.STANDARD,
-        ),
-      },
-    };
+    this.bindings.accounts.columns.accountLicense.typeOptions.values
+      .standard = this.exchangeAccountTypes.getDisplayValue(
+        this.exchangeAccountTypes.TYPES.STANDARD,
+      );
 
     if (this.exchangeAccountTypes.CAN_DO.BASIC()) {
-      this.accountTypeColumnOptions.values.BASIC = this.exchangeAccountTypes.getDisplayValue(
-        this.exchangeAccountTypes.TYPES.BASIC,
-      );
+      this.bindings.accounts.columns.accountLicense.typeOptions.values
+        .basic = this.exchangeAccountTypes.getDisplayValue(
+          this.exchangeAccountTypes.TYPES.BASIC,
+        );
     }
 
     if (this.exchangeAccountTypes.CAN_DO.ENTERPRISE()) {
-      this.accountTypeColumnOptions.values.ENTERPRISE = this.exchangeAccountTypes.getDisplayValue(
-        this.exchangeAccountTypes.TYPES.ENTERPRISE,
-      );
+      this.bindings.accounts.columns.accountLicense.typeOptions.values
+        .enterprise = this.exchangeAccountTypes.getDisplayValue(
+          this.exchangeAccountTypes.TYPES.ENTERPRISE,
+        );
     }
   }
 
@@ -165,6 +189,13 @@ export default class ExchangeAccountHomeController {
       });
   }
 
+  onPageChange({ offset, pageSize }) {
+    this.bindings.accounts.pagination.pageNumber = parseInt(offset / pageSize, 10) + 1
+      || this.bindings.accounts.pagination.pageNumber;
+    this.bindings.accounts.pagination.pageSize = pageSize
+      || this.bindings.accounts.pagination.pageSize;
+  }
+
   fetchingAccountCreationOptions() {
     return this.Exchange
       .fetchingAccountCreationOptions(
@@ -185,67 +216,71 @@ export default class ExchangeAccountHomeController {
       });
   }
 
-  fetchAccounts(parameters) {
-    this.gridParameters = merge(
-      this.gridParameters,
-      parameters,
-    );
-
-    this.gridParameters.searchValues = map(
-      filter(
-        parameters.criteria,
-        criterium => isNull(criterium.property) || criterium.property === 'emailAddress',
-      ),
-      criterium => criterium.value,
-    );
-
-    const accountTypeFilters = map(
-      filter(
-        parameters.criteria,
-        criterium => criterium.property === 'accountLicense',
-      ),
-      criterium => criterium.value,
-    );
-
-    this.gridParameters.accountTypeFilter = accountTypeFilters.length === 2 ? '' : accountTypeFilters[0];
-
-    return this.Exchange
-      .fetchAccounts(
-        this.$routerParams.organization,
-        this.$routerParams.productId,
-        parameters.pageSize,
-        parameters.offset - 1,
-        this.gridParameters.searchValues,
-        this.gridParameters.accountTypeFilter,
-      )
-      .then((accounts) => {
-        this.accounts = this.formatAccountsForDatagrid(
-          accounts,
-          parameters.sort,
-          parameters.criteria,
-        );
-
-        this.datagridData = {
-          data: this.accounts,
-          meta: {
-            totalCount: accounts.count,
-          },
+  computeFilters() {
+    const newFilters = map(
+      this.ouiDatagridService.datagrids[this.bindings.accounts.id].criteria,
+      (criterion) => {
+        const FILTER_OPERATORS = {
+          contains: 'like',
+          is: 'eq',
+          isAfter: 'gt',
+          isBefore: 'lt',
+          isNot: 'ne',
+          smaller: 'lt',
+          bigger: 'gt',
+          startsWith: 'like',
+          endsWith: 'like',
         };
+        const operator = FILTER_OPERATORS[criterion.operator];
+        let value;
 
-        if (this.gridColumnParametersAlreadyExist) {
-          return null;
+        switch (criterion.operator.toUpperCase()) {
+          case 'CONTAINS':
+            value = `%25${criterion.value}%25`;
+            break;
+          case 'STARTSWITH':
+            value = `${criterion.value}%25`;
+            break;
+          case 'ENDSWITH':
+            value = `%25${criterion.value}`;
+            break;
+          default:
+            value = get(criterion, 'value');
+            break;
         }
 
-        const newCompanyColumnParameter = this.computeDefaultCompanyColumnParameter();
-        const changesHaveBeenDone = this.computeDatagridColumnParameters(
-          newCompanyColumnParameter,
-        );
+        return [criterion.property || 'primaryEmailAddress', operator, value];
+      },
+    );
 
-        return changesHaveBeenDone
-          ? this.savingDatagridColumnParameters()
-          : null;
-      })
-      .then(() => this.datagridData)
+    if (!isEqual(sortBy(newFilters), sortBy(this.filters))) {
+      this.onPageChange({ offset: 0 });
+    }
+
+    return newFilters;
+  }
+
+  getAccounts() {
+    this.initialAccountRetrieval = true;
+
+    this.filters = this.computeFilters();
+
+    return this
+      .exchangeAccount
+      .getAccounts(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.bindings.accounts.pagination.pageSize,
+        this.bindings.accounts.pagination.pageNumber,
+        { field: 'primaryEmailAddress', order: 'ASC' },
+        this.filters,
+      )
+      .then(accounts => ({
+        data: accounts.data,
+        meta: {
+          totalCount: accounts.headers['x-pagination-elements'],
+        },
+      }))
       .catch((error) => {
         this.messaging.writeError(
           this.$translate.instant('exchange_accounts_fetchAccounts_error'),
