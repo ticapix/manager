@@ -1,0 +1,42 @@
+{
+  "name": "@ovh-ux/ovh-entities",
+  "version": "0.0.0",
+  "description": "Entities for the OVH ecosystem",
+  "keywords": [
+    "entity"
+  ],
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/components/ovh-entities#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/components/ovh-entities"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "nearleyc src/grammar.ne -o dist/grammar.js",
+    "dev": "yarn run build",
+    "dev:watch": "node ./scripts/devWatch.js",
+    "lint": "eslint --quiet --fix src",
+    "prepare": "yarn run build",
+    "test": "eslint --quiet src"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "chokidar": "^3.3.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "nearley": "^2.19.0",
+    "typescript": "^3.7.2"
+  }
+}

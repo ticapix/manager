@@ -1,0 +1,13 @@
+# entity support.Message[]
+
+# properties
+body: text
+creationDate: datetime
+from: support.MessageSenderEnum
+messageId: long
+ticketId: long
+updateDate: datetime
+
+# actions
+read:
+- collection: /support/tickets/{ticketId}/messages

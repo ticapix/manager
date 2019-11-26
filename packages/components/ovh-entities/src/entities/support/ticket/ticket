@@ -1,0 +1,35 @@
+# entity support.Ticket
+id: ticketId
+
+# properties
+creationDate: datetime
+messages: support.Message[]
+lastMessageFrom: support.MessageSenderEnum
+serviceName: string
+state: support.TicketStatusEnum
+subject: string
+ticketId: long
+ticketNumber: long
+updateDate: datetime
+
+# actions
+close: /support/tickets/{ticketId}/close
+create: /support/tickets/create
+read:
+- collection: /support/tickets
+- item: /support/tickets/{ticketId}
+reply: /support/tickets/{ticketId}/reply
+
+# enum support.MessageSenderEnum
+customer
+support
+
+# enum support.TicketCategoryEnum
+assistance
+billing
+incident
+
+# enum support.TicketStatusEnum
+closed
+open
+unknown
