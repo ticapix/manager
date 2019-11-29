@@ -21,7 +21,8 @@ angular.module('App').config(($stateProvider) => {
       interfaces: /* @ngInject */ (
         serverName,
         DedicatedServerInterfacesService,
-      ) => DedicatedServerInterfacesService.getInterfaces(serverName),
+        vrack,
+      ) => DedicatedServerInterfacesService.getInterfaces(serverName, vrack),
       isOlaAvailable: /* @ngInject */ (coreConfig) =>
         coreConfig.isRegion(['EU', 'CA']),
       ola: /* @ngInject */ (
@@ -80,6 +81,8 @@ angular.module('App').config(($stateProvider) => {
       specifications: /* @ngInject */ (serverName, Server) =>
         Server.getBandwidth(serverName),
       user: /* @ngInject */ (currentUser) => currentUser,
+      vrack: /* @ngInject */ (Server, serverName) =>
+        Server.getVrack(serverName).catch(() => null),
       atTrack: /* @ngInject */ (atInternet) => (name) =>
         atInternet.trackClick({
           name,
