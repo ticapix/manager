@@ -219,7 +219,8 @@ angular.module('managerApp').controller('PackResiliationCtrl', function PackResi
    * Compute the new price according to the new date
    * @returns {*}
    */
-  this.computePrice = function computePrice() {
+  this.computePrice = function computePrice([selectedDate]) {
+    self.model.when = selectedDate;
     self.computingPrice = true;
     return OvhApiPackXdslResiliation.v6().resiliationTerms({
       packName: $stateParams.packName,
@@ -230,34 +231,6 @@ angular.module('managerApp').controller('PackResiliationCtrl', function PackResi
     }, (err) => new TucToastError(err)).finally(() => {
       self.computingPrice = false;
     });
-  };
-
-  /**
-   * Open the date picker
-   * @param event
-   */
-  this.openDatePicker = function openDatePicker(event) {
-    self.pickerOpened = true;
-    self.pickerOpenedPreventConflict = true;
-    event.stopPropagation();
-
-    $timeout(() => {
-      self.pickerOpenedPreventConflict = false;
-    }, 500);
-  };
-
-  /**
-   * Switch the date picker state, if is open then close,
-   * if is closed then open it
-   *
-   * @param event
-   */
-  this.switchDatePickerState = function switchDatePickerState(event) {
-    if (!self.pickerOpenedPreventConflict) {
-      self.pickerOpened = !self.pickerOpened;
-    }
-
-    event.stopPropagation();
   };
 
   /**

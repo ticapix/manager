@@ -91,16 +91,6 @@ angular.module('managerApp').controller('TelephonySchedulerEventsCtrl', function
     return moment(self.event.dateEnd).format('HH:mm');
   };
 
-  self.rightPageDateModel = function rightPageDateModel(newDate) {
-    if (arguments.length) {
-      if (self.model.specialEdit.attr === 'dateStart') {
-        return (self.event.dateStart = newDate); // eslint-disable-line
-      }
-      return (self.event.dateEnd = newDate); // eslint-disable-line
-    }
-    return self.model.specialEdit.attr === 'dateStart' ? self.event.dateStart : self.event.dateEnd;
-  };
-
   /* ----------  category availablity  ----------*/
 
   self.convertCategoryToSlot = function convertCategoryToSlot(category) {
@@ -158,8 +148,9 @@ angular.module('managerApp').controller('TelephonySchedulerEventsCtrl', function
     self.model.specialEdit.move = true;
   };
 
-  self.manageOnDateChange = function manageOnDateChange() {
+  self.manageOnDateChange = function manageOnDateChange([newDate]) {
     if (self.model.specialEdit.attr === 'dateStart') {
+      self.event.dateStart = newDate;
       // if start date is after end date, set end date to end of start date day.
       if (moment(self.event.dateStart).isAfter(self.event.dateEnd)) {
         if (self.event.allDay) {
@@ -167,8 +158,10 @@ angular.module('managerApp').controller('TelephonySchedulerEventsCtrl', function
         } else {
           self.event.dateEnd = moment(self.event.dateStart).add(15, 'minutes').toDate();
         }
+        self.event.dateEndStr = self.event.dateEnd.toISOString();
       }
     } else if (self.model.specialEdit.attr === 'dateEnd') {
+      self.event.dateEnd = newDate;
       // if end date is before start date, set start date to begin of end date day.
       if (moment(self.event.dateEnd).isBefore(self.event.dateStart)) {
         if (self.event.allDay) {
@@ -176,11 +169,13 @@ angular.module('managerApp').controller('TelephonySchedulerEventsCtrl', function
         } else {
           self.event.dateStart = moment(self.event.dateEnd).subtract(15, 'minutes').toDate();
         }
+        self.event.dateStartStr = self.event.dateStart.toISOString();
       }
 
       // if event is full day event, set end date to the end of the day
       if (self.event.allDay) {
         self.event.dateEnd = moment(self.event.dateEnd).endOf('day').toDate();
+        self.event.dateEndStr = self.event.dateEnd.toISOString();
       }
     }
 
@@ -196,6 +191,7 @@ angular.module('managerApp').controller('TelephonySchedulerEventsCtrl', function
   self.manageOnFromHourStart = function manageOnFromHourStart() {
     if (moment(self.event.dateEnd).isSame(self.event.dateStart, 'day')) {
       self.event.dateEnd = moment(self.event.dateStart).add(15, 'minutes').toDate();
+      self.event.dateEndStr = self.event.dateEnd.toISOString();
     }
   };
 
@@ -213,6 +209,8 @@ angular.module('managerApp').controller('TelephonySchedulerEventsCtrl', function
     } else {
       self.event.dateEnd = moment(self.event.dateEnd).startOf('day').toDate();
     }
+    self.event.dateStartStr = self.event.dateStart.toISOString();
+    self.event.dateEndStr = self.event.dateEnd.toISOString();
   };
 
   /* -----  End of ACTIONS  ------*/
@@ -233,6 +231,12 @@ angular.module('managerApp').controller('TelephonySchedulerEventsCtrl', function
 
       if (self.event.status === 'CREATING' && self.scheduler.isEventInExistingRange(self.event)) {
         self.event.categories = getFirstAvailableCategory();
+      }
+      if (self.event.dateStart) {
+        self.event.dateStartStr = self.event.dateStart.toISOString();
+      }
+      if (self.event.dateEnd) {
+        self.event.dateEndStr = self.event.dateEnd.toISOString();
       }
     }).finally(() => {
       self.loading.init = false;

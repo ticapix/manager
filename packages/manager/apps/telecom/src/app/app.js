@@ -145,11 +145,12 @@ angular.module('managerApp', [
 
 /*= =========  TRANSLATOR  ========== */
   .config((
+    ouiCalendarConfigurationProvider,
     TranslateServiceProvider,
   ) => {
-    const defaultLanguage = TranslateServiceProvider.getUserLocale();
+    const defaultLanguage = TranslateServiceProvider.getUserLocale(true);
     // set moment locale
-    moment.locale(defaultLanguage.split('_')[0]);
+    moment.locale(defaultLanguage);
   })
 
 /*= =========  PAGE TRACKING  ========== */

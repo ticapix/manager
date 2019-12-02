@@ -48,6 +48,10 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
     return found;
   };
 
+  self.onDateChange = function onDateChange([selectedDate]) {
+    self.campaign.sendDate = selectedDate;
+  };
+
   function uploadDocuments() {
     const promise = {};
     promise.pdf = OvhApiMe.Document().v6().upload(
@@ -86,18 +90,6 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
   }
 
   /* -----  End of HELPERS  ------ */
-
-  /* ===============================
-    =            EVENTS            =
-    =============================== */
-
-  self.openDatePicker = function openDatePicker($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    self.picker.dateOpened = true;
-  };
-
-  /* -----  End of EVENTS  ------ */
 
   /* ===============================
     =            ACTIONS            =

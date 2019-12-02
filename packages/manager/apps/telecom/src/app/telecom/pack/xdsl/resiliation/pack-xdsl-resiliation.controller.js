@@ -1,6 +1,6 @@
 import set from 'lodash/set';
 
-angular.module('managerApp').controller('PackXdslResiliationCtrl', function PackXdslResiliationCtrl($scope, $stateParams, $translate, $q, $timeout, $filter, OvhApiXdsl, TucToastError, OvhApiXdslResiliation, TucToast, tucValidator) {
+angular.module('managerApp').controller('PackXdslResiliationCtrl', function PackXdslResiliationCtrl($scope, $stateParams, $translate, $q, $timeout, $filter, OvhApiXdsl, TucToastError, OvhApiXdslResiliation, TucToast) {
   const self = this;
 
   this.loading = true;
@@ -30,6 +30,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function Pack
       self.minResiliationDate = self.dpOpts.minDate;
 
       self.when = new Date(self.resiliationTerms.data.resiliationDate);
+      self.whenStr = self.when;
 
 
       return OvhApiXdslResiliation.v6().followUp({
@@ -73,46 +74,11 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function Pack
   };
 
   /**
-   * Validator for the resiliationDate
-   * @param {Date} specifiedDate Date to validate
-   */
-  this.checkDate = function checkDate(specifiedDate) {
-    return !specifiedDate
-      || (tucValidator.isDate(specifiedDate) && (specifiedDate >= self.minResiliationDate));
-  };
-
-  /**
-   * Open the date picker
-   * @param event
-   */
-  this.openDatePicker = function openDatePicker(event) {
-    self.pickerOpened = true;
-    self.pickerOpenedPreventConflict = true;
-    event.stopPropagation();
-
-    $timeout(() => {
-      self.pickerOpenedPreventConflict = false;
-    }, 500);
-  };
-
-  /**
-   * Switch the date picker state, if is open then close,
-   * if is closed then open it
-   *
-   * @param event
-   */
-  this.switchDatePickerState = function switchDatePickerState(event) {
-    if (!self.pickerOpenedPreventConflict) {
-      self.pickerOpened = !self.pickerOpened;
-    }
-    event.stopPropagation();
-  };
-
-  /**
    * Compute the new price
    * @returns {*}
    */
-  this.computePrice = function computePrice() {
+  this.computePrice = function computePrice([selectedDate]) {
+    self.when = selectedDate;
     self.computingPrice = true;
     return OvhApiXdslResiliation.v6().resiliationTerms({
       serviceName: $stateParams.serviceName,
