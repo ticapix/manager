@@ -15,7 +15,6 @@ export default /* @ngInject */ function
 
   this.validator = tucValidator;
   this.publicKeyHelperUrl = CORE_URLS.keyGenHelp;
-  this.pickerOpened = false;
   this.maxRemotes = OVER_THE_BOX.maxRemotes;
 
   /**
@@ -74,16 +73,15 @@ export default /* @ngInject */ function
       .map((remote) => (remote.remoteAccessId === oldRemote.remoteAccessId ? newRemote : remote));
   }
 
+  this.onDateChange = function onDateChange([selectedDate]) {
+    this.newRemote.expirationDate = selectedDate;
+  };
+
   this.isIpValid = function isIpValid(ip) {
     if (!ip) {
       return true;
     }
     return TucIpAddress.isValidIp(ip);
-  };
-
-  this.openDatePicker = function openDatePicker(event) {
-    self.pickerOpened = true;
-    event.stopPropagation();
   };
 
   /**
@@ -111,15 +109,6 @@ export default /* @ngInject */ function
     }).finally(() => {
       self.adding = false;
     });
-  };
-
-  /**
-   * Validate that the date is in the future
-   * @param {Date} when Date to compare
-   * @return {Boolean}
-   */
-  this.isInFuture = function isInFuture(when) {
-    return !when || moment(when).isAfter(new Date());
   };
 
   /**
