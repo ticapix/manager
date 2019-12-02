@@ -479,5 +479,11 @@ angular.module('managerApp')
         });
       };
 
+      self.isStartBeforeEndDate = function isStartBeforeEndDate() {
+        return !self.search.creationStart
+          || !self.search.creationEnd
+          || moment(self.search.creationStart) <= moment(self.search.creationEnd);
+      };
+
       init();
     });
