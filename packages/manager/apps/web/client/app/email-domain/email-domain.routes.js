@@ -38,29 +38,6 @@ angular.module('App').config(($stateProvider) => {
     translations: { value: ['../email', '../hosting', '../mailing-list'], format: 'json' },
   });
 
-  $stateProvider.state('app.email.delegate', {
-    url: '/configuration/email-delegate/:productId?tab',
-    templateUrl: 'email-domain/delegate/email-domain-delegate.html',
-    controller: 'EmailDelegateCtrl',
-    controllerAs: 'ctrlEmailDelegate',
-    reloadOnSearch: false,
-    resolve: {
-      currentSection: () => 'email_delegate',
-      navigationInformations: [
-        'Navigator',
-        '$rootScope',
-        (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'email_delegate'; // eslint-disable-line no-param-reassign
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        },
-      ],
-    },
-    translations: { value: ['../email'], format: 'json' },
-  });
-
   $stateProvider.state('app.mx-plan', {
     url: '/configuration/mx_plan?domain',
     templateUrl: 'email-domain/order/email-domain-order.html',

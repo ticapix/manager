@@ -43,8 +43,9 @@ import domainEmailObfuscation from './domain/email-obfuscation/index';
 import domainOptin from './domain/optin/index';
 import domainZoneActivation from './domain/general-informations/activateZone/activate.module';
 import domainDnsZone from './dns-zone';
-import hostingWebsiteCoach from './hosting/website-coach/website-coach.module';
+import emailDomainDelegate from './email-domain/delegate';
 import errorPage from './error-page/error-page.module';
+import hostingWebsiteCoach from './hosting/website-coach/website-coach.module';
 import zone from './domain/zone/zone.module';
 
 import './css/source.less';
@@ -107,8 +108,9 @@ angular
     domainEmailObfuscation,
     domainZoneActivation,
     domainOptin,
-    hostingWebsiteCoach,
+    emailDomainDelegate,
     errorPage,
+    hostingWebsiteCoach,
     zone,
   ])
   .constant('constants', {
