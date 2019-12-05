@@ -1,0 +1,9 @@
+pci-project-new { /* stylelint-disable-line */
+  @import '~bootstrap4/scss/_functions';
+  @import '~bootstrap4/scss/_variables';
+  @import "~bootstrap4/scss/mixins/_breakpoints";
+
+  .pci-project-new {
+    background-color: rgb(241, 249, 253);
+  }
+}

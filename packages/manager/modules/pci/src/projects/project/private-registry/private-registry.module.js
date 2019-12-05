@@ -10,7 +10,7 @@ import 'ovh-ui-angular';
 import routing from './private-registry.routing';
 import pciPrivateRegistryComponent from './private-registry.component';
 import pciPrivateRegistryService from './private-registry.service';
-import PciProjectNewService from '../../new/new.service';
+import PciProjectNewService from '../../new/service';
 
 import create from './create';
 import deleteRegistry from './delete';

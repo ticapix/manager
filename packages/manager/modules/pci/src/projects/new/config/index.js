@@ -3,16 +3,11 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-ui-angular';
-import '@ovh-ux/ng-ovh-payment-method';
-import 'ovh-api-services';
-
-import components from './components';
 
 import routing from './routing';
 import component from './component';
-import paymentService from './service';
 
-const moduleName = 'pciProjectNewPayment';
+const moduleName = 'pciProjectNewConfig';
 
 angular
   .module(moduleName, [
@@ -20,13 +15,9 @@ angular
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
-    'ngOvhPaymentMethod',
-    'ovh-api-services',
-    components,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .component(component.name, component)
-  .service('pciProjectNewPayment', paymentService);
+  .component(component.name, component);
 
 export default moduleName;

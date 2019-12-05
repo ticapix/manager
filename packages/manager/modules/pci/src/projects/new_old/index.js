@@ -2,6 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import './new.scss';
+
 const moduleName = 'ovhManagerPciProjectsNewLazyLoading';
 
 angular
@@ -15,7 +17,7 @@ angular
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./module')
+        return import('./new.module')
           .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
     });
