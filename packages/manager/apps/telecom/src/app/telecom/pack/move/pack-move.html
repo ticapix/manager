@@ -1,25 +1,25 @@
 <div class="telecom-pack-move">
     <header>
-        <tuc-section-back-link data-tuc-section-back-link-to-state="{{ PackMove.packName === 'sdsl' ? 'telecom.dashboard' : 'telecom.pack' }}"></tuc-section-back-link>
+        <tuc-section-back-link data-tuc-section-back-link-to-state="{{ $ctrlpackName === 'sdsl' ? 'telecom.dashboard' : 'telecom.pack' }}"></tuc-section-back-link>
         <h1 data-translate="pack_move_title"></h1>
     </header>
 
     <div class="telecom-section-content">
 
-        <div class="text-center" data-ng-if="PackMove.loading">
+        <div class="text-center" data-ng-if="$ctrl.loading">
             <oui-spinner></oui-spinner>
         </div>
 
         <!-- BEGIN: end of loading -->
-        <div data-ng-if="!PackMove.loading">
+        <div data-ng-if="!$ctrl.loading">
             <div class="alert alert-warning mt-4"
                  role="alert"
-                 data-ng-if="PackMove.operationAlreadyPending">
+                 data-ng-if="$ctrl.operationAlreadyPending">
                 <strong data-translate="pack_move_operation_already_pending"></strong>
             </div>
             <div class="alert alert-warning mt-4"
                  role="alert"
-                 data-ng-if="!PackMove.operationAlreadyPending && PackMove.offer.current.isLegacy">
+                 data-ng-if="!$ctrl.operationAlreadyPending && $ctrl.offer.current.isLegacy">
                 <strong data-translate="pack_move_legacy_offer"></strong>
                 <a data-translate="pack_move_legacy_offer_upgrade_offer"
                    data-ui-sref="telecom.pack.migration">
@@ -29,43 +29,45 @@
             <tuc-toast-message></tuc-toast-message>
 
             <!-- BEGIN: Is not legacy offer -->
-            <div data-ng-if="!PackMove.operationAlreadyPending  && !PackMove.offer.current.isLegacy">
+            <div data-ng-if="!$ctrl.operationAlreadyPending  && !$ctrl.offer.current.isLegacy">
 
                 <!-- BEGIN: Line Information -->
                 <div class="widget-presentation">
                     <h2 class="widget-presentation-title" data-translate="pack_move_line_title"></h2>
                     <div class="row">
-                        <div class="col-xs-12 col-md-6">
+                        <div class="col-md-6">
                             <div class="radio">
                                 <label for="radioNumber">
                                     <input type="radio"
                                            id="radioNumber"
-                                           data-ng-model="PackMove.method"
+                                           data-ng-model="$ctrl.method"
                                            data-ng-value="'number'"/>
                                     <span data-translate="pack_move_line_subtitle"></span>
                                 </label>
                             </div>
-                            <pack-move-eligibility-line-number data-offers-change="PackMove.computeOffer(OFFERS)"
-                                                               data-submited="PackMove.ongoingTest()"
-                                                               data-method="PackMove.method">
+                            <pack-move-eligibility-line-number data-offers-change="$ctrl.computeOffer(OFFERS)"
+                                                               data-submited="$ctrl.ongoingTest()"
+                                                               data-method="$ctrl.method">
                             </pack-move-eligibility-line-number>
+                        </div>
 
+                        <div class="col-md-6">
                             <div class="radio">
                                 <label for="radioAddress">
                                     <input type="radio"
                                            id="radioAddress"
-                                           data-ng-model="PackMove.method"
+                                           data-ng-model="$ctrl.method"
                                            data-ng-value="'address'"/>
                                     <span data-translate="pack_move_address_subtitle"></span>
                                 </label>
                             </div>
-                            <pack-move-eligibility-address data-offers-change="PackMove.computeOffer(OFFERS)"
-                                                           data-submited="PackMove.ongoingTest()"
-                                                           data-method="PackMove.method">
+                            <pack-move-eligibility-address data-offers-change="$ctrl.computeOffer(OFFERS)"
+                                                           data-submited="$ctrl.ongoingTest()"
+                                                           data-method="$ctrl.method">
                             </pack-move-eligibility-address>
                             <div class="alert alert-warning"
                                  role="alert"
-                                 data-ng-if="!PackMove.testLine.canMove && PackMove.testLine.performed">
+                                 data-ng-if="!$ctrl.testLine.canMove && $ctrl.testLine.performed">
                                 <strong data-translate="pack_move_cannot_move"></strong>
                             </div>
                         </div>
@@ -75,8 +77,8 @@
 
                 <!-- BEGIN: pack move form -->
                 <form name="packMoveForm"
-                      data-ng-if="PackMove.testLine.canMove && PackMove.testLine.performed"
-                      data-ng-submit="PackMove.openConfirmModal()">
+                      data-ng-if="$ctrl.testLine.canMove && $ctrl.testLine.performed"
+                      data-ng-submit="$ctrl.openConfirmModal()">
 
                     <!-- BEGIN: Eligibility -->
                     <div class="widget-presentation">
@@ -84,10 +86,10 @@
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
                                 <span class="service-item" data-translate="pack_move_eligibility_subtitle"></span>
-                                <div data-ng-repeat="offer in PackMove.offer.available track by $index">
+                                <div data-ng-repeat="offer in $ctrl.offer.available track by $index">
                                     <pack-move-offer data-offer="offer"
-                                                     data-change="PackMove.offerSelected(OFFER)"
-                                                     data-offer-model="PackMove.offer.selected"></pack-move-offer>
+                                                     data-change="$ctrl.offerSelected(OFFER)"
+                                                     data-offer-model="$ctrl.offer.selected"></pack-move-offer>
                                 </div>
                             </div>
                         </div>
@@ -99,21 +101,21 @@
                         <h2 class="widget-presentation-title" data-translate="pack_move_line_keep_number"></h2>
                         <div class="row m-0 p-0">
                             <!-- BEGIN: Current Address -->
-                            <pack-move-address-current data-loading="PackMove.packAdress.loading || PackMove.slammingCheck"
-                                                       data-line-number="{{PackMove.packAdress.lineNumber}}"
-                                                       data-port-line-number="PackMove.form.currentLandline.portLineNumber"
-                                                       data-portability="PackMove.packAdress.portability && !PackMove.hasSlamming"
-                                                       data-address="PackMove.packAdress.current">
+                            <pack-move-address-current data-loading="$ctrl.packAdress.loading || $ctrl.slammingCheck"
+                                                       data-line-number="{{$ctrl.packAdress.lineNumber}}"
+                                                       data-port-line-number="$ctrl.form.currentLandline.portLineNumber"
+                                                       data-portability="$ctrl.packAdress.portability && !$ctrl.hasSlamming"
+                                                       data-address="$ctrl.packAdress.current">
                             </pack-move-address-current>
                             <!-- END: Current Address -->
                             <!-- BEGIN: New Address -->
                             <pack-move-address-future
-                                data-address="PackMove.offer.selected.address"
-                                data-address-loading="PackMove.packAdress.loading"
-                                data-rio="PackMove.form.futureLandline.rio"
-                                data-keep-line-number="PackMove.form.futureLandline.keepLineNumber"
-                                data-can-keep-line-number="PackMove.canKeepLineNumber()"
-                                data-line-number="{{PackMove.form.futureLandline.lineNumber}}">
+                                data-address="$ctrl.offer.selected.address"
+                                data-address-loading="$ctrl.packAdress.loading"
+                                data-rio="$ctrl.form.futureLandline.rio"
+                                data-keep-line-number="$ctrl.form.futureLandline.keepLineNumber"
+                                data-can-keep-line-number="$ctrl.canKeepLineNumber()"
+                                data-line-number="{{$ctrl.form.futureLandline.lineNumber}}">
                             </pack-move-address-future>
                             <!-- END: New Address -->
                         </div>
@@ -122,20 +124,20 @@
 
                     <!-- BEGIN: FT meeting -->
                     <div class="widget-presentation py-3 move-number-config ft-meeting"
-                         data-ng-if="PackMove.offer.selected.meetingSlots">
+                         data-ng-if="$ctrl.offer.selected.meetingSlots">
                         <h2 class="widget-presentation-title" data-translate="pack_move_meeting_slots"></h2>
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
-                                <p data-ng-show="PackMove.offer.selected.meetingSlots"
+                                <p data-ng-show="$ctrl.offer.selected.meetingSlots"
                                    data-translate="pack_move_mandatory_field"></p>
 
-                                <div data-ng-show="PackMove.offer.selected.meetingSlots.canBookFakeMeeting &&
-                                    PackMove.offer.selected.meetingSlots.meetingSlots.length">
+                                <div data-ng-show="$ctrl.offer.selected.meetingSlots.canBookFakeMeeting &&
+                                    $ctrl.offer.selected.meetingSlots.meetingSlots.length">
                                     <div class="input-group mt-3 col-md-12">
                                         <input type="radio"
                                             id="radioFakeMeeting"
-                                            data-ng-model="PackMove.offer.meetingSlots.fakeMeeting"
-                                            data-ng-disabled="!PackMove.offer.selected.meetingSlots.canBookFakeMeeting"
+                                            data-ng-model="$ctrl.offer.meetingSlots.fakeMeeting"
+                                            data-ng-disabled="!$ctrl.offer.selected.meetingSlots.canBookFakeMeeting"
                                             data-ng-value="true"/>
                                         <label for="radioFakeMeeting"
                                                class="pl-2"
@@ -145,7 +147,7 @@
                                     <div  class="input-group mt-3 col-md-12">
                                         <input type="radio"
                                             id="radioNoFakeMeeting"
-                                            data-ng-model="PackMove.offer.meetingSlots.fakeMeeting"
+                                            data-ng-model="$ctrl.offer.meetingSlots.fakeMeeting"
                                             data-ng-value="false"/>
                                         <label for="radioNoFakeMeeting"
                                                class="pl-2"
@@ -156,8 +158,8 @@
 
                                 <div class="alert alert-info"
                                      role="alert"
-                                     data-ng-if="PackMove.offer.selected.meetingSlots.canBookFakeMeeting &&
-                                                 !PackMove.offer.selected.meetingSlots.meetingSlots.length"
+                                     data-ng-if="$ctrl.offer.selected.meetingSlots.canBookFakeMeeting &&
+                                                 !$ctrl.offer.selected.meetingSlots.meetingSlots.length"
                                      data-translate="pack_move_no_erdv_info">
                                 </div>
 
@@ -171,31 +173,31 @@
                                         class="form-control"
                                         required
                                         pattern=".+"
-                                        data-ng-model="PackMove.offer.selected.contactName"
+                                        data-ng-model="$ctrl.offer.selected.contactName"
                                         placeholder="{{'pack_move_contact_name'| translate}}"/>
                                 </div>
 
                                 <div class="mt-5 required"
-                                     data-ng-show="PackMove.offer.selected.meetingSlots.meetingSlots.length &&
-                                     !PackMove.offer.meetingSlots.fakeMeeting"
+                                     data-ng-show="$ctrl.offer.selected.meetingSlots.meetingSlots.length &&
+                                     !$ctrl.offer.meetingSlots.fakeMeeting"
                                      data-translate="pack_move_programmed_meeting_select">
                                 </div>
 
                                 <div class="row mt-3">
                                     <div class="col-xs-12 meeting-calendar"
-                                        data-ui-calendar="PackMove.calendarConfig"
-                                        data-ng-model="PackMove.offer.selected.meetingSlots.calendarData"
+                                        data-ui-calendar="$ctrl.calendarConfig"
+                                        data-ng-model="$ctrl.offer.selected.meetingSlots.calendarData"
                                         data-calendar="mainCalendar"
-                                        data-ng-hide="PackMove.offer.selected.meetingSlots.canBookFakeMeeting && PackMove.offer.meetingSlots.fakeMeeting">
+                                        data-ng-hide="$ctrl.offer.selected.meetingSlots.canBookFakeMeeting && $ctrl.offer.meetingSlots.fakeMeeting">
                                     </div>
                                 </div>
 
                                 <p class="mt-5"
-                                    data-ng-show="PackMove.offer.selected.meetingSlots.meetingSlots.length &&
-                                        !PackMove.offer.meetingSlots.fakeMeeting">
+                                    data-ng-show="$ctrl.offer.selected.meetingSlots.meetingSlots.length &&
+                                        !$ctrl.offer.meetingSlots.fakeMeeting">
                                     <span data-translate="pack_move_programmed_meeting"
-                                        data-ng-show="PackMove.offer.meetingSlots.slot"
-                                        data-translate-values="PackMove.offer.meetingSlots.slot.display"></span>
+                                        data-ng-show="$ctrl.offer.meetingSlots.slot"
+                                        data-translate-values="$ctrl.offer.meetingSlots.slot.display"></span>
                                 </p>
                             </div>
                         </div>
@@ -206,22 +208,22 @@
                         <button class="btn btn-primary"
                             type="submit"
                             data-ng-class="{
-                                'btn-info': PackMove.moveValidationPending,
-                                'btn-warning': PackMove.moveValidationError && !PackMove.moveValidationPending,
-                                'btn-primary': (!PackMove.moveValidationPending && !PackMove.moveValidationError && !PackMove.moveValidationSuccess) || (PackMove.moveValidationSuccess && !PackMove.moveValidationPending)}"
-                            data-ng-disabled="!PackMove.isFormValid() ||
-                            PackMove.moveValidationPending || PackMove.moveValidationSuccess">
-                            <span data-ng-show="!PackMove.moveValidationPending && !PackMove.moveValidationError &&
-                            !PackMove.moveValidationSuccess" data-translate="pack_move_validate"></span>
-                            <span data-ng-show="PackMove.moveValidationPending">
+                                'btn-info': $ctrl.moveValidationPending,
+                                'btn-warning': $ctrl.moveValidationError && !$ctrl.moveValidationPending,
+                                'btn-primary': (!$ctrl.moveValidationPending && !$ctrl.moveValidationError && !$ctrl.moveValidationSuccess) || ($ctrl.moveValidationSuccess && !$ctrl.moveValidationPending)}"
+                            data-ng-disabled="!$ctrl.isFormValid() ||
+                            $ctrl.moveValidationPending || $ctrl.moveValidationSuccess">
+                            <span data-ng-show="!$ctrl.moveValidationPending && !$ctrl.moveValidationError &&
+                            !$ctrl.moveValidationSuccess" data-translate="pack_move_validate"></span>
+                            <span data-ng-show="$ctrl.moveValidationPending">
                                 <span data-translate="pack_move_pending_validation"></span>
                                 <span class="fa fa-spin fa-spinner ml-2" aria-hidden="true"></span>
                             </span>
-                            <span data-ng-show="PackMove.moveValidationError && !PackMove.moveValidationPending">
+                            <span data-ng-show="$ctrl.moveValidationError && !$ctrl.moveValidationPending">
                                 <span data-translate="pack_move_error_validation"></span>
                                 <span class="ovh-font ovh-font-warning ml-2" aria-hidden="true"></span>
                             </span>
-                            <span data-ng-show="PackMove.moveValidationSuccess && !PackMove.moveValidationPending">
+                            <span data-ng-show="$ctrl.moveValidationSuccess && !$ctrl.moveValidationPending">
                                 <span data-translate="pack_move_success_validation"></span>
                                 <span class="ovh-font ovh-font-check ml-2" aria-hidden="true"></span>
                             </span>

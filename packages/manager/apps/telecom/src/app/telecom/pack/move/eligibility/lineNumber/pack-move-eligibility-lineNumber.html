@@ -1,5 +1,5 @@
 <form name="availabilityForm"
-      data-ng-submit="PackMoveEligibilityPhoneNumber.updateLineAccessibility()">
+      data-ng-submit="$ctrl.updateLineAccessibility()">
     <div class="form-group"
          data-ng-class="{
              'has-error': availabilityForm.phoneNumber.$touched && availabilityForm.phoneNumber.$invalid
@@ -13,10 +13,10 @@
                id="phoneNumber"
                name="phoneNumber"
                required
-               data-ng-pattern="PackMoveEligibilityPhoneNumber.phoneNumberRegex"
+               data-ng-pattern="$ctrl.phoneNumberRegex"
                data-translate-attr="{ placeholder : 'pack_move_eligibility_number' }"
-               data-ng-model="PackMoveEligibilityPhoneNumber.testLine.lineNumber"
-               data-ng-disabled="PackMoveEligibilityPhoneNumber.method !== 'number'">
+               data-ng-model="$ctrl.testLine.lineNumber"
+               data-ng-disabled="$ctrl.method !== 'number'">
         <span class="help-block"
               role="alert"
               data-ng-if="availabilityForm.phoneNumber.$touched"
@@ -29,10 +29,10 @@
     <button type="submit"
             class="btn btn-primary"
             data-translate="submit"
-            data-ng-disabled="PackMoveEligibilityPhoneNumber.loading || availabilityForm.phoneNumber.$invalid || PackMoveEligibilityPhoneNumber.method !== 'number'">
+            data-ng-disabled="$ctrl.loading || availabilityForm.phoneNumber.$invalid || $ctrl.method !== 'number'">
     </button>
     <oui-spinner class="ml-2"
-                 data-ng-if="PackMoveEligibilityPhoneNumber.loading"
+                 data-ng-if="$ctrl.loading"
                  data-size="s">
     </oui-spinner>
 </form>

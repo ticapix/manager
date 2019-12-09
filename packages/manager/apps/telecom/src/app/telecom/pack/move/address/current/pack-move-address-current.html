@@ -6,41 +6,41 @@
             </div>
             <div class="block-emphasis__column">
                 <h3 data-translate="pack_move_line_current_address"></h3>
-                <div class="text-center" data-ng-if="PackMoveAddressCurrent.loading">
+                <div class="text-center" data-ng-if="$ctrl.loading">
                     <oui-spinner></oui-spinner>
                 </div>
-                <div data-ng-if="PackMoveAddressCurrent.address.address.floor && PackMoveAddressCurrent.address.address.door && PackMoveAddressCurrent.address.address.stairs">
-                    <span data-ng-if="PackMoveAddressCurrent.address.address.door">
+                <div data-ng-if="$ctrl.address.address.floor && $ctrl.address.address.door && $ctrl.address.address.stairs">
+                    <span data-ng-if="$ctrl.address.address.door">
                         <span data-translate="pack_move_line_address_door"></span>
-                        <span data-ng-bind="PackMoveAddressCurrent.address.address.door"></span>
+                        <span data-ng-bind="$ctrl.address.address.door"></span>
                     </span>
-                    <span data-ng-if="PackMoveAddressCurrent.address.address.floor">
+                    <span data-ng-if="$ctrl.address.address.floor">
                         <span data-translate="pack_move_line_address_floor"></span>
-                        <span data-ng-bind="PackMoveAddressCurrent.address.address.floor"></span>
+                        <span data-ng-bind="$ctrl.address.address.floor"></span>
                     </span>
-                    <span data-ng-if="PackMoveAddressCurrent.address.address.stairs">
+                    <span data-ng-if="$ctrl.address.address.stairs">
                         <span data-translate="pack_move_line_address_stairs"></span>
-                        <span data-ng-bind="PackMoveAddressCurrent.address.address.stairs"></span>
+                        <span data-ng-bind="$ctrl.address.address.stairs"></span>
                     </span>
                 </div>
-                <div data-ng-if="PackMoveAddressCurrent.address.address.residence && PackMoveAddressCurrent.address.address.building">
-                    <span data-ng-if="PackMoveAddressCurrent.address.address.building">
+                <div data-ng-if="$ctrl.address.address.residence && $ctrl.address.address.building">
+                    <span data-ng-if="$ctrl.address.address.building">
                         <span data-translate="pack_move_line_address_building"></span>
-                        <span data-ng-bind="PackMoveAddressCurrent.address.address.building"></span>
+                        <span data-ng-bind="$ctrl.address.address.building"></span>
                     </span>
-                    <span data-ng-if="PackMoveAddressCurrent.address.address.residence">
+                    <span data-ng-if="$ctrl.address.address.residence">
                         <span data-translate="pack_move_line_address_residence"></span>
-                        <span data-ng-bind="PackMoveAddressCurrent.address.address.residence"></span>
+                        <span data-ng-bind="$ctrl.address.address.residence"></span>
                     </span>
                 </div>
                 <div>
-                    <span data-ng-bind="PackMoveAddressCurrent.address.address.numberStreet"></span>
-                    <span data-ng-if="PackMoveAddressCurrent.address.address.numberStreet">,</span>
-                    <span data-ng-bind="PackMoveAddressCurrent.address.address.street"></span>
+                    <span data-ng-bind="$ctrl.address.address.numberStreet"></span>
+                    <span data-ng-if="$ctrl.address.address.numberStreet">,</span>
+                    <span data-ng-bind="$ctrl.address.address.street"></span>
                 </div>
                 <div>
-                    <span data-ng-bind="PackMoveAddressCurrent.address.address.zipCode"></span>
-                    <span data-ng-bind="PackMoveAddressCurrent.address.address.city"></span>
+                    <span data-ng-bind="$ctrl.address.address.zipCode"></span>
+                    <span data-ng-bind="$ctrl.address.address.city"></span>
                 </div>
             </div>
         </div>
@@ -49,24 +49,24 @@
             <label for="portLine" class="pl-2">
                 <input id="portLine"
                        type="checkbox"
-                       data-ng-disabled="!PackMoveAddressCurrent.portability"
-                       data-ng-model="PackMoveAddressCurrent.portLineNumber"/>
+                       data-ng-disabled="!$ctrl.portability"
+                       data-ng-model="$ctrl.portLineNumber"/>
                 <span class="service-item" data-translate="pack_move_portLine"></span>
-                <strong class="location__lineNumber" data-ng-bind="PackMoveAddressCurrent.lineNumber"></strong>
+                <strong class="location__lineNumber" data-ng-bind="$ctrl.lineNumber"></strong>
             </label>
         </div>
 
-        <p data-ng-if="PackMoveAddressCurrent.portLineNumber"
+        <p data-ng-if="$ctrl.portLineNumber"
            class="mt-2"
            data-translate="pack_move_portLine_cost"></p>
 
         <p data-translate="pack_move_portLine_disabled"
            class="mt-2"
-           data-ng-if="!PackMoveAddressCurrent.portability"></p>
+           data-ng-if="!$ctrl.portability"></p>
 
         <div class="alert alert-warning"
              role="alert"
-             data-ng-if="PackMoveAddressCurrent.portLineNumber"
+             data-ng-if="$ctrl.portLineNumber"
              data-translate="pack_move_portLine_warning">
         </div>
         <!-- END: port number -->

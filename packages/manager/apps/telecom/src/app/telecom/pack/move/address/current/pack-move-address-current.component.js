@@ -8,5 +8,5 @@ angular.module('managerApp')
       lineNumber: '@',
     },
     templateUrl: 'app/telecom/pack/move/address/current/pack-move-address-current.html',
-    controllerAs: 'PackMoveAddressCurrent',
+    controllerAs: '$ctrl',
   });

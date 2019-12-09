@@ -1,7 +1,7 @@
 import controller from './pack-move-eligibility-address.controller';
 import template from './pack-move-eligibility-address.html';
 
-const component = {
+export default {
   bindings: {
     address: '=?',
     offersChange: '&',
@@ -11,7 +11,3 @@ const component = {
   template,
   controller,
 };
-
-export default component;
-
-angular.module('managerApp').component('packMoveEligibilityAddress', component);

@@ -9,7 +9,7 @@ angular.module('managerApp')
       canKeepLineNumber: '=?',
     },
     templateUrl: 'app/telecom/pack/move/address/future/pack-move-address-future.html',
-    controllerAs: 'PackMoveAddressFuture',
+    controllerAs: '$ctrl',
     controller(tucValidator) {
       this.validator = tucValidator;
     },

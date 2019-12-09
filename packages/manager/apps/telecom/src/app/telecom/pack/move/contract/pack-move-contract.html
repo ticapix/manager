@@ -4,16 +4,16 @@
             type="button"
             class="close float-right"
             aria-label="{{ ::'cancel' | translate }}"
-            data-ng-click="PackMoveContract.cancel()">
+            data-ng-click="$ctrl.cancel()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="text-center"
-         data-ng-if="PackMoveContract.loading">
+         data-ng-if="$ctrl.loading">
         <oui-spinner></oui-spinner>
     </div>
 
-    <div class="modal-body" data-ng-if="!PackMoveContract.loading">
+    <div class="modal-body" data-ng-if="!$ctrl.loading">
         <h3 class="modal-title"
             data-translate="pack_move_contract_title">
         </h3>
@@ -22,29 +22,29 @@
             <strong class="text-primary" data-translate="pack_move_contract_move"></strong>
         </p>
         <p class="mb-3 font-weight-bold"
-           data-ng-if="PackMoveContract.form.futureLandline.lineNumber"
+           data-ng-if="$ctrl.form.futureLandline.lineNumber"
            data-translate="pack_move_contract_action"
-           data-translate-values="PackMoveContract.form.futureLandline">
+           data-translate-values="$ctrl.form.futureLandline">
         </p>
-        <div data-ng-if="!PackMoveContract.form.futureLandline.lineNumber">
+        <div data-ng-if="!$ctrl.form.futureLandline.lineNumber">
             <p class="mb-3 font-weight-bold"
                data-translate="pack_move_contract_action_create">
             </p>
             <div class="ml-3">
-                <strong data-ng-bind="PackMoveContract.offer.address.streetNumber"></strong>
-                <strong data-ng-bind="PackMoveContract.offer.address.street.name"></strong>
+                <strong data-ng-bind="$ctrl.offer.address.streetNumber"></strong>
+                <strong data-ng-bind="$ctrl.offer.address.street.name"></strong>
             </div>
             <div class="ml-3 mb-3">
-                <strong data-ng-bind="PackMoveContract.offer.address.city.zipcode"></strong>
-                <strong data-ng-bind="PackMoveContract.offer.address.city.name"></strong>
+                <strong data-ng-bind="$ctrl.offer.address.city.zipcode"></strong>
+                <strong data-ng-bind="$ctrl.offer.address.city.name"></strong>
             </div>
             <p class="mb-3 font-weight-bold"
-               data-ng-if="PackMoveContract.meeting.fakeMeeting"
+               data-ng-if="$ctrl.meeting.fakeMeeting"
                data-translate="pack_move_contract_fake_meeting">
             </p>
             <p class="mb-3 font-weight-bold"
-               data-ng-if="!PackMoveContract.meeting.fakeMeeting"
-               data-translate-values="PackMoveContract.meeting.slot"
+               data-ng-if="!$ctrl.meeting.fakeMeeting"
+               data-translate-values="$ctrl.meeting.slot"
                data-translate="pack_move_contract_meeting">
             </p>
         </div>
@@ -56,13 +56,13 @@
                            id="confirm"
                            name="confirm"
                            class="form-control"
-                           data-ng-model="PackMoveContract.checkboxSelected">
+                           data-ng-model="$ctrl.checkboxSelected">
                 </div>
                 <label for="confirm"
-                       data-ng-if="!PackMoveContract.form.currentLandline.portLineNumber"
+                       data-ng-if="!$ctrl.form.currentLandline.portLineNumber"
                        data-translate="pack_move_contract_rules"></label>
                 <label for="confirm"
-                       data-ng-if="PackMoveContract.form.currentLandline.portLineNumber"
+                       data-ng-if="$ctrl.form.currentLandline.portLineNumber"
                        data-translate="pack_move_contract_porta_rules"></label>
             </li>
         </ul>
@@ -71,17 +71,17 @@
         <div role="group" class="clearfix">
             <button type="button"
                     class="btn btn-default btn-cancel"
-                    data-ng-disabled="PackMoveContract.loading"
-                    data-ng-click="PackMoveContract.cancel()"
+                    data-ng-disabled="$ctrl.loading"
+                    data-ng-click="$ctrl.cancel()"
                     data-translate="cancel">
             </button>
             <button type="submit"
-                    data-ng-disabled="PackMoveContract.loading"
+                    data-ng-disabled="$ctrl.loading"
                     class="btn btn-primary"
-                    data-ng-click="PackMoveContract.confirm()"
+                    data-ng-click="$ctrl.confirm()"
                     data-ng-if="
-                        PackMoveContract.checkboxSelected &&
-                        !PackMoveContract.loading"
+                        $ctrl.checkboxSelected &&
+                        !$ctrl.loading"
                     data-translate="submit">
             </button>
         </div>

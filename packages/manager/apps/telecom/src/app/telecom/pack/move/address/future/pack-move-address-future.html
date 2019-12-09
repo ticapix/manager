@@ -6,41 +6,41 @@
             </div>
             <div class="block-emphasis__column">
                 <h3 data-translate="pack_move_line_future_address"></h3>
-                <div class="text-center" data-ng-if="PackMoveAddressFuture.loading">
+                <div class="text-center" data-ng-if="$ctrl.loading">
                     <oui-spinner></oui-spinner>
                 </div>
-                <div data-ng-bind="PackMoveAddressFuture.address.street.name"></div>
+                <div data-ng-bind="$ctrl.address.street.name"></div>
                 <div>
-                    <span data-ng-bind="PackMoveAddressFuture.address.city.zipCode"></span>
-                    <span data-ng-bind="PackMoveAddressFuture.address.city.name"></span>
+                    <span data-ng-bind="$ctrl.address.city.zipCode"></span>
+                    <span data-ng-bind="$ctrl.address.city.name"></span>
                 </div>
             </div>
         </div>
         <!-- BEGIN: keep new number -->
-        <div data-ng-if="PackMoveAddressFuture.lineNumber">
+        <div data-ng-if="$ctrl.lineNumber">
             <div class="checkbox mt-3 ml-4 mr-2">
                 <label for="keepLine" class="pl-2">
                     <input id="keepLine"
                            type="checkbox"
-                           data-ng-disabled="!PackMoveAddressFuture.canKeepLineNumber"
-                           data-ng-change="PackMoveAddressFuture.rio = null"
-                           data-ng-model="PackMoveAddressFuture.keepLineNumber"/>
+                           data-ng-disabled="!$ctrl.canKeepLineNumber"
+                           data-ng-change="$ctrl.rio = null"
+                           data-ng-model="$ctrl.keepLineNumber"/>
                     <span class="service-item" data-translate="pack_move_keepLine"></span>
-                    <strong class="location__lineNumber" data-ng-bind="PackMoveAddressFuture.lineNumber"></strong>
+                    <strong class="location__lineNumber" data-ng-bind="$ctrl.lineNumber"></strong>
                 </label>
             </div>
             <p data-translate="pack_move_keepLine_disabled"
                class="mt-2"
-               data-ng-if="!PackMoveAddressFuture.canKeepLineNumber"></p>
+               data-ng-if="!$ctrl.canKeepLineNumber"></p>
             <!-- END: keep new number -->
             <!-- BEGIN: rio -->
-            <div data-ng-if="PackMoveAddressFuture.keepLineNumber"
+            <div data-ng-if="$ctrl.keepLineNumber"
                  class="input-group my-md-2">
                  <input type="text"
                         name="rio"
                         class="form-control"
-                        data-ui-validate="'PackMoveAddressFuture.validator.tucIsRio($value, PackMoveAddressFuture.lineNumber)'"
-                        data-ng-model="PackMoveAddressFuture.rio"
+                        data-ui-validate="'$ctrl.validator.tucIsRio($value, $ctrl.lineNumber)'"
+                        data-ng-model="$ctrl.rio"
                         placeholder="{{ 'pack_move_rio' | translate }}">
             </div>
         </div>
