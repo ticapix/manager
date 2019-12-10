@@ -58,7 +58,8 @@ angular
   .constant('CORE_URLS', URLS)
   .provider('TranslateService', translateServiceProvider)
   .factory('TranslateInterceptor', translateFactory)
-  .config(($translateProvider, translatePluggableLoaderProvider, TranslateServiceProvider) => {
+  .config(($translateProvider, ouiCalendarConfigurationProvider,
+    translatePluggableLoaderProvider, TranslateServiceProvider) => {
     TranslateServiceProvider.setUserLocale();
 
     const defaultLanguage = TranslateServiceProvider.getUserLocale();
@@ -75,6 +76,8 @@ angular
 
     $translateProvider.use(defaultLanguage);
     $translateProvider.fallbackLanguage(LANGUAGES.fallback);
+
+    ouiCalendarConfigurationProvider.setLocale(TranslateServiceProvider.getUserLocale(true));
   })
   .service('SessionService', sessionService)
   // Fix security issue: https://github.com/angular-translate/angular-translate/issues/1418
