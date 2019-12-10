@@ -49,6 +49,9 @@ import hosting from './hosting/hosting.module';
 import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
 
+import hostingEmailService from './hosting/email/hosting-email.service';
+import hostingEmailActivateModule from './hosting/email/activate';
+
 import './css/source.less';
 import './css/source.scss';
 
@@ -113,6 +116,7 @@ angular
     orderContracts,
     privateDatabase,
     zone,
+    hostingEmailActivateModule,
   ])
   .constant('constants', {
     prodMode: config.prodMode,
@@ -499,4 +503,6 @@ angular
         }, { location: false });
       }
     });
-  });
+  })
+  .service('hostingEmailService', hostingEmailService)
+  .run(/* @ngTranslationsInject:json ./translations */);
