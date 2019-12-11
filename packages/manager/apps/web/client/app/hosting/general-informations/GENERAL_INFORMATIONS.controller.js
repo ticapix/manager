@@ -206,17 +206,5 @@ angular.module('App').controller(
       });
       this.$state.go('app.hosting.upgrade', { productId: this.serviceName });
     }
-
-    changeMainDomain() {
-      this.atInternet.trackClick({
-        name: 'web::hostname::general-informations::change-main-domain',
-        type: 'action',
-      });
-      this.$scope.setAction('change-main-domain/hosting-change-main-domain', this.$scope.hosting);
-    }
-
-    isHostingOffer() {
-      return !includes(['KIMSUFI_2015', '__60_FREE', 'DEMO_1_G', 'START_1_M', 'START_10_M', '_ASPFREE'], this.$scope.hosting.offer);
-    }
   },
 );
