@@ -112,15 +112,6 @@
                                 data-ng-bind="::(('hosting_dashboard_service_datacenter_'+ hostingProxy.datacenter | translate) == 'hosting_dashboard_service_datacenter_'+ hostingProxy.datacenter)? hostingProxy.datacenter: ('hosting_dashboard_service_datacenter_'+ hostingProxy.datacenter | translate)"></span>
                         </oui-tile-description>
                     </oui-tile-definition>
-
-                    <oui-tile-definition
-                        data-ng-if="!hosting.isCloudWeb"
-                        data-term="{{ ::'hosting_dashboard_service_main_domain' | translate }}">
-                        <oui-tile-description>
-                            <span class="word-break" data-ng-bind="::hosting.serviceName"></span>
-                        </oui-tile-description>
-                    </oui-tile-definition>
-
                     <oui-tile-definition data-term="{{:: 'hosting_dashboard_service_web' | translate }}">
                         <oui-tile-description>
                             <span data-ng-bind="::hosting.attachedDomainsCount"></span>&nbsp;
