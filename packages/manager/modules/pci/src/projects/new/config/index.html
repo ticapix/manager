@@ -1,7 +1,9 @@
 <div class="pci-project-new-config">
-    
+
     <!-- banner -->
-    <!-- /banner -->
+    <div class="mb-5"
+         data-ui-view="banner">
+    </div>
 
     <!-- progress -->
     <div data-ui-view="progress"></div>
@@ -10,7 +12,19 @@
     <h1 data-translate="pci_project_new_config_title"></h1>
 
     <!-- description -->
-    <!-- /description -->
+    <form name="projectConfigForm" id="projectConfigForm"
+          data-ng-submit="$ctrl.goToPayment()">
+        <oui-field
+            data-label="{{ :: 'pci_project_new_config_description_label' | translate }}">
+            <input
+                class="oui-input"
+                type="text"
+                id="projectDescription"
+                name="projectDescription"
+                data-ng-model="$ctrl.model.description"
+                maxlength="255">
+        </oui-field>
+    </form>
 
     <!-- voucher -->
     <div data-ui-view="voucher"></div>
@@ -19,6 +33,18 @@
     <!-- /contracts -->
 
     <!-- footer -->
-    <!-- /footer -->
+    <div class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3">
+        <button class="oui-button oui-button_primary oui-button_icon-right no-transition"
+                type="submit" form="projectConfigForm">
+            <span data-translate="pci_project_new_config_btn_continue"></span>
+            <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                  aria-hidden="true">
+            </span>
+        </button>
+
+        <a data-ng-href="{{ $ctrl.getActionHref('cancel') }}"
+           data-translate="pci_project_new_config_btn_cancel">
+        </a>
+    </div>
 
 </div>

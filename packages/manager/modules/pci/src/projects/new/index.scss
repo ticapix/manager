@@ -5,5 +5,14 @@ pci-project-new { /* stylelint-disable-line */
 
   .pci-project-new {
     background-color: rgb(241, 249, 253);
+    overflow-x: auto;
+
+    .pci-project-new-view {
+      padding: 0 200px;
+    }
+
+    small {
+      line-height: 16px;
+    }
   }
 }

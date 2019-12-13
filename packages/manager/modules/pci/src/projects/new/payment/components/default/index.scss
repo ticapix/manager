@@ -1,0 +1,13 @@
+.pci-project-new-payment-default {
+  .default-method {
+    .text-success {
+      &::before {
+        content: '[';
+      }
+
+      &::after {
+        content: ']';
+      }
+    }
+  }
+}

@@ -2,6 +2,8 @@ import angular from 'angular';
 
 import component from './component';
 
+import './index.scss';
+
 const moduleName = 'pciProjectNewProgress';
 
 angular

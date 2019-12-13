@@ -2,11 +2,12 @@ import controller from './controller';
 import template from './index.html';
 
 export default {
-  name: 'pciProjectNewPayment',
+  name: 'pciProjectNewPaymentRegister',
   controller,
   template,
   bindings: {
-    getCancelHref: '<',
+    eligibility: '<',
     model: '<',
+    registerablePaymentMethods: '<',
   },
 };

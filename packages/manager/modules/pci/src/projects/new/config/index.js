@@ -7,6 +7,8 @@ import 'ovh-ui-angular';
 import routing from './routing';
 import component from './component';
 
+import components from './components';
+
 const moduleName = 'pciProjectNewConfig';
 
 angular
@@ -15,6 +17,7 @@ angular
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    components,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)

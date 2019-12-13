@@ -5,6 +5,8 @@ import 'ovh-ui-angular';
 
 import component from './component';
 
+import './index.scss';
+
 const moduleName = 'pciProjectNewVoucher';
 
 angular

@@ -1,10 +1,9 @@
-<nav class="pci-project-new-progress oui-progress-tracker mx-auto mb-5">
+<nav class="pci-project-new-progress oui-progress-tracker mx-auto">
     <ol class="oui-progress-tracker__steps">
         <li class="oui-progress-tracker__step"
             data-ng-repeat="step in $ctrl.steps track by $index"
             data-ng-class="{
-                'oui-progress-tracker__step_active': $ctrl.getCurrentStep().name === step.name,
-                'oui-progress-tracker__step_complete': $ctrl.getCurrentStep().name !== step.name && $ctrl.isStepComplete(step),
+                'oui-progress-tracker__step_active': step.active,
             }">
             <span class="oui-progress-tracker__status"></span>
         </li>

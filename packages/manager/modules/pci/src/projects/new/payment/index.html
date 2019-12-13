@@ -4,7 +4,7 @@
 
     <!-- title -->
     <h1 data-translate="pci_project_new_payment_title"></h1>
-    
+
     <!-- main content: payment method (default or register) -->
     <div data-ui-view="payment"></div>
 
@@ -15,5 +15,28 @@
     <div data-ui-view="dlp"></div>
 
     <!-- footer -->
-    <!-- /footer -->
+    <div class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3">
+        <ovh-payment-method-integration
+            data-ng-if="[$ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.REDIRECT, $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IN_CONTEXT].includes($ctrl.model.paymentMethod.integration)"
+            data-payment-method-type="$ctrl.model.paymentMethod">
+            <oui-button
+                data-variant="primary"
+                data-variant-nav="next">
+                <span data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"></span>
+            </oui-button>
+        </ovh-payment-method-integration>
+
+        <a class="oui-button oui-button_primary oui-button_icon-right no-transition"
+           data-ng-if="$ctrl.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT === $ctrl.model.paymentMethod.paymentType"
+           data-ng-href="{{ $ctrl.paymentMethodUrl }}">
+            <span data-translate="pci_project_new_payment_btn_continue_bank_account"></span>
+            <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                  aria-hidden="true">
+            </span>
+        </a>
+
+        <a data-ng-href="{{ $ctrl.getCancelHref() }}"
+           data-translate="pci_project_new_payment_btn_cancel">
+        </a>
+    </div>
 </div>

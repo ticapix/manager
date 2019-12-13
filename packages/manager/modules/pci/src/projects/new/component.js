@@ -1,5 +1,5 @@
 import template from './index.html';
-import controller from './controller'
+import controller from './controller';
 
 export default {
   name: 'pciProjectNew',

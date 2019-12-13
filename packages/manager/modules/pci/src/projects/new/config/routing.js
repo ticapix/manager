@@ -5,16 +5,24 @@ export default /* @ngInject */ ($stateProvider) => {
     .state('pci.projects.new.config', {
       url: '/config',
       views: {
-        '': {
-          component: component.name,
-        },
-        'progress@pci.projects.new.config': {
-          component: 'pciProjectNewProgress',
-        },
-        'voucher@pci.projects.new.config': {
-          component: 'pciProjectNewVoucher',
-        },
+        '': component.name,
+        'banner@pci.projects.new.config': 'pciProjectNewConfigBanner',
+        'progress@pci.projects.new.config': 'pciProjectNewProgress',
+        'voucher@pci.projects.new.config': 'pciProjectNewVoucher',
       },
-      
+      onEnter: /* @ngInject */ (activeStep, step) => {
+        activeStep(step.name);
+      },
+      resolve: {
+        getActionHref: /* @ngInject */ $state => (action) => {
+          const actionState = action === 'cancel' ? 'pci.projects' : 'pci.projects.new.payment';
+
+          return $state.href(actionState);
+        },
+
+        goToPayment: /* @ngInject */ $state => () => $state.go('pci.projects.new.payment'),
+
+        step: /* @ngInject */ getStep => getStep('configuration'),
+      },
     });
 };

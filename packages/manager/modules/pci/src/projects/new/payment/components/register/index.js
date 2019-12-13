@@ -6,7 +6,7 @@ import component from './component';
 
 import './index.scss';
 
-const moduleName = 'pciProjectNewPaymentDefault';
+const moduleName = 'pciProjectNewPaymentRegister';
 
 angular
   .module(moduleName, [

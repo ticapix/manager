@@ -5,38 +5,50 @@ export default /* @ngInject */ ($stateProvider) => {
     .state('pci.projects.new.payment', {
       url: '/payment',
       views: {
-        '': {
-          component: component.name,
-        },
-        'progress@pci.projects.new.payment': {
-          component: 'pciProjectNewProgress',
-        },
+        '': component.name,
+
+        'progress@pci.projects.new.payment': 'pciProjectNewProgress',
+
         'payment@pci.projects.new.payment': {
-          componentProvider: (defaultPaymentMethod) => defaultPaymentMethod 
-            ? 'pciProjectNewPaymentDefault' 
-            : 'pciProjectNewPaymentRegister',
+          componentProvider: defaultPaymentMethod => (defaultPaymentMethod
+            ? 'pciProjectNewPaymentDefault'
+            : 'pciProjectNewPaymentRegister'),
         },
-        'voucher@pci.projects.new.payment': {
-          component: 'pciProjectNewVoucher',
-        },
+
+        'voucher@pci.projects.new.payment': 'pciProjectNewVoucher',
+
         'dlp@pci.projects.new.payment': {
-          componentProvider: (dlpStatus) => dlpStatus
-            ? 'pciProjectNewPaymentDlp' 
-            : null,
+          componentProvider: dlpStatus => (dlpStatus
+            ? 'pciProjectNewPaymentDlp'
+            : null),
         },
       },
+      onEnter: /* @ngInject */ (activeStep, step) => {
+        activeStep(step.name);
+      },
       resolve: {
-        defaultPaymentMethod: /* @ngInject */ (
-          ovhPaymentMethod,
-        ) => ovhPaymentMethod.getDefaultPaymentMethod(),
+        defaultPaymentMethod: /* @ngInject */ ovhPaymentMethod => ovhPaymentMethod
+          .getDefaultPaymentMethod(),
 
-        dlpStatus: /* @ngInject */ (pciProjectNewPayment) => pciProjectNewPayment.getDlpStatus()
-          .catch((error) => {
-            if (error.status === 404) {
-              return null;
-            }
-            return $q.reject(error);
-          }),
+        registerablePaymentMethods: /* @ngInject */ (
+          eligibility,
+          ovhPaymentMethod,
+        ) => ovhPaymentMethod
+          .getAllAvailablePaymentMethodTypes(),
+
+        dlpStatus: /* @ngInject */ (
+          $q,
+          pciProjectNewPayment,
+        ) => pciProjectNewPayment.getDlpStatus().catch((error) => {
+          if (error.status === 404) {
+            return null;
+          }
+          return $q.reject(error);
+        }),
+
+        getCancelHref: /* @ngInject */ $state => () => $state.href('pci.projects'),
+
+        step: /* @ngInject */ getStep => getStep('payment'),
       },
     });
 };
