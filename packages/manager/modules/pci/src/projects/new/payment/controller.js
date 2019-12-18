@@ -14,5 +14,36 @@ export default class PciProjectNewPaymentCtrl {
 
     // other attributes
     this.paymentMethodUrl = get(PCI_REDIRECT_URLS, `${coreConfig.getRegion()}.paymentMethods`);
+    this.integrationSubmitFn = null;
   }
+
+  /* =============================
+  =            Events            =
+  ============================== */
+
+  onPaymentFormSubmit() {
+    // call integration submit function if some
+    if (this.integrationSubmitFn) {
+      this.integrationSubmitFn();
+    }
+  }
+
+  onIntegrationSubmit() {
+    return {
+      default: true,
+      register: true,
+    };
+  }
+
+  /* -----  End of Events  ------ */
+
+  /* ================================
+  =            Callbacks            =
+  ================================= */
+
+  onIntegrationInitialized(integrationSubmitFn) {
+    this.integrationSubmitFn = integrationSubmitFn;
+  }
+
+  /* -----  End of Callbacks  ------ */
 }

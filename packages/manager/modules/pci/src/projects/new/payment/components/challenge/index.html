@@ -1,0 +1,30 @@
+<div class="pci-project-new-payment-challenge"
+     data-ng-switch="$ctrl.model.paymentMethod.paymentType">
+
+    <div data-ng-switch-when="CREDIT_CARD"
+         class="oui-box border-0 rounded-0 m-0 row">
+        <div class="col-md-6"
+             data-translate="pci_project_new_payment_challenge_credit_card">
+        </div>
+        <div class="col-md-6">
+            <div class="oui-field__control">
+                <input type="text" name="challenge"
+                       class="oui-input"
+                       data-ng-model="$ctrl.model.challenge"
+                       placeholder="XXXX XX" />
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-switch-when="PAYPAL"
+         class="oui-box border-0 rounded-0 m-0"
+         data-translate="pci_project_new_payment_challenge_paypal">
+    </div>
+
+    <div data-ng-switch-when="BANK_ACCOUNT"
+         class="oui-box border-0 rounded-0 m-0">
+        <p data-translate="pci_project_new_payment_challenge_bank_account"></p>
+
+    </div>
+
+</div>

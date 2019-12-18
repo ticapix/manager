@@ -4,12 +4,13 @@ import set from 'lodash/set';
 
 import component from './component';
 
+import PciEligibility from './classes/eligibility.class';
 import PciVoucher from './components/voucher/voucher.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.new', {
-      url: '/new?voucher',
+      url: '/new?cartId&voucher',
       redirectTo: transition => transition.router.stateService.target(
         'pci.projects.new.config', transition.params(), {
           location: false,
@@ -21,8 +22,18 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: () => null,
 
-        eligibility: /* @ngInject */ pciProjectNew => pciProjectNew
-          .checkEligibility(),
+        cart: /* @ngInject */ (
+          $transition$,
+          me,
+          pciProjectNew,
+        ) => pciProjectNew.getOrderCart(me.ovhSubsidiary, get($transition$.params(), 'cartId')),
+
+        // cartProjectItem: /* @ngInject */ (cart, pciProjectNew) => pciProjectNew
+        //   .getOrderCartProjectItem(cart.cartId),
+
+        eligibility: /* @ngInject */ ($transition$, pciProjectNew) => pciProjectNew
+          .checkEligibility(PciVoucher.getVoucherTestCode(get($transition$.params(), 'voucher')))
+          .then(eligibility => new PciEligibility(eligibility)),
 
         checkVoucherValidity: /* @ngInject */ pciProjectNew => voucher => pciProjectNew
           .checkEligibility(voucher)
@@ -32,19 +43,29 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           })),
 
-        model: /* @ngInject */ ($transition$, checkVoucherValidity) => {
+        model: /* @ngInject */ (
+          $transition$,
+          cart,
+          checkVoucherValidity,
+          eligibility,
+        ) => {
           const modelDef = {
+            agreements: false,
+            challenge: null,
+            description: get(cart, 'projectItem.descriptionConfiguration.value', null),
+            paymentMethod: null,
             voucher: new PciVoucher({
               value: get($transition$.params(), 'voucher'),
             }),
-            paymentMethod: null,
           };
 
           if (modelDef.voucher.value) {
             return checkVoucherValidity(modelDef.voucher.value)
-              .then(({ voucher }) => {
+              .then((eligibilityOpts) => {
+                // update eligibility instance
+                eligibility.setOptions(eligibilityOpts);
                 // set some information to voucher model
-                modelDef.voucher.setInfos(voucher);
+                modelDef.voucher.setInfos(eligibilityOpts.voucher);
                 // return the model
                 return modelDef;
               });

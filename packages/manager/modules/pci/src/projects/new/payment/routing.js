@@ -1,24 +1,33 @@
 import component from './component';
 
+import {
+  ELIGIBILITY_ACTION_ENUM,
+} from '../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.new.payment', {
-      url: '/payment',
+      url: '/payment?paymentStatus',
       views: {
         '': component.name,
 
         'progress@pci.projects.new.payment': 'pciProjectNewProgress',
 
         'payment@pci.projects.new.payment': {
-          componentProvider: defaultPaymentMethod => (defaultPaymentMethod
+          componentProvider: /* @ngInject */ defaultPaymentMethod => (defaultPaymentMethod
             ? 'pciProjectNewPaymentDefault'
             : 'pciProjectNewPaymentRegister'),
+        },
+
+        'challenge@pci.projects.new.payment': {
+          componentProvider: /* @ngInject */ eligibility => (eligibility
+            .actionsRequired.includes(ELIGIBILITY_ACTION_ENUM.CHALLENGE_PAYMENT_METHOD) ? 'pciProjectNewPaymentChallenge' : null),
         },
 
         'voucher@pci.projects.new.payment': 'pciProjectNewVoucher',
 
         'dlp@pci.projects.new.payment': {
-          componentProvider: dlpStatus => (dlpStatus
+          componentProvider: /* @ngInject */ dlpStatus => (dlpStatus
             ? 'pciProjectNewPaymentDlp'
             : null),
         },

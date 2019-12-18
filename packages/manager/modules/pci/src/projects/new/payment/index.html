@@ -6,25 +6,41 @@
     <h1 data-translate="pci_project_new_payment_title"></h1>
 
     <!-- main content: payment method (default or register) -->
-    <div data-ui-view="payment"></div>
+    <div class="mb-3"
+         data-ui-view="payment">
+    </div>
+
+    <!-- challenge -->
+    <div class="mb-3"
+         data-ui-view="challenge">
+    </div>
 
     <!-- voucher -->
-    <div data-ui-view="voucher"></div>
+    <div class="mb-3"
+         data-ui-view="voucher">
+    </div>
 
     <!-- dlp -->
     <div data-ui-view="dlp"></div>
 
     <!-- footer -->
     <div class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3">
-        <ovh-payment-method-integration
-            data-ng-if="[$ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.REDIRECT, $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IN_CONTEXT].includes($ctrl.model.paymentMethod.integration)"
-            data-payment-method-type="$ctrl.model.paymentMethod">
-            <oui-button
-                data-variant="primary"
-                data-variant-nav="next">
-                <span data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"></span>
-            </oui-button>
-        </ovh-payment-method-integration>
+        <form novalidate name="paymentForm"
+              data-ng-submit="$ctrl.onPaymentFormSubmit()"
+              data-ng-if="[$ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.REDIRECT, $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IN_CONTEXT].includes($ctrl.model.paymentMethod.integration)">
+            <ovh-payment-method-integration
+                data-callback-status-param-url-name="paymentStatus"
+                data-payment-method-type="$ctrl.model.paymentMethod"
+                data-on-initialized="$ctrl.onIntegrationInitialized.bind($ctrl)"
+                data-on-submit="$ctrl.onIntegrationSubmit.bind($ctrl)">
+                <oui-button
+                    data-variant="primary"
+                    data-type="submit"
+                    data-variant-nav="next">
+                    <span data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"></span>
+                </oui-button>
+            </ovh-payment-method-integration>
+        </form>
 
         <a class="oui-button oui-button_primary oui-button_icon-right no-transition"
            data-ng-if="$ctrl.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT === $ctrl.model.paymentMethod.paymentType"

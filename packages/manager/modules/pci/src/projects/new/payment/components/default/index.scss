@@ -1,6 +1,8 @@
 .pci-project-new-payment-default {
   .default-method {
     .text-success {
+      color: #417505 !important;
+
       &::before {
         content: '[';
       }

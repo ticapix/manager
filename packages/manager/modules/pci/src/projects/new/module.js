@@ -10,6 +10,8 @@ import routing from './routing';
 import component from './component';
 import service from './service';
 
+import orderCart from './order-cart.service'; // TODO remove it
+
 import './index.scss';
 
 const moduleName = 'ovhManagerPciProjectsNew';
@@ -24,6 +26,7 @@ angular
   ])
   .config(routing)
   .component(component.name, component)
-  .service('pciProjectNew', service);
+  .service('pciProjectNew', service)
+  .service('orderCart', orderCart);
 
 export default moduleName;
