@@ -8,7 +8,6 @@ import 'script-loader!lodash';
 
 // lodash imports
 import get from 'lodash/get';
-import head from 'lodash/head';
 // deps
 import angular from 'angular';
 import 'angular-sanitize';
@@ -45,7 +44,7 @@ angular
     detailsState,
     activityState,
     'ovhSignUp',
-  ].filter(value => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
+  ].filter((value) => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
   .config(/* @ngInject */ ($locationProvider, $urlRouterProvider) => {
     $locationProvider.hashPrefix('');
     $urlRouterProvider.otherwise('/');
@@ -63,15 +62,11 @@ angular
       }
       return '';
     };
-    const navigatorLg = window.navigator.language || window.navigator.userLanguage;
-    let language;
-    if (navigatorLg) {
-      language = head(navigatorLg.split('-'));
-    }
 
-    if (!language) {
-      language = getQueryVariable('lang') || 'fr';
-    }
+    const language = getQueryVariable('lang')
+      || window.navigator.language
+      || window.navigator.userLanguage
+      || 'en';
 
     const userLocale = TranslateServiceProvider.findLanguage(language, language);
     TranslateServiceProvider.setUserLocale(userLocale);

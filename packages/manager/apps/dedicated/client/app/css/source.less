@@ -70,13 +70,24 @@
 @actions-menu-item-link-icon-hover-bg-color: @ovh-universe-color;
 @SIDEBAR_MENU_ACTIVE_COLOR: @ovh-universe-color;
 
-/* stylelint-disable selector-type-no-unknown */
 oui-message,
 .oui-message {
   margin-bottom: 0;
 }
-/* stylelint-enable selector-type-no-unknown */
 
 h3.font-lite {
   font-weight: 300;
+}
+
+th .tooltip-container {
+  position: relative;
+  display: inline-block;
+  font-weight: 400;
+}
+
+td,
+th {
+  .oui-tooltip {
+    white-space: pre-wrap;
+  }
 }

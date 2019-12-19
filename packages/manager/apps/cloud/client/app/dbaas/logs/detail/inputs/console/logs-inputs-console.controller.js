@@ -1,18 +1,18 @@
 class LogsInputsConsoleCtrl {
-  constructor($stateParams, CucControllerHelper, LogsInputsService, OvhTailLogs) {
+  constructor($stateParams, CucControllerHelper, LogsInputsService, TailLogs) {
     this.$stateParams = $stateParams;
     this.serviceName = this.$stateParams.serviceName;
     this.inputId = this.$stateParams.inputId;
     this.CucControllerHelper = CucControllerHelper;
     this.LogsInputsService = LogsInputsService;
-    this.OvhTailLogs = OvhTailLogs;
+    this.TailLogs = TailLogs;
     this.initLoaders();
   }
 
   $onInit() {
     this.input.load();
-    this.logger = new this.OvhTailLogs({
-      source: () => this.inputLogUrl.load().then(urlInfo => urlInfo.data.url),
+    this.logger = new this.TailLogs({
+      source: () => this.inputLogUrl.load().then((urlInfo) => urlInfo.data.url),
       delay: 10000,
     });
     this.logger.log();

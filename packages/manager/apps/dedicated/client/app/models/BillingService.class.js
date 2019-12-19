@@ -11,7 +11,10 @@ export default class BillingService {
     Object.assign(this, service);
 
     this.expirationDate = moment(this.expiration);
-    this.state = this.isSuspended() ? 'EXPIRED' : 'UP';
+
+    if (this.status) {
+      this.state = this.isSuspended() ? 'EXPIRED' : 'UP';
+    }
   }
 
   getServiceName() {
@@ -239,6 +242,10 @@ export default class BillingService {
 
   hasParticularRenew() {
     return ['EXCHANGE', 'SMS', 'EMAIL_DOMAIN'].includes(this.serviceType);
+  }
+
+  canHandleRenew() {
+    return !['VIP'].includes(this.serviceType);
   }
 
   isOneShot() {

@@ -47,7 +47,7 @@ export default class ExchangeAccountAddController {
     function transformAccountTypes(accountTypes) {
       return map(
         accountTypes,
-        accountType => ({
+        (accountType) => ({
           name: accountType,
           displayName: this.exchangeAccountTypes.getDisplayValue(accountType),
         }),
@@ -91,7 +91,7 @@ export default class ExchangeAccountAddController {
     const emailAddressIsAlreadyTaken = !isEmpty(
       find(
         this.accountCreationOptions.takenEmails,
-        emailAddress => emailAddress === `${this.newAccount.login}@${this.newAccount.domain.name}`,
+        (emailAddress) => emailAddress === `${this.newAccount.login}@${this.newAccount.domain.name}`,
       ),
     );
 
@@ -112,7 +112,8 @@ export default class ExchangeAccountAddController {
     if (this.accountCreationOptions.passwordComplexityEnabled) {
       this.newAccountForm.password.$setValidity(
         'doesntRespectComplexityRules',
-        this.ExchangePassword.passwordComplexityCheck(
+        this.ExchangePassword.passwordComplexityCheck(this.newAccount.password)
+        && this.ExchangePassword.passwordSimpleCheck(
           this.newAccount.password,
           true,
           this.accountCreationOptions.minPasswordLength,

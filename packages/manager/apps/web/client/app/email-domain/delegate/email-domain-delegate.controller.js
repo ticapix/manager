@@ -108,7 +108,7 @@ angular.module('App').controller(
         .then((data) => {
           this.emails = data.sort();
         })
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_table_accounts_error'),
           err,
           this.$scope.alerts.main,
@@ -125,14 +125,16 @@ angular.module('App').controller(
       return this.$q
         .all({
           email: this.WucEmails.getDelegatedEmail(item),
-          usage: this.WucEmails.getEmailDelegatedUsage(item),
+          usage: this.WucEmails.getEmailDelegatedUsage(item).catch(() => null),
         })
         .then(({ email, usage }) => {
           const emailData = clone(email);
 
-          emailData.quota = usage.quota;
-          emailData.emailCount = usage.emailCount;
-          emailData.date = usage.date;
+          if (usage) {
+            emailData.quota = usage.quota;
+            emailData.emailCount = usage.emailCount;
+            emailData.date = usage.date;
+          }
 
           this.constructor.setAccountPercentUse(emailData);
 
@@ -155,7 +157,7 @@ angular.module('App').controller(
         .then(() => this.WucEmails
           .getEmailDelegatedUsage(account.email)
           .then(() => this.constructor.setAccountPercentUse(account)))
-        .catch(err => this.Alerter.alertFromSWS(
+        .catch((err) => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_modal_update_usage_error'),
           err,
           this.$scope.alerts.main,

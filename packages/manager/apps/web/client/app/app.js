@@ -37,14 +37,16 @@ import office from '@ovh-ux/manager-office';
 import sharepoint from '@ovh-ux/manager-sharepoint';
 import moment from 'moment';
 
-
 import config from './config/config';
-import domainEmailObfuscation from './domain/email-obfuscation/index';
-import domainOptin from './domain/optin/index';
-import domainZoneActivation from './domain/general-informations/activateZone/activate.module';
+import orderCatalogPrice from './components/manager-order-catalog-price';
+import orderContracts from './components/manager-order-contracts';
+import orderService from './components/manager-order-service/manager-order-service.service';
+
+import domain from './domain';
 import domainDnsZone from './dns-zone';
-import hostingWebsiteCoach from './hosting/website-coach/website-coach.module';
 import errorPage from './error-page/error-page.module';
+import hosting from './hosting/hosting.module';
+import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
 
 import './css/source.less';
@@ -103,12 +105,13 @@ angular
     office,
     sharepoint,
     'Module.emailpro',
+    domain,
     domainDnsZone,
-    domainEmailObfuscation,
-    domainZoneActivation,
-    domainOptin,
-    hostingWebsiteCoach,
     errorPage,
+    hosting,
+    orderCatalogPrice,
+    orderContracts,
+    privateDatabase,
     zone,
   ])
   .constant('constants', {
@@ -142,6 +145,7 @@ angular
     REDIRECT_URLS: config.constants.REDIRECT_URLS,
     ORDER_URL: config.constants.ORDER_URL,
   })
+  .service('OrderService', orderService)
   .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)
   .factory('serviceTypeInterceptor', () => ({
@@ -170,6 +174,11 @@ angular
       $qProvider.errorOnUnhandledRejections(false);
     },
   ])
+  .config(/* @ngInject */ (ovhPaymentMethodProvider) => {
+    ovhPaymentMethodProvider.setPaymentMethodPageUrl(
+      config.constants.PAYMENT_METHOD_URL,
+    );
+  })
   .config(/* @ngInject */(ovhProxyRequestProvider) => {
     ovhProxyRequestProvider.proxy('$http');
     ovhProxyRequestProvider.pathPrefix('apiv6');
@@ -210,7 +219,7 @@ angular
 
       atInternetUiRouterPluginProvider
         .setTrackStateChange(constants.prodMode && window.location.port.length <= 3);
-      atInternetUiRouterPluginProvider.addStateNameFilter(routeName => (routeName ? routeName.replace(/^app/, 'web').replace(/\./g, '::') : ''));
+      atInternetUiRouterPluginProvider.addStateNameFilter((routeName) => (routeName ? routeName.replace(/^app/, 'web').replace(/\./g, '::') : ''));
     },
   ])
   .constant('TRACKING', {
@@ -400,7 +409,7 @@ angular
       forEach(
         filter(
           URLS_REDIRECTED_TO_DEDICATED,
-          url => url.test(window.location.href),
+          (url) => url.test(window.location.href),
         ),
         () => {
           const lastPartOfUrl = $location.url().substring(1);
@@ -416,7 +425,7 @@ angular
       forEach(
         filter(
           URLS_REDIRECTED_TO_DEDICATED,
-          url => !url.test(window.location.href),
+          (url) => !url.test(window.location.href),
         ),
         () => {
           authentication.login();

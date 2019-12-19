@@ -1,3 +1,30 @@
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.2.0...@ovh-ux/manager-server-sidebar@1.2.1) (2019-12-19)
+
+
+### Bug Fixes
+
+* **server-sidebar:** remove private database order ([#1996](https://github.com/ovh/manager/issues/1996)) ([a422965](https://github.com/ovh/manager/commit/a422965181777be314efee418bad9017dc7868c9))
+
+
+
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.1.0...@ovh-ux/manager-server-sidebar@1.2.0) (2019-12-19)
+
+
+### Features
+
+* **server.sidebar:** add option to order cloud db ([00360b3](https://github.com/ovh/manager/commit/00360b3414382f2807566821b32e431d86aaedce))
+
+
+
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.0.1...@ovh-ux/manager-server-sidebar@1.1.0) (2019-12-10)
+
+
+### Features
+
+* **iplb:** migrate IPLB ([b78786e](https://github.com/ovh/manager/commit/b78786ee6d70519ca06075697d798b649754d52e))
+
+
+
 ## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-server-sidebar@1.0.0...@ovh-ux/manager-server-sidebar@1.0.1) (2019-12-02)
 
 

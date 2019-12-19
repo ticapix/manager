@@ -1,3 +1,21 @@
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.3.0...@ovh-ux/manager-exchange@1.3.1) (2019-12-18)
+
+
+### Bug Fixes
+
+* **exchange:** account password validation ([#1826](https://github.com/ovh/manager/issues/1826)) ([ff3822d](https://github.com/ovh/manager/commit/ff3822d1cff01f8ad19fce8d79f3b9f28c2fec1f))
+
+
+
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.2.5...@ovh-ux/manager-exchange@1.3.0) (2019-12-10)
+
+
+### Features
+
+* **exchange:** replace uib-tooltip with oui tooltip ([9825bde](https://github.com/ovh/manager/commit/9825bde5ad9fedd2e4becb57c22725bc91e4dd2c))
+
+
+
 ## [1.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@1.2.4...@ovh-ux/manager-exchange@1.2.5) (2019-11-22)
 
 

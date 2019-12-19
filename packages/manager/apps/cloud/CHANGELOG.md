@@ -1,3 +1,45 @@
+# [8.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.1.1...@ovh-ux/manager-cloud@8.2.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 184] ([6ec37b2](https://github.com/ovh/manager/commit/6ec37b2226218cecb94307abb01d88ffda824326))
+* **i18n:** add missing translations [CDS 187] ([707ec72](https://github.com/ovh/manager/commit/707ec724fe6852a0c5fa855bfb6911fef977df61))
+* **i18n:** add missing translations [CDS 193] ([9f4801a](https://github.com/ovh/manager/commit/9f4801a3ad577f6e3c9df4d400072237a4589a04))
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+* rename OVH to OVHcloud in preloading and title ([35fc442](https://github.com/ovh/manager/commit/35fc4420850390e2ad80f322f6d23c87fb6a713a))
+
+
+### Features
+
+* replace formatted cloud catalog api with public ([ac3280b](https://github.com/ovh/manager/commit/ac3280b6c03f17f1240607e1ccfeed79f956eb47))
+
+
+
+## [8.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.1.0...@ovh-ux/manager-cloud@8.1.1) (2019-12-12)
+
+
+### Bug Fixes
+
+* **cloud.dbaas:** fix service injection ([892cdcf](https://github.com/ovh/manager/commit/892cdcffbcfab4a612a431a6ee138c3ade35e0d0))
+
+
+
+# [8.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@8.0.0...@ovh-ux/manager-cloud@8.1.0) (2019-12-10)
+
+
+### Bug Fixes
+
+* **cloud:** remove IPLB references ([ffc4045](https://github.com/ovh/manager/commit/ffc40450d0100235ea5da6b6dcb1967d797da89a))
+
+
+### Features
+
+* **cloud:** replace uib-tooltip with oui tooltip ([c2133be](https://github.com/ovh/manager/commit/c2133be3dba1f098b5b3708c9f4ea115acbd6f85))
+* **iplb:** migrate IPLB ([b78786e](https://github.com/ovh/manager/commit/b78786ee6d70519ca06075697d798b649754d52e))
+
+
+
 # [8.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud@7.37.3...@ovh-ux/manager-cloud@8.0.0) (2019-11-27)
 
 

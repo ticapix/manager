@@ -1,3 +1,73 @@
+# [11.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.2.2...@ovh-ux/manager-dedicated@11.3.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **account.user.security.totp.delete:** add missing warning message ([#1954](https://github.com/ovh/manager/issues/1954)) ([dbffffa](https://github.com/ovh/manager/commit/dbffffab5379c1d209f573c69aa938c407e4c72d)), closes [#1953](https://github.com/ovh/manager/issues/1953)
+* **dedicated.account.user:** remove shortcuts for some region ([34c4e64](https://github.com/ovh/manager/commit/34c4e647d1c968a6a866a3293b6a404df5593699))
+* **i18n:** add missing translations [CDS 182] ([de0bbaa](https://github.com/ovh/manager/commit/de0bbaaf4957ef0c73d1c8a8488c04d85dceab51))
+* **i18n:** add missing translations [CDS 184] ([6ec37b2](https://github.com/ovh/manager/commit/6ec37b2226218cecb94307abb01d88ffda824326))
+* **i18n:** add missing translations [CDS 187] ([707ec72](https://github.com/ovh/manager/commit/707ec724fe6852a0c5fa855bfb6911fef977df61))
+* **i18n:** add missing translations [CDS 193] ([9f4801a](https://github.com/ovh/manager/commit/9f4801a3ad577f6e3c9df4d400072237a4589a04))
+* **i18n:** add missing translations [CDS 195] ([7b63630](https://github.com/ovh/manager/commit/7b63630b213b9da1947fa6ccc36a290efa294a67))
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+* rename OVH to OVHcloud in preloading and title ([35fc442](https://github.com/ovh/manager/commit/35fc4420850390e2ad80f322f6d23c87fb6a713a))
+
+
+### Features
+
+* **dedicated.billing:** prevent VIP renew ([#1943](https://github.com/ovh/manager/issues/1943)) ([9a5755c](https://github.com/ovh/manager/commit/9a5755ce2bdb45cd76484df41afced92e42808ed))
+* display standard and premium support levels for FR customers ([569b19e](https://github.com/ovh/manager/commit/569b19e231123f820cb537cd4c85f2a079fd9c03))
+
+
+
+## [11.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.2.1...@ovh-ux/manager-dedicated@11.2.2) (2019-12-11)
+
+
+### Bug Fixes
+
+* **dedicated:** add back order retractation screen ([c0bb703](https://github.com/ovh/manager/commit/c0bb7037c3d9bbbcce018cb3f2e1cabdafdf2d61))
+
+
+
+## [11.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.2.0...@ovh-ux/manager-dedicated@11.2.1) (2019-12-10)
+
+
+### Bug Fixes
+
+* **dedicated.billing:** get state only when available ([e41fd78](https://github.com/ovh/manager/commit/e41fd780bd7bc1a7bbe09583c35c857a71285313))
+* **pcc.drp:** fix check on payment method list ([c142d7a](https://github.com/ovh/manager/commit/c142d7a0e38e1e2189426264b7ae2761c80c4c30))
+
+
+
+# [11.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.1.1...@ovh-ux/manager-dedicated@11.2.0) (2019-12-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 164] ([c424360](https://github.com/ovh/manager/commit/c424360b395751806346d101af4d160f7a80d673))
+* **i18n:** add missing translations [CDS 167] ([c1d3c91](https://github.com/ovh/manager/commit/c1d3c91004d6d5170573efa1071764bc0392b512))
+* **i18n:** add missing translations [CDS 168] ([29cb4ff](https://github.com/ovh/manager/commit/29cb4ffd1c75ae079b20efc2ab8ed23b625bce43))
+* **i18n:** add missing translations [CDS 168] ([a4de58a](https://github.com/ovh/manager/commit/a4de58af1be0ffce69120c6815a861e9fbd0b0d4))
+* **i18n:** add missing translations [CDS 171] ([e4a934b](https://github.com/ovh/manager/commit/e4a934b8cfc406e8b25c6175ca21798105f48fc5))
+* **i18n:** add missing translations [CDS 172] ([d36cbc4](https://github.com/ovh/manager/commit/d36cbc424c66dff63777cf95c3bc0025b8c242af))
+* **i18n:** add missing translations [CDS 174] ([afafd5e](https://github.com/ovh/manager/commit/afafd5e45f6fface9195694730dc131fcf222832))
+* **i18n:** add missing translations [CDS 179] ([1de83d7](https://github.com/ovh/manager/commit/1de83d7246ac5b1ec4ada6f301e5070aeb8ce9e5))
+* **i18n:** add missing translations [CDS 180] ([b828ef6](https://github.com/ovh/manager/commit/b828ef6b54d71970e6517c8b260d35d6e97b8683))
+
+
+### Features
+
+* **dedicated:** add IPLB ([5d6a470](https://github.com/ovh/manager/commit/5d6a47010cc58d4298d0fff4205000fa66cb0d05))
+* **dedicated:** replace uib-tooltip with oui tooltip ([eb0eb58](https://github.com/ovh/manager/commit/eb0eb58bad9517e22aaf4f66e3b49d0422e6920f))
+* **dedicated.billing.autorenew:** add sorting on all columns ([2eb8f0d](https://github.com/ovh/manager/commit/2eb8f0d37b55683ff822e6df4b5d58f670a917e9)), closes [#1501](https://github.com/ovh/manager/issues/1501)
+* **iplb:** migrate IPLB ([b78786e](https://github.com/ovh/manager/commit/b78786ee6d70519ca06075697d798b649754d52e))
+* **pcc:** add zerto on premise configuration plan feature ([f0cdba9](https://github.com/ovh/manager/commit/f0cdba9f2d983b62652daefc1ae897dcb38ea001))
+* **pcc:** extract new translations ([#1847](https://github.com/ovh/manager/issues/1847)) ([7da2de4](https://github.com/ovh/manager/commit/7da2de4ffdfc67606a8e4bd1c7f166c638872472))
+* **pcc.drp:** set ovhcloud images ([14ce560](https://github.com/ovh/manager/commit/14ce560b731c160701d9e99f824507242f54653f))
+
+
+
 ## [11.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@11.1.0...@ovh-ux/manager-dedicated@11.1.1) (2019-12-02)
 
 

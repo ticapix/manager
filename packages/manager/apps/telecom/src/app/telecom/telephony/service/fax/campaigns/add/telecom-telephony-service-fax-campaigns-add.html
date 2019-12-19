@@ -1,6 +1,7 @@
 <form name="addTelephonyFaxCampaignForm"
       id="addTelephonyFaxCampaignForm"
-      data-ng-submit="CampaignsAddCtrl.add()">
+      data-ng-submit="CampaignsAddCtrl.add()"
+      novalidate>
 
     <div class="modal-header">
         <button
@@ -164,12 +165,12 @@
                    class="control-label"
                    data-translate="telephony_service_fax_campaigns_add_campaign_label_send_date_time">
             </label>
-            <div data-uib-timepicker
-                 data-hour-step="1"
-                 data-minute-step="1"
-                 data-show-meridian="false"
-                 data-ng-model="CampaignsAddCtrl.picker.time">
-            </div>
+            <oui-timepicker
+                data-model="CampaignsAddCtrl.picker.time"
+                data-alt-format="H:i"
+                data-format="Z"
+                data-placeholder="HH:MM">
+            </oui-timepicker>
         </div>
 
         <!-- RECIPIENTS TYPE -->

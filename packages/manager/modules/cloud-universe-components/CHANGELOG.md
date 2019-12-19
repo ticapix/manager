@@ -1,3 +1,23 @@
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.6.0...@ovh-ux/ng-ovh-cloud-universe-components@1.7.0) (2019-12-19)
+
+
+### Features
+
+* move ucent to currency conversion to service ([b97c979](https://github.com/ovh/manager/commit/b97c9798c915232bc0c728b61ac2d4bfc68ac99e))
+* replace formatted cloud catalog api with public ([ac3280b](https://github.com/ovh/manager/commit/ac3280b6c03f17f1240607e1ccfeed79f956eb47))
+
+
+
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.5.0...@ovh-ux/ng-ovh-cloud-universe-components@1.6.0) (2019-12-10)
+
+
+### Features
+
+* **cloud-universe-components:** replace uib-progress by oui-progress ([76d7651](https://github.com/ovh/manager/commit/76d7651ac277699506a386920b50ef424f2ee953))
+* **cuc:** add accordian and advanced options components ([a94392d](https://github.com/ovh/manager/commit/a94392d219946d8a8eacf1573ed17617fb5e83ad))
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.4.3...@ovh-ux/ng-ovh-cloud-universe-components@1.5.0) (2019-11-27)
 
 

@@ -1,3 +1,30 @@
+# [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.1.2...@ovh-ux/manager-overthebox@5.2.0) (2019-12-19)
+
+
+### Features
+
+* add order availability for telecom services ([90c27d8](https://github.com/ovh/manager/commit/90c27d8c986ff20d0519fbde87bb11d3e433aa46))
+
+
+
+## [5.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.1.1...@ovh-ux/manager-overthebox@5.1.2) (2019-12-10)
+
+
+### Bug Fixes
+
+* add missing $translate injection ([0348f3c](https://github.com/ovh/manager/commit/0348f3caed68bb4dfcd508b415134e836ee3f74c))
+
+
+
+## [5.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.1.0...@ovh-ux/manager-overthebox@5.1.1) (2019-12-10)
+
+
+### Bug Fixes
+
+* add missing $translate injection ([0348f3c](https://github.com/ovh/manager/commit/0348f3caed68bb4dfcd508b415134e836ee3f74c))
+
+
+
 # [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@5.0.0...@ovh-ux/manager-overthebox@5.1.0) (2019-11-28)
 
 

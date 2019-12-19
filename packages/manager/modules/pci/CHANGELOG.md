@@ -1,3 +1,39 @@
+# [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.6.1...@ovh-ux/manager-pci@3.7.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **analytics-data-platform:** fix service name check when ordering ([#1949](https://github.com/ovh/manager/issues/1949)) ([6801ff9](https://github.com/ovh/manager/commit/6801ff95128ecacc22c95e22ae7123aa7048ebf4))
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+* **pci:** remove billing for non admin and billing nics ([749536f](https://github.com/ovh/manager/commit/749536f1ae70d639f31f91716575a06b7854a32b))
+
+
+### Features
+
+* replace formatted cloud catalog api with public ([ac3280b](https://github.com/ovh/manager/commit/ac3280b6c03f17f1240607e1ccfeed79f956eb47))
+* **pci.project.block:** improve attach message ([#1969](https://github.com/ovh/manager/issues/1969)) ([9d13c37](https://github.com/ovh/manager/commit/9d13c3705b1a87ce48525f0c33d9f01fb9ab7cb5))
+
+
+
+## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.6.0...@ovh-ux/manager-pci@3.6.1) (2019-12-16)
+
+
+### Bug Fixes
+
+* **analytics-data-platform.onboarding:** set right docs URLs ([#1964](https://github.com/ovh/manager/issues/1964)) ([c3d199c](https://github.com/ovh/manager/commit/c3d199c7406ff5152984dbcd682ff592cafa2d12))
+
+
+
+# [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.5.0...@ovh-ux/manager-pci@3.6.0) (2019-12-10)
+
+
+### Features
+
+* **pci:** remove blackfriday offer ([20962d3](https://github.com/ovh/manager/commit/20962d36d26839747e9e0370a498784ba439a78c)), closes [#1865](https://github.com/ovh/manager/issues/1865)
+* **pci:** replace uib-tooltip with oui tooltip ([395719f](https://github.com/ovh/manager/commit/395719fd40251f8e644c9a12ac4bbc6901bf7274))
+
+
+
 # [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@3.4.0...@ovh-ux/manager-pci@3.5.0) (2019-12-03)
 
 

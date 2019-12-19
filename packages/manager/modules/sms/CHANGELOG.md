@@ -1,3 +1,47 @@
+# [7.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.4.0...@ovh-ux/manager-sms@7.5.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 183] ([a936e65](https://github.com/ovh/manager/commit/a936e6537c5bd79ffdf8ae22016a6c688c84da32))
+* **i18n:** add missing translations [CDS 187] ([707ec72](https://github.com/ovh/manager/commit/707ec724fe6852a0c5fa855bfb6911fef977df61))
+* **i18n:** add missing translations [CDS 196] ([acbb2da](https://github.com/ovh/manager/commit/acbb2da34b2d1c2863fd7c2f6cd187b67e065324))
+
+
+### Features
+
+* **sms:** define feature availabilty for SMS ([f5bf3e2](https://github.com/ovh/manager/commit/f5bf3e2b47a9c831a78d36cf6176eb2eeb3273e7))
+* **sms.compose:** add checkbox for shortcode sender ([#1946](https://github.com/ovh/manager/issues/1946)) ([13efa0b](https://github.com/ovh/manager/commit/13efa0b876bdf1a126a1400f1a5c05453c756dbe))
+* **sms.templates:** translate template examples ([8c697de](https://github.com/ovh/manager/commit/8c697de115eeeed28160ced6646f6a41b6f7c787))
+
+
+
+# [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.3.2...@ovh-ux/manager-sms@7.4.0) (2019-12-10)
+
+
+### Bug Fixes
+
+* add missing $translate injection ([0348f3c](https://github.com/ovh/manager/commit/0348f3caed68bb4dfcd508b415134e836ee3f74c))
+* **i18n:** add missing translations [CDS 168] ([29cb4ff](https://github.com/ovh/manager/commit/29cb4ffd1c75ae079b20efc2ab8ed23b625bce43))
+* **i18n:** add missing translations [CDS 175] ([e0b1879](https://github.com/ovh/manager/commit/e0b187942e060047c62f277f4618f04e5634ec5c))
+
+
+### Features
+
+* **sms:** replace uib-timepicker with oui-timepicker ([ba100e3](https://github.com/ovh/manager/commit/ba100e3c682bf8f4d401ec2475c5f988012fa1df))
+* **sms:** replace uib-tooltip with oui tooltip ([1a352f9](https://github.com/ovh/manager/commit/1a352f960d7f10372284df085a00dd332dd975a2))
+
+
+
+## [7.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.3.1...@ovh-ux/manager-sms@7.3.2) (2019-12-10)
+
+
+### Bug Fixes
+
+* add missing $translate injection ([0348f3c](https://github.com/ovh/manager/commit/0348f3caed68bb4dfcd508b415134e836ee3f74c))
+
+
+
 ## [7.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@7.3.0...@ovh-ux/manager-sms@7.3.1) (2019-12-02)
 
 
