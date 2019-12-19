@@ -5,6 +5,9 @@
     <!-- title -->
     <h1 data-translate="pci_project_new_payment_title"></h1>
 
+    <!-- error -->
+    <cui-message-container data-messages="$ctrl.message.list"></cui-message-container>
+
     <!-- main content: payment method (default or register) -->
     <div class="mb-3"
          data-ui-view="payment">
@@ -32,7 +35,9 @@
                 data-callback-status-param-url-name="paymentStatus"
                 data-payment-method-type="$ctrl.model.paymentMethod"
                 data-on-initialized="$ctrl.onIntegrationInitialized.bind($ctrl)"
-                data-on-submit="$ctrl.onIntegrationSubmit.bind($ctrl)">
+                data-on-submit="$ctrl.onIntegrationSubmit.bind($ctrl)"
+                data-on-submit-error="$ctrl.onIntegrationSubmitError.bind($ctrl)"
+                data-on-submit-success="$ctrl.onIntegrationSubmitSuccess.bind($ctrl)">
                 <oui-button
                     data-variant="primary"
                     data-type="submit"

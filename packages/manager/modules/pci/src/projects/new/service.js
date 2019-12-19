@@ -39,13 +39,20 @@ export default class PciProjectNewService {
         })
         .catch((error) => {
           if (error.status === 404) {
-            return this.createOrderCart(ovhSubsidiary);
+            return this.createOrderCart(ovhSubsidiary)
+              .then((newCart) => {
+                orderCart = newCart;
+                return orderCart;
+              });
           }
 
           return Promise.reject(error);
         });
     } else {
-      cartPromise = this.createOrderCart(ovhSubsidiary);
+      cartPromise = this.createOrderCart(ovhSubsidiary).then((newCart) => {
+        orderCart = newCart;
+        return orderCart;
+      });
     }
 
     return cartPromise
@@ -92,12 +99,13 @@ export default class PciProjectNewService {
         );
 
         if (!cartProjectItem) {
-          return this.createOrderCartProjectItem(projectCart);
+          return this.createOrderCartProjectItem(projectCart)
+            .then(cartProjectItemOptions => projectCart.addItem(cartProjectItemOptions));
         }
 
         // set project item to cart and get the possible configuration
         return this.getOrderCartProjectItemConfiguration(
-          projectCart.setProjectItem(cartProjectItem),
+          projectCart.addItem(cartProjectItem),
         );
       });
   }
@@ -144,14 +152,7 @@ export default class PciProjectNewService {
           cartId,
           itemId,
           configurationId,
-        }).$promise.then((configuration) => {
-          switch (configuration.label) {
-            case 'description':
-              return projectCartItem.setDescriptionConfiguration(configuration);
-            default:
-              return configuration;
-          }
-        }));
+        }).$promise.then(configuration => projectCartItem.addConfiguration(configuration)));
 
         return Promise.all(configPromises)
           .then(() => projectCartItem);
@@ -159,8 +160,27 @@ export default class PciProjectNewService {
   }
 
   setCartProjectItemDescription(projectCart, description) {
-    const { cartId, itemId } = projectCart;
+    const { cartId, itemId } = projectCart.projectItem;
     return this.orderCart.addConfigurationItem(cartId, itemId, 'description', description)
-      .then(descriptionConfig => projectCart.setDescriptionConfiguration(descriptionConfig));
+      .then(descriptionConfig => projectCart.projectItem
+        .addConfiguration(descriptionConfig));
+  }
+
+  setCartProjectItemInfrastructure(projectCart) {
+    const { cartId, itemId } = projectCart.projectItem;
+    return this.orderCart.addConfigurationItem(
+      cartId,
+      itemId,
+      'infrastructure',
+      PCI_PROJECT_ORDER_CART.infraConfigValue,
+    ).then(descriptionConfig => projectCart.projectItem
+      .addConfiguration(descriptionConfig));
+  }
+
+  finalizeCart({ cartId }) {
+    return this.OvhApiOrder.Cart().v6().checkout({
+      cartId,
+      // autoPayWithPreferredPaymentMethod: true, // TODO: uncomment for test
+    }).$promise;
   }
 }

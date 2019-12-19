@@ -8,6 +8,7 @@ export const ELIGIBILITY_ACTION_ENUM = {
 export const PCI_PROJECT_ORDER_CART = {
   productName: 'cloud',
   planCode: 'project.2018',
+  infraConfigValue: 'production',
 };
 
 export default {

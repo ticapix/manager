@@ -3,5 +3,6 @@
   "pci_project_new_payment_btn_continue_credit_card": "Créer mon projet",
   "pci_project_new_payment_btn_continue_bank_account": "Ajouter",
   "pci_project_new_payment_btn_continue_credit": "Créditer et créer mon projet",
-  "pci_project_new_payment_btn_cancel": "Annuler"
+  "pci_project_new_payment_btn_cancel": "Annuler",
+  "pci_project_new_payment_create_error": "Une erreur est survenue lors de l'ajout de votre moyen de paiement. Veuillez réessayer."
 }

@@ -28,9 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
           pciProjectNew,
         ) => pciProjectNew.getOrderCart(me.ovhSubsidiary, get($transition$.params(), 'cartId')),
 
-        // cartProjectItem: /* @ngInject */ (cart, pciProjectNew) => pciProjectNew
-        //   .getOrderCartProjectItem(cart.cartId),
-
         eligibility: /* @ngInject */ ($transition$, pciProjectNew) => pciProjectNew
           .checkEligibility(PciVoucher.getVoucherTestCode(get($transition$.params(), 'voucher')))
           .then(eligibility => new PciEligibility(eligibility)),

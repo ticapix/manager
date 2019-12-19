@@ -6,7 +6,9 @@ export default {
   controller,
   template,
   bindings: {
+    cart: '<',
     getCancelHref: '<',
+    eligibility: '<',
     model: '<',
   },
 };
