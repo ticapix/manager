@@ -41,12 +41,21 @@ export default class PciProjectNewPaymentCtrl {
 
   manageProjectCreation() {
     let infraConfigPromise = Promise.resolve(true);
+    let creditPromise = Promise.resolve(true);
 
     if (!this.cart.projectItem.infrastructureConfiguration) {
       infraConfigPromise = this.pciProjectNew.setCartProjectItemInfrastructure(this.cart);
     }
 
-    return Promise.all([infraConfigPromise])
+    if (this.model.paymentMethod.paymentType === 'CREDIT'
+      && this.model.credit) {
+      creditPromise = this.pciProjectNew.setCartProjectItemCredit(this.cart);
+    }
+
+    return Promise.all([
+      infraConfigPromise,
+      creditPromise,
+    ])
       .then(() => this.pciProjectNew.finalizeCart(this.cart));
   }
 

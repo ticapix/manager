@@ -11,6 +11,21 @@ pci-project-new { /* stylelint-disable-line */
       padding: 0 200px;
     }
 
+    .oui-radio.oui-radio_btn .oui-radio__label-container {
+      padding: 0.75rem 1.25rem;
+
+      .oui-radio__label {
+        margin: 0 auto;
+        padding: 0;
+        text-align: center;
+
+        &::before,
+        &::after {
+          display: none;
+        }
+      }
+    }
+
     small {
       line-height: 16px;
     }

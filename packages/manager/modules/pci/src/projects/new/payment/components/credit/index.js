@@ -4,7 +4,7 @@ import 'angular-translate';
 
 import component from './component';
 
-const moduleName = 'pciProjectNewPaymentRegister';
+const moduleName = 'pciProjectNewPaymentCredit';
 
 angular
   .module(moduleName, [

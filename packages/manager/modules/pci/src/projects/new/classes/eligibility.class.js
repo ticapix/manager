@@ -3,7 +3,7 @@ export default class PciEligibility {
     this.voucher = options.voucher;
     this.paymentMethodsAuthorized = options.paymentMethodsAuthorized;
     this.minimumCredit = options.minimumCredit;
-    this.actionsRequired = options.actionsRequired;
+    this.actionsRequired = options.actionsRequired || [];
   }
 
   setOptions(options = {}) {

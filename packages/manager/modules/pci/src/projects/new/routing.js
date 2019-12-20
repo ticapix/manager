@@ -48,6 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => {
           const modelDef = {
             agreements: false,
+            credit: null,
             challenge: null,
             description: get(cart, 'projectItem.descriptionConfiguration.value', null),
             paymentMethod: null,

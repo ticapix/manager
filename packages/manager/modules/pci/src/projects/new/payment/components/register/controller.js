@@ -11,7 +11,8 @@ import {
 
 export default class PciProjectNewPaymentRegisterCtrl {
   /* @ngInject */
-  constructor(ovhPaymentMethodHelper) {
+  constructor($translate, ovhPaymentMethodHelper) {
+    this.$translate = $translate;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
 
     // other attributes
@@ -21,6 +22,31 @@ export default class PciProjectNewPaymentRegisterCtrl {
     };
   }
 
+  /* ==============================
+  =            Helpers            =
+  =============================== */
+
+  getPaymentMethodTypeText(paymentMethodType) {
+    if (paymentMethodType.paymentType === PAYMENT_METHOD_AUTHORIZED_ENUM.CREDIT.toUpperCase()) {
+      return this.$translate.instant('pci_project_new_payment_register_credit');
+    }
+
+    return this.ovhPaymentMethodHelper.getPaymentMethodTypeText(paymentMethodType.paymentType);
+  }
+
+  /* -----  End of Helpers  ------ */
+
+  /* =============================
+  =            Events            =
+  ============================== */
+
+  onPaymentTypeRadioChange() {
+    this.model.credit = null;
+  }
+
+  /* -----  End of Events  ------ */
+
+
   /* ============================
   =            Hooks            =
   ============================= */
@@ -29,14 +55,14 @@ export default class PciProjectNewPaymentRegisterCtrl {
     let { paymentMethodsAuthorized } = this.eligibility;
     paymentMethodsAuthorized = map(
       paymentMethodsAuthorized,
-      method => snakeCase(method).toUpperCase(),
+      (method) => snakeCase(method).toUpperCase(),
     );
     const registerablePaymentMethods = filter(
       this.registerablePaymentMethods,
-      methodType => paymentMethodsAuthorized.includes(methodType.paymentType),
+      (methodType) => paymentMethodsAuthorized.includes(methodType.paymentType),
     );
 
-    if (paymentMethodsAuthorized.includes(PAYMENT_METHOD_AUTHORIZED_ENUM.CREDIT)) {
+    if (paymentMethodsAuthorized.includes(PAYMENT_METHOD_AUTHORIZED_ENUM.CREDIT.toUpperCase())) {
       const PaymentMethodType = head(this.registerablePaymentMethods).constructor;
       registerablePaymentMethods.push(new PaymentMethodType({
         paymentType: PAYMENT_METHOD_AUTHORIZED_ENUM.CREDIT.toUpperCase(),
@@ -46,7 +72,7 @@ export default class PciProjectNewPaymentRegisterCtrl {
 
     const mappedPreferredMethodOrder = map(
       PREFERRED_PAYMENT_METHOD_ORDER,
-      paymentType => snakeCase(paymentType).toUpperCase(),
+      (paymentType) => snakeCase(paymentType).toUpperCase(),
     );
 
     this.authorizedPaymentMethods.list = registerablePaymentMethods.sort((methodA, methodB) => {

@@ -7,25 +7,30 @@
          data-ng-repeat="authorizedPaymentMethods in $ctrl.authorizedPaymentMethods.chunks track by $index">
         <div class="col-md-6 mb-3"
              data-ng-repeat="authorizedPaymentMethod in authorizedPaymentMethods track by $index">
-            <oui-radio data-name="paymentType"
-                       data-thumbnail data-variant="light"
-                       data-model="$ctrl.model.paymentMethod"
-                       data-value="authorizedPaymentMethod">
-                <span data-ng-bind="$ctrl.ovhPaymentMethodHelper.getPaymentMethodTypeText(authorizedPaymentMethod.paymentType)"></span>
+            <oui-radio
+                class="oui-radio_btn"
+                data-name="paymentType"
+                data-thumbnail data-variant="light"
+                data-model="$ctrl.model.paymentMethod"
+                data-value="authorizedPaymentMethod"
+                data-on-change="$ctrl.onPaymentTypeRadioChange()">
+                <span data-ng-bind="$ctrl.getPaymentMethodTypeText(authorizedPaymentMethod)"></span>
             </oui-radio>
         </div>
     </div>
 
-    <p data-translate="pci_project_new_payment_register_explain"></p>
+    <div data-ng-if="$ctrl.model.paymentMethod.paymentType !== 'CREDIT'">
+        <p data-translate="pci_project_new_payment_register_explain"></p>
 
-    <oui-message
-        data-type="warning"
-        data-ng-if="$ctrl.model.paymentMethod.paymentType === 'BANK_ACCOUNT'">
-        <span data-translate="pci_project_new_payment_register_warning_bank_account"></span>
-    </oui-message>
+        <oui-message
+            data-type="warning"
+            data-ng-if="$ctrl.model.paymentMethod.paymentType === 'BANK_ACCOUNT'">
+            <span data-translate="pci_project_new_payment_register_warning_bank_account"></span>
+        </oui-message>
 
-    <p>
-        <small data-translate="{{ 'pci_project_new_payment_register_info_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"></small>
-    </p>
+        <p>
+            <small data-translate="{{ 'pci_project_new_payment_register_info_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"></small>
+        </p>
+    </div>
 
 </div>

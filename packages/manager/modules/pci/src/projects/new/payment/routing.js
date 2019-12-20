@@ -1,8 +1,14 @@
+import get from 'lodash/get';
+
 import component from './component';
 
 import {
   ELIGIBILITY_ACTION_ENUM,
 } from '../constants';
+
+import {
+  PAYMENT_METHOD_AUTHORIZED_ENUM,
+} from './components/register/constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -14,20 +20,22 @@ export default /* @ngInject */ ($stateProvider) => {
         'progress@pci.projects.new.payment': 'pciProjectNewProgress',
 
         'payment@pci.projects.new.payment': {
-          componentProvider: /* @ngInject */ defaultPaymentMethod => (defaultPaymentMethod
+          componentProvider: /* @ngInject */ (defaultPaymentMethod) => (defaultPaymentMethod
             ? 'pciProjectNewPaymentDefault'
             : 'pciProjectNewPaymentRegister'),
         },
 
+        'credits@pci.projects.new.payment': 'pciProjectNewPaymentCredit',
+
         'challenge@pci.projects.new.payment': {
-          componentProvider: /* @ngInject */ eligibility => (eligibility
+          componentProvider: /* @ngInject */ (eligibility) => (eligibility
             .actionsRequired.includes(ELIGIBILITY_ACTION_ENUM.CHALLENGE_PAYMENT_METHOD) ? 'pciProjectNewPaymentChallenge' : null),
         },
 
         'voucher@pci.projects.new.payment': 'pciProjectNewVoucher',
 
         'dlp@pci.projects.new.payment': {
-          componentProvider: /* @ngInject */ dlpStatus => (dlpStatus
+          componentProvider: /* @ngInject */ (dlpStatus) => (dlpStatus
             ? 'pciProjectNewPaymentDlp'
             : null),
         },
@@ -36,7 +44,7 @@ export default /* @ngInject */ ($stateProvider) => {
         activeStep(step.name);
       },
       resolve: {
-        defaultPaymentMethod: /* @ngInject */ ovhPaymentMethod => ovhPaymentMethod
+        defaultPaymentMethod: /* @ngInject */ (ovhPaymentMethod) => ovhPaymentMethod
           .getDefaultPaymentMethod(),
 
         registerablePaymentMethods: /* @ngInject */ (

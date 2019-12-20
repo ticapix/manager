@@ -5,5 +5,5 @@
   "pci_project_new_payment_register_info_paypal": "En cliquant sur « Paypal » vous allez être redirigé vers l’interface sécurisée de PayPal pour enregistrer votre compte.",
   "pci_project_new_payment_register_info_bank_account": "En cliquant sur « Ajouter » vous allez être redirigé vers la partie Mes moyens de paiement de l'espace client.",
   "pci_project_new_payment_register_warning_bank_account": "Votre compte bancaire sera approuvé dans les 24 à 48 heures suivant la réception de votre autorisation de prélèvement, qui est à renvoyer par voie postale. Vous pourrez ensuite recréer un projet Public Cloud.",
-  "pci_project_new_payment_register_info_credit": "* Les crédits ne sont pas transférables ni remboursables et ne possèdent aucune valeur monétaire. Tout crédit non utilisé dans les 13 mois suivant leur achat sont perdus. En cliquant sur « Créditer et créer mon projet », vous allez être redirigé vers un bon de commande pour régler vos crédits par carte bancaire ou Paypal."
+  "pci_project_new_payment_register_credit": "Ajout de crédits"
 }

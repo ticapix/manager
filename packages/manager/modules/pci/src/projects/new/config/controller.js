@@ -27,7 +27,7 @@ export default class PciProjectNewConfigCtrl {
   onProjectConfigFormSubmit() {
     let setDescrPromise = Promise.resolve(true);
 
-    if (this.model.description && !this.cart.projectItem) {
+    if (this.model.description && !this.cart.projectItem.descriptionConfiguration) {
       setDescrPromise = this.pciProjectNew.setCartProjectItemDescription(
         this.cart,
         this.model.description,

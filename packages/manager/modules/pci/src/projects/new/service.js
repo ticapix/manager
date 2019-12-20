@@ -27,37 +27,36 @@ export default class PciProjectNewService {
    *  @param  {string} [cartId]      A previously created cart id
    *  @return {Promise}              That returns a cart.
    */
-  getOrderCart(ovhSubsidiary, cartId = null) {
-    let cartPromise;
+  async getOrderCart(ovhSubsidiary, cartId = null) {
     let orderCart;
 
     if (cartId) {
-      cartPromise = this.OvhApiOrder.Cart().v6().get({ cartId }).$promise
-        .then((cartOptions) => {
-          orderCart = new PciCartProject(cartOptions);
-          return orderCart;
-        })
+      orderCart = await this.OvhApiOrder.Cart().v6().get({ cartId }).$promise
         .catch((error) => {
           if (error.status === 404) {
-            return this.createOrderCart(ovhSubsidiary)
-              .then((newCart) => {
-                orderCart = newCart;
-                return orderCart;
-              });
+            return this.createOrderCart(ovhSubsidiary);
           }
 
           return Promise.reject(error);
         });
     } else {
-      cartPromise = this.createOrderCart(ovhSubsidiary).then((newCart) => {
-        orderCart = newCart;
-        return orderCart;
-      });
+      orderCart = await this.createOrderCart(ovhSubsidiary);
     }
 
-    return cartPromise
-      .then(projectCart => this.getOrderCartProjectItem(projectCart))
-      .then(() => orderCart);
+    const orderCartInstance = new PciCartProject(orderCart);
+
+    if (!orderCart.items.length) {
+      await this.createOrderCartProjectItem(orderCartInstance);
+    } else {
+      await this.getOrderCartItems(orderCartInstance);
+      if (!orderCartInstance.projectItem) {
+        await this.createOrderCartProjectItem(orderCartInstance);
+      } else {
+        await this.getOrderCartProjectItemConfigurations(orderCartInstance.projectItem);
+      }
+    }
+
+    return orderCartInstance;
   }
 
   /**
@@ -65,116 +64,111 @@ export default class PciProjectNewService {
    *  @param  {string} ovhSubsidiary The subsidiary of the cart.
    *  @return {Promise}              Which returns the new created cart.
    */
-  createOrderCart(ovhSubsidiary) {
-    let newCart;
+  async createOrderCart(ovhSubsidiary) {
+    let newOrderCart = await this.orderCart.createNewCart(ovhSubsidiary);
 
-    return this.orderCart.createNewCart(ovhSubsidiary)
-      .then((cart) => {
-        newCart = new PciCartProject(cart);
-        return newCart;
-      })
-      .then(() => this.orderCart.assignCart(newCart.cartId))
-      .then(() => newCart);
+    newOrderCart = new PciCartProject(newOrderCart);
+    await this.orderCart.assignCart(newOrderCart.cartId);
+
+    return newOrderCart;
   }
 
-  getOrderCartProjectItem(projectCart) {
-    let cartProjectItem;
-    const { cartId } = projectCart;
-
-    return this.OvhApiOrder.Cart().Item().v6().query({
+  async createOrderCartProjectItem(orderCart) {
+    const { cartId } = orderCart;
+    const cloudOffers = await this.orderCart.getProductOffers(
       cartId,
-    }).$promise
-      .then((itemIds) => {
-        const itemPromises = map(itemIds, itemId => this.OvhApiOrder.Cart().Item().v6().get({
-          cartId,
-          itemId,
-        }).$promise);
+      PCI_PROJECT_ORDER_CART.productName,
+    );
+    const cloudProjectOffer = find(cloudOffers, {
+      planCode: PCI_PROJECT_ORDER_CART.planCode,
+    });
 
-        return Promise.all(itemPromises);
-      })
-      .then((items) => {
-        cartProjectItem = find(
-          items,
-          item => item.settings.planCode === PCI_PROJECT_ORDER_CART.planCode,
-        );
-
-        if (!cartProjectItem) {
-          return this.createOrderCartProjectItem(projectCart)
-            .then(cartProjectItemOptions => projectCart.addItem(cartProjectItemOptions));
-        }
-
-        // set project item to cart and get the possible configuration
-        return this.getOrderCartProjectItemConfiguration(
-          projectCart.addItem(cartProjectItem),
-        );
+    // check if project.2018 offer is present
+    // if not reject
+    if (!cloudProjectOffer) {
+      return Promise.reject({
+        status: 404,
+        data: {
+          message: `planCode ${PCI_PROJECT_ORDER_CART.planCode} not found`,
+        },
       });
-  }
+    }
 
-  createOrderCartProjectItem(projectCart) {
-    const { cartId } = projectCart;
-
-    return this.orderCart.getProductOffers(cartId, PCI_PROJECT_ORDER_CART.productName)
-      .then((offers) => {
-        const pciProjectOffer = find(offers, {
-          planCode: PCI_PROJECT_ORDER_CART.planCode,
-        });
-
-        if (!pciProjectOffer) {
-          return this.$q.reject({
-            status: 404,
-            data: {
-              message: `planCode ${PCI_PROJECT_ORDER_CART.planCode} not found`,
-            },
-          });
-        }
-
-        const { duration, pricingMode } = head(pciProjectOffer.prices);
-
-        return this.orderCart.addProductToCart(cartId, PCI_PROJECT_ORDER_CART.productName, {
-          duration,
-          planCode: PCI_PROJECT_ORDER_CART.planCode,
-          pricingMode,
-          quantity: 1,
-        });
-      });
-  }
-
-  getOrderCartProjectItemConfiguration(projectCartItem) {
-    const { cartId, itemId } = projectCartItem;
-    const configResource = this.OvhApiOrder.Cart().Item().Configuration();
-
-    return configResource.v6().query({
+    // otherwise add it to the cart
+    const { duration, pricingMode } = head(cloudProjectOffer.prices);
+    const projectItem = await this.orderCart.addProductToCart(
       cartId,
-      itemId,
-    }).$promise
-      .then((configurationIds) => {
-        const configPromises = map(configurationIds, configurationId => configResource.v6().get({
-          cartId,
-          itemId,
-          configurationId,
-        }).$promise.then(configuration => projectCartItem.addConfiguration(configuration)));
+      PCI_PROJECT_ORDER_CART.productName, {
+        duration,
+        planCode: PCI_PROJECT_ORDER_CART.planCode,
+        pricingMode,
+        quantity: 1,
+      },
+    );
 
-        return Promise.all(configPromises)
-          .then(() => projectCartItem);
-      });
+    return orderCart.addItem(projectItem);
   }
 
-  setCartProjectItemDescription(projectCart, description) {
-    const { cartId, itemId } = projectCart.projectItem;
+  async getOrderCartItems(orderCart) {
+    const { cartId } = orderCart;
+    const itemIds = await this.OvhApiOrder.Cart().Item().v6().query({
+      cartId,
+    }).$promise;
+    const itemDetailsPromises = map(
+      itemIds,
+      (itemId) => this.OvhApiOrder.Cart().Item().v6().get({
+        cartId,
+        itemId,
+      }).$promise.then((item) => orderCart.addItem(item)),
+    );
+    await Promise.all(itemDetailsPromises);
+    return orderCart.items;
+  }
+
+  async getOrderCartProjectItemConfigurations(cloudProjectItem) {
+    const { cartId, itemId } = cloudProjectItem;
+    // get configurations ids of the cloud project item
+    const configurationIds = await this.OvhApiOrder.Cart().Item().Configuration().v6()
+      .query({
+        cartId,
+        itemId,
+      }).$promise;
+    // get the configuration details of the cloud project item
+    const configPromises = map(configurationIds, (configurationId) => this.OvhApiOrder
+      .Cart().Item().Configuration().v6()
+      .get({
+        cartId,
+        itemId,
+        configurationId,
+      }).$promise.then((configuration) => cloudProjectItem.addConfiguration(configuration)));
+    // wait for all requests done
+    await Promise.all(configPromises);
+    return cloudProjectItem.configurations;
+  }
+
+  setCartProjectItemDescription(orderCart, description) {
+    const { cartId, itemId } = orderCart.projectItem;
     return this.orderCart.addConfigurationItem(cartId, itemId, 'description', description)
-      .then(descriptionConfig => projectCart.projectItem
+      .then((descriptionConfig) => orderCart.projectItem
         .addConfiguration(descriptionConfig));
   }
 
-  setCartProjectItemInfrastructure(projectCart) {
-    const { cartId, itemId } = projectCart.projectItem;
+  setCartProjectItemInfrastructure(orderCart) {
+    const { cartId, itemId } = orderCart.projectItem;
     return this.orderCart.addConfigurationItem(
       cartId,
       itemId,
       'infrastructure',
       PCI_PROJECT_ORDER_CART.infraConfigValue,
-    ).then(descriptionConfig => projectCart.projectItem
-      .addConfiguration(descriptionConfig));
+    ).then((infrastructureConfig) => orderCart.projectItem
+      .addConfiguration(infrastructureConfig));
+  }
+
+  setCartProjectItemCredit(orderCart) {
+    // first get the info of credit option
+    const { cartId, itemId } = orderCart.projectItem;
+    // TODO !!!!
+    return this.orderCart.getProductOptions(cartId)
   }
 
   finalizeCart({ cartId }) {
