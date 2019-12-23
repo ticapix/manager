@@ -46,7 +46,7 @@ export default class OrderCartService {
       .getOptions({
         cartId,
         productName,
-        ...productPlanCode,
+        planCode: productPlanCode,
       })
       .$promise;
   }

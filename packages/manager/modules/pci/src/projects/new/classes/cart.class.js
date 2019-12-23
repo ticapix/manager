@@ -17,6 +17,13 @@ export default class PciCartProject {
     );
   }
 
+  get creditOption() {
+    return find(
+      this.items,
+      (cartItem) => cartItem.settings.planCode === PCI_PROJECT_ORDER_CART.creditPlanCode,
+    );
+  }
+
   addItem(itemOptions) {
     const item = new PciCartProjectItem(itemOptions);
     this.items.push(item);

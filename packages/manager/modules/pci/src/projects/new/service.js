@@ -10,10 +10,10 @@ import {
 
 export default class PciProjectNewService {
   /* @ngInject */
-  constructor(orderCart, OvhApiCloud, OvhApiOrder) {
-    this.orderCart = orderCart;
+  constructor(OvhApiCloud, OvhApiOrder, WucOrderCartService) {
     this.OvhApiCloud = OvhApiCloud;
     this.OvhApiOrder = OvhApiOrder;
+    this.orderCart = WucOrderCartService;
   }
 
   checkEligibility(voucher = null) {
@@ -86,12 +86,13 @@ export default class PciProjectNewService {
     // check if project.2018 offer is present
     // if not reject
     if (!cloudProjectOffer) {
-      return Promise.reject({
+      const error = {
         status: 404,
         data: {
           message: `planCode ${PCI_PROJECT_ORDER_CART.planCode} not found`,
         },
-      });
+      };
+      return Promise.reject(error);
     }
 
     // otherwise add it to the cart
@@ -164,11 +165,58 @@ export default class PciProjectNewService {
       .addConfiguration(infrastructureConfig));
   }
 
-  setCartProjectItemCredit(orderCart) {
+  setCartProjectItemVoucher(orderCart, voucherCode) {
+    const { cartId, itemId } = orderCart.projectItem;
+    return this.orderCart.addConfigurationItem(cartId, itemId, 'voucher', voucherCode)
+      .then((voucherConfig) => orderCart.projectItem
+        .addConfiguration(voucherConfig));
+  }
+
+  removeCartProjectItemVoucher(orderCart) {
+    const { cartId, itemId } = orderCart.projectItem;
+    const { id } = orderCart.projectItem.voucherConfiguration;
+    return this.orderCart.deleteConfigurationItem(cartId, itemId, id)
+      .then(() => orderCart.projectItem
+        .removeConfiguration(id));
+  }
+
+  /**
+   *  Add credit to order cart project.2018 item
+   */
+  setCartProjectItemCredit(orderCart, amount) {
     // first get the info of credit option
     const { cartId, itemId } = orderCart.projectItem;
-    // TODO !!!!
-    return this.orderCart.getProductOptions(cartId)
+    return this.orderCart.getProductOptions(
+      cartId,
+      PCI_PROJECT_ORDER_CART.productName,
+      PCI_PROJECT_ORDER_CART.planCode,
+    ).then((options) => {
+      const cloudCredit = find(options, {
+        planCode: PCI_PROJECT_ORDER_CART.creditPlanCode,
+      });
+
+      // check if cloud.credit option is present
+      // if not reject
+      if (!cloudCredit) {
+        const error = {
+          status: 404,
+          data: {
+            message: `Option with planCode ${PCI_PROJECT_ORDER_CART.creditPlanCode} not found`,
+          },
+        };
+        return Promise.reject(error);
+      }
+
+      const { duration, pricingMode, price } = head(cloudCredit.prices);
+
+      return this.orderCart.addProductOptionToCart(cartId, PCI_PROJECT_ORDER_CART.productName, {
+        planCode: PCI_PROJECT_ORDER_CART.creditPlanCode,
+        quantity: amount / price.value,
+        duration,
+        pricingMode,
+        itemId,
+      }).then((creditOption) => orderCart.addItem(creditOption));
+    });
   }
 
   finalizeCart({ cartId }) {

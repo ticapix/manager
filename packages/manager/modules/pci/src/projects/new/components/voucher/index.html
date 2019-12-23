@@ -10,6 +10,17 @@
         </span>
     </button>
 
+    <oui-message
+        data-type="error"
+        data-ng-if="$ctrl.errors.reset || $ctrl.errors.check">
+        <span data-ng-if="$ctrl.errors.check"
+              data-translate="pci_projects_new_voucher_form_add_error">
+        </span>
+        <span data-ng-if="$ctrl.errors.reset"
+              data-translate="pci_projects_new_voucher_form_reset_error">
+        </span>
+    </oui-message>
+
     <form class="voucher-form oui-box h-100 d-lg-flex justify-content-between align-items-center no-transition"
           data-ng-if="$ctrl.formVisible"
           name="$ctrl.voucherForm"
@@ -28,12 +39,13 @@
                     name="voucher"
                     data-ng-model="$ctrl.model.voucher.value"
                     data-ng-change="$ctrl.onVoucherInputChange()"
-                    data-ng-disabled="$ctrl.loading.check" />
+                    data-ng-disabled="$ctrl.loading.check || $ctrl.loading.reset"
+                    data-ng-readonly="$ctrl.model.voucher.value && $ctrl.model.voucher.valid" />
 
                 <oui-button
                     data-type="submit"
                     data-aria-label="{{ :: 'pci_projects_new_voucher_form_add_title' | translate }}"
-                    data-disabled="$ctrl.loading.check"
+                    data-disabled="$ctrl.loading.check || !$ctrl.model.voucher.value"
                     data-ng-if="!$ctrl.model.voucher.valid">
                     <span data-translate="pci_projects_new_voucher_form_add"></span>
                 </oui-button>
@@ -42,7 +54,8 @@
                     data-type="reset"
                     data-aria-label="{{ :: 'pci_projects_new_voucher_form_remove_title' | translate }}"
                     data-ng-if="$ctrl.model.voucher.value && $ctrl.model.voucher.valid"
-                    data-ng-click="$ctrl.model.voucher.reset()">
+                    data-ng-click="$ctrl.onVoucherFormReset()"
+                    data-ng-disabled="$ctrl.loading.reset">
                     <span data-translate="pci_projects_new_voucher_form_remove"></span>
                 </oui-button>
             </div>

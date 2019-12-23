@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import remove from 'lodash/remove';
 
 import PciCartProjectItemConfiguration from './cart.project.item.configuration.class';
 
@@ -23,9 +24,20 @@ export default class PciCartProjectItem {
     });
   }
 
+  get voucherConfiguration() {
+    return find(this.configurations, {
+      label: 'voucher',
+    });
+  }
+
   addConfiguration(configurationOptions) {
     const configuration = new PciCartProjectItemConfiguration(configurationOptions);
     this.configurations.push(configuration);
     return configuration;
+  }
+
+  removeConfiguration(configurationId) {
+    remove(this.configurations, ({ id }) => id === configurationId);
+    return this;
   }
 }

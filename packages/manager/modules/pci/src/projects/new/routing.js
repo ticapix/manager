@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.new', {
       url: '/new?cartId&voucher',
-      redirectTo: transition => transition.router.stateService.target(
+      redirectTo: (transition) => transition.router.stateService.target(
         'pci.projects.new.config', transition.params(), {
           location: false,
         },
@@ -30,18 +30,17 @@ export default /* @ngInject */ ($stateProvider) => {
 
         eligibility: /* @ngInject */ ($transition$, pciProjectNew) => pciProjectNew
           .checkEligibility(PciVoucher.getVoucherTestCode(get($transition$.params(), 'voucher')))
-          .then(eligibility => new PciEligibility(eligibility)),
+          .then((eligibility) => new PciEligibility(eligibility)),
 
-        checkVoucherValidity: /* @ngInject */ pciProjectNew => voucher => pciProjectNew
+        checkVoucherValidity: /* @ngInject */ (pciProjectNew) => (voucher) => pciProjectNew
           .checkEligibility(voucher)
-          .catch(error => ({
+          .catch((error) => ({
             voucher: {
               error: error.status,
             },
           })),
 
         model: /* @ngInject */ (
-          $transition$,
           cart,
           checkVoucherValidity,
           eligibility,
@@ -53,7 +52,7 @@ export default /* @ngInject */ ($stateProvider) => {
             description: get(cart, 'projectItem.descriptionConfiguration.value', null),
             paymentMethod: null,
             voucher: new PciVoucher({
-              value: get($transition$.params(), 'voucher'),
+              value: get(cart, 'projectItem.voucherConfiguration.value'),
             }),
           };
 
@@ -72,7 +71,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return modelDef;
         },
 
-        getStep: /* @ngInject */ steps => name => find(steps, { name }),
+        getStep: /* @ngInject */ (steps) => (name) => find(steps, { name }),
 
         activeStep: /* @ngInject */ (getStep, steps) => (name) => {
           // desactive all steps

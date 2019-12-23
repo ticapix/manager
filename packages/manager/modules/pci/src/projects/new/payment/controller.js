@@ -7,6 +7,7 @@ export default class PciProjectNewPaymentCtrl {
   /* @ngInject */
   constructor(
     $translate,
+    $window,
     coreConfig,
     CucCloudMessage,
     pciProjectNew,
@@ -14,6 +15,7 @@ export default class PciProjectNewPaymentCtrl {
     OVH_PAYMENT_METHOD_TYPE,
   ) {
     this.$translate = $translate;
+    this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
     this.pciProjectNew = pciProjectNew;
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
@@ -48,15 +50,32 @@ export default class PciProjectNewPaymentCtrl {
     }
 
     if (this.model.paymentMethod.paymentType === 'CREDIT'
-      && this.model.credit) {
-      creditPromise = this.pciProjectNew.setCartProjectItemCredit(this.cart);
+      && this.model.credit && !this.cart.creditOption) {
+      creditPromise = this.pciProjectNew.setCartProjectItemCredit(
+        this.cart,
+        this.model.credit.value,
+      );
     }
 
     return Promise.all([
       infraConfigPromise,
       creditPromise,
     ])
-      .then(() => this.pciProjectNew.finalizeCart(this.cart));
+      .then(() => this.pciProjectNew.finalizeCart(this.cart))
+      .then((order) => {
+        if (this.cart.creditOption) {
+          // if credit has been added - redirect to order url
+          return this.$window.location.assign(order.url);
+        }
+
+        return order;
+      })
+      .catch(() => {
+        this.CucCloudMessage.error(
+          this.$translate.instant('pci_project_new_payment_checkout_error'),
+          'pci.projects.new.payment',
+        );
+      });
   }
 
   /* -----  End of Helpers  ------ */

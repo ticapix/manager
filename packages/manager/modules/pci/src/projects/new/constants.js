@@ -9,6 +9,7 @@ export const PCI_PROJECT_ORDER_CART = {
   productName: 'cloud',
   planCode: 'project.2018',
   infraConfigValue: 'production',
+  creditPlanCode: 'cloud.credit',
 };
 
 export default {
