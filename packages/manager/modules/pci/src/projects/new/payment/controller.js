@@ -49,7 +49,8 @@ export default class PciProjectNewPaymentCtrl {
       infraConfigPromise = this.pciProjectNew.setCartProjectItemInfrastructure(this.cart);
     }
 
-    if (this.model.paymentMethod.paymentType === 'CREDIT'
+    if (this.model.paymentMethod
+      && this.model.paymentMethod.paymentType === 'CREDIT'
       && this.model.credit && !this.cart.creditOption) {
       creditPromise = this.pciProjectNew.setCartProjectItemCredit(
         this.cart,

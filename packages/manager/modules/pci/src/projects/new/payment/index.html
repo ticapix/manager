@@ -43,7 +43,10 @@
                 data-on-submit="$ctrl.onIntegrationSubmit.bind($ctrl)"
                 data-on-submit-error="$ctrl.onIntegrationSubmitError.bind($ctrl)"
                 data-on-submit-success="$ctrl.onIntegrationSubmitSuccess.bind($ctrl)"
-                data-ng-if="[$ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.REDIRECT, $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IN_CONTEXT].includes($ctrl.model.paymentMethod.integration)">
+                data-ng-if="[
+                    $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.REDIRECT,
+                    $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IN_CONTEXT
+                ].includes($ctrl.model.paymentMethod.integration)">
                 <oui-button
                     data-variant="primary"
                     data-type="submit"
@@ -61,6 +64,13 @@
                 <span data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"></span>
             </oui-button>
 
+            <oui-button
+                data-variant="primary"
+                data-type="submit"
+                data-variant-nav="next"
+                data-ng-if="$ctrl.defaultPaymentMethod">
+                <span data-translate="pci_project_new_payment_btn_continue_default"></span>
+            </oui-button>
 
             <a class="oui-button oui-button_primary oui-button_icon-right no-transition"
                data-ng-if="$ctrl.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT === $ctrl.model.paymentMethod.paymentType"
