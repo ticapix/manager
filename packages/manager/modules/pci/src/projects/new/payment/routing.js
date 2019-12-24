@@ -1,14 +1,8 @@
-import get from 'lodash/get';
-
 import component from './component';
 
 import {
   ELIGIBILITY_ACTION_ENUM,
 } from '../constants';
-
-import {
-  PAYMENT_METHOD_AUTHORIZED_ENUM,
-} from './components/register/constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -63,9 +57,9 @@ export default /* @ngInject */ ($stateProvider) => {
           return $q.reject(error);
         }),
 
-        getCancelHref: /* @ngInject */ $state => () => $state.href('pci.projects'),
+        getCancelHref: /* @ngInject */ ($state) => () => $state.href('pci.projects'),
 
-        step: /* @ngInject */ getStep => getStep('payment'),
+        step: /* @ngInject */ (getStep) => getStep('payment'),
       },
     });
 };

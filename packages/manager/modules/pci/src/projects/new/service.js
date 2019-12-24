@@ -10,10 +10,10 @@ import {
 
 export default class PciProjectNewService {
   /* @ngInject */
-  constructor(OvhApiCloud, OvhApiOrder, WucOrderCartService) {
+  constructor(orderCart, OvhApiCloud, OvhApiOrder) {
+    this.orderCart = orderCart;
     this.OvhApiCloud = OvhApiCloud;
     this.OvhApiOrder = OvhApiOrder;
-    this.orderCart = WucOrderCartService;
   }
 
   checkEligibility(voucher = null) {

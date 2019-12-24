@@ -73,6 +73,15 @@ export default class OrderCartService {
       .$promise;
   }
 
+  deleteConfigurationItem(cartId, itemId, configurationId) {
+    return this.OvhApiOrder.Cart().Item().Configuration().v6()
+      .delete({
+        cartId,
+        itemId,
+        configurationId,
+      }).$promise;
+  }
+
   getCheckoutInformations(cartId) {
     return this.OvhApiOrder.Cart().v6()
       .getCheckout({
@@ -134,8 +143,8 @@ export default class OrderCartService {
   deleteAllItems(cartId) {
     this.OvhApiOrder.Cart().Item().v6().resetQueryCache();
     return this.getCartItems(cartId)
-      .then(itemsId => this.$q.all(
-        itemsId.map(id => this.deleteItem(cartId, id)),
+      .then((itemsId) => this.$q.all(
+        itemsId.map((id) => this.deleteItem(cartId, id)),
       ));
   }
 

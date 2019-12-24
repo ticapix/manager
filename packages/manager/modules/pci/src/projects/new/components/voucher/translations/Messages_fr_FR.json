@@ -3,12 +3,11 @@
   "pci_projects_new_voucher_form_field": "Entrer un bon d'achat",
   "pci_projects_new_voucher_form_field_amount": "Montant crédité : {{ amount }}",
   "pci_projects_new_voucher_form_field_error_invalid": "Code invalide.",
-  "pci_projects_new_voucher_form_field_error_not_new_customer": "Ce code est destiné aux nouveaux utilisateurs.",
+  "pci_projects_new_voucher_form_field_error_no_longer_valid": "Code invalide.",
   "pci_projects_new_voucher_form_field_error_default": "Une erreur est survenue lors de la vérification du code.",
   "pci_projects_new_voucher_form_add": "Ajouter",
   "pci_projects_new_voucher_form_add_title": "Ajouter un bon d'achat",
   "pci_projects_new_voucher_form_remove": "Retirer",
   "pci_projects_new_voucher_form_remove_title": "Retirer le bon d'achat",
-  "pci_projects_new_voucher_form_add_error": "Une erreur est survenue lors de l'ajout de votre bon d'achat.",
   "pci_projects_new_voucher_form_reset_error": "Une erreur est survenue lors du retrait de votre bon d'achat."
 }

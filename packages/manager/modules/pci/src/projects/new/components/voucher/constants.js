@@ -1,5 +1,5 @@
 export const VOUCHER_CODE_ENUM = {
-  403: 'NOT_NEW_CUSTOMER',
+  403: 'NO_LONGER_VALID',
   404: 'INVALID',
 };
 

@@ -1,1 +1,1 @@
-export default class PciProjectNewCtrl {};
+export default class PciProjectNewCtrl {}

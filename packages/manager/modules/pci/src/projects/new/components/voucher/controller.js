@@ -12,7 +12,6 @@ export default class PciProjectNewVoucherCtrl {
     };
 
     this.errors = {
-      check: false,
       reset: false,
     };
   }
@@ -46,14 +45,9 @@ export default class PciProjectNewVoucherCtrl {
         this.model.voucher.setInfos(voucher);
         this.setVoucherFormState();
 
-        return this.pciProjectNew
-          .setCartProjectItemVoucher(this.cart, this.model.voucher.value)
-          .then(() => {
-            this.errors.check = false;
-          })
-          .catch(() => {
-            this.errors.check = true;
-          });
+        return this.model.voucher.valid
+          ? this.pciProjectNew.setCartProjectItemVoucher(this.cart, this.model.voucher.value)
+          : voucher;
       })
       .catch(() => {
         this.model.voucher.valid = false;
