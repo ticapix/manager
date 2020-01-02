@@ -3,6 +3,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-ui-angular';
+import '@ovh-ux/ng-ovh-contracts';
 
 import routing from './routing';
 import component from './component';
@@ -17,6 +18,7 @@ angular
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    'ngOvhContracts',
     components,
   ])
   .config(routing)
