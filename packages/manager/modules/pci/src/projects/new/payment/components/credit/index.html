@@ -6,29 +6,39 @@
             class="oui-radio_btn"
             data-ng-repeat="amount in $ctrl.predifinedAmounts track by $index"
             data-name="credit"
-            data-thumbnail data-variant="light"
+            data-thumbnail
+            data-variant="light"
             data-model="$ctrl.model.credit"
             data-value="amount"
-            data-on-change="$ctrl.onPredifinedAmountRadioChange()">
+            data-on-change="$ctrl.onPredifinedAmountRadioChange()"
+        >
             <span data-ng-bind="amount.text"></span>
         </oui-radio>
         <oui-radio
             class="oui-radio_btn"
             data-name="credit"
-            data-thumbnail data-variant="light"
+            data-thumbnail
+            data-variant="light"
             data-model="$ctrl.otherAmount.radio"
             data-value="true"
-            data-on-change="$ctrl.onOtherAmountRadioChange()">
-            <span data-translate="pci_project_new_payment_credit_amount_other"></span>
+            data-on-change="$ctrl.onOtherAmountRadioChange()"
+        >
+            <span
+                data-translate="pci_project_new_payment_credit_amount_other"
+            ></span>
         </oui-radio>
     </div>
 
     <div data-ng-if="$ctrl.otherAmount.radio">
-        <div class="oui-field"
-             data-ng-class="{ 'oui-field_error': !newProjectCreditForm.creditAmount.$pristine && newProjectCreditForm.creditAmount.$invalid }">
-            <label class="oui-field__label oui-label"
-                   for="otherAmount"
-                   data-translate="pci_project_new_payment_credit_amount_other_label">
+        <div
+            class="oui-field"
+            data-ng-class="{ 'oui-field_error': !newProjectCreditForm.creditAmount.$pristine && newProjectCreditForm.creditAmount.$invalid }"
+        >
+            <label
+                class="oui-field__label oui-label"
+                for="otherAmount"
+                data-translate="pci_project_new_payment_credit_amount_other_label"
+            >
             </label>
             <div class="oui-field__control">
                 <input
@@ -39,23 +49,9 @@
                     data-ng-model="$ctrl.otherAmount.getterSetter"
                     data-ng-model-options="{ getterSetter: true }"
                     required
-                    min="{{ $ctrl.eligibility.minimumCredit.value }}" />
+                    min="{{ $ctrl.eligibility.minimumCredit.value }}"
+                />
             </div>
-            <!-- <div class="oui-field__error"
-                 data-ng-if="newProjectCreditForm.creditAmount.$invalid">
-                <span role="alert"
-                      data-ng-if="!newProjectCreditForm.creditAmount.$pristine && (newProjectCreditForm.creditAmount.$error.min || newProjectCreditForm.creditAmount.$error.required)">
-                    <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                    <span data-translate="{{ newProjectCreditForm.creditAmount.$error.min ? 'pci_projects_new_credits_amount_min_error' : 'pci_projects_new_credits_amount_min' }}"
-                          data-translate-values="{ amount: $ctrl.creditMinPrice.text }">
-                    </span>
-                </span>
-            </div>
-            <div class="oui-field__helper"
-                 data-ng-if="newProjectCreditForm.creditAmount.$pristine || !newProjectCreditForm.creditAmount.$error.required"
-                 data-translate="pci_projects_new_credits_amount_min"
-                 data-translate-values="{ amount: $ctrl.creditMinPrice.text }">
-            </div> -->
         </div>
     </div>
 
