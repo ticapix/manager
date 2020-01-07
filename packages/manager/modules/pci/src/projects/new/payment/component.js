@@ -7,9 +7,11 @@ export default {
   template,
   bindings: {
     cart: '<',
+    reloadPayment: '<',
     getCancelHref: '<',
     eligibility: '<',
     model: '<',
     defaultPaymentMethod: '<',
+    onCartFinalized: '<',
   },
 };

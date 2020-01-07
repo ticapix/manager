@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 
-import { ELIGIBILITY_ACTION_ENUM } from '../constants';
 import { PCI_REDIRECT_URLS } from '../../../constants';
 
 export default class PciProjectNewPaymentCtrl {
@@ -11,6 +10,7 @@ export default class PciProjectNewPaymentCtrl {
     coreConfig,
     CucCloudMessage,
     pciProjectNew,
+    ovhPaymentMethod,
     OVH_PAYMENT_METHOD_INTEGRATION_TYPE,
     OVH_PAYMENT_METHOD_TYPE,
   ) {
@@ -18,11 +18,15 @@ export default class PciProjectNewPaymentCtrl {
     this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
     this.pciProjectNew = pciProjectNew;
+    this.ovhPaymentMethod = ovhPaymentMethod;
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
     this.OVH_PAYMENT_METHOD_TYPE = OVH_PAYMENT_METHOD_TYPE;
 
     // other attributes
-    this.paymentMethodUrl = get(PCI_REDIRECT_URLS, `${coreConfig.getRegion()}.paymentMethodAdd`);
+    this.paymentMethodUrl = get(
+      PCI_REDIRECT_URLS,
+      `${coreConfig.getRegion()}.paymentMethodAdd`,
+    );
     this.integrationSubmitFn = null;
 
     this.message = {
@@ -46,31 +50,26 @@ export default class PciProjectNewPaymentCtrl {
     let creditPromise = Promise.resolve(true);
 
     if (!this.cart.projectItem.infrastructureConfiguration) {
-      infraConfigPromise = this.pciProjectNew.setCartProjectItemInfrastructure(this.cart);
+      infraConfigPromise = this.pciProjectNew.setCartProjectItemInfrastructure(
+        this.cart,
+      );
     }
 
-    if (this.model.paymentMethod
-      && this.model.paymentMethod.paymentType === 'CREDIT'
-      && this.model.credit && !this.cart.creditOption) {
+    if (
+      this.model.paymentMethod &&
+      this.model.paymentMethod.paymentType === 'CREDIT' &&
+      this.model.credit &&
+      !this.cart.creditOption
+    ) {
       creditPromise = this.pciProjectNew.setCartProjectItemCredit(
         this.cart,
         this.model.credit.value,
       );
     }
 
-    return Promise.all([
-      infraConfigPromise,
-      creditPromise,
-    ])
+    return Promise.all([infraConfigPromise, creditPromise])
       .then(() => this.pciProjectNew.finalizeCart(this.cart))
-      .then((order) => {
-        if (this.cart.creditOption) {
-          // if credit has been added - redirect to order url
-          return this.$window.location.assign(order.url);
-        }
-
-        return order;
-      })
+      .then((order) => this.onCartFinalized(order))
       .catch(() => {
         this.CucCloudMessage.error(
           this.$translate.instant('pci_project_new_payment_checkout_error'),
@@ -81,26 +80,56 @@ export default class PciProjectNewPaymentCtrl {
 
   /* -----  End of Helpers  ------ */
 
-
   /* =============================
   =            Events            =
   ============================== */
 
   onPaymentFormSubmit() {
+    let challengePromise = Promise.resolve(true);
+
     // call integration submit function if some
-    if (this.eligibility.actionsRequired.includes(ELIGIBILITY_ACTION_ENUM.ADD_PAYMENT_MEHTOD)
-      && this.integrationSubmitFn) {
+    if (
+      this.eligibility.isAddPaymentMethodRequired() &&
+      this.integrationSubmitFn
+    ) {
       return this.integrationSubmitFn();
     }
 
-    const challengeRequired = this.eligibility
-      .actionsRequired.includes(ELIGIBILITY_ACTION_ENUM.CHALLENGE_PAYMENT_METHOD);
+    if (this.eligibility.isChallengePaymentMethodRequired()) {
+      this.model.challenge.checking = true;
 
-    if (challengeRequired) {
-      // TODO
+      challengePromise = this.ovhPaymentMethod
+        .challengePaymentMethod(
+          this.defaultPaymentMethod,
+          this.model.challenge.value,
+        )
+        .then(() => {
+          this.model.challenge.resetError();
+        })
+        .catch(({ status }) => {
+          if (status === 404) {
+            return this.reloadPayment().then(() => {
+              this.CucCloudMessage.error(
+                this.$translate.instant(
+                  'pci_project_new_payment_challenge_error_payment_method_deactivated',
+                ),
+                'pci.projects.new.payment',
+              );
+            });
+          }
+
+          this.model.challenge.setError(status);
+
+          return null;
+        })
+        .finally(() => {
+          this.model.challenge.checking = false;
+        });
     }
 
-    return this.manageProjectCreation();
+    return challengePromise.then(() => {
+      return !this.model.challenge.error ? this.manageProjectCreation() : null;
+    });
   }
 
   /* -----  End of Events  ------ */
@@ -138,9 +167,12 @@ export default class PciProjectNewPaymentCtrl {
   ============================= */
 
   $onInit() {
-    this.message.handler = this.CucCloudMessage.subscribe('pci.projects.new.payment', {
-      onMessage: () => this.refreshMessages(),
-    });
+    this.message.handler = this.CucCloudMessage.subscribe(
+      'pci.projects.new.payment',
+      {
+        onMessage: () => this.refreshMessages(),
+      },
+    );
   }
 
   /* -----  End of Hooks  ------ */

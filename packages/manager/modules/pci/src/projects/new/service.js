@@ -4,9 +4,7 @@ import map from 'lodash/map';
 
 import PciCartProject from './classes/cart.class';
 
-import {
-  PCI_PROJECT_ORDER_CART,
-} from './constants';
+import { PCI_PROJECT_ORDER_CART } from './constants';
 
 export default class PciProjectNewService {
   /* @ngInject */
@@ -17,8 +15,7 @@ export default class PciProjectNewService {
   }
 
   checkEligibility(voucher = null) {
-    return this.OvhApiCloud.v6()
-      .getEligibility({ voucher }).$promise;
+    return this.OvhApiCloud.v6().getEligibility({ voucher }).$promise;
   }
 
   /**
@@ -31,8 +28,10 @@ export default class PciProjectNewService {
     let orderCart;
 
     if (cartId) {
-      orderCart = await this.OvhApiOrder.Cart().v6().get({ cartId }).$promise
-        .catch((error) => {
+      orderCart = await this.OvhApiOrder.Cart()
+        .v6()
+        .get({ cartId })
+        .$promise.catch((error) => {
           if (error.status === 404) {
             return this.createOrderCart(ovhSubsidiary);
           }
@@ -52,7 +51,9 @@ export default class PciProjectNewService {
       if (!orderCartInstance.projectItem) {
         await this.createOrderCartProjectItem(orderCartInstance);
       } else {
-        await this.getOrderCartProjectItemConfigurations(orderCartInstance.projectItem);
+        await this.getOrderCartProjectItemConfigurations(
+          orderCartInstance.projectItem,
+        );
       }
     }
 
@@ -99,7 +100,8 @@ export default class PciProjectNewService {
     const { duration, pricingMode } = head(cloudProjectOffer.prices);
     const projectItem = await this.orderCart.addProductToCart(
       cartId,
-      PCI_PROJECT_ORDER_CART.productName, {
+      PCI_PROJECT_ORDER_CART.productName,
+      {
         duration,
         planCode: PCI_PROJECT_ORDER_CART.planCode,
         pricingMode,
@@ -112,15 +114,21 @@ export default class PciProjectNewService {
 
   async getOrderCartItems(orderCart) {
     const { cartId } = orderCart;
-    const itemIds = await this.OvhApiOrder.Cart().Item().v6().query({
-      cartId,
-    }).$promise;
-    const itemDetailsPromises = map(
-      itemIds,
-      (itemId) => this.OvhApiOrder.Cart().Item().v6().get({
+    const itemIds = await this.OvhApiOrder.Cart()
+      .Item()
+      .v6()
+      .query({
         cartId,
-        itemId,
-      }).$promise.then((item) => orderCart.addItem(item)),
+      }).$promise;
+    const itemDetailsPromises = map(itemIds, (itemId) =>
+      this.OvhApiOrder.Cart()
+        .Item()
+        .v6()
+        .get({
+          cartId,
+          itemId,
+        })
+        .$promise.then((item) => orderCart.addItem(item)),
     );
     await Promise.all(itemDetailsPromises);
     return orderCart.items;
@@ -129,19 +137,29 @@ export default class PciProjectNewService {
   async getOrderCartProjectItemConfigurations(cloudProjectItem) {
     const { cartId, itemId } = cloudProjectItem;
     // get configurations ids of the cloud project item
-    const configurationIds = await this.OvhApiOrder.Cart().Item().Configuration().v6()
+    const configurationIds = await this.OvhApiOrder.Cart()
+      .Item()
+      .Configuration()
+      .v6()
       .query({
         cartId,
         itemId,
       }).$promise;
     // get the configuration details of the cloud project item
-    const configPromises = map(configurationIds, (configurationId) => this.OvhApiOrder
-      .Cart().Item().Configuration().v6()
-      .get({
-        cartId,
-        itemId,
-        configurationId,
-      }).$promise.then((configuration) => cloudProjectItem.addConfiguration(configuration)));
+    const configPromises = map(configurationIds, (configurationId) =>
+      this.OvhApiOrder.Cart()
+        .Item()
+        .Configuration()
+        .v6()
+        .get({
+          cartId,
+          itemId,
+          configurationId,
+        })
+        .$promise.then((configuration) =>
+          cloudProjectItem.addConfiguration(configuration),
+        ),
+    );
     // wait for all requests done
     await Promise.all(configPromises);
     return cloudProjectItem.configurations;
@@ -149,35 +167,42 @@ export default class PciProjectNewService {
 
   setCartProjectItemDescription(orderCart, description) {
     const { cartId, itemId } = orderCart.projectItem;
-    return this.orderCart.addConfigurationItem(cartId, itemId, 'description', description)
-      .then((descriptionConfig) => orderCart.projectItem
-        .addConfiguration(descriptionConfig));
+    return this.orderCart
+      .addConfigurationItem(cartId, itemId, 'description', description)
+      .then((descriptionConfig) =>
+        orderCart.projectItem.addConfiguration(descriptionConfig),
+      );
   }
 
   setCartProjectItemInfrastructure(orderCart) {
     const { cartId, itemId } = orderCart.projectItem;
-    return this.orderCart.addConfigurationItem(
-      cartId,
-      itemId,
-      'infrastructure',
-      PCI_PROJECT_ORDER_CART.infraConfigValue,
-    ).then((infrastructureConfig) => orderCart.projectItem
-      .addConfiguration(infrastructureConfig));
+    return this.orderCart
+      .addConfigurationItem(
+        cartId,
+        itemId,
+        'infrastructure',
+        PCI_PROJECT_ORDER_CART.infraConfigValue,
+      )
+      .then((infrastructureConfig) =>
+        orderCart.projectItem.addConfiguration(infrastructureConfig),
+      );
   }
 
   setCartProjectItemVoucher(orderCart, voucherCode) {
     const { cartId, itemId } = orderCart.projectItem;
-    return this.orderCart.addConfigurationItem(cartId, itemId, 'voucher', voucherCode)
-      .then((voucherConfig) => orderCart.projectItem
-        .addConfiguration(voucherConfig));
+    return this.orderCart
+      .addConfigurationItem(cartId, itemId, 'voucher', voucherCode)
+      .then((voucherConfig) =>
+        orderCart.projectItem.addConfiguration(voucherConfig),
+      );
   }
 
   removeCartProjectItemVoucher(orderCart) {
     const { cartId, itemId } = orderCart.projectItem;
     const { id } = orderCart.projectItem.voucherConfiguration;
-    return this.orderCart.deleteConfigurationItem(cartId, itemId, id)
-      .then(() => orderCart.projectItem
-        .removeConfiguration(id));
+    return this.orderCart
+      .deleteConfigurationItem(cartId, itemId, id)
+      .then(() => orderCart.projectItem.removeConfiguration(id));
   }
 
   /**
@@ -186,43 +211,44 @@ export default class PciProjectNewService {
   setCartProjectItemCredit(orderCart, amount) {
     // first get the info of credit option
     const { cartId, itemId } = orderCart.projectItem;
-    return this.orderCart.getProductOptions(
-      cartId,
-      PCI_PROJECT_ORDER_CART.productName,
-      PCI_PROJECT_ORDER_CART.planCode,
-    ).then((options) => {
-      const cloudCredit = find(options, {
-        planCode: PCI_PROJECT_ORDER_CART.creditPlanCode,
+    return this.orderCart
+      .getProductOptions(
+        cartId,
+        PCI_PROJECT_ORDER_CART.productName,
+        PCI_PROJECT_ORDER_CART.planCode,
+      )
+      .then((options) => {
+        const cloudCredit = find(options, {
+          planCode: PCI_PROJECT_ORDER_CART.creditPlanCode,
+        });
+
+        // check if cloud.credit option is present
+        // if not reject
+        if (!cloudCredit) {
+          const error = {
+            status: 404,
+            data: {
+              message: `Option with planCode ${PCI_PROJECT_ORDER_CART.creditPlanCode} not found`,
+            },
+          };
+          return Promise.reject(error);
+        }
+
+        const { duration, pricingMode, price } = head(cloudCredit.prices);
+
+        return this.orderCart
+          .addProductOptionToCart(cartId, PCI_PROJECT_ORDER_CART.productName, {
+            planCode: PCI_PROJECT_ORDER_CART.creditPlanCode,
+            quantity: amount / price.value,
+            duration,
+            pricingMode,
+            itemId,
+          })
+          .then((creditOption) => orderCart.addItem(creditOption));
       });
-
-      // check if cloud.credit option is present
-      // if not reject
-      if (!cloudCredit) {
-        const error = {
-          status: 404,
-          data: {
-            message: `Option with planCode ${PCI_PROJECT_ORDER_CART.creditPlanCode} not found`,
-          },
-        };
-        return Promise.reject(error);
-      }
-
-      const { duration, pricingMode, price } = head(cloudCredit.prices);
-
-      return this.orderCart.addProductOptionToCart(cartId, PCI_PROJECT_ORDER_CART.productName, {
-        planCode: PCI_PROJECT_ORDER_CART.creditPlanCode,
-        quantity: amount / price.value,
-        duration,
-        pricingMode,
-        itemId,
-      }).then((creditOption) => orderCart.addItem(creditOption));
-    });
   }
 
-  finalizeCart({ cartId }) {
-    return this.OvhApiOrder.Cart().v6().checkout({
-      cartId,
-      // autoPayWithPreferredPaymentMethod: true, // TODO: uncomment for test
-    }).$promise;
+  finalizeCart(orderCart) {
+    return this.orderCart.checkoutCart(orderCart.cartId);
   }
 }

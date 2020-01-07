@@ -6,36 +6,38 @@
     <h1 data-translate="pci_project_new_payment_title"></h1>
 
     <!-- error -->
-    <cui-message-container data-messages="$ctrl.message.list"></cui-message-container>
+    <cui-message-container
+        data-messages="$ctrl.message.list"
+    ></cui-message-container>
 
     <!-- main content: payment method (default or register) -->
-    <div class="mb-3"
-         data-ui-view="payment">
-    </div>
+    <div class="mb-3" data-ui-view="payment"></div>
 
     <!-- credits -->
-    <div class="mb-3"
-         data-ui-view="credits"
-         data-ng-if="$ctrl.model.paymentMethod.paymentType === 'CREDIT'">
-    </div>
+    <div
+        class="mb-3"
+        data-ui-view="credits"
+        data-ng-if="$ctrl.model.paymentMethod.paymentType === 'CREDIT'"
+    ></div>
 
     <!-- challenge -->
-    <div class="mb-3"
-         data-ui-view="challenge">
-    </div>
+    <div class="mb-3" data-ui-view="challenge"></div>
 
     <!-- voucher -->
-    <div class="mb-3"
-         data-ui-view="voucher">
-    </div>
+    <div class="mb-3" data-ui-view="voucher"></div>
 
     <!-- dlp -->
     <div data-ui-view="dlp"></div>
 
     <!-- footer -->
-    <div class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3">
-        <form novalidate name="paymentForm"
-              data-ng-submit="$ctrl.onPaymentFormSubmit()">
+    <div
+        class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3"
+    >
+        <form
+            novalidate
+            name="paymentForm"
+            data-ng-submit="$ctrl.onPaymentFormSubmit()"
+        >
             <ovh-payment-method-integration
                 data-callback-status-param-url-name="paymentStatus"
                 data-payment-method-type="$ctrl.model.paymentMethod"
@@ -46,12 +48,16 @@
                 data-ng-if="[
                     $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.REDIRECT,
                     $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IN_CONTEXT
-                ].includes($ctrl.model.paymentMethod.integration)">
+                ].includes($ctrl.model.paymentMethod.integration)"
+            >
                 <oui-button
                     data-variant="primary"
                     data-type="submit"
-                    data-variant-nav="next">
-                    <span data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"></span>
+                    data-variant-nav="next"
+                >
+                    <span
+                        data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
+                    ></span>
                 </oui-button>
             </ovh-payment-method-integration>
 
@@ -60,30 +66,50 @@
                 data-type="submit"
                 data-variant-nav="next"
                 data-disabled="!$ctrl.model.credit"
-                data-ng-if="$ctrl.model.paymentMethod.paymentType === 'CREDIT'">
-                <span data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"></span>
+                data-ng-if="$ctrl.model.paymentMethod.paymentType === 'CREDIT'"
+            >
+                <span
+                    data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
+                ></span>
             </oui-button>
 
-            <oui-button
-                data-variant="primary"
-                data-type="submit"
-                data-variant-nav="next"
-                data-ng-if="$ctrl.defaultPaymentMethod">
-                <span data-translate="pci_project_new_payment_btn_continue_default"></span>
-            </oui-button>
+            <button
+                class="oui-button oui-button_primary oui-button_icon-right no-transition"
+                type="submit"
+                form="challengeForm"
+                data-ng-if="$ctrl.defaultPaymentMethod"
+                data-ng-disabled="$ctrl.eligibility.isChallengePaymentMethodRequired() && !$ctrl.model.challenge.isValid($ctrl.defaultPaymentMethod.paymentType)"
+            >
+                <span
+                    data-translate="pci_project_new_payment_btn_continue_default"
+                ></span>
+                <span
+                    class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                    aria-hidden="true"
+                >
+                </span>
+            </button>
 
-            <a class="oui-button oui-button_primary oui-button_icon-right no-transition"
-               data-ng-if="$ctrl.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT === $ctrl.model.paymentMethod.paymentType"
-               data-ng-href="{{ $ctrl.paymentMethodUrl }}">
-                <span data-translate="pci_project_new_payment_btn_continue_bank_account"></span>
-                <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
-                      aria-hidden="true">
+            <a
+                class="oui-button oui-button_primary oui-button_icon-right no-transition"
+                data-ng-if="$ctrl.OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT === $ctrl.model.paymentMethod.paymentType"
+                data-ng-href="{{ $ctrl.paymentMethodUrl }}"
+            >
+                <span
+                    data-translate="pci_project_new_payment_btn_continue_bank_account"
+                ></span>
+                <span
+                    class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                    aria-hidden="true"
+                >
                 </span>
             </a>
         </form>
 
-        <a data-ng-href="{{ $ctrl.getCancelHref() }}"
-           data-translate="pci_project_new_payment_btn_cancel">
+        <a
+            data-ng-href="{{ $ctrl.getCancelHref() }}"
+            data-translate="pci_project_new_payment_btn_cancel"
+        >
         </a>
     </div>
 </div>
