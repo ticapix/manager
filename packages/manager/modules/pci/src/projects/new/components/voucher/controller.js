@@ -22,12 +22,14 @@ export default class PciProjectNewVoucherCtrl {
 
   setVoucherFormState() {
     if (this.voucherForm && this.voucherForm.voucher) {
-      this.voucherForm.voucher.$setValidity('voucher', this.model.voucher.valid);
+      this.voucherForm.voucher.$setValidity(
+        'voucher',
+        this.model.voucher.valid,
+      );
     }
   }
 
   /* -----  End of Helpers  ------ */
-
 
   /* =============================
   =            Events            =
@@ -41,13 +43,18 @@ export default class PciProjectNewVoucherCtrl {
     this.loading.check = true;
 
     return this.checkVoucherValidity(this.model.voucher.value)
-      .then(({ voucher }) => {
-        this.model.voucher.setInfos(voucher);
+      .then((eligibilityOpts) => {
+        this.model.voucher.setInfos(eligibilityOpts.voucher);
         this.setVoucherFormState();
 
+        this.eligibility.setOptions(eligibilityOpts);
+
         return this.model.voucher.valid
-          ? this.pciProjectNew.setCartProjectItemVoucher(this.cart, this.model.voucher.value)
-          : voucher;
+          ? this.pciProjectNew.setCartProjectItemVoucher(
+              this.cart,
+              this.model.voucher.value,
+            )
+          : eligibilityOpts.voucher;
       })
       .catch(() => {
         this.model.voucher.valid = false;
@@ -61,7 +68,8 @@ export default class PciProjectNewVoucherCtrl {
   onVoucherFormReset() {
     this.loading.reset = true;
 
-    this.pciProjectNew.removeCartProjectItemVoucher(this.cart)
+    this.pciProjectNew
+      .removeCartProjectItemVoucher(this.cart)
       .then(() => {
         this.model.voucher.reset();
         this.errors.reset = false;

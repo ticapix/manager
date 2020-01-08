@@ -36,6 +36,10 @@ export default class PciProjectNewPaymentCtrl {
       list: null,
     };
 
+    this.loading = {
+      finalize: false,
+    };
+
     this.onIntegrationSubmit = PciProjectNewPaymentCtrl.onIntegrationSubmit;
   }
 
@@ -69,6 +73,8 @@ export default class PciProjectNewPaymentCtrl {
       );
     }
 
+    this.loading.finalize = true;
+
     return this.$q
       .all([infraConfigPromise, creditPromise])
       .then(() => this.pciProjectNew.finalizeCart(this.cart))
@@ -78,6 +84,9 @@ export default class PciProjectNewPaymentCtrl {
           this.$translate.instant('pci_project_new_payment_checkout_error'),
           'pci.projects.new.payment',
         );
+      })
+      .finally(() => {
+        this.loading.finalize = false;
       });
   }
 

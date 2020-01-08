@@ -77,7 +77,11 @@
                 data-variant="primary"
                 data-type="submit"
                 data-variant-nav="next"
-                data-disabled="$ctrl.eligibility.isChallengePaymentMethodRequired() && !$ctrl.model.challenge.isValid($ctrl.defaultPaymentMethod.paymentType)"
+                data-disabled="
+                    ($ctrl.eligibility.isChallengePaymentMethodRequired() && !$ctrl.model.challenge.isValid($ctrl.defaultPaymentMethod.paymentType)
+                    || (!$ctrl.model.paymentMethod && $ctrl.eligibility.isAddPaymentMethodRequired())
+                    || $ctrl.model.challenge.checking
+                    || $ctrl.loading.finalize)"
                 data-ng-if="$ctrl.defaultPaymentMethod || !$ctrl.model.paymentMethod"
             >
                 <span

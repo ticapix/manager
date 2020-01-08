@@ -7,6 +7,7 @@ export default {
   controller,
   bindings: {
     checkVoucherValidity: '<',
+    eligibility: '<',
     model: '<',
     cart: '<',
   },

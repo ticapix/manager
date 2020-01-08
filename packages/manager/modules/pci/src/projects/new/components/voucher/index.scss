@@ -1,4 +1,9 @@
-pci-project-new-voucher { /* stylelint-disable-line */
+pci-project-new-voucher {
+  /* stylelint-disable-line */
+  @import '~bootstrap4/scss/_functions';
+  @import '~bootstrap4/scss/_variables';
+  @import '~bootstrap4/scss/mixins/_breakpoints';
+
   .pci-project-new-voucher {
     .btn-voucher,
     .oui-box {
@@ -10,6 +15,20 @@ pci-project-new-voucher { /* stylelint-disable-line */
 
     .btn-voucher .oui-icon.oui-icon-add::before {
       font-size: 1rem;
+    }
+
+    @include media-breakpoint-down(sm) {
+      oui-button {
+        /* stylelint-disable-line */
+        width: 100%;
+      }
+
+      .oui-button {
+        max-width: 100%;
+        display: block;
+        width: 100%;
+        margin-top: $spacer;
+      }
     }
   }
 }
