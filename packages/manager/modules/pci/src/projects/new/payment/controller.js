@@ -6,6 +6,7 @@ export default class PciProjectNewPaymentCtrl {
   /* @ngInject */
   constructor(
     $translate,
+    $q,
     $window,
     coreConfig,
     CucCloudMessage,
@@ -15,6 +16,7 @@ export default class PciProjectNewPaymentCtrl {
     OVH_PAYMENT_METHOD_TYPE,
   ) {
     this.$translate = $translate;
+    this.$q = $q;
     this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
     this.pciProjectNew = pciProjectNew;
@@ -67,7 +69,8 @@ export default class PciProjectNewPaymentCtrl {
       );
     }
 
-    return Promise.all([infraConfigPromise, creditPromise])
+    return this.$q
+      .all([infraConfigPromise, creditPromise])
       .then(() => this.pciProjectNew.finalizeCart(this.cart))
       .then((order) => this.onCartFinalized(order))
       .catch(() => {

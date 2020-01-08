@@ -111,7 +111,9 @@ export default class PciProjectNewPaymentRegisterCtrl {
     );
 
     // set payment method model
-    this.model.paymentMethod = head(this.authorizedPaymentMethods.list);
+    this.model.paymentMethod = this.eligibility.isAddPaymentMethodRequired()
+      ? head(this.authorizedPaymentMethods.list)
+      : null;
   }
 
   /* -----  End of Hooks  ------ */

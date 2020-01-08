@@ -72,9 +72,7 @@ export default /* @ngInject */ ($stateProvider, ovhFeatureFlippingProvider) => {
               image: ELIGIBILITY_ERROR_IMAGES_SRC.VERIFY_PAYPAL,
               submitLabel: null,
             };
-          }
-
-          if (cart.cartId !== transition.params().cartId) {
+          } else if (cart.cartId !== transition.params().cartId) {
             $window.location.replace(
               transition.router.stateService.href('pci.projects.new', {
                 cartId: cart.cartId,
@@ -99,7 +97,8 @@ export default /* @ngInject */ ($stateProvider, ovhFeatureFlippingProvider) => {
 
         cart: /* @ngInject */ ($transition$, me, pciProjectNew) =>
           !get($transition$.params(), 'cartId')
-            ? pciProjectNew.createOrderCart(me.ovhSubsidiary)
+            ? // just create cart - location will be reloaded to fetch the whole cart
+              pciProjectNew.createOrderCart(me.ovhSubsidiary)
             : pciProjectNew.getOrderCart(
                 me.ovhSubsidiary,
                 get($transition$.params(), 'cartId'),

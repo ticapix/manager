@@ -73,22 +73,17 @@
                 ></span>
             </oui-button>
 
-            <button
-                class="oui-button oui-button_primary oui-button_icon-right no-transition"
-                type="submit"
-                form="challengeForm"
-                data-ng-if="$ctrl.defaultPaymentMethod"
-                data-ng-disabled="$ctrl.eligibility.isChallengePaymentMethodRequired() && !$ctrl.model.challenge.isValid($ctrl.defaultPaymentMethod.paymentType)"
+            <oui-button
+                data-variant="primary"
+                data-type="submit"
+                data-variant-nav="next"
+                data-disabled="$ctrl.eligibility.isChallengePaymentMethodRequired() && !$ctrl.model.challenge.isValid($ctrl.defaultPaymentMethod.paymentType)"
+                data-ng-if="$ctrl.defaultPaymentMethod || !$ctrl.model.paymentMethod"
             >
                 <span
                     data-translate="pci_project_new_payment_btn_continue_default"
                 ></span>
-                <span
-                    class="oui-icon oui-icon_circle oui-icon-chevron-right"
-                    aria-hidden="true"
-                >
-                </span>
-            </button>
+            </oui-button>
 
             <a
                 class="oui-button oui-button_primary oui-button_icon-right no-transition"
