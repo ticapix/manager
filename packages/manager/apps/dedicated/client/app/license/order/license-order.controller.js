@@ -1,7 +1,12 @@
 import assign from 'lodash/assign';
+import capitalize from 'lodash/capitalize';
 import head from 'lodash/head';
 import includes from 'lodash/includes';
+import join from 'lodash/join';
+import map from 'lodash/map';
+import replace from 'lodash/replace';
 import set from 'lodash/set';
+import split from 'lodash/split';
 import values from 'lodash/values';
 
 angular
@@ -230,6 +235,34 @@ angular
             // eslint-disable-next-line prefer-destructuring
             $scope.selected.version =
               $scope.types[$scope.selected.licenseType].options[0].options[0];
+          }
+          const { options } = $scope.types[
+            $scope.selected.licenseType
+          ].options[0];
+          if (
+            $scope.selected.licenseType === 'CPANEL' ||
+            $scope.selected.licenseType === 'WORKLIGHT'
+          ) {
+            $scope.formatedOptions = map(options, (option) => {
+              const value = replace(option.value, /version-/gi, '');
+              set(
+                option,
+                'displayName',
+                capitalize(join(split(value, '-'), ' ')),
+              );
+              return option;
+            });
+          } else {
+            $scope.formatedOptions = map(options, (option) => {
+              set(
+                option,
+                'displayName',
+                $translate.instant(
+                  `license_designation_${$scope.selected.licenseType}_version_${option.value}`,
+                ),
+              );
+              return option;
+            });
           }
 
           $scope.selected.options = getResetedOptions();
