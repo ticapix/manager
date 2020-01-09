@@ -158,6 +158,10 @@ export default /* @ngInject */ ($stateProvider, ovhFeatureFlippingProvider) => {
           return modelDef;
         },
 
+        globalLoading: () => ({
+          finalize: false,
+        }),
+
         /* ----------  Order steps management  ---------- */
 
         getStep: /* @ngInject */ (steps) => (name) => find(steps, { name }),

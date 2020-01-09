@@ -28,6 +28,7 @@
                     data-ng-model="$ctrl.model.challenge.value"
                     data-ng-attr-placeholder="{{ $ctrl.inputPlaceHolder }}"
                     data-ng-attr-maxlength="{{ $ctrl.inputMaxLength }}"
+                    data-ng-disabled="$ctrl.globalLoading.finalize"
                 />
             </div>
         </div>
@@ -50,6 +51,7 @@
             id="challenge"
             name="challenge"
             data-ng-model="$ctrl.model.challenge.value"
+            data-ng-disabled="$ctrl.globalLoading.finalize"
         />
     </div>
 </form>

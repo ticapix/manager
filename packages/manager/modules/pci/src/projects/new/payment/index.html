@@ -54,6 +54,7 @@
                     data-variant="primary"
                     data-type="submit"
                     data-variant-nav="next"
+                    data-disabled="$ctrl.globalLoading.finalize"
                 >
                     <span
                         data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
@@ -81,7 +82,7 @@
                     ($ctrl.eligibility.isChallengePaymentMethodRequired() && !$ctrl.model.challenge.isValid($ctrl.defaultPaymentMethod.paymentType)
                     || (!$ctrl.model.paymentMethod && $ctrl.eligibility.isAddPaymentMethodRequired())
                     || $ctrl.model.challenge.checking
-                    || $ctrl.loading.finalize)"
+                    || $ctrl.globalLoading.finalize)"
                 data-ng-if="$ctrl.defaultPaymentMethod || !$ctrl.model.paymentMethod"
             >
                 <span

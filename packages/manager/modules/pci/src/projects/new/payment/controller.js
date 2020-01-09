@@ -36,10 +36,6 @@ export default class PciProjectNewPaymentCtrl {
       list: null,
     };
 
-    this.loading = {
-      finalize: false,
-    };
-
     this.onIntegrationSubmit = PciProjectNewPaymentCtrl.onIntegrationSubmit;
   }
 
@@ -73,7 +69,7 @@ export default class PciProjectNewPaymentCtrl {
       );
     }
 
-    this.loading.finalize = true;
+    this.globalLoading.finalize = true;
 
     return this.$q
       .all([infraConfigPromise, creditPromise])
@@ -86,7 +82,7 @@ export default class PciProjectNewPaymentCtrl {
         );
       })
       .finally(() => {
-        this.loading.finalize = false;
+        this.globalLoading.finalize = false;
       });
   }
 

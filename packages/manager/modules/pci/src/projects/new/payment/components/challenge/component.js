@@ -8,5 +8,6 @@ export default {
   bindings: {
     model: '<',
     defaultPaymentMethod: '<',
+    globalLoading: '<',
   },
 };

@@ -11,6 +11,7 @@
             data-model="$ctrl.model.credit"
             data-value="amount"
             data-on-change="$ctrl.onPredifinedAmountRadioChange()"
+            data-disabled="$ctrl.globalLoading.finalize"
         >
             <span data-ng-bind="amount.text"></span>
         </oui-radio>
@@ -22,6 +23,7 @@
             data-model="$ctrl.otherAmount.radio"
             data-value="true"
             data-on-change="$ctrl.onOtherAmountRadioChange()"
+            data-disabled="$ctrl.globalLoading.finalize"
         >
             <span
                 data-translate="pci_project_new_payment_credit_amount_other"
@@ -50,6 +52,7 @@
                     data-ng-model-options="{ getterSetter: true }"
                     required
                     min="{{ $ctrl.eligibility.minimumCredit.value }}"
+                    data-ng-disabled="$ctrl.globalLoading.finalize"
                 />
             </div>
         </div>

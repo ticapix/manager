@@ -20,6 +20,7 @@
                 data-model="$ctrl.model.paymentMethod"
                 data-value="authorizedPaymentMethod"
                 data-on-change="$ctrl.onPaymentTypeRadioChange()"
+                data-disabled="$ctrl.globalLoading.finalize"
             >
                 <span
                     data-ng-bind="$ctrl.getPaymentMethodTypeText(authorizedPaymentMethod)"

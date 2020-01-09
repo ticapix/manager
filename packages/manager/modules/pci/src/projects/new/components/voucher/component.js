@@ -10,5 +10,6 @@ export default {
     eligibility: '<',
     model: '<',
     cart: '<',
+    globalLoading: '<',
   },
 };

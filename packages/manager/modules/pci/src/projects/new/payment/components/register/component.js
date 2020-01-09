@@ -9,5 +9,6 @@ export default {
     eligibility: '<',
     model: '<',
     registerablePaymentMethods: '<',
+    globalLoading: '<',
   },
 };
